@@ -366,7 +366,7 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .chat-attachment>svg{width:18px;height:18px;flex-shrink:0}.chat-attachment>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chat-attachment .icon-button{width:40px;height:40px;flex-shrink:0}
 .chat-message-attachments{display:grid;gap:7px;margin-bottom:8px}.chat-message-attachments:last-child{margin-bottom:0}.chat-message-attachments>span{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}.chat-message-attachments svg{width:18px;height:18px;flex-shrink:0}
 .app .circle-header>.icon-button.page-top-add{left:auto;right:18px;top:18px;width:40px;height:40px;border-radius:50%;background:#f1f2f4;color:#46515f}
-.calendar-entry-rows{margin-bottom:30px}.calendar-import-icon{background:#f0f7ff}.calendar-import-icon img{width:34px;height:34px;object-fit:contain}.calendar-day-empty{padding:20px 0;color:var(--muted);font-size:14px;text-align:center}
+.calendar-entry-rows{margin-bottom:30px}.agenda-page>.calendar-entry-rows{margin-top:30px;margin-bottom:0}.calendar-import-icon{background:#f0f7ff}.calendar-import-icon img{width:34px;height:34px;object-fit:contain}.calendar-day-empty{padding:20px 0;color:var(--muted);font-size:14px;text-align:center}
 @media(max-width:375px){.app .circle-header>.icon-button.page-top-add{right:16px}}
 </style>
 </head>
@@ -974,8 +974,12 @@ Object.values(PREVIEW_ROLES).forEach(r=>{r.greeting='你好，我是你的 AI �
 const sourceOptionsNov14=sourceOptions;
 sourceOptions=function(active,selected){return sourceOptionsNov14(!ui.loading,selected)};
 const calendarBeforeNov14=calendarBeforeActivation;
-function calendarEntryRows(){return `<div class="follow-ideas calendar-entry-rows"><button type="button" class="follow-idea" data-action="calendarSetup"><span class="follow-idea-icon calendar-import-icon" aria-hidden="true">${calendarProviderMark('dingtalk')}</span><span class="follow-idea-body"><strong>从钉钉快速导入</strong><span>会前准备、会中记录、会后跟进。</span></span>${icon('right')}</button><button type="button" class="follow-idea" data-action="manualCalendar"><span class="follow-idea-icon" aria-hidden="true">${icon('chat')}</span><span class="follow-idea-body"><strong>通过对话添加日程</strong></span>${icon('right')}</button></div>`}
-calendar=function(){return calendarBeforeNov14().replace(`<div class="page-title"><h1>日程</h1>${ib('添加日程','plus','addEvent')}</div>`,`<div class="page-title"><h1>日程</h1></div>${calendarEntryRows()}`).replace(`<div class="empty">${icon('calendar')}<p>这一天没有安排</p>${btn('添加日程','addEvent','','secondary')}</div>`,'<p class="calendar-day-empty">这一天没有安排</p>')};
+function calendarEntryRows(){return `<div class="follow-ideas calendar-entry-rows"><button type="button" class="follow-idea" data-action="calendarSetup"><span class="follow-idea-icon calendar-import-icon" aria-hidden="true">${calendarProviderMark('dingtalk')}</span><span class="follow-idea-body"><strong>从钉钉快速导入</strong><span>会前准备、会中记录、会后跟进。</span></span>${icon('right')}</button></div>`}
+calendar=function(){
+  const title='<div class="page-title"><h1>日程</h1></div>';
+  if(!data.events.length)return `<section class="page calendar-welcome">${title}${calendarEntryRows()}</section>`;
+  return calendarBeforeNov14().replace(`<div class="page-title"><h1>日程</h1>${ib('添加日程','plus','addEvent')}</div>`,title).replace(`<div class="empty">${icon('calendar')}<p>这一天没有安排</p>${btn('添加日程','addEvent','','secondary')}</div>`,'<p class="calendar-day-empty">这一天没有安排</p>').replace('</section>',`${calendarEntryRows()}</section>`);
+};
 calendarEmpty=calendar;
 function providerMeetings(provider){
   const p=CALENDAR_PROVIDERS.find(p=>p.id===provider);if(!p)return [];
@@ -1182,7 +1186,7 @@ save();
     'collection/daily': '经营简报', 'collection/meetings': '会议记录',
     'collection/analysis': '分析与方案', 'collection/reference': '参考资料'
   };
-  // Personal memories live at the root; event context has one folder.
+  // Personal memories and event context are sibling folders at the memory root.
   const isMemoryFolder = id => id === 'memory' || id?.startsWith('memory/');
   const librarySection = () => {
     if (ui.folder) return isMemoryFolder(ui.folder) ? 'memory' : 'files';
@@ -1298,9 +1302,7 @@ save();
     const section = librarySection();
     if (section === 'memory') {
       if (!ui.folder || ui.folder === 'memory') {
-        const personal = profileMemories().filter(libMemoryMatches).map(libMemoryRow).join('');
-        const events = libFolderMatches('memory/tracking') ? libFolderGrid(['memory/tracking']) : '';
-        return events + (personal ? '<div class="section-line"><h2>关于我的记忆</h2></div>' + personal : (!libQuery() ? libEmpty('还没有关于你的记忆', 'memoryAdd', '添加记忆') : '')) || libEmpty('没有找到相关记忆');
+        return libFolderGrid(['memory/profile','memory/tracking'].filter(libFolderMatches)) || libEmpty('没有找到相关记忆');
       }
       if (ui.folder === 'memory/profile') return profileMemories().filter(libMemoryMatches).map(libMemoryRow).join('') || libEmpty(libQuery() ? '没有找到相关记忆' : '还没有保存的身份与偏好', 'newMemory', '添加记忆');
       if (ui.folder === 'memory/tracking') {
