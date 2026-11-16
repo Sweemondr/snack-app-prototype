@@ -341,6 +341,18 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .source-bubble.scenario-step{width:100%;max-width:100%;background:#fff;padding:18px 4px 22px;border-radius:0}
 .source-bubble.scenario-history{width:100%;max-width:100%;background:#fff;padding:12px 4px;border-radius:0}
 
+
+/* Names make every main destination explicit; follow-up ideas retain useful context. */
+.bottom-nav{height:78px;gap:8px;padding:6px 10px 12px}
+.bottom-nav button{height:58px;min-height:58px;padding:6px 2px;gap:4px}
+.bottom-nav button span{font-size:11px;line-height:16px;white-space:nowrap}
+.follow-idea-body{gap:5px}.follow-idea-body>span{font-size:14px;line-height:1.7}
+.library-split-page .lib-split-folders:has(>.lib16-folder:only-child){grid-template-columns:1fr}
+.library-split-page .lib-split-folders>.lib16-folder:only-child{display:grid;grid-template-columns:32px 1fr;column-gap:12px;row-gap:2px;min-height:84px}
+.library-split-page .lib-split-folders>.lib16-folder:only-child>.lib16-folder-icon{grid-row:1/3;align-self:center;margin:0}
+.memory-import-note{font-size:12px;line-height:1.7;color:var(--muted)}
+.memory-import-preview{margin:0 0 24px}.memory-import-preview h3{font-size:17px}.memory-import-preview p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85;margin:12px 0;font-size:14px}.memory-import-preview small{font-size:12px;color:var(--muted)}
+@media(max-width:720px){.bottom-nav{height:calc(78px + env(safe-area-inset-bottom));padding-bottom:calc(12px + env(safe-area-inset-bottom))}}
 </style>
 </head>
 <body>
@@ -786,7 +798,7 @@ header=function(){
   if(ui.page!=='main')return previousHeader();
   return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'} circle-header"><div class="assistant-mask" aria-hidden="true"></div>${ib('打开设置','settings','settings')}<button class="brand-circle" data-action="assistantActivity" aria-label="查看 ${esc(data.name)} 的动态"><img src="${LOGO}" alt=""><strong>${esc(data.name)}</strong></button></header>`;
 };
-nav=function(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟进中'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`};
+nav=function(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟进'],['calendar','calendar','日程'],['library','library','资料']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}<span>${t}</span></button>`).join('')}</nav>`};
 function connectionAction(kind,id){
   if(!data.dingTalk.cliConnected)return '连接钉钉日程';
   if(!data.dingTalk.scopes.includes('calendar'))return '授权钉钉日程';
@@ -1131,20 +1143,21 @@ save();
 // Library separates remembered context from files; both retain their own navigation.
 (() => {
   const libTitles = {
-    memory: '关于我的记忆', 'memory/profile': '身份与偏好',
-    'memory/tracking': '跟进与历史', 'memory/calendar': '日程与会议',
+    memory: '关于我的记忆', 'memory/profile': '关于我的记忆',
+    'memory/tracking': '事件与跟进', 'memory/calendar': '日程与会议',
     scm: 'SCM 项目', east: '华东大区', meetings: '会议记录',
     reports: '分析报告', knowledge: '知识库', uploads: '上传资料',
     'collection/daily': '经营简报', 'collection/meetings': '会议记录',
     'collection/analysis': '分析与方案', 'collection/reference': '参考资料'
   };
-  const libChildren = ['memory/profile', 'memory/tracking', 'memory/calendar'];
+  // Personal memories live at the root; event context has one folder.
   const isMemoryFolder = id => id === 'memory' || id?.startsWith('memory/');
   const librarySection = () => {
     if (ui.folder) return isMemoryFolder(ui.folder) ? 'memory' : 'files';
-    return ui.librarySection === 'files' ? 'files' : 'memory';
+    return ui.librarySection === 'memory' ? 'memory' : 'files';
   };
-  ui.librarySection = data.librarySection === 'files' ? 'files' : 'memory';
+  if(data.libraryLayoutVersion!==2){data.libraryLayoutVersion=2;data.librarySection='files';save();}
+  ui.librarySection = data.librarySection === 'memory' ? 'memory' : 'files';
   const persistSection = section => {
     ui.librarySection = section;
     if (data.librarySection !== section) { data.librarySection = section;save(); }
@@ -1162,9 +1175,9 @@ save();
   const libQuery = () => libText(ui.query).trim();
   const libMatches = values => !libQuery() || values.some(value => libText(value).includes(libQuery()));
   const libTitle = id => libTitles[id] || folders.find(folder => folder[0] === id)?.[1] || id;
-  const libParent = id => id?.startsWith('memory/') ? 'memory' : null;
-  const profileMemories = () => (data.memories || []).filter(item => item.category !== '项目背景');
-  const projectMemories = () => (data.memories || []).filter(item => item.category === '项目背景');
+  const libParent = () => null;
+  const profileMemories = () => (data.memories || []).filter(item => ['关于我','偏好'].includes(item.category));
+  const projectMemories = () => (data.memories || []).filter(item => !['关于我','偏好'].includes(item.category));
   const libMemoryMatches = item => libMatches([item.title, item.text, item.category, item.origin]);
   const libGoalMatches = goal => libMatches([goal.title, goal.project, goal.summary, ...(goal.logs || []).flat()]);
   const libEventMatches = event => libMatches([event.title, event.desc, event.people, event.location]);
@@ -1220,14 +1233,14 @@ save();
     if (!libQuery() || libMatches([libTitle(id)])) return true;
     if (id === 'memory') return (data.memories || []).some(libMemoryMatches) || data.goals.some(libGoalMatches) || data.events.some(libEventMatches);
     if (id === 'memory/profile') return profileMemories().some(libMemoryMatches);
-    if (id === 'memory/tracking') return projectMemories().some(libMemoryMatches) || data.goals.some(libGoalMatches);
+    if (id === 'memory/tracking') return projectMemories().some(libMemoryMatches) || data.goals.some(libGoalMatches) || data.events.some(libEventMatches);
     if (id === 'memory/calendar') return data.events.some(libEventMatches);
     return libScopeFiles(id).some(libFileMatches);
   };
   const libFolderMeta = id => {
-    if (id === 'memory') return '3 个文件夹';
+    if (id === 'memory') return `${profileMemories().length} 条记忆`;
     if (id === 'memory/profile') return `${profileMemories().length} 条记忆`;
-    if (id === 'memory/tracking') return `${data.goals.length} 件事项 · ${projectMemories().length} 条背景`;
+    if (id === 'memory/tracking') return `${data.goals.length} 件跟进 · ${projectMemories().length} 条背景${data.events.length ? ' · '+data.events.length+' 项日程' : ''}`;
     if (id === 'memory/calendar') return `${data.events.length} 项日程`;
     return `${libScopeFiles(id).length} 份文件`;
   };
@@ -1242,9 +1255,9 @@ save();
 
   library = function() {
     const section = librarySection();persistSection(section);
-    const tabs = !ui.folder ? `<div class="library-sections" role="tablist" aria-label="资料库分区">${[['memory', '记忆'], ['files', '文件']].map(([id, label]) => `<button type="button" role="tab" id="library-section-${id}" aria-controls="libraryPanel" aria-selected="${section === id}" tabindex="${section === id ? 0 : -1}" data-action="librarySection" data-id="${id}">${label}</button>`).join('')}</div>` : '';
+    const tabs = !ui.folder ? `<div class="library-sections" role="tablist" aria-label="资料库分区">${[['files', '文件'], ['memory', '记忆']].map(([id, label]) => `<button type="button" role="tab" id="library-section-${id}" aria-controls="libraryPanel" aria-selected="${section === id}" tabindex="${section === id ? 0 : -1}" data-action="librarySection" data-id="${id}">${label}</button>`).join('')}</div>` : '';
     const parent = libParent(ui.folder);
-    const heading = ui.folder ? `<div class="library-folder-heading">${ib('返回' + (parent ? libTitle(parent) : sectionLabel(section)), 'back', 'folderBack')}<h1>${esc(libTitle(ui.folder))}</h1>${ui.folder === 'memory/profile' ? ib('添加记忆', 'plus', 'newMemory') : ''}</div>` : '';
+    const heading = ui.folder ? `<div class="library-folder-heading">${ib('返回' + (parent ? libTitle(parent) : sectionLabel(section)), 'back', 'folderBack')}<h1>${esc(libTitle(ui.folder))}</h1></div>` : '';
     const searchLabel = section === 'memory' ? '搜索记忆' : '搜索文件';
     return `<section class="page lib14-page library-split-page">${tabs}${heading}<div id="libraryPanel" ${!ui.folder ? `role="tabpanel" aria-labelledby="library-section-${section}"` : ''}><label class="search library-search">${icon('search')}<input id="librarySearch" aria-label="${searchLabel}" placeholder="${searchLabel}" value="${esc(ui.query)}"></label><div id="libraryResults">${libraryResults()}</div></div></section>`;
   };
@@ -1252,15 +1265,19 @@ save();
   libraryResults = function() {
     const section = librarySection();
     if (section === 'memory') {
-      if (!ui.folder) return libFolderMatches('memory') ? libFolderGrid(['memory']) : libEmpty('没有找到相关记忆');
-      if (ui.folder === 'memory') return libFolderGrid(libChildren.filter(libFolderMatches)) || libEmpty('没有找到相关记忆');
+      if (!ui.folder || ui.folder === 'memory') {
+        const personal = profileMemories().filter(libMemoryMatches).map(libMemoryRow).join('');
+        const events = libFolderMatches('memory/tracking') ? libFolderGrid(['memory/tracking']) : '';
+        return events + (personal ? '<div class="section-line"><h2>关于我的记忆</h2></div>' + personal : (!libQuery() ? libEmpty('还没有关于你的记忆', 'memoryAdd', '添加记忆') : '')) || libEmpty('没有找到相关记忆');
+      }
       if (ui.folder === 'memory/profile') return profileMemories().filter(libMemoryMatches).map(libMemoryRow).join('') || libEmpty(libQuery() ? '没有找到相关记忆' : '还没有保存的身份与偏好', 'newMemory', '添加记忆');
       if (ui.folder === 'memory/tracking') {
         const context = projectMemories().filter(libMemoryMatches).map(libMemoryRow).join('');
         const goals = data.goals.filter(libGoalMatches);
         const active = goals.filter(goal => goal.status !== 'done');
         const finished = goals.filter(goal => goal.status === 'done');
-        return context + active.map(libGoalRecord).join('') + (finished.length ? `<div class="section-line"><h2>已完成</h2></div>${finished.map(libGoalRecord).join('')}` : '') || libEmpty(libQuery() ? '没有找到相关记录' : '还没有跟进记录', 'memoryGoals', '选择一件事开始跟进');
+        const events = data.events.filter(libEventMatches).slice().sort((a,b)=>`${fullDay(b)} ${b.time}`.localeCompare(`${fullDay(a)} ${a.time}`));
+        return (context ? '<div class="section-line"><h2>事件背景</h2></div>'+context : '') + (active.length ? '<div class="section-line"><h2>持续跟进</h2></div>'+active.map(libGoalRecord).join('') : '') + (finished.length ? `<div class="section-line"><h2>已完成</h2></div>${finished.map(libGoalRecord).join('')}` : '') + (events.length ? '<div class="section-line"><h2>日程与会议</h2></div>'+events.map(libEventRecord).join('') : '') || libEmpty(libQuery() ? '没有找到相关记录' : '还没有跟进记录', 'memoryGoals', '选择一件事开始跟进');
       }
       if (ui.folder === 'memory/calendar') {
         const events = data.events.filter(libEventMatches).slice().sort((a, b) => `${fullDay(b)} ${b.time}`.localeCompare(`${fullDay(a)} ${a.time}`));
@@ -1270,7 +1287,7 @@ save();
     }
     const files = recentFiles(libScopeFiles(ui.folder).filter(libFileMatches));
     const rows = files.map(fileRow).join('');
-    if (ui.folder) return rows || libEmpty(libQuery() ? '没有找到相关文件' : '这里还没有文件', 'libraryAdd', '上传文件');
+    if (ui.folder) return rows || libEmpty(libQuery() ? '没有找到相关文件' : '这里还没有文件', 'libraryPickFile', '上传文件');
     const directories = libQuery() ? '' : libFolderGrid(fileFolders());
     const recent = files.length && !libQuery() ? '<div class="section-line"><h2>最近文件</h2></div>' : '';
     return directories + recent + rows || libEmpty('没有找到相关文件');
@@ -1283,7 +1300,7 @@ save();
       stash();ui.folder = null;ui.query = '';ui.filter = '全部';persistSection(id);render();document.getElementById('library-section-' + id)?.focus();return;
     }
     if (action === 'memory') {
-      stash();closeSheet(false);ui.tab = 'library';ui.page = 'main';ui.stack = [];ui.previous = null;ui.folder = 'memory';ui.query = '';ui.filter = '全部';persistSection('memory');render();return;
+      stash();closeSheet(false);ui.tab = 'library';ui.page = 'main';ui.stack = [];ui.previous = null;ui.folder = null;ui.query = '';ui.filter = '全部';persistSection('memory');render();return;
     }
     if (action === 'folder') {
       stash();ui.folder = id;ui.query = '';ui.filter = '全部';persistSection(isMemoryFolder(id) ? 'memory' : 'files');render();return;
@@ -1299,7 +1316,7 @@ save();
     const tab = event.target.closest?.('[role="tab"][data-action="librarySection"]');
     if (!tab || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    const next = event.key === 'Home' ? 'memory' : event.key === 'End' ? 'files' : tab.dataset.id === 'memory' ? 'files' : 'memory';
+    const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'memory' : tab.dataset.id === 'memory' ? 'files' : 'memory';
     handle('librarySection', next);
   });
 
@@ -1586,7 +1603,11 @@ paintSheet=function(){
   paintBeforeFollowGuide();
 };
 const headerBeforeLibraryAction=header;
-header=function(){const html=headerBeforeLibraryAction();return ui.page==='main'&&ui.tab==='library'?html.replace('</header>',`<button type="button" class="icon-button library-top-upload" aria-label="上传资料" data-action="libraryAdd">${icon('upload')}</button></header>`):html};
+header=function(){
+  const html=headerBeforeLibraryAction();if(ui.page!=='main'||ui.tab!=='library')return html;
+  const memory=ui.folder ? ui.folder==='memory'||ui.folder.startsWith('memory/') : ui.librarySection==='memory';
+  return html.replace('</header>',`<button type="button" class="icon-button library-top-upload" aria-label="${memory?'添加记忆':'上传文件'}" data-action="${memory?'memoryAdd':'libraryPickFile'}">${icon(memory?'plus':'upload')}</button>${!memory?'<input id="fileInput" type="file" hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.md,.mp3,.wav,.m4a,.png,.jpg">':''}</header>`);
+};
 const settingsBeforeMemorySplit=settings;
 settings=function(){return settingsBeforeMemorySplit().replace('关于我的了解','关于我的记忆')};
 document.addEventListener('input',event=>{
@@ -1639,18 +1660,18 @@ handle=function(action,id,el){
 // BEGIN THREE SCENARIOS
 // Three guided scenarios. Integrations and delivery are deliberately local demonstrations.
 const SCENARIOS={
-  risk:{title:'盯住项目的重要变化',icon:'trend',stages:['scope','sources','preview','delivery','review']},
-  meeting:{title:'接着跟进会上的决策',icon:'calendar',stages:['meeting','decisions','sources','preview','delivery','review']},
-  brief:{title:'每天推送项目经营简报',icon:'clock',stages:['sources','scope','preview','delivery','review']}
+  risk:{description:'项目进度、出勤或回款有重要变化时，我会整理影响，及时告诉你。',title:'盯住项目的重要变化',icon:'trend',stages:['scope','sources','preview','delivery','review']},
+  meeting:{description:'我会记住会上定下的负责人和时间，接着跟进每项决策的落实。',title:'接着跟进会上的决策',icon:'calendar',stages:['meeting','decisions','sources','preview','delivery','review']},
+  brief:{description:'每天按时整理项目出勤、产值和回款，通过钉钉发给你。',title:'每天推送项目经营简报',icon:'clock',stages:['sources','scope','preview','delivery','review']}
 };
 const SCENARIO_PROJECTS=['SCM','华东大区','创新设备租赁'];
 const SCENARIO_METRICS={attendance:'设备出勤与闲置',output:'项目产值',payment:'计划与实际回款'};
 const SCENARIO_FOCUS={attendance:'设备出勤与调配',payment:'回款与付款承诺',progress:'进度、阻塞与待决策事项'};
 const SCENARIO_PERMISSIONS={projectRead:'读取我可见的项目经营数据',projectMessages:'读取选定项目的相关消息',minutes:'读取我已授权的会议记录',messageSend:'通过 Snack 机器人向我发送消息'};
 Object.assign(DING_SCOPES,SCENARIO_PERMISSIONS);
-FOLLOW_IDEAS.splice(0,FOLLOW_IDEAS.length,...Object.entries(SCENARIOS).map(([id,s])=>({id,icon:s.icon,title:s.title,description:''})));
+FOLLOW_IDEAS.splice(0,FOLLOW_IDEAS.length,...Object.entries(SCENARIOS).map(([id,s])=>({id,icon:s.icon,title:s.title,description:s.description})));
 Object.assign(FOLLOW_PROMPTS,{risk:'帮我盯住项目的重要变化。',meeting:'帮我接着跟进会上的决策。',brief:'每个工作日早上 9 点，把项目经营简报通过钉钉发给我。'});
-templateRows=function(){return `<div class="follow-ideas">${FOLLOW_IDEAS.map(s=>`<button class="follow-idea" data-action="startTemplate" data-id="${s.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(s.icon)}</span><span class="follow-idea-body"><strong>${s.title}</strong></span>${icon('right')}</button>`).join('')}</div>`};
+templateRows=function(){return `<div class="follow-ideas">${FOLLOW_IDEAS.map(s=>`<button class="follow-idea" data-action="startTemplate" data-id="${s.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(s.icon)}</span><span class="follow-idea-body"><strong>${s.title}</strong><span>${s.description}</span></span>${icon('right')}</button>`).join('')}</div>`};
 function scenarioDraft(){const d=activeFollowDraft();return d?.flowVersion===2?d:null}
 function scenarioSnapshot(d){return structuredClone({flowVersion:2,template:d.template,project:d.project,projects:d.projects,focus:d.focus,customFocus:d.customFocus||'',focusKeys:d.focusKeys,decisionsMeetingId:d.decisionsMeetingId,criteria:d.criteria,sourceKey:d.sourceKey,resource:d.resource,metrics:d.metrics,meetingId:d.meetingId,meetingTitle:d.meetingTitle,decisions:d.decisions,channel:d.channel,frequency:d.frequency,time:d.time,weekday:d.weekday,rule:d.rule,previewNote:d.previewNote,timezone:'Asia/Shanghai'})}
 function scenarioSourceReady(d){return d.sourceKey==='manual'||(d.sourceKey==='nexus'?!!data.settings.nexus:d.sourceKey==='dingTalk'&&!!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('projectMessages'))}
@@ -1906,6 +1927,59 @@ scrollBottom=function(){
 };
 
 // END THREE SCENARIOS
+
+// Memory can be brought in deliberately; pasting never creates a connection or a goal.
+function previewMemoryImport(values){
+  const source=['ChatGPT','Claude','其他应用'].includes(values.source)?values.source:'其他应用';
+  const title=String(values.title||'').trim(),text=String(values.text||'').trim();
+  if(!title||!text)return {ok:false,error:'补充标题和要导入的记忆。'};
+  if(title.length>40||text.length>1000)return {ok:false,error:'标题最多 40 字，记忆内容最多 1000 字。'};
+  if(!['关于我','偏好','项目背景'].includes(values.category))return {ok:false,error:'选择这条记忆的分类。'};
+  ui.memoryImportSequence=(ui.memoryImportSequence||0)+1;
+  ui.memoryImport={source,title,text,category:values.category,token:'memory-import-'+Date.now()+'-'+ui.memoryImportSequence};
+  return {ok:true};
+}
+function confirmMemoryImport(token){
+  const draft=ui.memoryImport;
+  if(!draft||draft.token!==token||ui.sheet?.type!=='memoryImportPreview')return {ok:false,error:'请重新预览这条记忆。'};
+  const duplicate=data.memories.find(m=>m.title===draft.title&&m.text===draft.text&&m.category===draft.category);
+  if(!duplicate)data.memories.unshift({id:draft.token,title:draft.title,text:draft.text,category:draft.category,origin:draft.source+' · 你导入并确认',updated:'刚刚',history:[]});
+  ui.memoryImport=null;save();closeSheet(false);ui.librarySection='memory';data.librarySection='memory';go('library');
+  if(draft.category==='项目背景')handle('folder','memory/tracking');
+  toast(duplicate?'这条记忆已保存':'已导入 1 条记忆');return {ok:true};
+}
+const handleBeforeFlatMemory=handle;
+handle=function(action,id,el){
+  if(action==='libraryPickFile'){document.getElementById('fileInput')?.click();return}
+  if(action==='memoryAdd'){showSheet('memoryAdd');return}
+  if(action==='memoryImport'){ui.memoryImport=null;showSheet('memoryImport');return}
+  if(action==='memoryImportBack'){showSheet('memoryImport');return}
+  if(action==='memoryImportConfirm'){confirmMemoryImport(id);return}
+  if(action==='memoryConnections'){closeSheet(false);openPage('sources');return}
+  if(action==='close'&&['memoryImport','memoryImportPreview'].includes(ui.sheet?.type))ui.memoryImport=null;
+  handleBeforeFlatMemory(action,id,el);
+};
+const paintBeforeFlatMemory=paintSheet;
+paintSheet=function(){
+  if(ui.sheet?.type==='memoryAdd'){
+    workSheet('添加记忆',btn(icon('file')+'<span>从其他应用导入</span>'+icon('right'),'memoryImport','','sheet-choice')+btn(icon('link')+'<span>连接更多应用</span>'+icon('right'),'memoryConnections','','sheet-choice')+btn(icon('edit')+'<span>手动补充记忆</span>'+icon('right'),'newMemory','','sheet-choice'));return;
+  }
+  if(ui.sheet?.type==='memoryImport'){
+    const d=ui.memoryImport||{source:'ChatGPT',category:'关于我'};
+    workSheet('从其他应用导入',`<form id="memoryImportForm" class="form"><label class="field"><span>来源应用</span><select name="source">${['ChatGPT','Claude','其他应用'].map(x=>`<option ${d.source===x?'selected':''}>${x}</option>`).join('')}</select></label><label class="field"><span>记忆标题</span><input name="title" required maxlength="40" placeholder="例如：我的汇报偏好" value="${esc(d.title||'')}"></label><label class="field"><span>分类</span><select name="category">${[['关于我','关于我'],['偏好','我的偏好'],['项目背景','事件与跟进']].map(([v,t])=>`<option value="${v}" ${d.category===v?'selected':''}>${t}</option>`).join('')}</select></label><label class="field"><span>粘贴记忆内容</span><textarea name="text" required maxlength="1000" placeholder="从其他应用复制你希望 Snack 记住的内容">${esc(d.text||'')}</textarea></label><p class="memory-import-note">只导入你粘贴的内容，确认后保存到记忆。</p><p id="memoryImportError" role="alert" class="form-error"></p><button type="submit" class="primary full">预览记忆</button></form>`);return;
+  }
+  if(ui.sheet?.type==='memoryImportPreview'&&ui.memoryImport){
+    const d=ui.memoryImport;
+    workSheet('确认导入的记忆',`<div class="memory-import-preview"><h3>${esc(d.title)}</h3><p>${esc(d.text)}</p><small>${esc(d.source)} · ${d.category==='项目背景'?'事件与跟进':'关于我的记忆'}</small></div>${btn('确认导入','memoryImportConfirm',d.token,'primary full')}${btn('返回修改','memoryImportBack','','secondary full')}`);return;
+  }
+  paintBeforeFlatMemory();
+};
+document.addEventListener('submit',event=>{
+  if(event.target.id!=='memoryImportForm')return;
+  event.preventDefault();event.stopImmediatePropagation();const fd=new FormData(event.target);
+  const result=previewMemoryImport(Object.fromEntries(['source','title','category','text'].map(key=>[key,fd.get(key)])));
+  if(result.ok)showSheet('memoryImportPreview');else document.getElementById('memoryImportError').textContent=result.error;
+},true);
 
 render();
 </script>
