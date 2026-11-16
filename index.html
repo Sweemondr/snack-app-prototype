@@ -122,9 +122,7 @@
 @keyframes calendar-auth-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.calendar-auth-spinner{animation:none}}
 /* Follow-up ideas: action-led editorial rows, inspired by the supplied Muse screen. */
-.follow-page .page-title{margin-bottom:26px}
-.follow-idea-group+ .follow-idea-group{margin-top:30px}
-.follow-idea-group h2{font-size:21px;font-weight:700;line-height:1.45;margin-bottom:8px;letter-spacing:-.02em}
+.follow-page .page-title{margin-bottom:8px}
 .follow-idea{display:flex;align-items:flex-start;gap:15px;width:100%;padding:23px 0;text-align:left;border-bottom:1px solid var(--line);background:#fff}
 .follow-idea-icon{width:46px;height:46px;flex:0 0 46px;border-radius:14px;display:grid;place-items:center;background:#fff2e7;color:#e8660a;margin-top:3px}
 .follow-idea-icon svg{width:27px;height:27px;stroke-width:1.6}
@@ -133,15 +131,14 @@
 .follow-idea-body>span{font-size:14px;line-height:1.85;color:#626b75;overflow-wrap:anywhere}
 .follow-idea>svg{flex:0 0 14px;width:14px;height:14px;margin-top:11px;color:#737b84}
 .follow-idea:hover:not(:disabled){background:#fffaf6;filter:none}
-.follow-custom,.follow-next{width:100%;display:flex;align-items:center;gap:12px;min-height:52px;padding:14px 0;text-align:left}
-.follow-custom{margin-top:20px;color:var(--accent)}
+.follow-page .page-title>.icon-button,.work-page .page-title>.icon-button{width:44px;height:44px;min-height:44px;color:var(--accent);flex-shrink:0}
+.follow-next{width:100%;display:flex;align-items:center;gap:12px;min-height:52px;padding:14px 0;text-align:left}
 .follow-next{border-bottom:1px solid var(--line);color:var(--accent)}
-.follow-custom>span,.follow-next>span{flex:1;font-size:14px;font-weight:600}
-.follow-custom>svg:last-child,.follow-next>svg:last-child{width:15px;height:15px}
+.follow-next>span{flex:1;font-size:14px;font-weight:600}
+.follow-next>svg:last-child{width:15px;height:15px}
 .follow-page .finished-work{margin-top:23px}
 .sheet .follow-idea{padding:20px 0}
-.sheet .follow-idea-group h2{font-size:19px}
-@media(max-width:360px){.follow-idea{gap:11px}.follow-idea-icon{width:39px;height:39px;flex-basis:39px;border-radius:12px}.follow-idea-icon svg{width:24px;height:24px}.follow-idea-body strong{font-size:16px}.follow-idea-body>span{font-size:13px}.follow-page .page-title{margin-bottom:23px}}
+@media(max-width:360px){.follow-idea{gap:11px}.follow-idea-icon{width:39px;height:39px;flex-basis:39px;border-radius:12px}.follow-idea-icon svg{width:24px;height:24px}.follow-idea-body strong{font-size:16px}.follow-idea-body>span{font-size:13px}.follow-page .page-title{margin-bottom:8px}}
 /* 16 Nov: white surfaces, orange emphasis, white labels on solid actions. */
 :root{--paper:#fff}
 html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{background:#fff}
@@ -656,11 +653,12 @@ function connectionAction(kind,id){
   return kind==='calendar'?(data.calendarAssistants[id]?'已开启 · 查看设置':'设置并开启'):'设置并开始跟进';
 }
 const FOLLOW_IDEAS = [
-  {group:'点子',id:'risk',icon:'trend',title:'我来盯住 SCM 项目的重要变化',description:'设备出勤或现场安排有变化时，我会整理发生了什么、还有哪些问题待确认，及时提醒你。'},
-  {group:'点子',id:'progress',icon:'target',title:'下次周会前，我帮你盯住处理进度',description:'把需要解决的问题交给我，我会记住处理安排、卡点和下一次检查时间，直到结果得到确认。'},
-  {group:'会议与协作',id:'meeting',icon:'calendar',title:'会上定下的事，我会接着跟',description:'我会从会议记录中整理负责人、约定时间和后续事项。你确认后，我再开始跟进落实情况。'}
+  {id:'risk',icon:'trend',title:'我来盯住项目的重要变化',description:'设备出勤或现场安排有变化时，我会整理发生了什么、还有哪些问题待确认，及时提醒你。'},
+  {id:'progress',icon:'target',title:'下次周会前，我帮你盯住处理进度',description:'把需要解决的问题交给我，我会记住处理安排、卡点和下一次检查时间，直到结果得到确认。'},
+  {id:'meeting',icon:'calendar',title:'会上定下的事，我会接着跟',description:'我会从会议记录中整理负责人、约定时间和后续事项。你确认后，我再开始跟进落实情况。'}
 ];
-function templateRows(){return `<div class="follow-ideas">${['点子','会议与协作'].map(group=>`<section class="follow-idea-group" aria-label="${group}"><h2>${group}</h2>${FOLLOW_IDEAS.filter(idea=>idea.group===group).map(idea=>`<button class="follow-idea" data-action="startTemplate" data-id="${idea.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(idea.icon)}</span><span class="follow-idea-body"><strong>${idea.title}</strong><span>${idea.description}</span></span>${icon('right')}</button>`).join('')}</section>`).join('')}<button class="follow-custom" data-action="customFollow">${icon('plus')}<span>自己说一件事</span>${icon('right')}</button></div>`}
+function templateRows(){return `<div class="follow-ideas">${FOLLOW_IDEAS.map(idea=>`<button class="follow-idea" data-action="startTemplate" data-id="${idea.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(idea.icon)}</span><span class="follow-idea-body"><strong>${idea.title}</strong><span>${idea.description}</span></span>${icon('right')}</button>`).join('')}</div>`}
+
 function calendarScenarioRows(){return CALENDAR_SCENARIOS.map(scene=>`<button class="template-row scenario-row" data-action="calendarScenario" data-id="${scene.id}"><span class="template-icon">${icon(scene.icon)}</span><span><strong>${scene.title}</strong><small>${scene.description}</small><span class="scenario-link">${icon(data.calendarAssistants[scene.id]?'check':'link')}${connectionAction('calendar',scene.id)}</span></span>${icon('right')}</button>`).join('')}
 function calendarEmpty(){return `<section class="page activation-empty"><div class="page-title"><h1>日程</h1></div><div class="calendar-scenarios">${calendarScenarioRows()}</div></section>`}
 const calendarBeforeActivation=calendar;
@@ -671,9 +669,10 @@ calendar=function(){
 const goalsBeforeActivation=goals;
 goals=function(){
   const ongoing=data.goals.filter(goal=>goal.status!=='done');
-  if(ongoing.length)return goalsBeforeActivation();
+  const compose=ib('说说想跟进的事','plus','customFollow');
+  if(ongoing.length)return goalsBeforeActivation().replace(ib('新建跟进事项','plus','newGoal'),compose);
   const done=data.goals.filter(goal=>goal.status==='done');
-  return `<section class="page follow-page"><div class="page-title"><h1 class="long">持续跟进中</h1></div>${done.length?`<button class="follow-next" data-action="showTemplates">${icon('plus')}<span>选择新的跟进点子</span>${icon('right')}</button><details class="finished-work" open><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:templateRows()}</section>`;
+  return `<section class="page follow-page"><div class="page-title"><h1 class="long">持续跟进中</h1>${compose}</div>${done.length?`<button class="follow-next" data-action="showTemplates">${icon('plus')}<span>选择新的跟进点子</span>${icon('right')}</button><details class="finished-work" open><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:templateRows()}</section>`;
 };
 const goalRowBeforeActivation=goalRow;
 goalRow=function(g){return goalRowBeforeActivation(g).replace(`<span class="work-meta">`,`<span class="work-meta">${g.status==='active'?(g.phase==='working'?'正在进行中':'跟进中')+' · ':''}`)};
