@@ -387,6 +387,63 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .template-footer .form-error{margin:0 0 10px}.template-footer .form-error:empty{margin:0}
 @media(max-width:360px){.template-sheet .sheet-head h2{font-size:22px}.template-description{font-size:15px}.template-output strong{font-size:15px}}
 
+/* BEGIN LIBRARY 17 STYLES */
+.lib17-folders{display:flex;flex-direction:column;margin:4px 0 24px}
+.lib17-folder{display:flex;align-items:center;gap:14px;width:100%;padding:17px 0;border-bottom:1px solid var(--line);text-align:left}
+.lib17-folder>.lib17-folder-icon{width:38px;height:38px;display:grid;place-items:center;color:var(--accent);flex-shrink:0}
+.lib17-folder-icon svg{width:29px;height:29px}
+.lib17-folder strong{flex:1;min-width:0;font-size:15px;font-weight:550;overflow-wrap:anywhere}
+.lib17-folder small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lib17-folder>svg{width:16px;height:16px;color:var(--muted);flex-shrink:0}
+.lib17-folder:hover,.lib17-file:hover{background:var(--canvas)}
+.lib17-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:21px 0 6px}
+.lib17-toolbar h2{font-size:13px;font-weight:600;color:var(--muted)}
+.lib17-toolbar button{min-height:40px;font-size:12px}
+.lib17-file .file-info strong{font-size:14px;overflow-wrap:anywhere}
+.lib17-file .file-info small{font-size:11px;line-height:1.7;overflow-wrap:anywhere}
+.lib17-file{padding:17px 0}
+.lib17-memory-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:12px;line-height:1.75;margin-top:5px}
+.lib17-reading{font-size:15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;padding:4px 0 22px}
+.lib17-source{font-size:12px;line-height:1.8;color:var(--muted);padding:15px 0;border-top:1px solid var(--line)}
+.lib17-source .source{margin-top:10px}
+.lib17-actions{display:flex;gap:10px;margin-top:18px}
+.lib17-actions button{flex:1}
+.lib17-organization-row{padding:18px 0;border-bottom:1px solid var(--line)}
+.lib17-organization-row strong{display:block;font-size:14px;line-height:1.65;overflow-wrap:anywhere;margin-bottom:8px}
+.lib17-organization-row small{display:block;color:var(--muted);font-size:11px;line-height:1.7;margin:7px 0}
+.lib17-organization-row select{max-width:100%;min-width:0;width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:10px;background:var(--canvas);color:var(--ink);font-size:13px}
+.lib17-organize-footer{position:sticky;bottom:-1px;background:var(--paper);padding:16px 0 0;margin-top:12px}
+.lib17-empty{padding:36px 4px;text-align:left;color:var(--muted);font-size:14px;line-height:1.8}
+.lib17-empty button{margin-top:12px}
+.lib17-location{font-size:12px;color:var(--muted);line-height:1.8;overflow-wrap:anywhere}
+.lib17-detail-links{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.lib17-detail-links .actions{flex-wrap:wrap}
+.lib17-detail-links button{font-size:12px}
+.lib17-page .library-folder-heading h1{font-size:21px;overflow-wrap:anywhere}
+.lib17-page .library-folder-heading{align-items:center;gap:10px}
+.lib17-page .library-folder-heading button{flex-shrink:0}
+.lib17-note{font-size:12px;color:var(--muted);line-height:1.8;margin:12px 0 18px}
+.lib17-form-error{font-size:12px;color:var(--danger);line-height:1.7}
+@media(max-width:360px){.lib17-folder{gap:10px}.lib17-folder strong{font-size:14px}.lib17-organization-row select{font-size:12px}.lib17-actions{flex-wrap:wrap}.lib17-actions button{min-width:100px}}
+.lib17-filters{display:flex;gap:8px;margin:12px 0 10px}.lib17-filters button{min-width:52px;min-height:36px;padding:6px 13px;border-radius:9px;font-size:12px;color:var(--muted);background:transparent}.lib17-filters button[aria-pressed="true"]{background:var(--soft);color:var(--accent)}
+/* END LIBRARY 17 STYLES */
+
+/* BEGIN CALENDAR 20261117 */
+/* Calendar flow shares the prototype's orange and white visual language. */
+.cal17-landing{padding-top:24px}.cal17-landing>.primary{margin-top:26px}.cal17-list{padding-top:6px}.cal17-day{font-size:15px;font-weight:620;margin:28px 0 10px;color:var(--ink)}.cal17-day:first-of-type{margin-top:10px}
+.cal17-meeting{display:flex;align-items:center;gap:15px;width:100%;padding:20px 0;text-align:left;border-bottom:1px solid var(--line)}.cal17-time{font-size:15px;font-variant-numeric:tabular-nums;align-self:flex-start;min-width:42px;line-height:1.4}.cal17-time small{display:block;color:var(--muted);font-size:11px;margin-top:5px}.cal17-meeting-body{flex:1;min-width:0}.cal17-meeting-body strong{display:block;font-size:16px;line-height:1.5;font-weight:620}.cal17-meeting-body small{display:block;color:var(--muted);font-size:12px;margin-top:7px}.cal17-meeting>svg{width:17px;flex-shrink:0;color:var(--muted)}.cal17-meeting:hover{background:var(--canvas)}
+.cal17-service-sheet .sheet-head h2{font-size:24px;line-height:1.35;letter-spacing:-.02em}.cal17-intro{font-size:15px;line-height:1.75;margin:8px 0 24px;color:var(--muted)}.cal17-service-options{margin-bottom:24px}.cal17-service{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);cursor:pointer}.cal17-service>span:first-child{flex:1;min-width:0}.cal17-service strong{display:block;font-size:17px;font-weight:620;line-height:1.5}.cal17-service small{display:block;font-size:13px;line-height:1.65;color:var(--muted);margin-top:5px}.cal17-service input{width:24px;height:24px;flex-shrink:0;accent-color:var(--brand)}.cal17-permission{font-size:12px;line-height:1.7;color:var(--muted);margin:16px 0}.cal17-selection-title{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 15px}.cal17-selection-title strong{font-size:15px}.cal17-selection-title span{font-size:12px;color:var(--muted)}.cal17-selected-services{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px}.cal17-selected-services .linklike{margin-left:auto}.cal17-add-sheet .sheet-choice>img{width:24px;height:24px;object-fit:contain}.cal17-add-sheet .sheet-choice>svg{width:24px;height:24px}.cal17-add-sheet .sheet-choice>span{flex:1}.cal17-demo-controls{border-top:1px solid var(--line);padding-top:22px;margin-top:16px}.cal17-demo-controls h3{font-size:15px}.cal17-demo-controls>p{font-size:12px;color:var(--muted);margin:7px 0 12px}
+.cal17-detail{padding-top:26px}.cal17-detail-head h1{font-size:29px;letter-spacing:-.025em;line-height:1.4;font-weight:650;text-wrap:balance}.cal17-date{font-size:15px;line-height:1.75;margin-top:15px;color:var(--muted);font-variant-numeric:tabular-nums}.cal17-people{margin:23px 0}.cal17-people summary{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:13px;list-style:none;min-height:44px}.cal17-people summary::-webkit-details-marker{display:none}.cal17-people summary>svg{width:16px;margin-left:auto}.cal17-avatars{display:flex;padding-left:3px}.cal17-avatars>span{width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--accent);border:2px solid white;margin-left:-3px;display:grid;place-items:center;font-size:12px}.cal17-people>div{padding-top:10px}.cal17-people p{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.cal17-people p>span{color:var(--muted)}.cal17-description summary{font-size:13px;color:var(--muted);cursor:pointer;padding:6px 0}.cal17-description p{font-size:14px;line-height:1.85;margin-top:8px;white-space:pre-wrap}.cal17-location{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin-top:18px}.cal17-location svg{width:16px;height:16px}.cal17-dynamic-title{margin-top:36px!important;padding-top:22px;border-top:1px solid var(--line)}.cal17-dynamic-title h2{font-size:18px}.cal17-offline{font-size:12px;color:#956128;background:#fff4e9;padding:10px 12px;border-radius:8px;line-height:1.7}
+.cal17-timeline{padding:0 0 20px 15px}.cal17-activity{position:relative;padding:23px 0 26px 21px;border-left:1px solid var(--line)}.cal17-activity:last-child{padding-bottom:0}.cal17-activity:before{content:"";position:absolute;left:-4px;top:29px;width:7px;height:7px;border-radius:50%;background:var(--brand)}.cal17-activity-meta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted);margin-bottom:10px}.cal17-activity-meta time{margin-left:auto;font-variant-numeric:tabular-nums}.cal17-activity h3{font-size:16px;line-height:1.6;font-weight:620}.cal17-activity>p{font-size:13px;line-height:1.8;color:var(--muted);margin-top:7px}.cal17-activity>.linklike{padding-left:0;margin-top:6px}.cal17-no-activity{font-size:13px;color:var(--muted);line-height:1.8;margin:25px 0}.cal17-action{border-top:1px solid var(--line);padding-top:17px;margin-top:15px}.cal17-action strong{font-size:14px;line-height:1.7;display:block}.cal17-action small{font-size:11px;display:block;color:var(--accent);margin-top:5px}.cal17-action p{font-size:12px;line-height:1.8;color:var(--muted);margin-top:8px}.cal17-action .linklike{padding-left:0}.cal17-file-text{white-space:pre-wrap;font-size:14px;line-height:1.95;margin:24px 0 32px;overflow-wrap:anywhere}.cal17-detail button:focus-visible,.cal17-meeting:focus-visible,.cal17-service:has(input:focus-visible){outline:2px solid var(--brand);outline-offset:4px}.cal17-service input:disabled,.cal17-demo-controls button:disabled{opacity:.45;cursor:not-allowed}.cal17-detail a{text-decoration:none}.cal17-detail a:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+@media(max-width:360px){.cal17-service-sheet .sheet-head h2{font-size:22px}.cal17-service strong{font-size:16px}.cal17-service{gap:12px}.cal17-detail-head h1{font-size:27px}.cal17-activity{padding-left:17px}.cal17-timeline{padding-left:8px}.cal17-selected-services{font-size:11px}}
+
+.cal17-detail-header .icon-button{border-radius:50%;background:var(--canvas)}.cal17-pending{color:#955420!important}
+
+.cal17-landing-intro{cursor:default}.cal17-landing-intro:hover{background:transparent}.cal17-service.template-output input{position:absolute;right:0;width:28px;height:28px;opacity:0}.cal17-service .template-check{flex:0 0 27px}.cal17-landing>.primary{min-height:52px;border-radius:26px;font-size:16px}
+
+.cal17-action-details{margin-top:14px}.cal17-action-details>summary{font-size:13px;line-height:1.7;color:var(--accent);cursor:pointer;padding:8px 0}.cal17-action-details>summary:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+
+/* END CALENDAR 20261117 */
 </style>
 </head>
 <body>
@@ -2412,6 +2469,523 @@ consumeFollowReply=function(text,d){
   p.origin='user';ensurePersonalRule(d);scenarioShow(d.stage,d);
 };
 // END PERSONAL REMINDER RULES
+
+
+
+
+
+
+// BEGIN CALENDAR 20261117
+// 2026-11-17: selected calendar services and a meeting activity timeline.
+// Local interaction demonstration only. No network, recording, or real scheduling.
+(function () {
+  const cal17Services = [
+    {id:'before',title:'会前准备',description:'结合历史转写和待办，整理一份会前简报'},
+    {id:'during',title:'会中同步转写',description:'读取钉钉已有的转写文本，内容就绪后同步'},
+    {id:'after',title:'会后持续跟进',description:'识别与你有关的待办，持续跟进进展'}
+  ];
+  const cal17Original = {calendar,header,eventDetail,eventActions,paintSheet,handle,message,fileDetail,closeSheet,beginCalendarImport,goalDetail,createUpdate,save};
+  function cal17Migrate() {
+    data.calendarConnections ||= {}; data.meetingPreferences ||= {}; data.calendarActivities ||= {};
+    data.calendarServiceDefaults ||= {before:true,during:true,after:true};
+    data.calendarDemoAnchor ||= '2026-11-17';
+    data.calendarTrackingRevision=3;
+    if(data.calendarDraft?.stage==='authorizing')data.calendarDraft.stage='consent';
+    for(const event of data.events){
+      data.calendarActivities[event.id] ||= [];
+      const preparation=data.files.find(file=>file.id==='prep-'+event.id);
+      if(preparation&&!data.calendarActivities[event.id].some(activity=>activity.fileId===preparation.id))data.calendarActivities[event.id].push({id:'legacy-prep-'+event.id,phase:'before',title:'会前简报已保存',body:'查看已有会议准备资料。',fileId:preparation.id,at:'2026-11-16T09:00:00+08:00'});
+      if(event.recorded&&!data.calendarActivities[event.id].some(activity=>activity.fileId===event.recorded))data.calendarActivities[event.id].push({id:'legacy-minutes-'+event.id,phase:'during',title:'已有会议记录',body:'保留此前导入的会议资料。',fileId:event.recorded,at:'2026-11-16T10:00:00+08:00'});
+    }
+  }
+  cal17Migrate();
+  function cal17Now(){return new Date().toISOString()}
+  function cal17Date(day){const date=new Date(day+'T12:00:00+08:00');return `${date.getMonth()+1} 月 ${date.getDate()} 日 · 周${'日一二三四五六'[date.getDay()]}`}
+  function cal17Preference(event){return data.meetingPreferences[event.id]||{before:false,during:false,after:false}}
+  function cal17RequiredScopes(services){return ['calendar',...(Object.values(services).some(Boolean)?['minutes']:[])]}
+  function cal17ScopeReady(provider,scopes){const connection=provider==='dingtalk'?{connected:data.dingTalk?.cliConnected,scopes:data.dingTalk?.scopes}:data.calendarConnections[provider];return !!connection?.connected&&scopes.every(scope=>connection.scopes?.includes(scope))}
+  function cal17EventSourceReady(event,service){if(!event.provider)return true;return cal17ScopeReady(event.provider==='dingTalk'?'dingtalk':event.provider,cal17RequiredScopes({[service]:true}))}
+  function cal17Meetings(provider='dingtalk') {
+    const anchor=data.calendarDemoAnchor;
+    return [
+      {externalId:'scm-20261117',title:'SCM 项目沟通',offset:0,time:'14:30',end:'15:30',people:'你、SCM 项目经理、运营经理',organizer:'SCM 项目经理',desc:'核对设备出勤、闲置原因和调配安排，确认下次周会前需要答复的事项。',project:'SCM'},
+      {externalId:'weekly-20261118',title:'项目运营周会',offset:1,time:'10:00',end:'11:00',people:'你、运营经理、各项目负责人',organizer:'运营经理',desc:'回顾各项目的重要变化，复核上次会议待办，确认需要决策的问题。',project:'SCM',recurrence:'每周一次',seriesId:'weekly-ops'},
+      {externalId:'regional-20261120',title:'大区经营复盘',offset:3,time:'09:30',end:'10:30',people:'你、大区经理、财务负责人',organizer:'大区经理',desc:'复盘本周经营变化与回款进展，明确下一步责任与检查时间。',project:'华东'},
+      {externalId:'planning-20261123',title:'下周项目计划',offset:6,time:'16:00',end:'16:30',people:'你、运营经理',organizer:'运营经理',desc:'确认下周资源安排和重点事项。',project:'SCM'}
+    ].map(meeting=>({...meeting,id:'meeting-'+provider+'-'+meeting.externalId,day:shiftDay(anchor,meeting.offset),date:Number(shiftDay(anchor,meeting.offset).slice(8)),provider,type:'meeting',location:provider==='dingtalk'?'钉钉会议':'线上会议',sourceLabel:CALENDAR_PROVIDERS.find(source=>source.id===provider)?.name||'日历',attendees:meeting.people.split('、').map(name=>({name,response:name==='你'?'已接受':'未回复',self:name==='你'}))}));
+  }
+  function cal17Begin(provider='dingtalk',options={}){
+    const editing=options.editEventId?data.events.find(event=>event.id===options.editEventId):null;
+    if(!CALENDAR_PROVIDERS.some(source=>source.id===provider))provider='dingtalk';
+    cal17Original.closeSheet(false);
+    let draft=data.calendarDraft;
+    if(draft?.stage==='authorizing')draft.stage='consent';
+    if(!draft||draft.provider!==provider||editing||options.fresh)draft={token:'cal17-'+Date.now(),provider,stage:'services',services:{...(editing?cal17Preference(editing):data.calendarServiceDefaults)},selectedIds:[],editEventId:editing?.id||null};
+    data.calendarDraft=draft;save();showSheet('cal17Flow');return draft;
+  }
+  function cal17ChooseServices(services){
+    const draft=data.calendarDraft;if(!draft)return {ok:false,error:'请重新打开会议设置。'};
+    draft.services=Object.fromEntries(cal17Services.map(service=>[service.id,!!services[service.id]]));
+    if(!Object.values(draft.services).some(Boolean)&&!draft.editEventId)return {ok:false,error:'至少选择一项服务。'};
+    draft.requiredScopes=cal17RequiredScopes(draft.services);
+    if(draft.editEventId&&(!data.events.find(event=>event.id===draft.editEventId)?.provider||!Object.values(draft.services).some(Boolean)||cal17ScopeReady(draft.provider,draft.requiredScopes)))return cal17ConfirmSelection([]);
+    draft.stage=cal17ScopeReady(draft.provider,draft.requiredScopes)?'select':'connect';save();return {ok:true,stage:draft.stage};
+  }
+  function cal17Authorize(token){
+    const draft=data.calendarDraft;if(!draft||draft.token!==token||draft.stage!=='consent')return false;
+    draft.stage='authorizing';save();paintSheet();
+    calendarAuthorizationTimer=setTimeout(()=>{
+      calendarAuthorizationTimer=null;if(data.calendarDraft?.token!==token||data.calendarDraft.stage!=='authorizing'||ui.sheet?.type!=='cal17Flow')return;
+      const scopes=draft.requiredScopes||cal17RequiredScopes(draft.services);
+      const connection=data.calendarConnections[draft.provider]||{authorizedIds:[]};
+      Object.assign(connection,{connected:true,authorizationRevision:3,scopes:[...new Set([...(connection.scopes||[]),...scopes])]});data.calendarConnections[draft.provider]=connection;
+      if(draft.provider==='dingtalk'){data.dingTalk||={cliConnected:false,scopes:[]};data.dingTalk.cliConnected=true;data.dingTalk.scopes=[...new Set([...data.dingTalk.scopes,...scopes])];data.settings.dingTalk=true}
+      data.settings.calendar=true;draft.stage='success';save();paintSheet();
+    },900);return true;
+  }
+  function cal17ConfirmSelection(selectedIds){
+    const draft=data.calendarDraft;if(!draft)return {ok:false,error:'请重新打开会议选择。'};
+    const editing=data.events.find(event=>event.id===draft.editEventId);
+    if((!editing||editing.provider)&&Object.values(draft.services).some(Boolean)&&!cal17ScopeReady(draft.provider,cal17RequiredScopes(draft.services)))return {ok:false,error:'连接已失效，请重新授权。'};
+    const meetings=editing?[editing]:cal17Meetings(draft.provider).filter(event=>selectedIds.includes(event.externalId));
+    if(!meetings.length)return {ok:false,error:'请选择至少一场会议。'};
+    const ids=[];
+    for(const incoming of meetings){
+      let event=data.events.find(item=>item.id===incoming.id||item.provider===draft.provider&&item.externalId===incoming.externalId);
+      if(!event){event={...incoming};data.events.push(event)}
+      const preferenceChanged=JSON.stringify(data.meetingPreferences[event.id])!==JSON.stringify(draft.services);data.meetingPreferences[event.id]={...draft.services};data.calendarActivities[event.id]||=[];
+      if(preferenceChanged)cal17Activity(event,{id:'services-'+event.id+'-'+Date.now(),phase:'setup',title:Object.values(draft.services).some(Boolean)?'已开启本次会议跟进':'已停止本次会议服务',body:cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join('、')||'后续处理已停止，历史资料与独立任务保留。'});
+      ids.push(event.id);
+    }
+    const connection=data.calendarConnections[draft.provider];if(connection)connection.authorizedIds=[...new Set([...(connection.authorizedIds||[]),...meetings.map(meeting=>meeting.externalId).filter(Boolean)])];
+    data.calendarServiceDefaults={...draft.services};data.calendarAssistants=Object.fromEntries(cal17Services.map(service=>[service.id,Object.values(data.meetingPreferences).some(preference=>preference[service.id])]));data.calendarActivated=true;
+    const names=cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join('、');
+    data.messages.push({type:'cal17Notice',title:editing?'会议服务已更新':`已为 ${ids.length} 场会议开启跟进`,text:names?`已选择${names}。转写内容就绪后再同步。`:'已停止这场会议的自动处理，历史内容保留。',eventIds:ids});
+    data.calendarDraft=null;save();return {ok:true,ids,editing:!!editing};
+  }
+  function cal17Activity(event,activity){data.calendarActivities[event.id]||=[];const list=data.calendarActivities[event.id];if(!list.some(item=>item.id===activity.id))list.push({...activity,at:cal17Now(),sequence:list.length})}
+  function cal17SaveFile(event,kind,title,text,points=[]){
+    const id='cal17-'+kind+'-'+event.id;let file=data.files.find(item=>item.id===id);
+    if(!file){file={id,kind:kind==='transcript'?'会议原文':'会议简报',folder:'meetings',collection:'meetings',eventId:event.id,cal17:true};data.files.unshift(file)}
+    Object.assign(file,{title:event.title+' · '+title,meta:'刚刚 · 演示产物',summary:text.split('\n')[0],text,points});return file;
+  }
+  function cal17ActionSpecs(event){return [
+    {key:'calendar',title:'下次周会前汇总设备调配答复',trigger:'日程驱动',rule:'下次项目运营周会前 2 小时，整理答复和未完成项；改期时跟随调整。',condition:'相关负责人给出调配结论，并由我确认。',owner:'你',evidence:'请你在下次周会前汇总大家的调配答复。'},
+    {key:'data',title:'跟进 SCM 设备出勤恢复',trigger:'数据驱动',rule:'检查每次更新的 SCM 台班数据；出勤率连续 2 个有效工作日达到 80% 时提醒并结束。',condition:'出勤率连续 2 个有效工作日达到 80%；数据缺失不算恢复。',owner:'你',evidence:'继续看 SCM 出勤，连续两个工作日达到 80% 就可以结束观察。'},
+    {key:'scheduled',title:'每天查看项目待答复事项',trigger:'定时任务',rule:'每天 09:00（北京时间）在聊天里提醒；由我确认完成或手动停止。',condition:'我确认本轮事项完成，或主动停止。',owner:'你',evidence:'每天早上九点提醒我看一遍还没有答复的事项。'},
+    {key:'pending',title:'继续观察项目异常',trigger:'待确认',rule:'尚缺具体项目、观察指标和恢复条件。',condition:'',owner:'待确认',evidence:'还有那个异常，继续观察一下。'}
+  ]}
+  function cal17CreateGoal(eventId,key,options={}){
+    const event=data.events.find(item=>item.id===eventId);if(!event)return {ok:false,error:'会议不存在。'};
+    const action=(event.cal17Actions||[]).find(item=>item.key===key);if(!action)return {ok:false,error:'请先整理会议行动。'};
+    if(!action.condition||action.owner==='待确认')return {ok:false,error:'请先补齐负责人和完成条件。'};
+    if(!cal17Preference(event).after)return {ok:false,error:'请先开启会后持续跟进。'};
+    if(!cal17EventSourceReady(event,'after'))return {ok:false,error:'来源已断开，请重新连接。'};
+    if(key==='data'&&!data.settings.nexus)return {ok:false,error:'Nexus 数据已断开，请连接后再开始数据跟进。'};
+    const id='cal17-goal-'+event.id+'-'+key;let goal=data.goals.find(item=>item.id===id);if(goal)return {ok:true,id,existing:true};
+    let nextMeeting=null;
+    if(key==='calendar'){
+      const meetingTime=fullDay(event)+'T'+(event.time||'00:00');
+      const candidates=data.events.filter(item=>item.id!==event.id&&(item.seriesId==='weekly-ops'||item.title==='项目运营周会')&&fullDay(item)+'T'+(item.time||'00:00')>meetingTime);
+      if(candidates.length>1&&!candidates.every(item=>item.seriesId==='weekly-ops'))return {ok:false,error:'发现多场周会，请先明确要绑定的下一场会议。'};
+      nextMeeting=candidates.sort((a,b)=>(fullDay(a)+'T'+a.time).localeCompare(fullDay(b)+'T'+b.time))[0];
+      if(!nextMeeting&&event.provider){nextMeeting=cal17Meetings(event.provider==='dingTalk'?'dingtalk':event.provider).find(item=>item.seriesId==='weekly-ops'&&item.day+'T'+item.time>meetingTime);if(!nextMeeting&&event.seriesId==='weekly-ops')nextMeeting={...event,id:event.id+'-next',day:shiftDay(fullDay(event),7)}}
+      if(!nextMeeting)return {ok:false,error:'请先明确下次项目运营周会，才能绑定检查时间。'};
+    }
+    const nextMeetingCheck=nextMeeting?new Date(Date.parse(nextMeeting.day+'T'+nextMeeting.time+':00+08:00')+6*3600000).toISOString().slice(0,19)+'+08:00':'';
+    goal={id,title:action.title,project:event.project||'会议事项',owner:action.owner,status:'active',progress:0,phase:'working',condition:action.condition,rule:action.rule,date:nextMeeting?.day||'确认完成时结束',nextCheck:key==='calendar'?nextMeetingCheck:key==='scheduled'?shiftDay(data.calendarDemoAnchor,1)+'T09:00:00+08:00':'',lastCheck:'尚未检查',sourceKey:key==='data'?'nexus':event.provider?'dingTalk':'manual',requiredScopes:event.provider?['calendar','minutes']:[],sourceIds:[event.transcriptId].filter(Boolean),summary:'已创建本地跟进任务，等待新的进展。',logs:[['刚刚 · 演示','从会议原文创建，尚未执行真实调度。']],cal17EventId:event.id,cal17Trigger:action.trigger,cal17TriggerKey:key,calendarEventId:nextMeeting?.id,cal17:true};
+    goal.cal17ActivitySignature=[goal.status,goal.logs.length,goal.summary].join('|');data.goals.unshift(goal);action.goalId=id;action.pendingReason='';
+    cal17Activity(event,{id:'goal-'+id,phase:'after',title:'开始跟进：'+action.title,body:action.rule,goalId:id});
+    if(!options.silent)data.messages.push({type:'cal17Notice',title:action.title,text:action.rule,goalId:id,eventIds:[event.id]});save();return {ok:true,id};
+  }
+  function cal17SimulateStage(eventId,phase,forAfter=false){
+    const event=data.events.find(item=>item.id===eventId);if(!event)return {ok:false,error:'会议不存在。'};
+    if(!cal17Preference(event)[phase]&&!(forAfter&&phase==='during'&&cal17Preference(event).after))return {ok:false,error:'这项服务尚未开启，请先调整会议服务。'};
+    if(!cal17EventSourceReady(event,phase))return {ok:false,error:'来源已断开，请重新连接后再继续。'};
+    if(phase==='before'){
+      const relevant=(text)=>event.project?String(text).includes(event.project):/周会/.test(event.title)&&/周会/.test(String(text));
+      const history=data.files.filter(file=>file.eventId!==event.id&&(file.kind==='录音'||file.kind==='会议原文'||file.folder==='meetings')&&relevant([file.title,file.summary,file.text].join(' '))).slice(0,2);
+      const goals=data.goals.filter(goal=>goal.status==='active'&&relevant([goal.project,goal.title,goal.summary].join(' ')));
+      const tasks=(data.tasks||[]).filter(task=>!task.done&&relevant(task.title+' '+(task.project||'')));
+      const seen=new Set(),pending=[];
+      for(const item of [...goals.map(goal=>({title:goal.title,detail:goal.summary})),...tasks.map(task=>({title:task.title,detail:task.time||'检查时间待确认'}))]){if(!seen.has(item.title)){seen.add(item.title);pending.push(item.title+'：'+item.detail)}}
+      const historyText=history.length?history.map(file=>'《'+file.title+'》'+(file.text?'原文摘录：':'资料摘要：')+'\n'+String(file.text||file.summary||'内容待补充').slice(0,450)).join('\n\n'):'暂无可关联的历史会议资料。';
+      const pendingText=pending.length?pending.join('\n'):'尚无已开启的相关待办；需要在会上明确负责人和完成依据。';
+      const decisions=[event.desc?'围绕议题：'+event.desc:'本次会议议题待补充。',pending.length?'核对尚未完成的事项：最新结果是什么，哪些仍需决定或协调？':'确认本次产生的行动由谁负责、何时检查、怎样算完成。',history.length?'复核上述历史结论是否仍适用，有哪些变化需要更新。':'补充与本次议题有关的历史结论，避免遗漏背景。'];
+      const points=['上次讨论\n'+historyText,'待办进展\n'+pendingText,'本次需确认\n'+decisions.join('\n')];
+      const file=cal17SaveFile(event,'brief','会前简报',points.join('\n\n'),points);file.sourceIds=history.map(source=>source.id);
+      cal17Activity(event,{id:'before-'+event.id,phase:'before',title:'会前简报已准备',body:'已结合现有资料与相关待办整理。',fileId:file.id});event.prepared=file.id;
+      if(!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会前简报',text:'简报已存入资料中的会议记录。',fileId:file.id,eventIds:[event.id]});
+    }else if(phase==='during'){
+      const text='钉钉已有转写 · 演示文本\n\n运营经理：请你在下次周会前汇总大家的调配答复。\n你：收到，下次周会前两小时整理。\nSCM 项目经理：继续看 SCM 出勤，连续两个有效工作日达到 80% 就可以结束观察，数据缺失时先保留待核实。\n你：每天早上九点提醒我看一遍还没有答复的事项，完成后停止。\n运营经理：还有那个异常，继续观察一下。';
+      const file=cal17SaveFile(event,'transcript','会议原文',text);file.cal17DemoTranscript=true;event.transcriptId=file.id;
+      cal17Activity(event,{id:'during-'+event.id,phase:forAfter?'after':'during',title:forAfter?'会后整理的原文已归档':'会议原文已同步',body:forAfter?'已取得会后分析所需的转写，并保留原文依据。':'读取的是钉钉已生成的文本，可在会议结束后到达。',fileId:file.id});
+      if(!forAfter&&!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会议原文',text:'已同步转写并归档，可以开始整理会后行动。',fileId:file.id,eventIds:[event.id]});
+    }else if(phase==='after'){
+      if(!event.transcriptId&&event.provider){const result=cal17SimulateStage(eventId,'during',true);if(!result.ok)return result}
+      if(!event.transcriptId)return {ok:false,error:'尚无会议转写，请先补充文本或关联已有听记。'};
+      if(!event.cal17Actions){const file=data.files.find(item=>item.id===event.transcriptId);event.cal17Actions=!file?.cal17DemoTranscript?[{key:'pending',title:'确认这次会议的后续行动',trigger:'待确认',rule:file?.text?'请确认负责人、具体行动和完成条件。':'当前资料没有逐字稿，请补充原文或明确行动后再跟进。',condition:'',owner:'待确认',evidence:file?.text?.slice(0,180)||'当前只有摘要，需补充会议原文或明确的行动依据。'}]:cal17ActionSpecs(event)}
+      for(const action of event.cal17Actions){if(action.condition&&action.owner!=='待确认'){const result=cal17CreateGoal(event.id,action.key,{silent:true});if(!result.ok)action.pendingReason=result.error}}
+      const file=cal17SaveFile(event,'actions','会后行动',event.cal17Actions.map(action=>action.title+'：'+action.rule).join('\n'));
+      cal17Activity(event,{id:'after-'+event.id,phase:'after',title:'已整理 '+event.cal17Actions.length+' 项行动',body:'明确且条件完整的事项已开始跟进，信息不完整的先向你确认。',fileId:file.id,actions:true});
+      if(!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会后行动',text:event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进，'+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认。查看会议动态继续处理。',fileId:file.id,eventIds:[event.id]});
+    }
+    save();return {ok:true};
+  }
+  function cal17Status(event){const preference=cal17Preference(event);if(event.provider&&Object.values(preference).some(Boolean)&&!cal17EventSourceReady(event,'after'))return '来源待连接';if(event.cal17Actions)return event.cal17Actions.filter(action=>action.goalId).length+' 项持续跟进';if(event.transcriptId)return '会议原文已同步';if(event.prepared||data.files.some(file=>file.id==='prep-'+event.id))return '简报已就绪';return Object.values(preference).some(Boolean)?'已开启会议跟进':'未开启会议服务'}
+  calendar=function(){
+    if(!data.events.length)return `<section class="page calendar-welcome cal17-landing"><h1 class="sr-only">日程</h1><div class="follow-ideas"><div class="follow-idea cal17-landing-intro"><span class="follow-idea-icon calendar-import-icon">${calendarProviderMark('dingtalk')}</span><span class="follow-idea-body"><strong>从钉钉快速导入</strong><span>会前准备，会议原文，会后持续跟进。</span></span></div></div>${btn(data.calendarDraft?'继续设置':'开始跟进','cal17Begin','','primary full')}</section>`;
+    const meetings=[...data.events].sort((a,b)=>(fullDay(a)+' '+a.time).localeCompare(fullDay(b)+' '+b.time));let day='';
+    return `<section class="page cal17-list"><h1 class="sr-only">日程</h1>${meetings.map(event=>{const label=fullDay(event)!==day?`<h2 class="cal17-day">${cal17Date(fullDay(event))}</h2>`:'';day=fullDay(event);return label+`<button class="cal17-meeting" data-action="event" data-id="${esc(event.id)}"><span class="cal17-time">${esc(event.time||'全天')}<small>${esc(event.end||'')}</small></span><span class="cal17-meeting-body"><strong>${esc(event.title)}</strong><small>${esc(cal17Status(event))}</small></span>${icon('right')}</button>`}).join('')}</section>`;
+  };
+  calendarEmpty=calendar;
+  header=function(){let html=cal17Original.header();if(ui.page==='main'&&ui.tab==='calendar')html=html.replace('aria-label="通过对话添加日程" data-action="manualCalendar"','aria-label="添加日程" data-action="cal17Add"');if(ui.page==='event')return `<header class="topbar cal17-detail-header">${ib('返回','back','back')}<span aria-hidden="true"></span>${ib('更多会议操作','dots','cal17Menu',ui.id)}</header>`;return html};
+  function cal17ActionHTML(event,action){const goal=data.goals.find(item=>item.id===action.goalId);return `<div class="cal17-action"><strong>${esc(action.title)}</strong><small>${esc(action.trigger)}${action.owner==='待确认'?'':' · '+esc(action.owner)}</small><p>${esc(action.rule)}</p>${action.pendingReason&&!goal?'<p class="cal17-pending">'+esc(action.pendingReason)+'</p>':''}${goal?btn(goal.status==='active'?'查看持续跟进':goal.status==='done'?'查看已完成事项':'查看已暂停事项','goal',goal.id,'linklike'):btn(action.condition?'开始跟进':'补充条件',action.condition?'cal17CreateGoal':'cal17Clarify',event.id+'|'+action.key,'linklike')}</div>`}
+  eventDetail=function(){
+    const event=data.events.find(item=>item.id===ui.id);if(!event)return '<div class="empty">日程不存在</div>';
+    const activities=[...(data.calendarActivities[event.id]||[])];
+
+    activities.sort((a,b)=>String(b.at).localeCompare(String(a.at))||(b.sequence||0)-(a.sequence||0));
+    const participants=event.attendees||String(event.people||'你').split('、').map(name=>({name}));
+    const link=/^https?:\/\//.test(event.meetingUrl||event.url||'')?(event.meetingUrl||event.url):'';
+    return `<section class="page cal17-detail"><div class="cal17-detail-head"><h1>${esc(event.title)}</h1><p class="cal17-date">${cal17Date(fullDay(event))}<br>${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?' · '+esc(event.recurrence):''}</p><details class="cal17-people"><summary><span class="cal17-avatars">${participants.slice(0,3).map(person=>`<span aria-hidden="true">${esc(person.name.slice(0,1))}</span>`).join('')}</span><span>${participants.length} 位参与人</span>${icon('right')}</summary><div>${participants.map(person=>`<p><strong>${esc(person.name)}</strong><span>${person.name===event.organizer?'组织者':esc(person.response||'')}</span></p>`).join('')}</div></details>${event.desc?`<details class="cal17-description" open><summary>会议描述</summary><p>${esc(event.desc)}</p></details>`:''}${event.location?`<p class="cal17-location">${esc(event.location)}</p>`:''}${link?`<a class="secondary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">加入会议</a>`:''}</div><div class="section-line cal17-dynamic-title"><h2>动态</h2>${btn('服务设置','cal17EditServices',event.id,'linklike')}</div>${event.provider&&!cal17EventSourceReady(event,'after')?'<p class="cal17-offline">来源待连接，已保存的内容仍可查看。</p>':''}<div class="cal17-timeline">${activities.length?activities.map(activity=>`<article class="cal17-activity"><div class="cal17-activity-meta"><span>${({before:'会前准备',during:'会中同步转写',after:'会后持续跟进',setup:'跟进设置'})[activity.phase]}</span><time>${esc(activity.label||new Date(activity.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}))}</time></div><h3>${esc(activity.title)}</h3><p>${esc(activity.body)}</p>${activity.fileId?btn('查看'+(activity.phase==='before'?'简报':activity.phase==='during'?'原文':'行动'),'file',activity.fileId,'linklike'):''}${activity.goalId?btn('查看跟进','goal',activity.goalId,'linklike'):''}${activity.actions?'<details class="cal17-action-details"><summary>'+event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进 · '+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认</summary>'+event.cal17Actions.map(action=>cal17ActionHTML(event,action)).join('')+'</details>':''}</article>`).join(''):'<p class="cal17-no-activity">开启的服务将在这里留下动态。</p>'}</div></section>`;
+  };
+  eventActions=function(){return nav()};
+  function cal17ServiceForm(draft){return `<form id="cal17ServiceForm"><div class="cal17-service-options">${cal17Services.map(service=>`<label class="cal17-service template-output"><span><strong>${service.title}</strong><small>${service.description}</small></span><input type="checkbox" name="${service.id}" ${draft.services[service.id]?'checked':''}><span class="template-check" aria-hidden="true">${icon('check')}</span></label>`).join('')}</div><p class="cal17-permission">需要读取日程基本信息及有权访问的钉钉转写。</p>${draft.editEventId?'<p class="cal17-permission">取消服务会停止后续处理；已有资料和独立跟进任务保留。</p>':''}<div class="template-footer"><p id="cal17Error" class="form-error" role="alert"></p><button type="submit" class="primary full" id="cal17ServiceSubmit" ${!draft.editEventId&&!Object.values(draft.services).some(Boolean)?'disabled':''}>${draft.editEventId?'保存服务':'开始吧'}</button></div></form>`}
+  paintSheet=function(){
+    const sheet=ui.sheet;if(!sheet)return;
+    if(sheet.type==='cal17Flow'){
+      const draft=data.calendarDraft;if(!draft){closeSheet();return}
+      if(draft.stage==='services'){workSheet(draft.editEventId?'会议服务':'帮你跟进钉钉会议',cal17ServiceForm(draft));document.querySelector('.sheet')?.classList.add('cal17-service-sheet');return}
+      if(['connect','consent','authorizing','success'].includes(draft.stage)){paintConnectionFlow(draft.provider,draft.stage,draft.requiredScopes||cal17RequiredScopes(draft.services),{next:'cal17Consent',allow:'cal17Authorize',continue:'cal17Select',token:draft.token,value:'读取日程和你有权访问的会议转写。',nextLabel:draft.editEventId?'保存服务':'选择会议'});return}
+      const meetings=cal17Meetings(draft.provider);workSheet('选择要跟进的会议',`<form id="cal17SelectForm"><div class="cal17-selection-title"><strong>未来 7 天</strong><span>${cal17Date(data.calendarDemoAnchor).split(' · ')[0]} — ${cal17Date(shiftDay(data.calendarDemoAnchor,6)).split(' · ')[0]}</span></div><div class="cal17-selected-services">${cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join(' · ')}${btn('调整','cal17BackServices','','linklike')}</div><div class="consent-meetings">${meetings.map(event=>`<label class="consent-meeting"><input type="checkbox" name="meeting" value="${event.externalId}" ${draft.selectedIds.includes(event.externalId)?'checked':''}><span><strong>${esc(event.title)}</strong><small>${cal17Date(event.day)} · ${event.time}–${event.end}</small></span></label>`).join('')}</div><p class="cal17-permission">仅开启选中的会议；周期会议先跟进本次。</p><p id="cal17Error" class="form-error" role="alert"></p><button class="primary full" id="cal17SelectionSubmit" ${draft.selectedIds.length?'':'disabled'}>为 ${draft.selectedIds.length} 场会议开启</button></form>`);return;
+    }
+    if(sheet.type==='cal17Add'){workSheet('添加日程',btn(icon('chat')+'<span>临时会议</span>'+icon('right'),'cal17Temporary','','sheet-choice')+btn(calendarProviderMark('dingtalk')+'<span>从钉钉或连接器添加</span>'+icon('right'),'cal17Connectors','','sheet-choice')+btn(icon('calendar')+'<span>从日历导入</span>'+icon('right'),'cal17System','','sheet-choice'));document.querySelector('.sheet')?.classList.add('cal17-add-sheet');return}
+    if(sheet.type==='cal17Connectors'){workSheet('选择连接器',CALENDAR_PROVIDERS.filter(provider=>provider.id!=='system').map(provider=>btn(`<span class="source-provider-icon">${calendarProviderMark(provider.id)}</span><span>${provider.name}</span>${icon('right')}`,'cal17Begin',provider.id,'sheet-choice')).join(''));return}
+    if(sheet.type==='cal17Temporary'){workSheet('临时会议',btn(icon('chat')+'<span>通过对话添加</span>'+icon('right'),'manualCalendar','','sheet-choice')+btn(icon('file')+'<span>关联已有听记</span>'+icon('right'),'cal17ExistingMinutes',sheet.id||'','sheet-choice')+btn(icon('edit')+'<span>补充会议文本</span>'+icon('right'),'cal17Text',sheet.id||'','sheet-choice'));return}
+    if(sheet.type==='cal17ExistingMinutes'){
+      const files=data.files.filter(file=>file.kind==='会议原文'||file.kind==='录音'||file.folder==='meetings');workSheet('选择已有会议资料',files.length?files.map(file=>btn('<span>'+esc(file.title)+'</span>'+icon('right'),'cal17AttachMinutes',(sheet.id||'')+'|'+file.id,'sheet-choice')).join(''):'<p class="sheet-desc">暂无已有听记，可先补充会议文本。</p>'+btn('补充会议文本','cal17Text',sheet.id||'','primary full'));return;
+    }
+    if(sheet.type==='cal17Text'){workSheet('补充会议文本',`<form id="cal17TextForm"><input type="hidden" name="eventId" value="${esc(sheet.id||'')}">${!sheet.id?'<label class="field"><span>会议名称</span><input name="title" required maxlength="80" placeholder="例如：项目临时沟通"></label>':''}<label class="field"><span>会议原文</span><textarea name="text" required maxlength="20000" placeholder="粘贴你有权使用的转写文本"></textarea></label><button class="primary full" type="submit">保存会议文本</button></form>`);return}
+    if(sheet.type==='cal17Menu'){const event=data.events.find(item=>item.id===sheet.id);if(!event)return;const pref=cal17Preference(event);workSheet('会议操作',btn('调整会议服务','cal17EditServices',event.id,'sheet-choice')+btn('补充或关联会议原文','cal17Temporary',event.id,'sheet-choice')+btn('编辑日程','editEvent',event.id,'sheet-choice')+`<div class="cal17-demo-controls"><h3>模拟 Agent 行动</h3><p>使用演示文本，不连接外部平台。</p>${[['before','生成会前简报'],['during','同步已有转写'],['after','整理会后行动']].map(([phase,label])=>`<button class="sheet-choice" data-action="cal17Simulate" data-id="${event.id}|${phase}" ${pref[phase]?'':'disabled'}><span>${label}${pref[phase]?'':' · 未开启'}</span>${icon('right')}</button>`).join('')}</div>`);return}
+    if(sheet.type==='cal17Clarify'){const [eventId,key]=sheet.id.split('|'),event=data.events.find(item=>item.id===eventId),action=event?.cal17Actions?.find(item=>item.key===key);if(!action)return;workSheet('补齐跟进条件',`<form id="cal17ClarifyForm"><input type="hidden" name="eventId" value="${esc(eventId)}"><input type="hidden" name="key" value="${esc(key)}"><label class="field"><span>具体行动</span><input name="title" value="${esc(action.title)}" required></label><label class="field"><span>负责人</span><input name="owner" value="${action.owner==='待确认'?'':esc(action.owner)}" placeholder="例如：我" required></label><label class="field"><span>何时检查</span><input name="rule" placeholder="例如：每个工作日 09:00 汇总最新反馈" required></label><label class="field"><span>完成条件</span><textarea name="condition" placeholder="需要哪份可以核实的结果？" required></textarea></label><button class="primary full" type="submit">保存条件并开始跟进</button></form>`);return}
+    return cal17Original.paintSheet();
+  };
+  closeSheet=function(restore=true){if(data.calendarDraft?.stage==='authorizing'){data.calendarDraft.stage='consent';save()}return cal17Original.closeSheet(restore)};
+  function cal17SyncGoalActivity(goal){
+    const event=data.events.find(item=>item.id===goal?.cal17EventId);if(!event)return;
+    const signature=[goal.status,goal.logs?.length,goal.summary].join('|');if(goal.cal17ActivitySignature===signature)return;
+    goal.cal17ActivitySignature=signature;cal17Activity(event,{id:'progress-'+goal.id+'-'+(goal.logs?.length||0)+'-'+goal.status,phase:'after',title:goal.status==='done'?'跟进已完成：'+goal.title:goal.status==='paused'?'跟进已暂停：'+goal.title:'跟进进展：'+goal.title,body:goal.logs?.[0]?.[1]||goal.summary||'安排已更新。',goalId:goal.id});
+  }
+  createUpdate=function(id,needsDecision=false){const result=cal17Original.createUpdate(id,needsDecision);const goal=data.goals.find(item=>item.id===id);if(result&&goal?.cal17){cal17SyncGoalActivity(goal);save()}return result};
+  function cal17OpenEvent(id){closeSheet(false);openPage('event',id)}
+  function cal17AttachText(eventId,title,text,existingFile){
+    let event=data.events.find(item=>item.id===eventId);if(!event){event={id:'cal17-manual-'+Date.now(),title:title||existingFile?.title||'临时会议',day:data.calendarDemoAnchor,date:Number(data.calendarDemoAnchor.slice(8)),time:'14:00',end:'14:30',type:'meeting',people:'你',desc:'从已有会议文本补充。'};data.events.push(event);data.meetingPreferences[event.id]={before:false,during:false,after:true}}
+    let file=existingFile;if(!file){file=cal17SaveFile(event,'transcript','会议原文',text);file.cal17Custom=true}event.transcriptId=file.id;
+    cal17Activity(event,{id:'attached-'+file.id,phase:'during',title:'会议原文已补充',body:existingFile?'已关联资料中的同一份会议记录。':'已保存你补充的文本。',fileId:file.id});save();return event.id;
+  }
+  handle=function(action,id='',element){
+    if(['cal17Begin','calendarSetup','calendarProvider'].includes(action)){cal17Begin(id||'dingtalk');return}
+    if(action==='cal17Add'||action==='addEvent'){showSheet('cal17Add');return}
+    if(action==='cal17System'){cal17Begin('system',{fresh:true});return}
+    if(['cal17Connectors','cal17Temporary','cal17ExistingMinutes','cal17Text','cal17Menu','cal17Clarify'].includes(action)){showSheet(action,{id});return}
+    if(action==='cal17EditServices'||action==='editMeetingAssistance'){const event=data.events.find(item=>item.id===id);if(event){if(event.provider)cal17Begin(event.provider==='dingTalk'?'dingtalk':event.provider,{editEventId:id});else{cal17Original.closeSheet(false);data.calendarDraft={token:'cal17-'+Date.now(),provider:'dingtalk',stage:'services',services:{...cal17Preference(event)},editEventId:id,selectedIds:[]};showSheet('cal17Flow')}}return}
+    if(action==='cal17Consent'){if(data.calendarDraft?.token===id){data.calendarDraft.stage='consent';save();paintSheet()}return}
+    if(action==='cal17Authorize'){cal17Authorize(id);return}
+    if(action==='cal17Select'){const draft=data.calendarDraft;if(draft?.token===id){if(draft.editEventId){const result=cal17ConfirmSelection([]);if(result.ok){closeSheet(false);render()}}else{draft.stage='select';save();paintSheet()}}return}
+    if(action==='cal17BackServices'){data.calendarDraft.stage='services';save();paintSheet();return}
+    if(action==='cal17Simulate'){const[eventId,phase]=id.split('|'),result=cal17SimulateStage(eventId,phase);if(result.ok){closeSheet(false);render();toast('已完成模拟行动，结果保存在动态中')}else toast(result.error);return}
+    if(action==='cal17CreateGoal'){const[eventId,key]=id.split('|'),result=cal17CreateGoal(eventId,key);if(result.ok){render();toast(result.existing?'已存在这条跟进事项':'已加入持续跟进')}else toast(result.error);return}
+    if(action==='cal17AttachMinutes'){const[eventId,fileId]=id.split('|'),file=data.files.find(item=>item.id===fileId);if(file)cal17OpenEvent(cal17AttachText(eventId,'','',file));return}
+    if(action==='record'&&data.events.some(event=>event.id===id)){showSheet('cal17Menu',{id});return}
+    if(action==='prepare'&&data.events.some(event=>event.id===id)){const result=cal17SimulateStage(id,'before');if(result.ok)render();else toast(result.error);return}
+    if(action==='postTasks'){const event=data.events.find(item=>item.transcriptId===id);if(event){const result=cal17SimulateStage(event.id,'after');if(result.ok)cal17OpenEvent(event.id);else toast(result.error);return}}
+    if(action==='close'&&ui.sheet?.type==='cal17Flow'&&data.calendarDraft?.stage==='authorizing'){data.calendarDraft.stage='consent';save()}
+    if(action==='cal17Discuss'){closeSheet(false);go('chat');ui.draft='关于这场会议：'+(data.events.find(event=>event.id===id)?.title||'');render();document.getElementById('draft')?.focus();return}
+    const result=cal17Original.handle(action,id,element);const changedGoal=data.goals.find(item=>item.id===id&&item.cal17);if(changedGoal&&['pauseGoal','resumeGoal','completeGoal','resumeWork','pauseWork','simulateUpdate','simulateDecision','confirmCompleteGoal'].includes(action)){cal17SyncGoalActivity(changedGoal);save()}if(action==='confirmReset'){cal17Migrate();save();render()}return result;
+  };
+  beginCalendarImport=function(provider='dingtalk',options={}){return cal17Begin(provider,options)};
+  message=function(item){if(item.type!=='cal17Notice')return cal17Original.message(item);return `<div class="source-message-row"><section class="source-bubble rich-bubble"><h3>${esc(item.title)}</h3><p>${esc(item.text)}</p><div class="actions">${item.fileId?btn('查看资料','file',item.fileId,'quiet-action'):''}${item.goalId?btn('查看持续跟进','goal',item.goalId,'quiet-action'):''}${(item.eventIds||[]).slice(0,3).map(id=>btn(data.events.find(event=>event.id===id)?.title||'查看会议','event',id,'linklike')).join('')}</div></section></div>`};
+  fileDetail=function(){const file=data.files.find(item=>item.id===ui.id);if(!file?.cal17)return cal17Original.fileDetail();return `<section class="page cal17-file"><div class="detail-hero"><h1>${esc(file.title)}</h1><p>${esc(file.meta)}</p></div><div class="cal17-file-text">${esc(file.text)}</div>${file.sourceIds?.length?'<div class="sources">'+file.sourceIds.map(id=>{const related=data.files.find(item=>item.id===id);return related?source(related.title,id):''}).join('')+'</div>':''}${file.eventId?btn('回到会议动态','event',file.eventId,'secondary full'):''}</section>`};
+  goalDetail=function(){let html=cal17Original.goalDetail();const goal=data.goals.find(item=>item.id===ui.id);if(goal?.cal17)html=html.replace('</section>',`<div class="info-row"><span>触发方式</span><span>${esc(goal.cal17Trigger)}</span></div>${btn('查看来源会议','event',goal.cal17EventId,'secondary full')}<p class="cal17-permission">本地演示任务，不执行真实调度或外部发送。</p></section>`);return html};
+  document.addEventListener('change',event=>{
+    if(event.target.closest?.('#cal17ServiceForm')){const form=event.target.form,draft=data.calendarDraft;draft.services=Object.fromEntries(cal17Services.map(service=>[service.id,form.elements[service.id].checked]));save();const button=document.getElementById('cal17ServiceSubmit');button.disabled=!draft.editEventId&&!Object.values(draft.services).some(Boolean)}
+    if(event.target.closest?.('#cal17SelectForm')){data.calendarDraft.selectedIds=[...event.target.form.querySelectorAll('input[name="meeting"]:checked')].map(input=>input.value);save();const count=data.calendarDraft.selectedIds.length,button=document.getElementById('cal17SelectionSubmit');button.textContent=`为 ${count} 场会议开启`;button.disabled=!count}
+  });
+  document.addEventListener('submit',event=>{
+    const form=event.target;if(!['cal17ServiceForm','cal17SelectForm','cal17TextForm','cal17ClarifyForm'].includes(form.id))return;
+    event.preventDefault();event.stopImmediatePropagation();const values=new FormData(form),get=name=>String(values.get(name)||'').trim();
+    if(form.id==='cal17ServiceForm'){const draft=data.calendarDraft,result=cal17ChooseServices(Object.fromEntries(cal17Services.map(service=>[service.id,values.has(service.id)])));if(!result.ok){document.getElementById('cal17Error').textContent=result.error;return}if(result.ids){closeSheet(false);render();toast('会议服务已保存')}else paintSheet();return}
+    if(form.id==='cal17SelectForm'){const result=cal17ConfirmSelection(values.getAll('meeting'));if(!result.ok){document.getElementById('cal17Error').textContent=result.error;return}closeSheet(false);go('calendar');toast('已为 '+result.ids.length+' 场会议开启所选服务');return}
+    if(form.id==='cal17TextForm'){if(!get('text'))return;cal17OpenEvent(cal17AttachText(get('eventId'),get('title'),get('text')));return}
+    if(form.id==='cal17ClarifyForm'){const meeting=data.events.find(item=>item.id===get('eventId')),action=meeting?.cal17Actions?.find(item=>item.key===get('key'));if(!action)return;Object.assign(action,{title:get('title'),owner:get('owner'),rule:get('rule'),condition:get('condition'),trigger:'按已确认条件跟进'});const result=cal17CreateGoal(meeting.id,action.key);if(result.ok){closeSheet(false);render();toast('已按确认条件开始跟进')}else toast(result.error)}
+  },true);
+
+  function cal17RefreshLinkedSchedules(){
+    for(const goal of data.goals.filter(item=>item.cal17TriggerKey==='calendar'&&item.calendarEventId)){
+      const meeting=data.events.find(event=>event.id===goal.calendarEventId);if(!meeting?.day||!meeting.time)continue;
+      const nextCheck=new Date(Date.parse(meeting.day+'T'+meeting.time+':00+08:00')+6*3600000).toISOString().slice(0,19)+'+08:00';
+      if(Date.parse(goal.nextCheck)===Date.parse(nextCheck))continue;
+      goal.nextCheck=nextCheck;goal.date=meeting.day;goal.logs.unshift(['刚刚 · 日程调整','关联周会已调整为 '+meeting.day+' '+meeting.time+'；检查时间随之调整为会前 2 小时。']);
+      const source=data.events.find(event=>event.id===goal.cal17EventId);if(source)cal17Activity(source,{id:'reschedule-'+goal.id+'-'+nextCheck,phase:'after',title:'跟进时间已随周会调整',body:goal.logs[0][1],goalId:goal.id});
+    }
+  }
+  save=function(){cal17RefreshLinkedSchedules();for(const goal of data.goals.filter(item=>item.cal17))cal17SyncGoalActivity(goal);return cal17Original.save()};
+  window.cal17={authorize:cal17Authorize,begin:cal17Begin,chooseServices:cal17ChooseServices,confirmSelection:cal17ConfirmSelection,simulateStage:cal17SimulateStage,createGoal:cal17CreateGoal,meetings:cal17Meetings,requiredScopes:cal17RequiredScopes,attachText:cal17AttachText,migrate:cal17Migrate};
+  save();
+})();
+
+// END CALENDAR 20261117
+
+// BEGIN LIBRARY 17
+// A single home per document. Project/schedule/goal associations remain references.
+(() => {
+  const memoryFolders={profile:'关于我',business:'项目与业务',people:'人物与协作',decisions:'约定与决策'};
+  const memoryCategories={'关于我':'profile','偏好':'profile','项目背景':'business','人物与协作':'people','约定与决策':'decisions'};
+  const fileKinds={base:'基础资料',meetings:'会议资料',reports:'简报与报告',plans:'方案与交付'};
+  const roots={projects:'项目资料',shared:'跨项目资料',general:'通用资料',inbox:'待整理'};
+  const generalKinds={policies:'制度规范',knowledge:'业务知识',templates:'模板范例'};
+  const newId=prefix=>prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  const isMemory=()=>ui.folder?.startsWith('memory/')||(!ui.folder&&ui.librarySection==='memory');
+  function initLibrary(){
+    data.libraryProjects ||= [{id:'scm',name:'SCM 项目'},{id:'east',name:'华东大区'}];
+    data.memories ||= [];
+    let discovered=false;
+    data.files.filter(f=>!f.uploaded).forEach(f=>{
+      const names=fileProjectNames(f);
+      names.forEach(name=>{
+        if(!name||typeof name!=='string'||/全部|跨项目|所有|自定义|所辖/.test(name)||projectKey(name))return;
+        data.libraryProjects.push({id:newId('project'),name:name.trim()});discovered=true;
+      });
+    });
+    if(discovered)save();
+    // Keep legacy category values: existing template recommendations depend on 项目背景.
+    if(data.libraryDirectoryVersion!==1){data.libraryDirectoryVersion=1;save()}
+  }
+  initLibrary();
+  function projectKey(name){
+    if(!name)return '';
+    const s=String(name).trim();
+    return data.libraryProjects.find(p=>p.name===s||p.id===s.toLowerCase()||p.name.replace(/\s*项目$/,'')===s)?.id||'';
+  }
+  function fileProjectNames(f){
+    const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id);
+    const goal=data.goals.find(g=>g.reportFileId===f.id||f.id==='brief-'+g.id||g.id===f.goalId);
+    const values=f.projectIds||f.projects||goal?.setupSnapshot?.projects;
+    if(Array.isArray(values)&&values.length)return values;
+    const name=f.project||event?.project||goal?.project;return name?[name]:[];
+  }
+  function inferredPath(f){
+    // Name-only uploads have no semantic content available in this prototype.
+    if(f.uploaded||/本地文件名/.test(f.meta||''))return 'inbox';
+    const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id);
+    const goal=data.goals.find(g=>g.reportFileId===f.id||f.id==='brief-'+g.id||g.id===f.goalId);
+    const projects=fileProjectNames(f);
+    const explicit=projects.length===1?projectKey(projects[0]):projectKey(f.project||event?.project||goal?.project);
+    const legacy=projectKey(f.folder);
+    const project=projects.length>1?'':explicit||legacy;
+    const scope=project?'projects/'+project:'shared';
+    const collection=String(f.collection||f.purpose||'').toLowerCase();
+    if(f.eventId||event||f.id.startsWith('prep-')||f.folder==='meetings'||['录音','会议纪要','转写'].includes(f.kind)||/meeting|minutes|transcript|prep/.test(collection))return scope+'/meetings';
+    if(f.kind==='知识库'||f.folder==='knowledge')return f.id==='f5'||f.purpose==='policy'?'general/policies':'general/knowledge';
+    if(/plan|方案|交付/.test(collection)||['方案','草案'].includes(f.kind))return scope+'/plans';
+    if(f.kind==='报告'||f.generated||/daily|brief|report|analysis/.test(collection)||/Snack\s*(生成|推送)/.test(f.meta||''))return scope+'/reports';
+    if(project)return scope+'/base';
+    return 'inbox';
+  }
+  function pathOf(f){return validPath(f.libraryPath)?f.libraryPath:inferredPath(f)}
+  function leafPaths(){return ['inbox',...data.libraryProjects.flatMap(p=>Object.keys(fileKinds).map(k=>'projects/'+p.id+'/'+k)),...['meetings','reports','plans'].map(k=>'shared/'+k),...Object.keys(generalKinds).map(k=>'general/'+k)]}
+  function validPath(path){return typeof path==='string'&&leafPaths().includes(path)}
+  function titleOf(path){
+    if(!path)return isMemory()?'记忆':'文件';
+    const p=path.split('/');
+    if(p[0]==='memory')return memoryFolders[p[1]]||'记忆';
+    if(p.length===1)return roots[p[0]]||path;
+    if(p[0]==='projects'&&p.length===2)return data.libraryProjects.find(x=>x.id===p[1])?.name||'项目资料';
+    return p[0]==='general'?generalKinds[p[1]]:fileKinds[p.at(-1)]||path;
+  }
+  function fullPath(path){return path.split('/').map((_,i,a)=>titleOf(a.slice(0,i+1).join('/'))).join(' / ')}
+  function children(path){
+    if(!path)return Object.keys(roots);
+    if(path==='projects')return data.libraryProjects.map(p=>'projects/'+p.id);
+    if(/^projects\/[^/]+$/.test(path))return Object.keys(fileKinds).map(k=>path+'/'+k);
+    if(path==='shared')return ['meetings','reports','plans'].map(k=>'shared/'+k);
+    if(path==='general')return Object.keys(generalKinds).map(k=>'general/'+k);
+    return [];
+  }
+  const inPath=(file,path)=>!path||pathOf(file)===path||pathOf(file).startsWith(path+'/');
+  const memoryGroup=m=>memoryCategories[m.category]||'business';
+  const priorRoute=routeSnapshot;routeSnapshot=function(){return {...priorRoute(),lib17Filter:ui.lib17Filter||'all'}};
+  const filterMatches=f=>!ui.lib17Filter||ui.lib17Filter==='all'||pathOf(f).endsWith('/'+ui.lib17Filter);
+  const query=()=>String(ui.query||'').trim().toLocaleLowerCase();
+  const matches=(...values)=>!query()||values.some(x=>String(x||'').toLocaleLowerCase().includes(query()));
+  const empty=(text,action,label)=>`<div class="lib17-empty"><p>${esc(text)}</p>${action?btn(label,action,'','linklike'):''}</div>`;
+  function folderRow(path){
+    const count=path.startsWith('memory/')?data.memories.filter(m=>memoryGroup(m)===path.split('/')[1]).length:data.files.filter(f=>inPath(f,path)).length;
+    return `<button class="lib17-folder" data-action="folder" data-id="${esc(path)}"><span class="lib17-folder-icon">${icon('folder')}</span><strong>${esc(titleOf(path))}</strong><small>${count}${path.startsWith('memory/')?' 条':' 份'}</small>${icon('right')}</button>`;
+  }
+  function documentRow(f){return `<button class="folder-row lib17-file" data-action="file" data-id="${esc(f.id)}"><span class="file-icon ${f.kind==='报告'?'orange':''}">${icon('file')}</span><span class="file-info"><strong>${esc(f.title)}</strong><small>${esc(fullPath(pathOf(f)))}<br>${esc(f.meta||'已保存')}</small></span>${icon('right')}</button>`}
+  function memoryRow(m){return `<button class="folder-row lib17-file" data-action="memoryItem" data-id="${esc(m.id)}"><span class="file-info"><strong>${esc(m.title)}</strong><span class="lib17-memory-text">${esc(m.text)}</span><small>${esc(m.origin||'你补充的记忆')}${m.updated?' · '+esc(m.updated):''}</small></span>${icon('right')}</button>`}
+  function recent(files){return files.map((f,i)=>({f,i,t:Date.parse(f.updatedAt||f.createdAt||f.generatedAt||'')})).sort((a,b)=>(Number.isFinite(b.t)?b.t:0)-(Number.isFinite(a.t)?a.t:0)||a.i-b.i).map(x=>x.f)}
+  library=function(){
+    initLibrary();const section=isMemory()?'memory':'files';
+    const tabs=!ui.folder?`<div class="library-sections" role="tablist" aria-label="资料分区">${[['files','文件'],['memory','记忆']].map(([id,label])=>`<button type="button" role="tab" id="library-section-${id}" aria-controls="libraryPanel" aria-selected="${id===section}" tabindex="${id===section?0:-1}" data-action="librarySection" data-id="${id}">${label}</button>`).join('')}</div>`:'';
+    const heading=ui.folder?`<div class="library-folder-heading">${ib('返回上一级','back','folderBack')}<h1>${esc(titleOf(ui.folder))}</h1></div>`:'';
+    return `<section class="page library-split-page lib17-page">${tabs}${heading}<div id="libraryPanel" ${!ui.folder?`role="tabpanel" aria-labelledby="library-section-${section}"`:''}><label class="search library-search">${icon('search')}<input id="librarySearch" aria-label="搜索${section==='memory'?'记忆':'文件'}" placeholder="搜索${section==='memory'?'记忆':'文件'}" value="${esc(ui.query)}"></label>${section==='files'?`<div class="lib17-filters" role="group" aria-label="文件类型">${[['all','全部'],['meetings','会议'],['reports','报告']].map(([id,label])=>`<button type="button" data-action="lib17Filter" data-id="${id}" aria-pressed="${(ui.lib17Filter||'all')===id}">${label}</button>`).join('')}</div>`:''}<div id="libraryResults">${libraryResults()}</div></div></section>`;
+  };
+  libraryResults=function(){
+    if(isMemory()){
+      const group=ui.folder?.split('/')[1];
+      if(!group&&!query())return `<div class="lib17-folders">${Object.keys(memoryFolders).map(k=>folderRow('memory/'+k)).join('')}</div>`;
+      const rows=data.memories.filter(m=>(!group||memoryGroup(m)===group)&&matches(m.title,m.text,m.origin,memoryFolders[memoryGroup(m)])).map(memoryRow).join('');
+      return rows||empty(query()?'没有找到相关记忆':'这里还没有记忆',query()?'clearSearch':'newMemory',query()?'清除搜索':'添加记忆');
+    }
+    const files=recent(data.files.filter(f=>inPath(f,ui.folder)&&filterMatches(f)&&matches(f.title,f.summary,f.meta,fullPath(pathOf(f)))));
+    let dirs=query()||(ui.lib17Filter&&ui.lib17Filter!=='all')?[]:children(ui.folder);
+    // Keep the main choices stable; show deeper purpose folders only when populated.
+    if(ui.folder&&ui.folder!=='projects')dirs=dirs.filter(path=>data.files.some(f=>inPath(f,path)));
+    let html=dirs.length?`<div class="lib17-folders">${dirs.map(folderRow).join('')}</div>`:'';
+    if(!query())html+=`<div class="lib17-toolbar"><h2>${!ui.folder?'最近文件':ui.folder==='inbox'?'待整理文件':dirs.length?'全部文件':'文件'}</h2>${ui.folder==='projects'?btn('新建项目','lib17NewProject','','linklike'):btn('整理','lib17Organize',ui.folder||'','linklike')}</div>`;
+    html+=files.map(documentRow).join('')||empty(query()?'没有找到相关文件':'这里还没有文件',query()?'clearSearch':'libraryPickFile',query()?'清除搜索':'上传文件');
+    if(!ui.folder&&!query()&&data.libraryUndo?.length)html+=btn('撤销上次整理','lib17Undo','','linklike');
+    return html;
+  };
+  function navigate(path){
+    if(path==='memory')path=null;
+    if(path==='memory/tracking')path='memory/business';
+    if(path==='memory/calendar'){go('calendar');return}
+    const legacy={scm:'projects/scm',east:'projects/east',meetings:'shared/meetings',reports:'shared/reports',knowledge:'general',uploads:'inbox','collection/daily':'shared/reports','collection/meetings':'shared/meetings','collection/analysis':'shared/reports','collection/reference':'general'};
+    path=legacy[path]||path;ui.lib17Filter='all';stash();closeSheet(false);ui.folder=path;ui.query='';ui.filter='全部';
+    if(path)ui.librarySection=path.startsWith('memory/')?'memory':'files';
+    data.librarySection=ui.librarySection;save();render();
+    document.getElementById('scroll')?.scrollTo?.(0,0);
+  }
+  function options(selected){return leafPaths().map(path=>`<option value="${esc(path)}" ${path===selected?'selected':''}>${esc(fullPath(path))}</option>`).join('')}
+  function recordMoves(changes){
+    const undo=[];
+    changes.forEach(({id,path,title})=>{const f=data.files.find(x=>x.id===id);if(!f||!validPath(path))return;
+      const nextTitle=(title||f.title).trim();
+      if(pathOf(f)===path&&f.title===nextTitle&&f.libraryPath===path)return;
+      undo.push({id,before:{path:f.libraryPath??null,title:f.title},after:{path,title:nextTitle}});
+      f.libraryPath=path;f.title=nextTitle;
+    });
+    if(undo.length)data.libraryUndo=undo;save();return undo.length;
+  }
+  const previousHandle=handle;
+  handle=function(action,id='',el){
+    if(action==='lib17Filter'){if(!['all','meetings','reports'].includes(id))return;ui.lib17Filter=id;render();return}
+    if(action==='folder'){navigate(id);return}
+    if(action==='folderBack'){const parts=(ui.folder||'').split('/');navigate(parts.length>1&&parts[0]!=='memory'?parts.slice(0,-1).join('/'):null);return}
+    if(action==='librarySection'){if(!['files','memory'].includes(id))return;ui.librarySection=id;navigate(null);document.getElementById('library-section-'+id)?.focus();return}
+    if(action==='libraryPickFile'||action==='libraryAdd'){showSheet('lib17Upload');return}
+    if(action==='lib17ChooseUpload'){document.getElementById('lib17UploadInput')?.click();return}
+    if(action==='lib17Organize'){showSheet('lib17Organize',{scope:id});return}
+    if(action==='lib17FileEdit'){showSheet('lib17FileEdit',{id});return}
+    if(action==='lib17NewProject'){showSheet('lib17NewProject');return}
+    if(action==='memoryItem'){showSheet('lib17MemoryRead',{id});return}
+    if(action==='newMemory'||action==='lib17MemoryEdit'){showSheet('lib17MemoryEdit',{id});return}
+    if(action==='lib17FromFile'){const f=data.files.find(x=>x.id===id);if(f)showSheet('lib17MemoryEdit',{sourceId:id,draft:{title:f.title.slice(0,40),text:f.uploaded?'':f.summary||'',category:'项目背景'}});return}
+    if(action==='lib17MemoryChat'){const m=data.memories.find(x=>x.id===id);if(!m)return;go('chat');ui.draft='结合这条记忆：'+m.title+'\n'+m.text+'\n';ui.reference=null;ui.goalReference=null;render();document.getElementById('draft')?.focus();return}
+    if(action==='removeMemory'){showSheet('lib17MemoryRemove',{id});return}
+    if(action==='lib17MemoryRemoveConfirm'){const m=data.memories.find(x=>x.id===id);if(!m)return;data.libraryMemoryUndo=structuredClone(m);data.memories=data.memories.filter(x=>x.id!==id);save();closeSheet(false);render();toast('已移除记忆；原文件和跟进保持不变');return}
+    if(action==='lib17MemoryRestore'){const m=data.libraryMemoryUndo;if(m&&!data.memories.some(x=>x.id===m.id))data.memories.unshift(m);data.libraryMemoryUndo=null;save();render();return}
+    if(action==='lib17Undo'){
+      let restored=0;(data.libraryUndo||[]).forEach(change=>{const f=data.files.find(x=>x.id===change.id);if(!f||f.libraryPath!==change.after.path||f.title!==change.after.title)return;if(change.before.path===null)delete f.libraryPath;else f.libraryPath=change.before.path;f.title=change.before.title;restored++});
+      data.libraryUndo=null;save();render();toast(restored?'已撤销上次整理':'文件之后已被修改，未覆盖后续整理');return;
+    }
+    return previousHandle(action,id,el);
+  };
+  const resultsWithoutRestore=libraryResults;
+  libraryResults=function(){return resultsWithoutRestore()+(isMemory()&&data.libraryMemoryUndo?btn('撤销移除记忆','lib17MemoryRestore','','linklike'):'')};
+  const previousPaint=paintSheet;
+  paintSheet=function(){
+    const s=ui.sheet;if(!s)return;
+    if(s.type==='lib17Upload'){workSheet('上传文件',`<p class="lib17-note">演示仅保存文件名，不上传或读取内容。新文件会放入「待整理」。</p>${btn('选择文件','lib17ChooseUpload','','primary full')}<input type="file" id="lib17UploadInput" multiple hidden>`);return}
+    if(s.type==='lib17Organize'){
+      const files=data.files.filter(f=>inPath(f,s.scope));
+      workSheet('整理文件',files.length?`<form id="lib17OrganizeForm"><p class="lib17-note">按已知来源与项目关联归档；你可以调整存放位置。</p>${files.map((f,i)=>`<div class="lib17-organization-row"><strong>${esc(f.title)}</strong><small>${f.uploaded?'仅有文件名，请选择归属':'当前：'+esc(fullPath(pathOf(f)))}</small><label class="sr-only" for="lib17-dest-${i}">${esc(f.title)}的存放位置</label><select id="lib17-dest-${i}" data-file-id="${esc(f.id)}">${options(pathOf(f))}</select></div>`).join('')}<div class="lib17-organize-footer"><button type="submit" class="primary full">保存整理</button></div></form>`:empty('这里还没有可整理的文件','libraryPickFile','上传文件'));return;
+    }
+    if(s.type==='lib17FileEdit'){
+      const f=data.files.find(x=>x.id===s.id);if(!f){closeSheet();return}
+      workSheet('整理这份文件',`<form id="lib17FileEditForm" class="form"><input type="hidden" name="fileId" value="${esc(f.id)}"><label class="field"><span>文件名称</span><input name="title" value="${esc(f.title)}" maxlength="120" required></label><label class="field"><span>存放位置</span><select name="path">${options(pathOf(f))}</select></label><button type="submit" class="primary full">保存</button></form>`);return;
+    }
+    if(s.type==='lib17NewProject'){workSheet('新建项目文件夹',`<form id="lib17ProjectForm" class="form"><label class="field"><span>项目名称</span><input name="name" required maxlength="30" placeholder="输入项目名称"></label><p id="lib17ProjectError" class="lib17-form-error" role="alert"></p><button type="submit" class="primary full">创建文件夹</button></form>`);return}
+    if(s.type==='lib17MemoryRead'){
+      const m=data.memories.find(x=>x.id===s.id);if(!m){closeSheet();return}
+      const relatedGoal=data.goals.find(g=>g.id===m.goalId),relatedEvent=data.events.find(e=>e.id===m.eventId);
+      workSheet(esc(m.title),`<div class="lib17-reading">${esc(m.text)}</div><div class="lib17-source">${esc(memoryFolders[memoryGroup(m)])} · ${esc(m.origin||'你补充的记忆')}<br>${esc(m.updated||'')}${m.sourceId&&data.files.some(f=>f.id===m.sourceId)?'<br>'+source('查看来源文件',m.sourceId):''}</div>${relatedGoal?btn('查看关联跟进','goal',relatedGoal.id,'linklike'):''}${relatedEvent?btn('查看关联日程','event',relatedEvent.id,'linklike'):''}${m.history?.length?`<details class="memory-history"><summary>更正记录</summary>${m.history.map(h=>`<p>${esc(typeof h==='string'?h:h.text)}</p>`).join('')}</details>`:''}<div class="lib17-actions">${btn('修改记忆','lib17MemoryEdit',m.id,'primary')}${btn('围绕这条聊聊','lib17MemoryChat',m.id,'secondary')}</div>${btn('移除记忆','removeMemory',m.id,'danger-link')}`);return;
+    }
+    if(s.type==='lib17MemoryEdit'){
+      const existing=data.memories.find(m=>m.id===s.id),m=existing||s.draft||{};
+      const category=m.category||({profile:'关于我',business:'项目背景',people:'人物与协作',decisions:'约定与决策'}[ui.folder?.split('/')[1]])||'关于我';
+      const groupOptions=[['关于我','关于我 · 身份与范围'],['偏好','关于我 · 工作偏好'],['项目背景','项目与业务'],['人物与协作','人物与协作'],['约定与决策','约定与决策']];
+      workSheet(existing?'修改记忆':'添加记忆',`<form id="lib17MemoryForm" class="form"><label class="field"><span>标题</span><input name="title" required maxlength="40" value="${esc(m.title||'')}"></label><label class="field"><span>分类</span><select name="category">${groupOptions.map(([value,label])=>`<option value="${value}" ${value===category?'selected':''}>${label}</option>`).join('')}</select></label><label class="field"><span>内容</span><textarea name="text" required maxlength="1000">${esc(m.text||'')}</textarea></label>${s.sourceId?'<p class="lib17-note">来自所选文件的摘要，请核对后保存。</p>':''}<p id="lib17MemoryError" role="alert" class="lib17-form-error"></p><button type="submit" class="primary full">保存记忆</button></form>`);return;
+    }
+    if(s.type==='lib17MemoryRemove'){workSheet('移除这条记忆？',`<p class="lib17-note">移除后不再作为后续讨论的记忆。来源文件、已有日程和正在执行的跟进会保留。</p>${btn('移除记忆','lib17MemoryRemoveConfirm',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return}
+    previousPaint();
+  };
+  const previousFileDetail=fileDetail;
+  fileDetail=function(){
+    initLibrary();const f=data.files.find(x=>x.id===ui.id);let html=previousFileDetail();if(!f)return html;
+    const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id||f.id==='prep-'+e.id);
+    const goal=data.goals.find(g=>g.reportFileId===f.id||g.id===f.goalId||f.id==='brief-'+g.id);
+    const extra=`<div class="lib17-detail-links"><p class="lib17-location">${esc(fullPath(pathOf(f)))}</p><div class="actions">${btn('整理文件','lib17FileEdit',f.id,'linklike')}${!f.uploaded?btn('补充为记忆','lib17FromFile',f.id,'linklike'):''}${event?btn('查看关联日程','event',event.id,'linklike'):''}${goal?btn('查看关联跟进','goal',goal.id,'linklike'):''}</div></div>`;
+    const index=html.lastIndexOf('</section>');return index>=0?html.slice(0,index)+extra+html.slice(index):html+extra;
+  };
+  // Import retains the existing two-step preview/confirm flow and token protection.
+  previewMemoryImport=function(values){
+    const sourceName=['ChatGPT','Claude','其他应用'].includes(values.source)?values.source:'其他应用';
+    const title=String(values.title||'').trim(),text=String(values.text||'').trim();
+    if(!title||!text)return {ok:false,error:'补充标题和要导入的记忆。'};
+    if(title.length>40||text.length>1000)return {ok:false,error:'标题最多 40 字，内容最多 1000 字。'};
+    if(!memoryCategories[values.category])return {ok:false,error:'选择这条记忆的分类。'};
+    ui.memoryImport={source:sourceName,title,text,category:values.category,token:newId('memory-import')};return {ok:true};
+  };
+  confirmMemoryImport=function(token){
+    const d=ui.memoryImport;if(!d||d.token!==token||ui.sheet?.type!=='memoryImportPreview')return {ok:false,error:'请重新预览这条记忆。'};
+    const duplicate=data.memories.some(m=>m.title===d.title&&m.text===d.text&&m.category===d.category);
+    if(!duplicate)data.memories.unshift({id:newId('memory'),title:d.title,text:d.text,category:d.category,origin:d.source+' · 你确认导入',updated:'刚刚',history:[]});
+    ui.memoryImport=null;ui.librarySection='memory';data.librarySection='memory';save();closeSheet(false);go('library');navigate('memory/'+memoryCategories[d.category]);toast(duplicate?'这条记忆已保存':'已导入 1 条记忆');return {ok:true};
+  };
+  const paintBeforeImport=paintSheet;
+  paintSheet=function(){
+    const s=ui.sheet;
+    if(s?.type==='memoryImport'){
+      const d=ui.memoryImport||{source:'ChatGPT',category:'关于我'};
+      workSheet('从其他应用导入',`<form id="memoryImportForm" class="form"><label class="field"><span>来源应用</span><select name="source">${['ChatGPT','Claude','其他应用'].map(x=>`<option ${d.source===x?'selected':''}>${x}</option>`).join('')}</select></label><label class="field"><span>标题</span><input name="title" required maxlength="40" value="${esc(d.title||'')}"></label><label class="field"><span>分类</span><select name="category">${Object.keys(memoryCategories).map(c=>`<option value="${esc(c)}" ${d.category===c?'selected':''}>${c==='项目背景'?'项目与业务':c}</option>`).join('')}</select></label><label class="field"><span>粘贴记忆内容</span><textarea name="text" required maxlength="1000">${esc(d.text||'')}</textarea></label><p class="lib17-note">只导入你粘贴并确认的内容。</p><p id="memoryImportError" class="form-error" role="alert"></p><button type="submit" class="primary full">预览记忆</button></form>`);return;
+    }
+    if(s?.type==='memoryImportPreview'&&ui.memoryImport){const d=ui.memoryImport;workSheet('确认导入的记忆',`<div class="memory-import-preview"><h3>${esc(d.title)}</h3><p>${esc(d.text)}</p><small>${esc(d.source)} · ${esc(memoryFolders[memoryCategories[d.category]])}</small></div>${btn('确认导入','memoryImportConfirm',d.token,'primary full')}${btn('返回修改','memoryImportBack','','secondary full')}`);return}
+    paintBeforeImport();
+  };
+  document.addEventListener('change',event=>{
+    if(event.target.id!=='lib17UploadInput'||!event.target.files?.length)return;
+    event.stopImmediatePropagation();const count=event.target.files.length;
+    Array.from(event.target.files).forEach(file=>data.files.unshift({id:newId('file'),title:file.name,kind:'文件',folder:'uploads',libraryPath:'inbox',createdAt:new Date().toISOString(),meta:'刚刚 · 本地文件名',summary:'仅保存文件名，未读取文件内容。',uploaded:true}));
+    save();closeSheet(false);ui.librarySection='files';data.librarySection='files';go('library');navigate('inbox');toast('已添加 '+count+' 个文件名，等待整理');
+  },true);
+  document.addEventListener('submit',event=>{
+    const form=event.target;if(!['lib17OrganizeForm','lib17FileEditForm','lib17MemoryForm','lib17ProjectForm'].includes(form.id))return;
+    event.preventDefault();event.stopImmediatePropagation();const fd=new FormData(form),get=k=>String(fd.get(k)||'').trim();
+    if(form.id==='lib17ProjectForm'){
+      const name=get('name');if(!name||name.length>30)return;
+      if(data.libraryProjects.some(p=>p.name===name)){document.getElementById('lib17ProjectError').textContent='已有同名项目，请使用现有文件夹。';return}
+      const id=newId('project');data.libraryProjects.push({id,name});save();closeSheet(false);navigate('projects/'+id);toast('已创建项目文件夹');return;
+    }
+    if(form.id==='lib17MemoryForm'){
+      const title=get('title'),text=get('text'),category=get('category');
+      if(!title||!text||title.length>40||text.length>1000||!memoryCategories[category]){document.getElementById('lib17MemoryError').textContent='请填写标题、分类和内容。';return}
+      const existing=data.memories.find(m=>m.id===ui.sheet.id),sourceId=ui.sheet.sourceId;
+      if(existing){existing.history||=[];existing.history.unshift(existing.text);Object.assign(existing,{title,text,category,updated:'刚刚 · 你已更正'})}
+      else data.memories.unshift({id:newId('memory'),title,text,category,sourceId:sourceId||null,origin:sourceId?'你核对来源后保存':'你补充的记忆',updated:'刚刚',history:[]});
+      save();closeSheet(false);ui.librarySection='memory';data.librarySection='memory';go('library');navigate('memory/'+memoryCategories[category]);toast('记忆已保存');return;
+    }
+    let changes=[];
+    if(form.id==='lib17FileEditForm'){if(!get('title')||get('title').length>120||!validPath(get('path')))return;changes=[{id:get('fileId'),path:get('path'),title:get('title')}];}
+    else changes=Array.from(form.querySelectorAll('select[data-file-id]')).map(el=>({id:el.dataset.fileId,path:el.value}));
+    const count=recordMoves(changes);closeSheet(false);render();toast(count?'已保存整理，可在文件首页撤销':'文件已在所选位置');
+  },true);
+})();
+// END LIBRARY 17
 
 render();
 </script>
