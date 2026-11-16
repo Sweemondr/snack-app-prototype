@@ -368,6 +368,25 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .app .circle-header>.icon-button.page-top-add{left:auto;right:18px;top:18px;width:40px;height:40px;border-radius:50%;background:#f1f2f4;color:#46515f}
 .calendar-entry-rows{margin-bottom:30px}.agenda-page>.calendar-entry-rows{margin-top:30px;margin-bottom:0}.calendar-import-icon{background:#f0f7ff}.calendar-import-icon img{width:34px;height:34px;object-fit:contain}.calendar-day-empty{padding:20px 0;color:var(--muted);font-size:14px;text-align:center}
 @media(max-width:375px){.app .circle-header>.icon-button.page-top-add{right:16px}}
+
+.template-sheet .sheet-head{align-items:flex-start;margin-bottom:12px}
+.template-sheet .sheet-head h2{font-size:24px;line-height:1.48;letter-spacing:-.025em;font-weight:650;padding-right:5px}
+.template-description{font-size:16px;line-height:1.85;margin:0 0 29px;color:var(--ink)}
+.template-outputs{border:0;border-top:1px solid var(--line);padding:25px 0 8px;margin:0;min-width:0}
+.template-outputs legend{float:left;width:100%;font-size:17px;font-weight:650;margin:0 0 16px;padding:0}
+.template-output{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px;padding:13px 0;cursor:pointer;clear:both}
+.template-output>span:first-child{flex:1;min-width:0}.template-output strong{display:block;font-size:16px;line-height:1.6;font-weight:600}
+.template-output small{display:block;font-size:13px;line-height:1.75;color:#626b75;margin-top:3px}
+.template-output input{position:absolute;right:0;width:28px;height:28px;opacity:0;cursor:pointer}
+.template-check{display:grid;place-items:center;width:27px;height:27px;flex:0 0 27px;border:1.5px solid #8b9299;border-radius:50%;color:transparent;background:white;pointer-events:none}
+.template-check svg{width:18px;height:18px;stroke-width:2.6}
+.template-output input:checked+.template-check{border-color:var(--accent);background:var(--accent);color:white}
+.template-output input:focus-visible+.template-check{outline:2px solid var(--accent);outline-offset:4px}
+.template-footer{position:sticky;bottom:-24px;padding:18px 0 max(16px,env(safe-area-inset-bottom));background:white;margin-top:12px}
+.template-footer .primary{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:26px;font-size:16px}.template-footer svg{width:18px;height:18px}
+.template-footer .form-error{margin:0 0 10px}.template-footer .form-error:empty{margin:0}
+@media(max-width:360px){.template-sheet .sheet-head h2{font-size:22px}.template-description{font-size:15px}.template-output strong{font-size:15px}}
+
 </style>
 </head>
 <body>
@@ -1703,7 +1722,7 @@ const SCENARIOS={
 const SCENARIO_PROJECTS=['SCM','华东大区','创新设备租赁'];
 const SCENARIO_METRICS={attendance:'设备出勤与闲置',output:'项目产值',payment:'计划与实际回款'};
 const SCENARIO_FOCUS={attendance:'设备出勤与调配',payment:'回款与付款承诺',progress:'进度、阻塞与待决策事项'};
-const SCENARIO_PERMISSIONS={projectRead:'读取我可见的项目经营数据',projectMessages:'读取选定项目的相关消息',minutes:'读取我已授权的会议记录',messageSend:'通过 Snack 机器人向我发送消息'};
+const SCENARIO_PERMISSIONS={calendar:'读取所选会议的日程与时间变更',projectRead:'读取我可见的项目经营数据',projectMessages:'读取选定项目的相关消息',minutes:'读取我已授权的会议记录',messageSend:'通过 Snack 机器人向我发送消息'};
 Object.assign(DING_SCOPES,SCENARIO_PERMISSIONS);
 FOLLOW_IDEAS.splice(0,FOLLOW_IDEAS.length,...Object.entries(SCENARIOS).map(([id,s])=>({id,icon:s.icon,title:s.title,description:s.description})));
 Object.assign(FOLLOW_PROMPTS,{risk:'帮我盯住项目的重要变化。',meeting:'帮我接着跟进会上的决策。',brief:'每个工作日早上 9 点，把项目经营简报通过钉钉发给我。'});
@@ -1794,15 +1813,15 @@ function scenarioAdvance(values={},token=followToken()){
     if(d.channel==='dingtalk'&&!scenarioPushReady())return scenarioError(d,'先授权钉钉消息推送，或选择仅在 Snack 查看。');
     if(d.template==='brief'&&(!/^([01]\d|2[0-3]):[0-5]\d$/.test(d.time)||!['daily','weekdays','weekly'].includes(d.frequency)||!/^[0-6]$/.test(d.weekday)))return scenarioError(d,'请设置有效的推送时间和频率。');
   }
-  const stages=SCENARIOS[d.template].stages,index=stages.indexOf(d.stage);if(index<0||index===stages.length-1)return false;
+  const stages=templateStageList(d),index=stages.indexOf(d.stage);if(index<0||index===stages.length-1)return false;
   scenarioShow(stages[index+1]);return true;
 }
-function scenarioBack(token){const d=scenarioDraft();if(!d||followToken(d)!==token)return;const stages=SCENARIOS[d.template].stages,i=stages.indexOf(d.stage);if(i>0)scenarioShow(stages[i-1])}
+function scenarioBack(token){const d=scenarioDraft();if(!d||followToken(d)!==token)return;const stages=templateStageList(d),i=stages.indexOf(d.stage);if(i>0)scenarioShow(stages[i-1])}
 function scenarioCapture(){const d=scenarioDraft(),form=document.getElementById('scenarioForm');if(d&&form){scenarioApply(d,scenarioValues(form));save()}}
 let scenarioAuthTimer=null,scenarioAuthSequence=0;
 function scenarioAuthorize(provider,scopes,token=followToken()){
   const d=scenarioDraft();if(!d||token!==followToken(d)||!['nexus','dingtalk'].includes(provider))return false;
-  const needed=provider==='nexus'?['projectRead']:scopes.filter(x=>['projectMessages','minutes','messageSend'].includes(x));if(!needed.length)return false;
+  const needed=provider==='nexus'?['projectRead']:scopes.filter(x=>['projectMessages','minutes','messageSend','calendar'].includes(x));if(!needed.length)return false;
   closeSheet(false);ui.scenarioAuth={id:'scenario-auth-'+(++scenarioAuthSequence),draftToken:token,provider,scopes:needed,stage:'connect'};showSheet('scenarioAuth');return ui.scenarioAuth.id;
 }
 function scenarioGrant(token){
@@ -1852,7 +1871,7 @@ function scenarioRenderStep(m){
   if(d.stage==='preview')body=scenarioPreview(d)+(d.template==='risk'?`<label class="field"><span>什么变化值得提醒你</span><textarea name="criteria" required maxlength="400">${esc(d.criteria)}</textarea></label>`:d.template==='brief'?`<label class="field"><span>简报偏好（选填）</span><input name="previewNote" value="${esc(d.previewNote)}" maxlength="160" placeholder="例如：先看异常，最多三条"></label>`:'');
   if(d.stage==='delivery')body=(d.template==='brief'?select('frequency','频率',[['weekdays','每个工作日（周一至周五）'],['daily','每天'],['weekly','每周']],d.frequency)+(d.frequency==='weekly'?select('weekday','星期',[['1','周一'],['2','周二'],['3','周三'],['4','周四'],['5','周五'],['6','周六'],['0','周日']],d.weekday):'')+`<label class="field"><span>发送时间 · 北京时间</span><input type="time" name="time" required value="${esc(d.time)}"></label>`:select('rule','提醒时机',(d.template==='meeting'?['有关键进展、到期前一天、到期仍未确认时提醒','仅到期仍未确认时提醒','有关键进展时提醒']:['关键变化时提醒','每天汇总一次重要变化','仅需要我决策时提醒']).map(x=>[x,x]),d.rule))+select('channel','接收渠道',[['dingtalk','钉钉消息'],['snack','仅在 Snack 查看']],d.channel)+(d.channel==='dingtalk'?`<p class="scenario-connection-state">${icon(scenarioPushReady()?'check':'link')}${scenarioPushReady()?'消息推送已授权':'消息推送待授权'}</p><p class="scenario-note">发送给：我（钉钉演示账号）</p>${auth('dingtalk','messageSend',scenarioPushReady()?'查看消息推送权限':'授权钉钉消息推送')}${scenarioPushReady()?btn('模拟发送测试消息','scenarioTest',token,'linklike')+(d.testSent?'<p class="scenario-note" role="status">测试消息已模拟送达，未发送真实消息。</p>':''):''}`:'<p class="scenario-note">结果保存在 Snack，打开应用后查看。</p>');
   if(d.stage==='review')body=scenarioFields(d)+(d.template==='brief'?`<div class="scenario-next">下次：${scenarioRunLabel(nextScenarioRun(d))}</div>`:'');
-  const first=SCENARIOS[d.template].stages[0]===d.stage;
+  const first=templateStageList(d)[0]===d.stage;
   return `<div class="source-message-row"><section class="source-bubble rich-bubble scenario-step"><h2>${title}</h2><form id="scenarioForm" data-token="${esc(token)}"><input type="hidden" name="token" value="${esc(token)}">${body}${d.error?`<p class="form-error" role="alert">${esc(d.error)}</p>`:''}<div class="scenario-step-actions">${!first?btn('上一步','scenarioBack',token,'secondary'):''}<button type="submit" class="primary">${d.stage==='review'?(d.existingGoalId?'确认修改':d.template==='brief'?'开启定时推送':d.template==='meeting'?'跟进这些决策':'开始跟进'):d.stage==='preview'?'设置接收方式':d.stage==='delivery'?'核对并开启':d.stage==='sources'?'使用这些资料':'继续'}</button></div></form></section></div>`;
 }
 const messageBeforeScenarios=message;
@@ -2051,6 +2070,348 @@ submitChat=function(){
 };
 const messageBeforeChatAttachments=message;
 message=function(m){if(m.type==='user'&&m.attachments?.length)return `<div class="source-message-row from-user"><div class="source-bubble"><div class="chat-message-attachments">${m.attachments.map(f=>`<span>${icon(f.image?'image':'file')}${esc(f.name)}</span>`).join('')}</div>${esc(m.text||'')}</div></div>`;return messageBeforeChatAttachments(m)};
+
+// Template detail -> selected outcomes -> conversational setup. Local demonstration only.
+const FOLLOW_TEMPLATE_DETAILS={
+  brief:{id:'brief',scenario:'brief',icon:'clock',title:'每天 9:30，把项目经营简报发给我',description:'汇总所辖项目的经营情况，先看主要变化和今天需要关注的事。',detail:'每天整理所选项目的设备出勤、产值和回款。你可以一起查看正在跟进的事项，也可以把详细分析保存下来。',outputs:[
+    {id:'dailyBrief',title:'每日经营简报',description:'核心数据、变化和需要关注的项目',checked:true},
+    {id:'goalProgress',title:'重点事项进展',description:'正在跟进的事情，有什么新进展'},
+    {id:'report',title:'经营分析报告',description:'按日更新报告，保留每次分析'}]},
+  risk:{id:'risk',scenario:'risk',icon:'trend',title:'盯住项目的开工异常，恢复时告诉我',description:'按你确认的标准，跟进设备出勤、闲置和恢复情况。',detail:'选择要关注的项目，确认什么情况需要提醒。出现符合条件的变化时告诉你，后续继续核对是否恢复。',outputs:[
+    {id:'anomaly',title:'异常变化提醒',description:'达到你设定的条件时提醒',checked:true},
+    {id:'recovery',title:'恢复进展提醒',description:'满足你确认的恢复条件时告诉你',checked:true},
+    {id:'logFile',title:'异常变化记录',description:'持续记录数据变化、措施和结果'}]},
+  meeting:{id:'meeting',scenario:'meeting',icon:'calendar',title:'下次周会前，核对上次交代的事',description:'接着跟进负责人和约定时间，把待决策的问题带到下次周会。',detail:'选择上次会议中要跟进的决策，核对最新进展。会前整理完成情况和待确认问题，会后可以继续整理新的待办建议。',outputs:[
+    {id:'beforeBrief',title:'会前待办进展简报',description:'会前一天，整理上次事项的进展',checked:true},
+    {id:'dueReminder',title:'临期与到期未反馈提醒',description:'按每件事约定的检查日期提醒',checked:true},
+    {id:'reschedule',title:'周会改期提醒',description:'读取日程变化，并调整会前准备时间'},
+    {id:'newActions',title:'会后新待办建议',description:'新纪要到达后整理，由你选择继续跟进'}]}
+};
+function templateDynamicCandidate(){
+  if(!data.goals.length)return null;
+  const memory=data.memories.find(m=>m.category==='项目背景'&&/SCM/.test(m.title+' '+m.text)&&/调配|调出/.test(m.text));
+  if(!memory||!data.files.some(f=>f.id===memory.sourceId))return null;
+  if(data.goals.some(g=>g.status!=='done'&&g.template!=='brief'&&g.project?.includes('SCM')&&(/调配/.test(g.title+' '+g.focus)||g.setupSnapshot?.decisions?.some(x=>x.project==='SCM'&&/调配/.test(x.title)))))return null;
+  return {id:'scm-plan',scenario:'risk',icon:'target',title:'核对 SCM 闲置设备的调配安排',description:'结合后续运量、人员准入和已有安排，跟到负责人确认。',detail:'你记录过：设备是否调出，还需要核实后续运量、人员准入和现有安排。我可以持续整理这些条件，在约定复核日把待确认的问题带给你。',sourceMemoryId:memory.id,sourceId:memory.sourceId,outputs:[
+    {id:'progress',title:'调配条件进展',description:'核对运量、人员准入和负责人反馈',checked:true},
+    {id:'deadline',title:'到期复核提醒',description:'到约定日期，整理已确认和仍缺的信息',checked:true},
+    {id:'report',title:'调配复核记录',description:'更新依据、措施和最后的确认结果'}]};
+}
+function followTemplate(id){return FOLLOW_TEMPLATE_DETAILS[id]||(id==='scm-plan'?templateDynamicCandidate():null)}
+function templateCovered(t){return data.goals.some(g=>g.status!=='done'&&g.setupSnapshot?.templateId===t.id)}
+function getFollowTemplates(){const dynamic=templateDynamicCandidate();return [FOLLOW_TEMPLATE_DETAILS.risk,FOLLOW_TEMPLATE_DETAILS.meeting,FOLLOW_TEMPLATE_DETAILS.brief,...(dynamic?[dynamic]:[])].filter(t=>!templateCovered(t))}
+function templateSelected(t){return (data.templateSelections?.[t.id]||t.outputs.filter(o=>o.checked).map(o=>o.id)).filter(id=>t.outputs.some(o=>o.id===id))}
+function templateOutputNames(d){const t=FOLLOW_TEMPLATE_DETAILS[d.templateId]||(d.templateId==='scm-plan'?{outputs:[{id:'progress',title:'调配条件进展'},{id:'deadline',title:'到期复核提醒'},{id:'report',title:'调配复核记录'}]}:null);return t?t.outputs.filter(o=>d.selectedOutputs?.includes(o.id)).map(o=>o.title):[]}
+function templateHas(d,id){return !!d.selectedOutputs?.includes(id)}
+function templateNotifications(d){return d.selectedOutputs?.some(id=>!['report','logFile'].includes(id))}
+function templateNeedsDecisions(d){return templateHas(d,'beforeBrief')||templateHas(d,'dueReminder')}
+function templateStageList(d){
+  const stages=SCENARIOS[d.template].stages;
+  if(d.template!=='meeting')return stages;
+  if(!d.templateId)return stages.filter(s=>s!=='schedule');
+  if(templateNeedsDecisions(d))return stages.filter(s=>s!=='schedule'||d.selectedOutputs.some(o=>['beforeBrief','reschedule','newActions'].includes(o)));
+  return [...(templateHas(d,'newActions')?['meeting']:[]),'schedule','preview','delivery','review'];
+}
+templateRows=function(){return `<div class="follow-ideas">${getFollowTemplates().map(t=>`<button class="follow-idea" data-action="startTemplate" data-id="${t.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(t.icon)}</span><span class="follow-idea-body"><strong>${esc(t.title)}</strong><span>${esc(t.description)}</span></span>${icon('right')}</button>`).join('')}</div>`};
+const goalsBeforeTemplates=goals;
+goals=function(){const html=goalsBeforeTemplates();return getFollowTemplates().length?html:html.replace('<div class="section-line follow-add-heading"><h2>继续添加</h2></div>','')};
+function templateBeginDraft(t,outputs){
+  startFollowConversation(t.title,t.scenario);const d=scenarioDraft();
+  Object.assign(d,{templateId:t.id,selectedOutputs:[...outputs],templateTitle:t.title,channel:'snack',time:'09:30',criteria:'',rule:t.scenario==='meeting'?'按所选事项和约定日期提醒':'满足已确认条件时提醒',nextMeetingAt:'',calendarEventId:'',meetingTimeSource:'manual',meetingLeadHours:'24',reviewDate:'',completionEvidence:'',sourceMemoryId:t.sourceMemoryId||null});
+  if(t.scenario==='brief')d.frequency='daily';
+  if(t.scenario==='meeting'){d.frequency='weekly';d.weekday='1';if(!templateNeedsDecisions(d)){d.projects=[];d.project='';d.focus='';d.sourceKey='manual'}}
+  if(t.id==='scm-plan')Object.assign(d,{project:'SCM',projects:['SCM'],focusKeys:['progress'],focus:'闲置设备的调配安排',completionEvidence:'负责人确认后续运量、人员准入及设备调配安排',sourceKey:'nexus',criteria:'有新的运量安排、人员准入结果或负责人调配反馈时记录。'});
+  d.stage=templateStageList(d)[0];const current=data.messages.find(m=>m.type==='scenarioStep'&&m.followId===d.id&&m.revision===d.revision);if(current){current.stage=d.stage;current.snapshot=scenarioSnapshot(d)}
+  go('chat');followRender();return true;
+}
+function beginTemplate(id,outputs){
+  const t=followTemplate(id);if(!t||!Array.isArray(outputs))return false;
+  const selected=[...new Set(outputs)].filter(value=>t.outputs.some(o=>o.id===value));if(!selected.length)return false;
+  if(activeFollowDraft()){closeSheet(false);go('chat');toast('继续完成刚才的设置');return false}
+  data.templateSelections||={};data.templateSelections[id]=selected;closeSheet(false);return templateBeginDraft(t,selected);
+}
+const sheetBeforeTemplates=paintSheet;
+paintSheet=function(){
+  if(ui.sheet?.type!=='followTemplate')return sheetBeforeTemplates();
+  const t=followTemplate(ui.sheet.id);if(!t){closeSheet(false);return}const selected=templateSelected(t);
+  workSheet(t.title,`<form id="followTemplateForm" data-template="${t.id}" class="template-detail"><p class="template-description">${esc(t.detail)}</p><fieldset class="template-outputs"><legend>包含的内容</legend>${t.outputs.map(o=>`<label class="template-output"><span><strong>${esc(o.title)}</strong><small>${esc(o.description)}</small></span><input type="checkbox" name="output" value="${o.id}" ${selected.includes(o.id)?'checked':''}><span class="template-check" aria-hidden="true">${icon('check')}</span></label>`).join('')}</fieldset><div class="template-footer"><p class="form-error" id="templateSelectionError" role="status">${selected.length?'':'至少选择一项内容'}</p><button type="submit" class="primary full" ${selected.length?'':'disabled'}>继续设置${icon('right')}</button></div></form>`);
+  document.querySelector('.sheet')?.classList.add('template-sheet');
+};
+const handleBeforeTemplates=handle;
+handle=function(action,id='',el){
+  if(action==='startTemplate'&&followTemplate(id)){showSheet('followTemplate',{id});return}
+  if(action==='templateMeetingSource'){return}
+  handleBeforeTemplates(action,id,el);
+};
+document.addEventListener('change',event=>{
+  const form=event.target.closest?.('#followTemplateForm');if(!form)return;
+  const selected=[...form.querySelectorAll('input[name="output"]:checked')].map(x=>x.value);data.templateSelections||={};data.templateSelections[form.dataset.template]=selected;save();
+  form.querySelector('button[type="submit"]').disabled=!selected.length;form.querySelector('#templateSelectionError').textContent=selected.length?'':'至少选择一项内容';
+});
+document.addEventListener('submit',event=>{
+  const form=event.target;if(form.id!=='followTemplateForm')return;event.preventDefault();event.stopImmediatePropagation();beginTemplate(form.dataset.template,new FormData(form).getAll('output'));
+},true);
+const snapshotBeforeTemplates=scenarioSnapshot;
+scenarioSnapshot=function(d){return {...snapshotBeforeTemplates(d),templateId:d.templateId,selectedOutputs:d.selectedOutputs?[...d.selectedOutputs]:undefined,templateTitle:d.templateTitle,nextMeetingAt:d.nextMeetingAt,calendarEventId:d.calendarEventId,meetingTimeSource:d.meetingTimeSource,meetingLeadHours:d.meetingLeadHours,reviewDate:d.reviewDate,completionEvidence:d.completionEvidence,sourceMemoryId:d.sourceMemoryId}};
+const valuesBeforeTemplates=scenarioValues;
+scenarioValues=function(form){const values=valuesBeforeTemplates(form),fd=new FormData(form);for(const k of ['nextMeetingAt','calendarEventId','meetingTimeSource','meetingLeadHours','reviewDate','completionEvidence'])if(fd.has(k))values[k]=String(fd.get(k)||'').trim();return values};
+const applyBeforeTemplates=scenarioApply;
+scenarioApply=function(d,v){applyBeforeTemplates(d,v);for(const k of ['nextMeetingAt','calendarEventId','meetingTimeSource','meetingLeadHours','reviewDate','completionEvidence'])if(v[k]!==undefined)d[k]=v[k]};
+SCENARIOS.meeting.stages=['meeting','decisions','sources','schedule','preview','delivery','review'];
+function templateCalendarReady(){return !!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('calendar')}
+function templateCalendarMeetings(){
+  if(!templateCalendarReady())return [];
+  const existing=data.events.filter(e=>e.type==='meeting'&&['dingtalk','dingTalk'].includes(e.provider));
+  const samples=providerMeetings('dingtalk').map(e=>({...e,id:'template-calendar-'+e.externalId,day:e.externalId==='weekly'?'2026-11-23':e.day}));
+  return [...existing,...samples.filter(e=>!existing.some(x=>x.externalId===e.externalId))];
+}
+function templateSetMeeting(d){if(d.meetingTimeSource!=='calendar')return;const e=templateCalendarMeetings().find(e=>e.id===d.calendarEventId);if(e){d.nextMeetingAt=e.day+'T'+e.time;d.calendarMeetingTitle=e.title;if(!templateNeedsDecisions(d))d.meetingTitle=e.title}}
+function templateStep(d,title,body){const token=followToken(d);return `<div class="source-message-row"><section class="source-bubble rich-bubble scenario-step"><h2>${title}</h2><form id="scenarioForm" data-token="${esc(token)}"><input type="hidden" name="token" value="${esc(token)}">${body}${d.error?`<p class="form-error" role="alert">${esc(d.error)}</p>`:''}<div class="scenario-step-actions">${templateStageList(d)[0]===d.stage?'':btn('上一步','scenarioBack',token,'secondary')}<button type="submit" class="primary">继续</button></div></form></section></div>`}
+const stepBeforeTemplates=scenarioRenderStep;
+scenarioRenderStep=function(m){
+  const d=scenarioDraft(),active=d&&m.followId===d.id&&m.revision===d.revision;
+  if(active&&d.templateId&&d.stage==='schedule'){
+    const calendar=templateHas(d,'reschedule'),needsTime=templateHas(d,'beforeBrief')||calendar;
+    const choices=templateCalendarMeetings();if(calendar)d.meetingTimeSource='calendar';
+    const select=(name,label,options,value)=>`<label class="field"><span>${label}</span><select name="${name}">${options.map(([id,text])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(text)}</option>`).join('')}</select></label>`;
+    let body='';if(needsTime){
+      if(!calendar)body+=select('meetingTimeSource','下次会议时间',[['manual','直接填写'],['calendar','从钉钉日程选择']],d.meetingTimeSource);
+      if(d.meetingTimeSource==='calendar')body+=templateCalendarReady()?select('calendarEventId','会议日程',[['','选择一场会议'],...choices.map(e=>[e.id,e.title+' · '+e.day+' '+e.time])],d.calendarEventId):`<p class="scenario-note">连接钉钉日程，跟随会议时间安排准备。</p>${btn('连接钉钉日程','scenarioConnect',followToken(d)+':dingtalk:calendar','secondary full')}`;
+      else body+='<label class="field"><span>下次会议 · 北京时间</span><input type="datetime-local" name="nextMeetingAt" required value="'+esc(d.nextMeetingAt||'')+'"></label>';
+      if(templateHas(d,'beforeBrief'))body+=select('meetingLeadHours','会前多久准备',[['24','提前一天'],['2','提前两小时'],['1','提前一小时']],d.meetingLeadHours||'24');
+    }
+    if(templateHas(d,'newActions'))body+=data.dingTalk.scopes.includes('minutes')&&data.dingTalk.cliConnected?'<p class="scenario-connection-state">会议记录已授权</p>':`<p class="scenario-note">读取这个会议的新纪要，整理下一轮待办建议。</p>${btn('连接钉钉会议记录','scenarioConnect',followToken(d)+':dingtalk:minutes','secondary full')}`;
+    return templateStep(d,'安排下一次周会',body);
+  }
+  if(active&&d.templateId==='scm-plan'&&d.stage==='preview')return templateStep(d,'这件事怎样算完成？',scenarioPreview(d)+`<label class="field"><span>完成依据</span><textarea name="completionEvidence" required maxlength="300">${esc(d.completionEvidence||'')}</textarea></label><label class="field"><span>下次复核日期</span><input type="date" name="reviewDate" value="${esc(d.reviewDate||'')}" required></label>`);
+  let html=stepBeforeTemplates(m);
+  if(active&&d.templateId&&d.template==='brief'&&!templateNotifications(d)&&d.stage==='delivery'){
+    html=html.replace('什么时候、发到哪里？','什么时候更新报告？').replace('发送时间 · 北京时间','更新时间 · 北京时间').replace(/<label class="field"><span>接收渠道<\/span><select name="channel">[\s\S]*?<\/select><\/label>/,'').replace('<p class="scenario-note">结果保存在 Snack，打开应用后查看。</p>','');
+  }
+  if(active&&d.templateId&&d.stage==='review')html=html.replace('确认持续跟进','确认开启').replace('确认定时推送','确认开启');
+  return html;
+};
+const advanceBeforeTemplates=scenarioAdvance;
+scenarioAdvance=function(values={},token=followToken()){
+  const d=scenarioDraft();if(!d||token!==followToken(d))return false;
+  if(!d.templateId&&d.stage==='schedule'){scenarioShow('preview');return true}
+  if(d.templateId){
+    scenarioApply(d,values);
+    if(d.template==='meeting'&&d.stage==='meeting'&&!templateNeedsDecisions(d)){
+      const meeting=scenarioMeetings().find(m=>m.id===d.meetingId);if(!meeting)return scenarioError(d,'请选择要接续的会议。');
+      d.meetingTitle=meeting.title;d.decisions=[];scenarioShow('schedule');return true;
+    }
+    if(d.stage==='schedule'){
+      if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return scenarioError(d,'请先连接钉钉日程。');
+      templateSetMeeting(d);
+      if((templateHas(d,'beforeBrief')||templateHas(d,'reschedule'))&&!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(d.nextMeetingAt||''))return scenarioError(d,'请选择或填写下次会议时间。');
+      if(d.meetingTimeSource==='calendar'&&!templateCalendarMeetings().some(e=>e.id===d.calendarEventId))return scenarioError(d,'请选择要跟进的会议日程。');
+      if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return scenarioError(d,'请先授权读取新会议记录。');
+    }
+    if(d.templateId==='scm-plan'&&d.stage==='preview'){
+      if(!d.completionEvidence?.trim()||!/^\d{4}-\d{2}-\d{2}$/.test(d.reviewDate||''))return scenarioError(d,'请补齐完成依据和复核日期。');
+      d.criteria='收到新的运量安排、人员准入结果或调配确认时更新；以「'+d.completionEvidence+'」作为完成依据。';
+    }
+  }
+  const ok=advanceBeforeTemplates(values,token);if(!ok)return ok;
+  if(d.stage==='schedule'&&(!d.templateId||!d.selectedOutputs.some(x=>['beforeBrief','reschedule','newActions'].includes(x))))scenarioShow('preview');
+  if(d.stage==='delivery'&&d.templateId&&!templateNotifications(d)){d.channel='snack';if(d.template!=='brief')scenarioShow('review')}
+  return ok;
+};
+const fieldsBeforeTemplates=scenarioFields;
+scenarioFields=function(d){let html=fieldsBeforeTemplates(d);if(!d.templateId)return html;if(d.template==='meeting'&&!templateNeedsDecisions(d)){html=html.replace(/<div><dt>跟进决策<\/dt><dd>[\s\S]*?<\/dd><\/div>/,'').replace(/<div><dt>数据来源<\/dt><dd>[\s\S]*?<\/dd><\/div>/,'<div><dt>数据来源</dt><dd>'+[templateHas(d,'reschedule')?'钉钉日程':'',templateHas(d,'newActions')?'所选会议的后续记录':''].filter(Boolean).join('、')+'</dd></div>')}const parts=[['包含内容',templateOutputNames(d).join('、')]];if(d.nextMeetingAt)parts.push(['下次会议',d.nextMeetingAt.replace('T',' ')+' · 北京时间']);if(templateHas(d,'beforeBrief'))parts.push(['会前准备','提前 '+d.meetingLeadHours+' 小时']);if(d.templateId==='scm-plan')parts.push(['复核日期',d.reviewDate],['完成依据',d.completionEvidence]);return html.replace('</dl>',parts.map(([label,value])=>`<div><dt>${label}</dt><dd>${esc(value||'')}</dd></div>`).join('')+'</dl>')};
+const titleBeforeTemplates=scenarioTitle;
+scenarioTitle=function(d){return d.templateId==='scm-plan'?'SCM · 设备调配安排':d.templateId&&d.template==='meeting'&&!templateNeedsDecisions(d)?d.meetingTitle+' · '+(templateHas(d,'newActions')?'会后待办整理':'周会时间跟进'):titleBeforeTemplates(d)};
+const summaryBeforeTemplates=scenarioSummary;
+scenarioSummary=function(d){return d.templateId&&d.template==='meeting'&&!templateNeedsDecisions(d)?templateOutputNames(d).join('、'):summaryBeforeTemplates(d)};
+const sourceReadyBeforeTemplates=scenarioSourceReady;
+scenarioSourceReady=function(d){if(d?.templateId&&d.template==='meeting'&&!templateNeedsDecisions(d))return true;return sourceReadyBeforeTemplates(d)};
+const confirmBeforeTemplates=scenarioConfirm;
+scenarioConfirm=function(token){
+  const d=scenarioDraft();if(d?.templateId){
+    if(!d.selectedOutputs?.length)return scenarioError(d,'请至少选择一项内容。');
+    if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return scenarioError(d,'日程授权已失效，请返回重新连接。');
+    if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return scenarioError(d,'会议记录授权已失效，请返回重新连接。');
+  }
+  const id=confirmBeforeTemplates(token);if(!id||!d?.templateId)return id;
+  const g=data.goals.find(x=>x.id===id);g.selectedOutputs=[...d.selectedOutputs];g.templateId=d.templateId;
+  if(d.template==='meeting'&&!templateNeedsDecisions(d))g.summary='已开启'+templateOutputNames(d).join('、')+'。';
+  if(d.templateId==='scm-plan'){g.date=d.reviewDate;g.condition=d.completionEvidence;g.nextCheck=d.reviewDate+'T09:30+08:00'}
+  if(d.template==='meeting'&&templateHas(d,'beforeBrief'))g.nextCheck=templateBeforeTime(d);
+  save();render();return id;
+};
+function templateBeforeTime(d){const time=Date.parse(d.nextMeetingAt+':00+08:00')-Number(d.meetingLeadHours||24)*3600000;return Number.isFinite(time)?new Date(time).toISOString():''}
+const previewBeforeTemplates=scenarioPreview;
+scenarioPreview=function(d){
+  if(!d.templateId)return previewBeforeTemplates(d);
+  if(d.template==='brief'){
+    let html=templateHas(d,'dailyBrief')||templateHas(d,'report')?previewBeforeTemplates(d):'';
+    if(templateHas(d,'goalProgress')){const goals=data.goals.filter(g=>g.status==='active'&&g.template!=='brief'&&d.projects.some(p=>g.project.includes(p)));html+=`<div class="scenario-preview"><strong>重点事项进展</strong>${goals.length?goals.map(g=>`<p>${esc(g.title)}：${esc(g.summary)}</p>`).join(''):'<p>所选项目暂无正在跟进的事项。</p>'}</div>`}return html;
+  }
+  if(d.template==='meeting'&&!templateNeedsDecisions(d))return '<div class="scenario-preview"><strong>'+esc(d.meetingTitle)+'</strong><p>'+templateOutputNames(d).map(esc).join('、')+'</p>'+(d.nextMeetingAt?'<p>下次会议：'+esc(d.nextMeetingAt.replace('T',' '))+'</p>':'')+'</div>';
+  return previewBeforeTemplates(d);
+};
+function templateResult(g,body){data.messages.push({type:'templateResult',goalId:g.id,title:g.title,body})}
+function templateSaveFile(g,html){const id='template-report-'+g.id;let f=data.files.find(f=>f.id===id);if(!f){f={id,title:g.title+' · '+(g.template==='brief'?'经营报告':'跟进记录'),kind:'报告',folder:'reports',collection:g.template==='brief'?'briefs':'analysis',versions:[]};data.files.unshift(f)}f.versions||=[];f.versions.unshift({at:new Date().toISOString(),html});Object.assign(f,{meta:'刚刚 · Snack 生成 · 演示',summary:g.summary,scenarioReport:true,reportHtml:html});g.reportFileId=f.id}
+function templateRunGoal(id){
+  const g=data.goals.find(g=>g.id===id);if(!g?.setupSnapshot?.templateId||g.status!=='active')return false;const d=g.setupSnapshot;
+  if(!scenarioSourceReady(d)){g.lastRunStatus='数据源已断开';save();render();toast('请重新连接数据源');return false}
+  if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady()){g.lastRunStatus='日程连接已断开';save();render();toast('请重新连接钉钉日程');return false}
+  let body='',deliver=false;g.lastCheck='刚刚 · 演示';
+  if(g.template==='brief'){body=scenarioPreview(d);deliver=templateHas(d,'dailyBrief')||templateHas(d,'goalProgress');g.nextCheck=nextScenarioRun(d);g.summary='已按所选内容生成经营简报。'}
+  else if(g.template==='meeting'){
+    const before=d.nextMeetingAt;templateSetMeeting(d);
+    if(before!==d.nextMeetingAt&&d.nextMeetingAt){if(templateHas(d,'reschedule')){body+='<p>周会已改期至 '+esc(d.nextMeetingAt.replace('T',' '))+'。</p>';deliver=true}g.nextCheck=templateBeforeTime(d)}
+    const now=Date.now();if(templateHas(d,'beforeBrief')&&d.nextMeetingAt&&now>=Date.parse(templateBeforeTime(d))&&now<Date.parse(d.nextMeetingAt+':00+08:00')&&g.preparedFor!==d.nextMeetingAt){body+=scenarioPreview(d);g.preparedFor=d.nextMeetingAt;deliver=true}
+    if(templateHas(d,'dueReminder')){const today=new Date(now+8*3600000).toISOString().slice(0,10),soon=new Date(now+32*3600000).toISOString().slice(0,10);const due=d.decisions.filter(x=>x.due<=soon);if(due.length&&g.dueCheckedOn!==today){body+='<p>'+due.map(x=>esc(x.title)+'：'+(x.due<today?'已过检查日期，进展待确认':'临近检查日期')+'。').join('<br>')+'</p>';g.dueCheckedOn=today;deliver=true}}
+    if(templateHas(d,'newActions')){if(!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))body+='<p>会议记录连接已断开，暂不能整理新的待办建议。</p>';else{const latest=data.files.find(f=>f.id!==d.meetingId&&(f.kind==='录音'||f.folder==='meetings')&&(f.followMeetingId===d.meetingId||f.eventId===d.calendarEventId));if(latest&&g.processedMinutes!==latest.id){body+='<p>有一份新的会议记录可整理待办。</p>'+btn('选择需要跟进的新待办','postTasks',latest.id,'secondary');g.processedMinutes=latest.id;deliver=true}}}
+    g.summary=body?'已核对所选事项，进展仍以完成依据为准。':'暂无新的完成依据，继续按约定时间核对。';
+  }else if(d.templateId==='scm-plan'){
+    const due=d.reviewDate&&new Date(Date.now()+8*3600000).toISOString().slice(0,10)>=d.reviewDate;g.summary=due?'已到复核日，尚缺负责人确认，进展待核实。':'尚未收到新的运量、人员准入或调配确认。';if(due&&templateHas(d,'deadline')&&!g.reviewNotified){body='<p>'+esc(g.summary)+'</p>';deliver=true;g.reviewNotified=true}
+  }else g.summary='没有新的资料，未判定异常发生或恢复。';
+  if(!body)body='<p>'+esc(g.summary)+'</p>';g.latestPreview=body;
+  if(templateHas(d,'report')||templateHas(d,'logFile'))templateSaveFile(g,body);
+  const blocked=deliver&&d.channel==='dingtalk'&&!scenarioPushReady();g.lastRunStatus=deliver?(blocked?'结果已保留，钉钉推送暂停':d.channel==='dingtalk'?'已模拟推送至钉钉':'已更新到会话'):'检查完成，未触发提醒';
+  if(deliver)templateResult(g,body);g.logs.unshift([g.lastCheck,g.summary+' '+g.lastRunStatus]);save();render();toast(g.lastRunStatus);return true;
+}
+const runBeforeTemplates=scenarioRun;
+scenarioRun=function(id){const g=data.goals.find(g=>g.id===id);return g?.setupSnapshot?.templateId?templateRunGoal(id):runBeforeTemplates(id)};
+const messageBeforeTemplates=message;
+message=function(m){if(m.type==='templateResult')return `<div class="source-message-row"><section class="source-bubble rich-bubble"><h3>${esc(m.title)}</h3>${m.body}${btn('查看跟进事项','goal',m.goalId,'linklike')}</section></div>`;return messageBeforeTemplates(m)};
+const detailBeforeTemplates=goalDetail;
+function templateDependencyIssue(d){if(!d?.templateId)return '';if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return '日程待连接';if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return '会议记录待连接';return ''}
+goalDetail=function(){const g=data.goals.find(g=>g.id===ui.id);let html=detailBeforeTemplates();if(g?.reportFileId)html=html.replace('<details class="scenario-settings">',btn('查看'+(g.template==='brief'?'经营报告':'跟进记录'),'file',g.reportFileId,'secondary full')+'<details class="scenario-settings">');const issue=templateDependencyIssue(g?.setupSnapshot);if(issue)html=html.replace('<section class="latest-progress">','<div class="source-offline">'+issue+'，受影响的内容暂不更新。</div><section class="latest-progress">');return html};
+const rowBeforeTemplates=goalRow;
+goalRow=function(g){const html=rowBeforeTemplates(g),issue=templateDependencyIssue(g.setupSnapshot);return issue&&g.status==='active'?html.replace(/(<span class="work-meta">)[\s\S]*?(<\/span>)/,'$1'+issue+'$2'):html};
+document.addEventListener('change',event=>{if(event.target.closest?.('#scenarioForm')&&event.target.name==='meetingTimeSource'){scenarioCapture();render()}});
+
+// Personal reminder criteria. Install after the template-selection layer.
+// Demonstrates confirmation and persistence; it does not evaluate live business data.
+function personalRuleApplies(d){return d?.template==='risk'&&d.templateId!=='scm-plan'}
+function personalRuleNeeds(d,key){return Array.isArray(d.selectedOutputs)?d.selectedOutputs.includes(key):key==='anomaly'}
+function personalRuleNeedsTrigger(d){return personalRuleNeeds(d,'anomaly')||personalRuleNeeds(d,'logFile')}
+function personalRuleScope(d){return [d.project,(d.focusKeys||[]).join(','),d.customFocus||''].join('|')}
+function ensurePersonalRule(d){
+  if(!personalRuleApplies(d))return null;
+  if(!d.personalRule||d.personalRule.version!==1){
+    d.personalRule={version:1,trigger:d.existingGoalId?String(d.criteria||''):'',recovery:String(d.recoveryCriteria||''),origin:d.existingGoalId?'previously-confirmed':'pending',scopeKey:personalRuleScope(d)};
+  }
+  d.criteria=d.personalRule.trigger||(personalRuleNeeds(d,'recovery')&&d.personalRule.recovery?'恢复时：'+d.personalRule.recovery:'');
+  d.recoveryCriteria=d.personalRule.recovery;
+  if(!['满足已确认条件时提醒','每天汇总一次符合条件的变化'].includes(d.rule))d.rule=/每天|汇总/.test(d.rule||'')?'每天汇总一次符合条件的变化':'满足已确认条件时提醒';
+  return d.personalRule;
+}
+function personalRuleExample(d){
+  const criteria=[],recovery=[];
+  if(d.focusKeys?.includes('attendance')){criteria.push('设备出勤率低于 60%，连续 2 个数据完整的工作日');recovery.push('设备出勤率达到 80%，连续 2 个数据完整的工作日')}
+  if(d.focusKeys?.includes('payment')){criteria.push('约定到账日结束后，仍缺少财务确认的到账记录');recovery.push('财务已确认约定款项全部到账')}
+  if(d.focusKeys?.includes('progress')){criteria.push('已确认的交付日期变更，或约定日期结束后仍没有验收记录');recovery.push('负责人提供完成记录，并由我确认验收')}
+  if(!criteria.length){criteria.push('约定检查日结束后，仍没有负责人确认的完成记录');recovery.push('负责人提供完成记录，并由我确认')}
+  return {trigger:criteria.join('；'),recovery:recovery.join('；')};
+}
+function personalRuleSpecific(value){
+  const text=String(value||'').trim();
+  if(!text||text.length<5)return false;
+  // Reject clearly empty criteria, not an attempted natural-language rule engine.
+  return !/^(?:当|有|出现|发生)?(?:有意义的?|重要的?|明显的?|关键的?)?(?:变化|进展|异常)(?:时|了|的时候)?(?:再|就|及时)?(?:提醒|通知|告诉)?(?:我)?[。！!\s]*$/.test(text)&&! /^(?:恢复|恢复正常|正常|好转|改善)(?:时|后)?(?:再|就)?(?:提醒|通知|告诉)?(?:我)?[。！!\s]*$/.test(text);
+}
+function personalRuleValidate(d){
+  if(!personalRuleApplies(d))return '';
+  const p=ensurePersonalRule(d);
+  if(personalRuleNeedsTrigger(d)&&!personalRuleSpecific(p.trigger))return personalRuleNeeds(d,'anomaly')?'请写清提醒条件，例如指标、变化幅度与持续时间，或一件可以核实的事件。':'请写清需要记录的变化，例如指标、变化幅度与持续时间。';
+  if(personalRuleNeeds(d,'recovery')&&!personalRuleSpecific(p.recovery))return '请写清恢复条件，例如恢复到什么水平、持续多久，或需要哪份确认记录。';
+  return '';
+}
+const scenarioValuesBeforePersonalRules=scenarioValues;
+scenarioValues=function(form){
+  const v=scenarioValuesBeforePersonalRules(form),fd=new FormData(form);
+  if(fd.has('recoveryCriteria'))v.recoveryCriteria=String(fd.get('recoveryCriteria')||'').trim();
+  return v;
+};
+const scenarioApplyBeforePersonalRules=scenarioApply;
+scenarioApply=function(d,v){
+  if(!personalRuleApplies(d))return scenarioApplyBeforePersonalRules(d,v);
+  const p=ensurePersonalRule(d),before=personalRuleScope(d);
+  scenarioApplyBeforePersonalRules(d,v);
+  const after=personalRuleScope(d);
+  if(before!==after){p.trigger='';p.recovery='';p.origin='pending';p.scopeKey=after;}
+  if(v.criteria!==undefined){if(p.trigger!==String(v.criteria))p.origin='user';p.trigger=String(v.criteria).trim();}
+  if(v.recoveryCriteria!==undefined){if(p.recovery!==String(v.recoveryCriteria))p.origin='user';p.recovery=String(v.recoveryCriteria).trim();}
+  ensurePersonalRule(d);
+};
+const scenarioSnapshotBeforePersonalRules=scenarioSnapshot;
+scenarioSnapshot=function(d){
+  if(!personalRuleApplies(d))return scenarioSnapshotBeforePersonalRules(d);
+  const p=ensurePersonalRule(d),s=scenarioSnapshotBeforePersonalRules(d);
+  s.personalRule=structuredClone(p);s.recoveryCriteria=p.recovery;
+  return s;
+};
+const scenarioShowBeforePersonalRules=scenarioShow;
+scenarioShow=function(stage,d=scenarioDraft()){if(personalRuleApplies(d))ensurePersonalRule(d);return scenarioShowBeforePersonalRules(stage,d)};
+const scenarioAdvanceBeforePersonalRules=scenarioAdvance;
+scenarioAdvance=function(values={},token=followToken()){
+  const d=scenarioDraft();if(!personalRuleApplies(d))return scenarioAdvanceBeforePersonalRules(values,token);
+  if(token!==followToken(d))return false;
+  if(d.stage==='preview'){
+    scenarioApply(d,values);const error=personalRuleValidate(d);if(error)return scenarioError(d,error);
+  }
+  return scenarioAdvanceBeforePersonalRules(values,token);
+};
+const scenarioConfirmBeforePersonalRules=scenarioConfirm;
+scenarioConfirm=function(token){
+  const d=scenarioDraft();
+  if(personalRuleApplies(d)&&d.stage==='review'&&token===followToken(d)){const error=personalRuleValidate(d);if(error)return scenarioError(d,error);}
+  return scenarioConfirmBeforePersonalRules(token);
+};
+const scenarioFieldsBeforePersonalRules=scenarioFields;
+scenarioFields=function(d){
+  if(!personalRuleApplies(d))return scenarioFieldsBeforePersonalRules(d);
+  const p=ensurePersonalRule(d);let html=scenarioFieldsBeforePersonalRules(d);
+  const label=personalRuleNeeds(d,'anomaly')?'提醒条件':personalRuleNeeds(d,'logFile')?'记录条件':'恢复条件';
+  html=html.replace(/<dt>重要变化<\/dt>/,`<dt>${label}</dt>`);
+  if(personalRuleNeeds(d,'recovery')&&personalRuleNeedsTrigger(d))html=html.replace('</dl>',`<div><dt>恢复条件</dt><dd>${esc(p.recovery)}</dd></div></dl>`);
+  return html;
+};
+const scenarioRenderStepBeforePersonalRules=scenarioRenderStep;
+scenarioRenderStep=function(m){
+  const d=scenarioDraft(),active=d&&m.followId===d.id&&m.revision===d.revision;
+  if(!active||!personalRuleApplies(d))return scenarioRenderStepBeforePersonalRules(m);
+  const p=ensurePersonalRule(d);let html=scenarioRenderStepBeforePersonalRules(m);
+  if(d.stage==='preview'){
+    const example=personalRuleExample(d),token=followToken(d);
+    const trigger=personalRuleNeedsTrigger(d)?`<label class="field"><span>${personalRuleNeeds(d,'anomaly')?'满足什么条件时提醒你':'记录什么变化'}</span><textarea name="criteria" required maxlength="400" placeholder="${esc(example.trigger)}">${esc(p.trigger)}</textarea></label>`:'';
+    const recovery=personalRuleNeeds(d,'recovery')?`<label class="field"><span>怎样算恢复</span><textarea name="recoveryCriteria" required maxlength="400" placeholder="${esc(example.recovery)}">${esc(p.recovery)}</textarea></label>`:'';
+    const note=p.origin==='example'?'<p class="scenario-note">已填入演示示例，可按你的标准修改。</p>':'';
+    const replacement=trigger+recovery+btn('填入示例','personalRuleExample',token,'linklike')+note;
+    html=html.replace(/<label class="field"><span>什么变化值得提醒你<\/span><textarea name="criteria"[\s\S]*?<\/textarea><\/label>/,replacement);
+    html=html.replace('<h2>先核对我的理解</h2>','<h2>按你的标准来跟进</h2>');
+  }
+  if(d.stage==='delivery'){
+    const rules=['满足已确认条件时提醒','每天汇总一次符合条件的变化'];
+    html=html.replace(/<select name="rule">[\s\S]*?<\/select>/,`<select name="rule">${rules.map(rule=>`<option value="${rule}" ${d.rule===rule?'selected':''}>${rule}</option>`).join('')}</select>`);
+    html=html.replace('<span>提醒时机</span>','<span>提醒频率</span>');
+  }
+  return html;
+};
+const handleBeforePersonalRules=handle;
+handle=function(action,id='',el){
+  if(action==='personalRuleExample'){
+    const d=scenarioDraft();if(!personalRuleApplies(d)||d.stage!=='preview'||id!==followToken(d))return;
+    scenarioCapture();const p=ensurePersonalRule(d),example=personalRuleExample(d);
+    if(personalRuleNeedsTrigger(d))p.trigger=example.trigger;
+    if(personalRuleNeeds(d,'recovery'))p.recovery=example.recovery;
+    p.origin='example';d.error='';ensurePersonalRule(d);save();render();return;
+  }
+  return handleBeforePersonalRules(action,id,el);
+};
+const consumeBeforePersonalRules=consumeFollowReply;
+consumeFollowReply=function(text,d){
+  if(!personalRuleApplies(d)||d.stage!=='preview'||/^(取消|取消设置|先不设置)[。！!\s]*$/.test(text))return consumeBeforePersonalRules(text,d);
+  const p=ensurePersonalRule(d);data.messages.push({type:'user',text});
+  if(personalRuleNeedsTrigger(d))p.trigger=text;else p.recovery=text;
+  p.origin='user';ensurePersonalRule(d);scenarioShow(d.stage,d);
+};
+// END PERSONAL REMINDER RULES
 
 render();
 </script>
