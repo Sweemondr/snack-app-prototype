@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Snack · AI 秘书交互原型</title>
 <style>
-:root{--brand:#fe720a;--accent:#b94c00;--soft:#fff1e5;--ink:#17212f;--muted:#67717e;--line:#e8ebee;--canvas:#f4f6f8;--green:#237252;--red:#b04430;--radius:14px;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--brand:#fe720a;--action:#c94b08;--accent:#bd4708;--soft:#fff1e5;--ink:#17212f;--muted:#67717e;--line:#e8ebee;--canvas:#f4f6f8;--green:#237252;--red:#b04430;--radius:14px;--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#edf0f3;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}button,input,textarea,select{-webkit-tap-highlight-color:transparent}button{border:0;background:none}button:disabled{opacity:.42;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}input,textarea{caret-color:var(--accent)}::selection{background:#fbd5b6;color:#6f3006}*{scrollbar-width:thin;scrollbar-color:#cdd2d7 transparent}button:hover:not(:disabled){filter:brightness(.97)}button:active:not(:disabled){transform:translateY(1px)}button svg{flex-shrink:0}svg{width:22px;height:22px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.ico-sm svg{width:17px;height:17px}.ico-lg svg{width:27px;height:27px}h1,h2,h3,p{margin:0}h1{font-size:27px;letter-spacing:-.025em;font-weight:700;line-height:1.4}h2{font-size:20px;letter-spacing:-.02em;line-height:1.5}h3{font-size:16px;line-height:1.55}p{line-height:1.75}small{font-size:12px}a{color:var(--accent);text-underline-offset:3px}.muted{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.stage{max-width:1060px;min-height:100vh;margin:auto;padding:30px 28px;display:grid;grid-template-columns:230px 412px 180px;gap:40px;align-items:center;justify-content:center}.review-nav{align-self:center}.wordmark{font-weight:760;letter-spacing:-1.1px;font-size:37px;display:flex;align-items:center;gap:11px}.wordmark img{width:40px;height:40px}.review-nav>p{color:var(--muted);font-size:12px;margin:8px 0 38px}.scene-list{display:grid;gap:9px}.scene-list button{display:flex;align-items:center;gap:12px;text-align:left;padding:13px 12px;border-radius:12px;color:#5d6875;font-size:13px}.scene-list button:hover{background:#e1e6eb}.scene-list button:first-child{color:var(--accent)}.review-foot{margin-top:32px;color:var(--muted);font-size:11px;line-height:1.9}.review-foot button{padding:8px 0;text-decoration:underline;text-underline-offset:4px;color:#66707b;font-size:11px}.review-notes{color:var(--muted);align-self:center;font-size:12px;line-height:1.9}.review-notes h3{font-size:13px;color:#414d5b;margin-bottom:10px}.review-notes p+p{margin-top:16px}.review-notes .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brand);margin-right:6px}.device{width:412px;height:min(884px,calc(100vh - 60px));min-height:720px;background:#fff;border-radius:38px;padding:7px;box-shadow:0 18px 70px #29354317;position:relative;border:1px solid #d4d9dd}.app{height:100%;display:flex;flex-direction:column;border-radius:31px;overflow:hidden;position:relative;background:#fff}.status{height:32px;padding:8px 23px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;font-size:12px;font-weight:650}.status-right{display:flex;align-items:center;gap:5px}.status svg{width:16px;height:16px}.demo-mark{font-weight:400;font-size:10px;color:#77818c;margin-left:9px}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;padding:0 14px;border-bottom:1px solid #f2f3f5;background:#fff;position:relative;z-index:1}.icon-button{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;flex-shrink:0}.icon-button:hover{background:var(--canvas)}.brand-button{display:flex;align-items:center;gap:9px;padding:6px 12px;border-radius:14px}.brand-button img{width:34px;height:34px}.brand-button strong{font-size:18px;font-weight:650;letter-spacing:-.4px}.brand-dot{width:5px;height:5px;background:#499978;border-radius:50%;margin-left:1px}.topbar .page-label{font-weight:650;font-size:17px}.scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scroll-behavior:smooth}.page{padding:23px 22px 28px}.page-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px}.page-title h1.long{font-size:24px}.time-label{color:var(--muted);text-align:center;font-size:11px;padding:12px 0 2px}.chat-body{padding:0 20px 18px}.assistant{padding-top:12px;font-size:14px;line-height:1.75}.assistant>p+p{margin-top:10px}.greeting{font-size:23px;font-weight:650;line-height:1.5;letter-spacing:-.025em;margin-bottom:10px}.brief-lead{font-size:15px}.brief-list{margin:12px 0 0;display:grid;gap:0}.brief-row{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line);text-align:left;width:100%;align-items:flex-start}.brief-row:last-child{border-bottom:0}.brief-row .brief-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-top:2px}.brief-row .brief-icon.green{color:var(--green)}.brief-row strong{font-weight:600;display:block;font-size:14px}.brief-row p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.65}.brief-row>.chevron{color:#88929d;margin-left:auto;align-self:center}.brief-row .chevron svg{width:16px}.sources{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 8px}.source{display:inline-flex;align-items:center;gap:5px;font-size:11px;border:1px solid var(--line);color:#626b76;background:#fff;border-radius:7px;padding:5px 8px;line-height:1.3}.source svg{width:13px;height:13px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.primary,.secondary,.quiet-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:10px 15px;border-radius:11px;font-size:13px;font-weight:550;line-height:1.4}.primary{background:var(--brand);color:#23150a}.secondary{background:var(--canvas);color:#46515f}.quiet-action{background:var(--soft);color:var(--accent)}.full{width:100%}.user-msg{margin:23px 0 3px auto;background:#fff0e4;border-radius:15px 15px 4px 15px;padding:11px 15px;max-width:89%;width:fit-content;line-height:1.65}.message-rule{height:1px;background:var(--line);margin:22px 0 0}.answer-heading{font-size:18px;font-weight:650;margin-bottom:11px}.insight{background:#faf6f1;border-radius:14px;padding:16px;margin:16px 0}.insight h3{font-size:15px}.metric-pair{display:flex;gap:22px;margin:15px 0}.metric-pair strong{display:block;font-size:29px;font-weight:650;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-1px}.metric-pair small{display:block;color:var(--muted);margin-top:6px;font-size:11px}.change{font-size:12px;color:var(--red)}.bullets{padding-left:20px;margin:13px 0}.bullets li+li{margin-top:8px}.chat-footer{flex-shrink:0;background:#fff;padding:8px 14px 10px}.suggestions{display:flex;gap:7px;overflow:auto;scrollbar-width:none;margin-bottom:10px}.suggestions button{white-space:nowrap;min-height:33px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;font-size:11px;color:#5c6673}.composer{display:flex;gap:5px;align-items:center;border:1px solid #dfe3e7;border-radius:17px;padding:5px;background:#fff;min-height:53px}.composer textarea{resize:none;max-height:100px;min-height:34px;flex:1;width:0;border:0;outline:none!important;padding:8px 2px;background:none;line-height:1.5;font-size:14px}.composer textarea::placeholder{color:var(--muted)}.composer .icon-button{width:34px;height:36px}.send{background:var(--brand);color:#28170a;width:34px;height:34px;border-radius:11px;display:grid;place-items:center}.composer-wrap .reference{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;padding:0 4px 8px}.reference button{margin-left:auto}.bottom-nav{height:75px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;padding:6px 7px 8px;border-top:1px solid var(--line);flex-shrink:0;background:#fff}.bottom-nav button{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:55px;color:var(--muted);padding:5px 0}.bottom-nav button svg{width:23px;height:23px}.bottom-nav button span{font-size:10px;line-height:1.35;white-space:nowrap}.bottom-nav button.active{color:var(--accent);font-weight:600}.home-bar{position:absolute;bottom:3px;left:calc(50% - 49px);height:4px;width:98px;background:#17212f;border-radius:8px;pointer-events:none}.segment{display:flex;background:var(--canvas);padding:4px;border-radius:11px;gap:3px;margin:17px 0}.segment button{flex:1;min-height:34px;font-size:12px;color:var(--muted);border-radius:8px}.segment button.selected{background:#fff;color:var(--ink);box-shadow:0 2px 5px #15233409;font-weight:600}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:19px -3px 25px}.day{display:flex;flex-direction:column;align-items:center;gap:11px;padding:8px 0;border-radius:12px;min-height:72px}.day small{font-size:10px;color:var(--muted)}.day strong{font-size:17px;font-weight:550}.day.selected{background:var(--ink);color:#fff}.day.selected small{color:#dfe2e7}.section-line{display:flex;align-items:center;justify-content:space-between;margin:22px 0 12px}.section-line h2{font-size:15px;font-weight:650}.section-line small{color:var(--muted);font-size:11px}.schedule-row{display:flex;gap:13px;padding:17px 0;border-top:1px solid var(--line);width:100%;text-align:left}.schedule-time{width:44px;flex-shrink:0;font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);padding-top:3px}.schedule-content{flex:1;min-width:0}.schedule-content h3{font-size:14px}.schedule-content p{color:var(--muted);font-size:12px;margin-top:5px}.small-tag{font-size:10px;line-height:1.4;padding:3px 7px;border-radius:5px;background:var(--canvas);color:#626e7a;display:inline-block;white-space:nowrap}.small-tag.orange{background:var(--soft);color:var(--accent)}.small-tag.green{background:#eaf5ef;color:var(--green)}.small-tag.red{background:#fbefeb;color:var(--red)}.schedule-tag{margin-top:9px}.task-row{display:flex;gap:10px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.check{width:23px;height:23px;border:1px solid #c9d0d6;border-radius:50%;flex-shrink:0;display:grid;place-items:center;color:#fff}.check.done{background:var(--green);border-color:var(--green)}.check svg{width:15px}.task-row strong{font-size:13px;font-weight:500}.task-row small{color:var(--muted);display:block;margin-top:5px;font-size:11px}.task-row.complete strong{text-decoration:line-through;color:var(--muted)}.goal-row{display:block;text-align:left;width:100%;padding:20px 0;border-bottom:1px solid var(--line)}.goal-row:first-child{padding-top:7px}.goal-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.goal-top small{font-size:11px;color:var(--muted)}.goal-row h3{font-size:16px;font-weight:650;line-height:1.6}.goal-row p{font-size:12px;color:var(--muted);margin:8px 0 12px}.goal-bottom{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11px;color:var(--muted)}.progress{height:4px;background:#eceff1;border-radius:4px;margin-bottom:12px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--brand);border-radius:4px}.detail-hero{margin:7px 0 24px}.detail-hero .small-tag{margin-bottom:13px}.detail-hero h1{font-size:25px;line-height:1.5}.detail-hero p{color:var(--muted);font-size:12px;margin-top:11px}.info-row{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.6;font-size:13px}.info-row>span:first-child{color:var(--muted);flex-shrink:0}.info-row>span:last-child{text-align:right}.timeline{margin:18px 0 20px}.timeline-item{padding:0 0 21px 23px;border-left:1px solid #e3e7eb;position:relative;margin-left:5px}.timeline-item:before{content:"";width:7px;height:7px;border-radius:50%;background:#b1bac3;position:absolute;left:-4px;top:7px;border:2px solid white;box-sizing:content-box}.timeline-item:first-child:before{background:var(--brand)}.timeline-item:last-child{padding-bottom:0;border-color:transparent}.timeline-item time{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.timeline-item p{font-size:13px}.bottom-actions{display:flex;gap:8px;padding:13px 20px 24px;background:#fff;border-top:1px solid var(--line);flex-shrink:0}.bottom-actions>*{flex:1}.search{height:42px;background:var(--canvas);display:flex;align-items:center;gap:9px;border-radius:10px;padding:0 12px;margin-bottom:17px;color:var(--muted)}.search svg{width:17px;height:17px}.search input{width:100%;border:0;outline:none!important;background:none;font-size:12px;min-width:0}.search input::placeholder{color:#68737f}.filter-row{display:flex;gap:18px;overflow:auto;white-space:nowrap;border-bottom:1px solid var(--line);margin:0 0 18px}.filter-row button{font-size:12px;min-height:39px;padding:4px 0 10px;color:var(--muted);position:relative}.filter-row .selected{color:var(--ink);font-weight:650}.filter-row .selected:after{position:absolute;content:"";height:2px;background:var(--brand);left:0;right:0;bottom:0}.folder-row{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}.file-icon{display:grid;place-items:center;width:38px;height:44px;border-radius:9px;background:#eff3f7;color:#6f8095;flex-shrink:0}.file-icon.orange{color:var(--accent);background:var(--soft)}.file-icon.green{color:var(--green);background:#eaf4ee}.file-info{min-width:0;flex:1}.file-info strong{display:block;font-size:13px;font-weight:550;line-height:1.55}.file-info small{display:block;font-size:10px;color:var(--muted);margin-top:5px}.folder-row>svg{width:16px;color:#8a929c}.empty{padding:45px 15px;text-align:center;color:var(--muted)}.empty svg{width:35px;height:35px;margin-bottom:13px;color:#9ba6b1}.empty p{font-size:13px}.empty .secondary{margin-top:15px}.doc-block{padding:19px 0;border-bottom:1px solid var(--line)}.doc-block h3{margin-bottom:10px;font-size:15px}.doc-block p,.doc-block li{font-size:13px;line-height:1.85}.doc-meta{color:var(--muted);font-size:11px;margin:12px 0 3px}.player{display:flex;align-items:center;gap:13px;background:var(--canvas);padding:14px;border-radius:12px;margin-top:17px}.player button{border-radius:50%;background:var(--ink);color:#fff;width:36px;height:36px;display:grid;place-items:center}.player svg{width:17px;height:17px}.wave{flex:1;height:24px;display:flex;align-items:center;gap:3px;overflow:hidden}.wave i{display:block;width:3px;background:#7e8c9b;border-radius:3px;flex-shrink:0}.player small{font-size:10px;color:var(--muted)}.settings-profile{display:flex;align-items:center;gap:14px;padding:12px 0 24px}.settings-profile img{width:55px;height:55px}.settings-profile h2{font-size:21px}.settings-profile p{font-size:12px;color:var(--muted);margin-top:3px}.settings-group{margin-bottom:26px}.settings-group h3{font-size:12px;color:var(--muted);margin-bottom:7px;font-weight:500}.setting-row{display:flex;width:100%;align-items:center;justify-content:space-between;gap:13px;padding:16px 0;text-align:left;border-bottom:1px solid var(--line);font-size:14px}.setting-row svg{width:17px;height:17px;color:var(--muted)}.setting-row .value{margin-left:auto;font-size:12px;color:var(--muted);max-width:155px;text-align:right}.switch{width:40px;height:24px;background:#b9c1c9;border-radius:15px;padding:3px;display:flex;align-items:center;flex-shrink:0}.switch:after{content:"";width:18px;height:18px;background:white;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .2s var(--ease)}.switch.on{background:var(--brand)}.switch.on:after{transform:translateX(16px)}.memory-note{background:var(--canvas);padding:16px;border-radius:12px;font-size:13px;line-height:1.9}.form{display:grid;gap:17px}.field{display:grid;gap:8px}.field>span{font-size:12px;font-weight:550;color:#566170}.field input,.field textarea,.field select{border:1px solid #d8dee4;border-radius:10px;padding:12px;background:white;min-width:0;width:100%;color:var(--ink)}.field textarea{resize:vertical;min-height:84px;line-height:1.7}.field .error{color:var(--red);font-size:11px}.overlay{position:absolute;inset:0;z-index:10;background:#15233555;display:flex;align-items:flex-end}.sheet{background:#fff;border-radius:24px 24px 0 0;max-height:91%;width:100%;padding:8px 22px 30px;overflow:auto;animation:sheet-in .28s var(--ease)}.sheet-handle{width:33px;height:4px;background:#d5dae0;border-radius:5px;margin:3px auto 15px}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:9px}.sheet-head h2{font-size:20px}.sheet-head .icon-button{width:32px;height:32px}.sheet .primary.full{margin-top:22px}.sheet-desc{font-size:13px;color:var(--muted);margin:-4px 0 18px;line-height:1.8}.sheet-choice{display:flex;align-items:center;gap:13px;padding:15px 0;min-height:54px;width:100%;text-align:left;border-bottom:1px solid var(--line)}.sheet-choice>svg:last-child{margin-left:auto;width:17px;color:var(--muted)}.sheet-choice>span{flex:1;font-size:14px}.sheet-choice small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.toast{position:absolute;z-index:25;left:50%;transform:translateX(-50%);bottom:115px;background:#273240;color:#fff;border-radius:10px;padding:11px 17px;max-width:88%;width:max-content;font-size:12px;line-height:1.5;box-shadow:0 5px 20px #0002;pointer-events:none}.recording{padding:40px 0 26px;text-align:center}.recording .record-time{font-size:44px;letter-spacing:1px;font-variant-numeric:tabular-nums;margin:19px 0}.recording .wave{justify-content:center;margin:30px auto;height:40px}.recording .wave i{background:var(--brand);animation:pulse 1s ease-in-out infinite alternate}.recording p{color:var(--muted);font-size:12px}.typing{display:flex;gap:5px;padding:20px 0}.typing i{width:5px;height:5px;background:#8e98a3;border-radius:50%;animation:pulse .6s ease-in-out infinite alternate}.onboarding{padding:32px 25px;display:flex;flex-direction:column;min-height:100%;gap:20px}.onboarding>img{width:66px;height:66px;margin:15px 0 7px}.onboarding h1{font-size:30px}.onboarding>p{color:var(--muted);font-size:14px}.onboarding .primary{margin-top:auto}.option-button{width:100%;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:left;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}.option-button.selected{border-color:#de985f;background:var(--soft);color:var(--accent)}.onboarding-step{color:var(--muted);font-size:11px}.linklike{font-size:12px;color:var(--muted);padding:10px}.notification-banner{display:flex;gap:10px;padding:13px;background:#fff3e8;border-radius:12px;margin:0 0 16px;align-items:flex-start}.notification-banner svg{width:18px;height:18px;color:var(--accent);margin-top:2px}.notification-banner strong{font-size:12px}.notification-banner p{font-size:11px;color:#825735;margin-top:2px}.badge-dot{width:5px;height:5px;background:var(--brand);border-radius:50%;display:inline-block;margin-right:5px}.loading-line{height:3px;background:#f6e3d4;overflow:hidden;margin:14px 0;border-radius:2px}.loading-line:after{content:"";display:block;width:45%;height:100%;background:var(--brand);animation:loading 1s ease-in-out infinite}.success-icon{width:50px;height:50px;border-radius:50%;background:#eaf5ef;color:var(--green);display:grid;place-items:center;margin:12px auto 20px}.success-icon svg{width:27px;height:27px}.center{text-align:center}.share-preview{border:1px solid var(--line);padding:18px;border-radius:12px;margin-bottom:18px}.share-preview h3{font-size:16px;margin:10px 0}.share-preview p{font-size:12px;color:var(--muted)}
+.stage{max-width:1060px;min-height:100vh;margin:auto;padding:30px 28px;display:grid;grid-template-columns:230px 412px 180px;gap:40px;align-items:center;justify-content:center}.review-nav{align-self:center}.wordmark{font-weight:760;letter-spacing:-1.1px;font-size:37px;display:flex;align-items:center;gap:11px}.wordmark img{width:40px;height:40px}.review-nav>p{color:var(--muted);font-size:12px;margin:8px 0 38px}.scene-list{display:grid;gap:9px}.scene-list button{display:flex;align-items:center;gap:12px;text-align:left;padding:13px 12px;border-radius:12px;color:#5d6875;font-size:13px}.scene-list button:hover{background:#e1e6eb}.scene-list button:first-child{color:var(--accent)}.review-foot{margin-top:32px;color:var(--muted);font-size:11px;line-height:1.9}.review-foot button{padding:8px 0;text-decoration:underline;text-underline-offset:4px;color:#66707b;font-size:11px}.review-notes{color:var(--muted);align-self:center;font-size:12px;line-height:1.9}.review-notes h3{font-size:13px;color:#414d5b;margin-bottom:10px}.review-notes p+p{margin-top:16px}.review-notes .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brand);margin-right:6px}.device{width:412px;height:min(884px,calc(100vh - 60px));min-height:720px;background:#fff;border-radius:38px;padding:7px;box-shadow:0 18px 70px #29354317;position:relative;border:1px solid #d4d9dd}.app{height:100%;display:flex;flex-direction:column;border-radius:31px;overflow:hidden;position:relative;background:#fff}.status{height:32px;padding:8px 23px 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;font-size:12px;font-weight:650}.status-right{display:flex;align-items:center;gap:5px}.status svg{width:16px;height:16px}.demo-mark{font-weight:400;font-size:10px;color:#77818c;margin-left:9px}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;padding:0 14px;border-bottom:1px solid #f2f3f5;background:#fff;position:relative;z-index:1}.icon-button{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;flex-shrink:0}.icon-button:hover{background:var(--canvas)}.brand-button{display:flex;align-items:center;gap:9px;padding:6px 12px;border-radius:14px}.brand-button img{width:34px;height:34px}.brand-button strong{font-size:18px;font-weight:650;letter-spacing:-.4px}.brand-dot{width:5px;height:5px;background:#499978;border-radius:50%;margin-left:1px}.topbar .page-label{font-weight:650;font-size:17px}.scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scroll-behavior:smooth}.page{padding:23px 22px 28px}.page-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px}.page-title h1.long{font-size:24px}.time-label{color:var(--muted);text-align:center;font-size:11px;padding:12px 0 2px}.chat-body{padding:0 20px 18px}.assistant{padding-top:12px;font-size:14px;line-height:1.75}.assistant>p+p{margin-top:10px}.greeting{font-size:23px;font-weight:650;line-height:1.5;letter-spacing:-.025em;margin-bottom:10px}.brief-lead{font-size:15px}.brief-list{margin:12px 0 0;display:grid;gap:0}.brief-row{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line);text-align:left;width:100%;align-items:flex-start}.brief-row:last-child{border-bottom:0}.brief-row .brief-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-top:2px}.brief-row .brief-icon.green{color:var(--green)}.brief-row strong{font-weight:600;display:block;font-size:14px}.brief-row p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.65}.brief-row>.chevron{color:#88929d;margin-left:auto;align-self:center}.brief-row .chevron svg{width:16px}.sources{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 8px}.source{display:inline-flex;align-items:center;gap:5px;font-size:11px;border:1px solid var(--line);color:#626b76;background:#fff;border-radius:7px;padding:5px 8px;line-height:1.3}.source svg{width:13px;height:13px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.primary,.secondary,.quiet-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:10px 15px;border-radius:11px;font-size:13px;font-weight:550;line-height:1.4}.primary{background:var(--action);color:#fff}.secondary{background:var(--canvas);color:#46515f}.quiet-action{background:var(--soft);color:var(--accent)}.full{width:100%}.user-msg{margin:23px 0 3px auto;background:#fff0e4;border-radius:15px 15px 4px 15px;padding:11px 15px;max-width:89%;width:fit-content;line-height:1.65}.message-rule{height:1px;background:var(--line);margin:22px 0 0}.answer-heading{font-size:18px;font-weight:650;margin-bottom:11px}.insight{background:#faf6f1;border-radius:14px;padding:16px;margin:16px 0}.insight h3{font-size:15px}.metric-pair{display:flex;gap:22px;margin:15px 0}.metric-pair strong{display:block;font-size:29px;font-weight:650;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:-1px}.metric-pair small{display:block;color:var(--muted);margin-top:6px;font-size:11px}.change{font-size:12px;color:var(--red)}.bullets{padding-left:20px;margin:13px 0}.bullets li+li{margin-top:8px}.chat-footer{flex-shrink:0;background:#fff;padding:8px 14px 10px}.suggestions{display:flex;gap:7px;overflow:auto;scrollbar-width:none;margin-bottom:10px}.suggestions button{white-space:nowrap;min-height:33px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;font-size:11px;color:#5c6673}.composer{display:flex;gap:5px;align-items:center;border:1px solid #dfe3e7;border-radius:17px;padding:5px;background:#fff;min-height:53px}.composer textarea{resize:none;max-height:100px;min-height:34px;flex:1;width:0;border:0;outline:none!important;padding:8px 2px;background:none;line-height:1.5;font-size:14px}.composer textarea::placeholder{color:var(--muted)}.composer .icon-button{width:34px;height:36px}.send{background:var(--action);color:#fff;width:34px;height:34px;border-radius:11px;display:grid;place-items:center}.composer-wrap .reference{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;padding:0 4px 8px}.reference button{margin-left:auto}.bottom-nav{height:75px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;padding:6px 7px 8px;border-top:1px solid var(--line);flex-shrink:0;background:#fff}.bottom-nav button{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:55px;color:var(--muted);padding:5px 0}.bottom-nav button svg{width:23px;height:23px}.bottom-nav button span{font-size:10px;line-height:1.35;white-space:nowrap}.bottom-nav button.active{color:var(--accent);font-weight:600}.home-bar{position:absolute;bottom:3px;left:calc(50% - 49px);height:4px;width:98px;background:#17212f;border-radius:8px;pointer-events:none}.segment{display:flex;background:var(--canvas);padding:4px;border-radius:11px;gap:3px;margin:17px 0}.segment button{flex:1;min-height:34px;font-size:12px;color:var(--muted);border-radius:8px}.segment button.selected{background:#fff;color:var(--ink);box-shadow:0 2px 5px #15233409;font-weight:600}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:19px -3px 25px}.day{display:flex;flex-direction:column;align-items:center;gap:11px;padding:8px 0;border-radius:12px;min-height:72px}.day small{font-size:10px;color:var(--muted)}.day strong{font-size:17px;font-weight:550}.day.selected{background:var(--ink);color:#fff}.day.selected small{color:#dfe2e7}.section-line{display:flex;align-items:center;justify-content:space-between;margin:22px 0 12px}.section-line h2{font-size:15px;font-weight:650}.section-line small{color:var(--muted);font-size:11px}.schedule-row{display:flex;gap:13px;padding:17px 0;border-top:1px solid var(--line);width:100%;text-align:left}.schedule-time{width:44px;flex-shrink:0;font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);padding-top:3px}.schedule-content{flex:1;min-width:0}.schedule-content h3{font-size:14px}.schedule-content p{color:var(--muted);font-size:12px;margin-top:5px}.small-tag{font-size:10px;line-height:1.4;padding:3px 7px;border-radius:5px;background:var(--canvas);color:#626e7a;display:inline-block;white-space:nowrap}.small-tag.orange{background:var(--soft);color:var(--accent)}.small-tag.green{background:#eaf5ef;color:var(--green)}.small-tag.red{background:#fbefeb;color:var(--red)}.schedule-tag{margin-top:9px}.task-row{display:flex;gap:10px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.check{width:23px;height:23px;border:1px solid #c9d0d6;border-radius:50%;flex-shrink:0;display:grid;place-items:center;color:#fff}.check.done{background:var(--green);border-color:var(--green)}.check svg{width:15px}.task-row strong{font-size:13px;font-weight:500}.task-row small{color:var(--muted);display:block;margin-top:5px;font-size:11px}.task-row.complete strong{text-decoration:line-through;color:var(--muted)}.goal-row{display:block;text-align:left;width:100%;padding:20px 0;border-bottom:1px solid var(--line)}.goal-row:first-child{padding-top:7px}.goal-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.goal-top small{font-size:11px;color:var(--muted)}.goal-row h3{font-size:16px;font-weight:650;line-height:1.6}.goal-row p{font-size:12px;color:var(--muted);margin:8px 0 12px}.goal-bottom{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11px;color:var(--muted)}.progress{height:4px;background:#eceff1;border-radius:4px;margin-bottom:12px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--brand);border-radius:4px}.detail-hero{margin:7px 0 24px}.detail-hero .small-tag{margin-bottom:13px}.detail-hero h1{font-size:25px;line-height:1.5}.detail-hero p{color:var(--muted);font-size:12px;margin-top:11px}.info-row{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.6;font-size:13px}.info-row>span:first-child{color:var(--muted);flex-shrink:0}.info-row>span:last-child{text-align:right}.timeline{margin:18px 0 20px}.timeline-item{padding:0 0 21px 23px;border-left:1px solid #e3e7eb;position:relative;margin-left:5px}.timeline-item:before{content:"";width:7px;height:7px;border-radius:50%;background:#b1bac3;position:absolute;left:-4px;top:7px;border:2px solid white;box-sizing:content-box}.timeline-item:first-child:before{background:var(--brand)}.timeline-item:last-child{padding-bottom:0;border-color:transparent}.timeline-item time{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.timeline-item p{font-size:13px}.bottom-actions{display:flex;gap:8px;padding:13px 20px 24px;background:#fff;border-top:1px solid var(--line);flex-shrink:0}.bottom-actions>*{flex:1}.search{height:42px;background:var(--canvas);display:flex;align-items:center;gap:9px;border-radius:10px;padding:0 12px;margin-bottom:17px;color:var(--muted)}.search svg{width:17px;height:17px}.search input{width:100%;border:0;outline:none!important;background:none;font-size:12px;min-width:0}.search input::placeholder{color:#68737f}.filter-row{display:flex;gap:18px;overflow:auto;white-space:nowrap;border-bottom:1px solid var(--line);margin:0 0 18px}.filter-row button{font-size:12px;min-height:39px;padding:4px 0 10px;color:var(--muted);position:relative}.filter-row .selected{color:var(--ink);font-weight:650}.filter-row .selected:after{position:absolute;content:"";height:2px;background:var(--brand);left:0;right:0;bottom:0}.folder-row{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}.file-icon{display:grid;place-items:center;width:38px;height:44px;border-radius:9px;background:#eff3f7;color:#6f8095;flex-shrink:0}.file-icon.orange{color:var(--accent);background:var(--soft)}.file-icon.green{color:var(--green);background:#eaf4ee}.file-info{min-width:0;flex:1}.file-info strong{display:block;font-size:13px;font-weight:550;line-height:1.55}.file-info small{display:block;font-size:10px;color:var(--muted);margin-top:5px}.folder-row>svg{width:16px;color:#8a929c}.empty{padding:45px 15px;text-align:center;color:var(--muted)}.empty svg{width:35px;height:35px;margin-bottom:13px;color:#9ba6b1}.empty p{font-size:13px}.empty .secondary{margin-top:15px}.doc-block{padding:19px 0;border-bottom:1px solid var(--line)}.doc-block h3{margin-bottom:10px;font-size:15px}.doc-block p,.doc-block li{font-size:13px;line-height:1.85}.doc-meta{color:var(--muted);font-size:11px;margin:12px 0 3px}.player{display:flex;align-items:center;gap:13px;background:var(--canvas);padding:14px;border-radius:12px;margin-top:17px}.player button{border-radius:50%;background:var(--ink);color:#fff;width:36px;height:36px;display:grid;place-items:center}.player svg{width:17px;height:17px}.wave{flex:1;height:24px;display:flex;align-items:center;gap:3px;overflow:hidden}.wave i{display:block;width:3px;background:#7e8c9b;border-radius:3px;flex-shrink:0}.player small{font-size:10px;color:var(--muted)}.settings-profile{display:flex;align-items:center;gap:14px;padding:12px 0 24px}.settings-profile img{width:55px;height:55px}.settings-profile h2{font-size:21px}.settings-profile p{font-size:12px;color:var(--muted);margin-top:3px}.settings-group{margin-bottom:26px}.settings-group h3{font-size:12px;color:var(--muted);margin-bottom:7px;font-weight:500}.setting-row{display:flex;width:100%;align-items:center;justify-content:space-between;gap:13px;padding:16px 0;text-align:left;border-bottom:1px solid var(--line);font-size:14px}.setting-row svg{width:17px;height:17px;color:var(--muted)}.setting-row .value{margin-left:auto;font-size:12px;color:var(--muted);max-width:155px;text-align:right}.switch{width:40px;height:24px;background:#b9c1c9;border-radius:15px;padding:3px;display:flex;align-items:center;flex-shrink:0}.switch:after{content:"";width:18px;height:18px;background:white;border-radius:50%;box-shadow:0 1px 3px #0002;transition:transform .2s var(--ease)}.switch.on{background:var(--brand)}.switch.on:after{transform:translateX(16px)}.memory-note{background:var(--canvas);padding:16px;border-radius:12px;font-size:13px;line-height:1.9}.form{display:grid;gap:17px}.field{display:grid;gap:8px}.field>span{font-size:12px;font-weight:550;color:#566170}.field input,.field textarea,.field select{border:1px solid #d8dee4;border-radius:10px;padding:12px;background:white;min-width:0;width:100%;color:var(--ink)}.field textarea{resize:vertical;min-height:84px;line-height:1.7}.field .error{color:var(--red);font-size:11px}.overlay{position:absolute;inset:0;z-index:10;background:#15233555;display:flex;align-items:flex-end}.sheet{background:#fff;border-radius:24px 24px 0 0;max-height:91%;width:100%;padding:8px 22px 30px;overflow:auto;animation:sheet-in .28s var(--ease)}.sheet-handle{width:33px;height:4px;background:#d5dae0;border-radius:5px;margin:3px auto 15px}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:9px}.sheet-head h2{font-size:20px}.sheet-head .icon-button{width:32px;height:32px}.sheet .primary.full{margin-top:22px}.sheet-desc{font-size:13px;color:var(--muted);margin:-4px 0 18px;line-height:1.8}.sheet-choice{display:flex;align-items:center;gap:13px;padding:15px 0;min-height:54px;width:100%;text-align:left;border-bottom:1px solid var(--line)}.sheet-choice>svg:last-child{margin-left:auto;width:17px;color:var(--muted)}.sheet-choice>span{flex:1;font-size:14px}.sheet-choice small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.toast{position:absolute;z-index:25;left:50%;transform:translateX(-50%);bottom:115px;background:#273240;color:#fff;border-radius:10px;padding:11px 17px;max-width:88%;width:max-content;font-size:12px;line-height:1.5;box-shadow:0 5px 20px #0002;pointer-events:none}.recording{padding:40px 0 26px;text-align:center}.recording .record-time{font-size:44px;letter-spacing:1px;font-variant-numeric:tabular-nums;margin:19px 0}.recording .wave{justify-content:center;margin:30px auto;height:40px}.recording .wave i{background:var(--brand);animation:pulse 1s ease-in-out infinite alternate}.recording p{color:var(--muted);font-size:12px}.typing{display:flex;gap:5px;padding:20px 0}.typing i{width:5px;height:5px;background:#8e98a3;border-radius:50%;animation:pulse .6s ease-in-out infinite alternate}.onboarding{padding:32px 25px;display:flex;flex-direction:column;min-height:100%;gap:20px}.onboarding>img{width:66px;height:66px;margin:15px 0 7px}.onboarding h1{font-size:30px}.onboarding>p{color:var(--muted);font-size:14px}.onboarding .primary{margin-top:auto}.option-button{width:100%;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:left;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}.option-button.selected{border-color:#de985f;background:var(--soft);color:var(--accent)}.onboarding-step{color:var(--muted);font-size:11px}.linklike{font-size:12px;color:var(--muted);padding:10px}.notification-banner{display:flex;gap:10px;padding:13px;background:#fff3e8;border-radius:12px;margin:0 0 16px;align-items:flex-start}.notification-banner svg{width:18px;height:18px;color:var(--accent);margin-top:2px}.notification-banner strong{font-size:12px}.notification-banner p{font-size:11px;color:#825735;margin-top:2px}.badge-dot{width:5px;height:5px;background:var(--brand);border-radius:50%;display:inline-block;margin-right:5px}.loading-line{height:3px;background:#f6e3d4;overflow:hidden;margin:14px 0;border-radius:2px}.loading-line:after{content:"";display:block;width:45%;height:100%;background:var(--brand);animation:loading 1s ease-in-out infinite}.success-icon{width:50px;height:50px;border-radius:50%;background:#eaf5ef;color:var(--green);display:grid;place-items:center;margin:12px auto 20px}.success-icon svg{width:27px;height:27px}.center{text-align:center}.share-preview{border:1px solid var(--line);padding:18px;border-radius:12px;margin-bottom:18px}.share-preview h3{font-size:16px;margin:10px 0}.share-preview p{font-size:12px;color:var(--muted)}
 @keyframes sheet-in{from{transform:translateY(26px);clip-path:inset(10% 0 0)}to{transform:translateY(0);clip-path:inset(0)}}@keyframes pulse{to{opacity:.35;transform:scaleY(.65)}}@keyframes loading{to{transform:translateX(230%)}}
 .composer:focus-within,.search:focus-within{outline:2px solid var(--accent);outline-offset:2px}
 @media(max-width:1020px){.stage{grid-template-columns:200px 412px;gap:32px}.review-notes{display:none}}@media(max-width:720px){html,body{background:#fff;height:100%;overflow:hidden}.stage{padding:0;display:block;height:100%;min-height:0}.review-nav,.review-notes{display:none}.device{width:100%;height:100dvh;min-height:0;padding:0;border:0;border-radius:0;box-shadow:none}.app{border-radius:0}.status{height:31px;padding-top:6px}.topbar{height:63px}.bottom-nav{height:calc(73px + env(safe-area-inset-bottom));padding-bottom:calc(8px + env(safe-area-inset-bottom))}.home-bar{bottom:calc(3px + env(safe-area-inset-bottom))}.page{padding:21px 21px 26px}.chat-body{padding:0 21px 18px}.bottom-actions{padding-bottom:calc(24px + env(safe-area-inset-bottom))}.sheet{padding-bottom:calc(30px + env(safe-area-inset-bottom))}}
@@ -121,6 +121,88 @@
 .calendar-tracking-summary{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 12px}
 @keyframes calendar-auth-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.calendar-auth-spinner{animation:none}}
+/* Follow-up ideas: action-led editorial rows, inspired by the supplied Muse screen. */
+.follow-page .page-title{margin-bottom:26px}
+.follow-idea-group+ .follow-idea-group{margin-top:30px}
+.follow-idea-group h2{font-size:21px;font-weight:700;line-height:1.45;margin-bottom:8px;letter-spacing:-.02em}
+.follow-idea{display:flex;align-items:flex-start;gap:15px;width:100%;padding:23px 0;text-align:left;border-bottom:1px solid var(--line);background:#fff}
+.follow-idea-icon{width:46px;height:46px;flex:0 0 46px;border-radius:14px;display:grid;place-items:center;background:#fff2e7;color:#e8660a;margin-top:3px}
+.follow-idea-icon svg{width:27px;height:27px;stroke-width:1.6}
+.follow-idea-body{display:flex;flex:1;min-width:0;flex-direction:column;gap:9px}
+.follow-idea-body strong{font-size:17px;line-height:1.65;font-weight:650;color:var(--ink);overflow-wrap:anywhere}
+.follow-idea-body>span{font-size:14px;line-height:1.85;color:#626b75;overflow-wrap:anywhere}
+.follow-idea>svg{flex:0 0 14px;width:14px;height:14px;margin-top:11px;color:#737b84}
+.follow-idea:hover:not(:disabled){background:#fffaf6;filter:none}
+.follow-custom,.follow-next{width:100%;display:flex;align-items:center;gap:12px;min-height:52px;padding:14px 0;text-align:left}
+.follow-custom{margin-top:20px;color:var(--accent)}
+.follow-next{border-bottom:1px solid var(--line);color:var(--accent)}
+.follow-custom>span,.follow-next>span{flex:1;font-size:14px;font-weight:600}
+.follow-custom>svg:last-child,.follow-next>svg:last-child{width:15px;height:15px}
+.follow-page .finished-work{margin-top:23px}
+.sheet .follow-idea{padding:20px 0}
+.sheet .follow-idea-group h2{font-size:19px}
+@media(max-width:360px){.follow-idea{gap:11px}.follow-idea-icon{width:39px;height:39px;flex-basis:39px;border-radius:12px}.follow-idea-icon svg{width:24px;height:24px}.follow-idea-body strong{font-size:16px}.follow-idea-body>span{font-size:13px}.follow-page .page-title{margin-bottom:23px}}
+/* 16 Nov: white surfaces, orange emphasis, white labels on solid actions. */
+:root{--paper:#fff}
+html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{background:#fff}
+.primary,.send{background:var(--action);color:#fff}.primary{min-height:46px;font-weight:600}.primary:disabled{background:#f1f1f1;color:#717171;opacity:1}
+.primary:hover:not(:disabled),.send:hover:not(:disabled){background:#b94105;filter:none}
+.day.selected{background:var(--action);color:#fff}.day.selected small{color:#fff}
+.bottom-nav button.active{background:#fff2e8;color:var(--accent)}.source-message-row.from-user .source-bubble{background:#fff0e4}
+.circle-header .brand-circle{background:#fff9f4;border-color:#f5e8df}
+.connection-intro>h3{font-size:18px;line-height:1.7;font-weight:600;max-width:22em;margin:0 auto 24px;text-align:center}
+.calendar-auth-bridge{gap:26px;margin:22px 0 28px}.calendar-auth-brand{gap:8px;min-width:68px;font-size:13px;font-weight:500}.calendar-auth-mark{width:62px;height:62px;border-radius:16px}.calendar-auth-mark.snack{background:#fff4ea}.calendar-auth-mark.snack img{width:39px;height:39px}.calendar-auth-mark.provider img{width:62px;height:62px}.calendar-auth-connector{width:32px;color:#9b9b9b}.calendar-auth-connector:before,.calendar-auth-connector:after{width:11px}
+.connection-permissions{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:0}.connection-permissions li{display:flex;gap:12px;align-items:center;min-height:49px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.6}.connection-permissions li:last-child{border:0}.connection-permissions svg{width:19px;height:19px;color:var(--accent);flex-shrink:0}
+.auth-actions{margin-top:14px}.auth-actions .primary.full{margin-top:0}.auth-cancel{display:block;margin:9px auto 0;min-height:44px;padding:10px 20px;color:var(--muted);font-size:14px}
+.provider-consent-identity{display:flex;align-items:center;gap:9px;padding:14px 0 20px;font-weight:600}.provider-small-mark{width:28px;height:28px;display:grid;place-items:center}.provider-small-mark img{width:28px;height:28px;border-radius:7px}.consent-simulation{margin-left:auto;font-size:11px;font-weight:400;color:var(--muted);background:#f5f5f5;padding:3px 7px;border-radius:4px}.consent-request{display:flex;flex-direction:column;align-items:flex-start;gap:17px;padding:0 0 18px}.consent-request img{width:42px;height:42px}.consent-request h3{font-size:20px;font-weight:650;line-height:1.55}.consent-revoke{color:var(--muted);font-size:12px;margin:10px 0 24px}.auth-progress{display:flex;align-items:center;justify-content:center;gap:12px;min-height:190px}.auth-complete{text-align:center;padding:26px 0}.auth-complete>span{display:grid;place-items:center;background:#fff1e5;color:var(--accent);width:62px;height:62px;border-radius:50%;margin:0 auto 18px}.auth-complete>span svg{width:29px;height:29px}.auth-complete h3{font-size:20px}.auth-complete p{margin-top:10px;color:var(--muted);font-size:13px}
+.meeting-selection-tools{display:flex;align-items:center;justify-content:space-between;margin:12px 0 0;font-size:12px;color:var(--muted)}.meeting-selection-tools button{min-height:40px}.consent-meetings{margin-top:0}.consent-meeting{border-radius:12px;padding:16px 12px;margin:7px 0;border:1px solid var(--line)}.consent-meeting:has(input:checked){background:#fff6ef;border-color:#f2c5a6}.consent-meeting input{accent-color:var(--action);width:19px;height:19px;margin:2px 0 0;flex-shrink:0}.consent-meeting strong{font-size:15px;line-height:1.55}.consent-meeting small{font-size:12px}.calendar-tracking-summary{font-size:13px;line-height:1.8;color:#626b75}.meeting-selection-footer{position:sticky;bottom:-30px;background:#fff;padding:4px 0 16px;margin:0 0 -16px}.meeting-selection-footer .primary.full{margin-top:12px}
+.settings-profile-button{width:100%;text-align:left;padding:10px 0 24px;margin-bottom:0}.settings-profile-button>span{flex:1;display:flex;flex-direction:column;gap:7px}.settings-profile-button strong{font-size:20px}.settings-profile-button small{font-size:12px;color:var(--muted)}.settings-profile-button>svg{width:16px;height:16px;color:var(--muted)}.settings-clean-list{margin-top:12px}.settings-clean-list .setting-row{padding:22px 0}.settings-clean-list .value{font-size:12px}
+.connector-row{display:flex;gap:14px;align-items:center;width:100%;text-align:left;padding:20px 0;border-bottom:1px solid var(--line)}.connector-mark{width:42px;height:42px;background:#f7f7f7;display:grid;place-items:center;border-radius:12px;flex-shrink:0;color:var(--accent)}.connector-mark img{width:42px;height:42px;border-radius:12px}.connector-row>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:6px}.connector-row strong{font-size:15px;font-weight:600}.connector-row small{font-size:12px;color:var(--muted)}.connector-row>svg{width:16px;height:16px;color:var(--muted)}.connector-connected{display:flex;gap:7px;align-items:center;color:var(--accent);font-size:13px;margin:17px 0 26px}.connector-connected svg{width:17px;height:17px}.danger-button{background:#b33c2a;color:white;min-height:46px;border-radius:11px;margin-top:12px}.about-brand{text-align:center;padding:24px 0}.about-brand img{width:46px;height:46px}.about-brand h3{margin:12px 0 7px}.about-brand span{font-size:12px;color:var(--muted)}.about-actions{margin-top:12px}.about-actions .setting-row{font-size:13px}
+@media(max-width:360px){.connection-intro>h3{font-size:17px}.consent-request h3{font-size:19px}.calendar-auth-bridge{margin:12px 0 23px}.sheet{padding-left:18px;padding-right:18px}}
+/* Memory reuses the user's three dimensions in a compact folder hierarchy. */
+.lib16-memory-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 20px}
+.lib16-memory-heading h1{font-size:25px;font-weight:650;letter-spacing:-.025em}
+.lib16-memory-heading>.icon-button{color:var(--accent);background:var(--soft);border-radius:50%;width:38px;height:38px}
+.lib16-summary{display:block;width:100%;padding:20px;text-align:left;border:1px solid #eee5de;border-radius:16px;background:#fff;margin:19px 0 22px}
+.lib16-summary-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lib16-summary-heading>span{display:flex;align-items:center;gap:9px;min-width:0}
+.lib16-summary-heading strong{font-size:16px;font-weight:650;line-height:1.5}
+.lib16-summary-heading>span>svg{width:21px;height:21px;color:var(--accent)}
+.lib16-summary-heading>svg{width:15px;height:15px;color:var(--muted)}
+.lib16-summary p{font-size:13px;line-height:1.9;color:#4e5155;margin:13px 0 12px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.lib16-summary small{font-size:11px;line-height:1.7;display:block;color:#717171}
+.lib16-summary.compact{margin-top:5px;padding:17px 18px}
+.lib16-summary.compact p{-webkit-line-clamp:2;margin:10px 0}
+.lib16-summary:hover{background:#fffcf9}
+.lib16-intro{margin:20px 0 22px;padding:11px 16px 8px;border-radius:16px;background:#fff5eb}
+.lib16-intro-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 3px}
+.lib16-intro-head h2{font-size:16px;font-weight:650;color:#8c4008}
+.lib16-intro-head>.icon-button{color:#9d521c;width:36px;height:36px;min-height:36px;margin-right:-6px}
+.lib16-intro-head>.icon-button svg{width:18px;height:18px}
+.lib16-intro-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;padding:14px 0;border-bottom:1px solid #f2e2d4;color:#7b3f13;font-size:14px;min-height:52px}
+.lib16-intro-row:last-child{border-bottom:0}
+.lib16-intro-row>span{display:flex;align-items:center;gap:12px}
+.lib16-intro-row>span>svg{width:21px;height:21px}
+.lib16-intro-row>svg{width:14px;height:14px}
+.lib16-folder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 24px}
+.lib16-folder{min-width:0;text-align:left;background:#faf9f7;border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:124px}
+.lib16-folder-icon{display:block;color:var(--accent);margin-bottom:5px}
+.lib16-folder-icon svg{width:28px;height:28px;stroke-width:1.5}
+.lib16-folder strong{font-size:15px;font-weight:600;line-height:1.55;overflow-wrap:anywhere}
+.lib16-folder small{font-size:11px;color:#717171;line-height:1.6;overflow-wrap:anywhere}
+.lib16-folder:hover{background:#fff1e5}
+.lib16-folder-grid.memory-folders .lib16-folder:last-child:nth-child(odd){grid-column:1/-1;min-height:98px;display:grid;grid-template-columns:34px 1fr;column-gap:13px;align-content:center}
+.lib16-folder-grid.memory-folders .lib16-folder:last-child:nth-child(odd) .lib16-folder-icon{grid-row:1/3;margin:0;align-self:center}
+.lib16-folder-grid.memory-folders .lib16-folder:last-child:nth-child(odd) small{grid-column:2}
+.lib16-section-action{display:flex;justify-content:flex-end;margin:12px 0 2px}
+.lib16-section-action .linklike{min-height:40px}
+.lib14-page .lib14-path{flex-wrap:wrap;row-gap:3px;margin-bottom:17px}
+.lib14-page .lib14-path button{min-height:34px}
+.lib14-page .lib14-searchbar{margin-bottom:13px}
+@media(max-width:360px){.lib16-folder{padding:14px;min-height:118px}.lib16-folder-grid{gap:8px}.lib16-folder strong{font-size:14px}.lib16-folder small{font-size:10px}.lib16-summary{padding:17px}.lib16-summary small{font-size:10px}.lib16-memory-heading h1{font-size:22px}}
+
+/* Keep the memory overview and its folders within easy reach. */
+.lib16-memory-heading{margin:0 0 16px;justify-content:flex-start;gap:10px}.lib16-memory-heading h1{flex:1}.lib16-memory-heading>.icon-button:first-child{background:transparent;color:var(--ink);width:30px;margin-left:-7px}.lib16-intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 13px 13px;gap:0;margin:16px 0}.lib16-intro-head{grid-column:1/-1}.lib16-intro-head h2{font-size:14px}.lib16-intro-row{padding:9px 2px;border:0;justify-content:center;min-height:56px;font-size:12px}.lib16-intro-row>span{flex-direction:column;gap:9px}.lib16-intro-row>svg{display:none}.lib16-summary{margin:16px 0;padding:17px}.lib16-summary p{-webkit-line-clamp:3;font-size:13px;margin:11px 0}.lib16-folder-grid{margin-top:16px}.lib16-folder{min-height:116px}
 </style>
 </head>
 <body>
@@ -214,7 +296,7 @@ function nexusOverviewText(){
   return lines.join('\n');
 }
 
-function header(){if(ui.page==='onboarding')return `<header class="topbar">${ib('返回聊天','back','home')}<span class="page-label">认识 ${esc(data.name)}</span>${btn('跳过','skipOnboard','','linklike')}</header>`;if(ui.page!=='main')return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${({settings:'设置',goal:'目标详情',event:'日程详情',file:'资料详情',memory:'关于我的记忆',sources:'数据来源',reminders:'主动提醒'})[ui.page]||''}</span>${ui.page==='goal'?ib('目标操作','dots','goalMenu',ui.id):ui.page==='file'?ib('分享资料','share','share',ui.id):'<span class="icon-button"></span>'}</header>`;return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'}"><button class="brand-button" aria-label="打开 Snack 设置" data-action="settings"><img src="${LOGO}" alt="Snack 头像"><span class="source-nameplate"><strong>${esc(data.name)}</strong><small>你的 AI 秘书</small></span></button></header>`}
+function header(){if(ui.page==='onboarding')return `<header class="topbar">${ib('返回聊天','back','home')}<span class="page-label">认识 ${esc(data.name)}</span>${btn('跳过','skipOnboard','','linklike')}</header>`;if(ui.page!=='main')return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${({settings:'设置',goal:'目标详情',event:'日程详情',file:'资料详情',memory:'关于我的记忆',sources:'连接应用',reminders:'通知与提醒'})[ui.page]||''}</span>${ui.page==='goal'?ib('目标操作','dots','goalMenu',ui.id):ui.page==='file'?ib('分享资料','share','share',ui.id):'<span class="icon-button"></span>'}</header>`;return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'}"><button class="brand-button" aria-label="打开 Snack 设置" data-action="settings"><img src="${LOGO}" alt="Snack 头像"><span class="source-nameplate"><strong>${esc(data.name)}</strong><small>你的 AI 秘书</small></span></button></header>`}
 function nav(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['calendar','calendar','日程'],['goals','target','持续跟踪的目标'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`}
 function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
 function formatSourceText(text){return esc(text).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')}
@@ -342,11 +424,11 @@ message = function(m) {
 };
 function goalRow(g) {return `<button class="work-row ${unreadFor(g.id)?'has-unread':''}" data-action="goal" data-id="${g.id}"><span class="work-icon">${icon(g.status==='done'?'check':g.status==='paused'?'pause':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}${unreadFor(g.id)?'<i class="unread-dot" aria-label="有新进展"></i>':''}</span><span class="work-summary">${esc(g.summary)}</span><span class="work-meta">${esc(g.project)} · ${g.status==='paused'?'已暂停':g.status==='done'?'已结束':'下次 '+checkLabel(g.nextCheck)}</span></span>${icon('right')}</button>`;}
 goals = function() {const active=data.goals.filter(g=>g.status!=='done').sort((a,b)=>Number(!!unreadFor(b.id))-Number(!!unreadFor(a.id)));const done=data.goals.filter(g=>g.status==='done');return `<section class="page work-page"><div class="page-title"><h1 class="long">持续跟进中</h1>${ib('新建跟进事项','plus','newGoal')}</div>${active.length?active.map(goalRow).join(''):`<div class="empty">${icon('target')}<p>想交给 Snack 持续跟进什么？</p></div><div class="starter-list">${btn('跟进项目回款','draftGoal','回款','starter')}${btn('跟进会议决定','draftGoal','会议决定','starter')}</div>`}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`};
-goalDetail = function() {const g=data.goals.find(g=>g.id===ui.id);if(!g)return '<div class="empty">事项不存在</div>';return `<section class="page"><div class="detail-hero"><div class="detail-state">${icon(g.status==='done'?'check':g.status==='paused'?'pause':'target')} ${g.status==='active'?'持续跟进中':g.status==='paused'?'已暂停':'已完成'}</div><h1>${esc(g.title)}</h1><p>${esc(g.project)} · ${esc(g.owner)}</p></div><section class="latest-progress"><div class="section-line"><h2>最新进展</h2><time>${esc(g.lastCheck)}</time></div><p>${esc(g.summary)}</p></section><div class="check-plan"><div>${icon('clock')}<span>下次检查<strong>${g.status==='active'?esc(checkLabel(g.nextCheck)):'已停止'}</strong></span>${ib('调整跟进安排','edit','editGoal',g.id)}</div><p>${esc(g.rule)}</p></div><div class="info-row"><span>完成条件</span><span>${esc(g.condition)}</span></div><div class="info-row"><span>截止日期</span><span>${esc(g.date)}</span></div>${!data.settings[g.sourceKey]?'<div class="source-offline">来源已断开，保留历史记录；重新连接后可继续检查。</div>':''}<div class="section-line"><h2>进展记录</h2>${btn('补充情况','updateGoal',g.id,'linklike')}</div><div class="timeline">${g.logs.map(([t,c])=>`<div class="timeline-item"><time>${esc(t)}</time><p>${esc(c)}</p></div>`).join('')}</div>${g.sourceIds?.length?`<div class="section-line"><h2>相关资料</h2></div><div class="sources">${g.sourceIds.map(id=>{const f=data.files.find(f=>f.id===id);return f?source(f.title,id):''}).join('')}</div>`:''}${g.status==='active'?`<details class="demo-controls"><summary>演示新进展</summary><div class="actions">${btn('有新变化','simulateUpdate',g.id)}${btn('需要决策','simulateDecision',g.id)}</div></details>`:''}</section>`};
+goalDetail = function() {const g=data.goals.find(g=>g.id===ui.id);if(!g)return '<div class="empty">事项不存在</div>';return `<section class="page"><div class="detail-hero"><div class="detail-state">${icon(g.status==='done'?'check':g.status==='paused'?'pause':'target')} ${g.status==='active'?'持续跟进中':g.status==='paused'?'已暂停':'已完成'}</div><h1>${esc(g.title)}</h1><p>${esc(g.project)} · ${esc(g.owner)}</p></div><section class="latest-progress"><div class="section-line"><h2>最新进展</h2><time>${esc(g.lastCheck)}</time></div><p>${esc(g.summary)}</p></section><div class="check-plan"><div>${icon('clock')}<span>下次检查<strong>${g.status==='active'?esc(checkLabel(g.nextCheck)):'已停止'}</strong></span>${ib('调整跟进安排','edit','editGoal',g.id)}</div><p>${esc(g.rule)}</p></div><div class="info-row"><span>完成条件</span><span>${esc(g.condition)}</span></div><div class="info-row"><span>截止日期</span><span>${esc(g.date)}</span></div>${!goalSourceConnected(g)?'<div class="source-offline">来源已断开，保留历史记录；重新连接后可继续检查。</div>':''}<div class="section-line"><h2>进展记录</h2>${btn('补充情况','updateGoal',g.id,'linklike')}</div><div class="timeline">${g.logs.map(([t,c])=>`<div class="timeline-item"><time>${esc(t)}</time><p>${esc(c)}</p></div>`).join('')}</div>${g.sourceIds?.length?`<div class="section-line"><h2>相关资料</h2></div><div class="sources">${g.sourceIds.map(id=>{const f=data.files.find(f=>f.id===id);return f?source(f.title,id):''}).join('')}</div>`:''}${g.status==='active'?`<details class="demo-controls"><summary>演示新进展</summary><div class="actions">${btn('有新变化','simulateUpdate',g.id)}${btn('需要决策','simulateDecision',g.id)}</div></details>`:''}</section>`};
 goalActions = function() {const g=data.goals.find(g=>g.id===ui.id);return g?`<div class="bottom-actions">${btn('继续讨论','askGoal',g.id,'primary')}${btn('调整安排','editGoal',g.id)}</div>`:''};
 function createUpdate(id,needsDecision=false) {
   const g=data.goals.find(g=>g.id===id);if(!g||g.status!=='active')return false;
-  if(!data.settings[g.sourceKey]){toast('来源已断开，请先重新连接');return false}
+  if(!goalSourceConnected(g)){toast('来源已断开，请先重新连接');return false}
   g.checkCount=(g.checkCount||0)+1;
   if(g.checkCount>1&&!needsDecision){g.lastCheck='刚刚';g.logs.unshift(['刚刚 · 演示检查','未发现新的相关证据，保留原结论并继续检查。']);save();render();toast('检查完成，暂无新变化');return true}
   const text=needsDecision?'新的安排与原计划存在冲突，需要你确认是否调整下一步。':g.project==='SCM'?(g.checkCount===1?'项目经理补充了作业条件，人员准入仍待确认；设备调配尚未决定。':`第 ${g.checkCount} 次检查：尚未收到新的准入确认，继续等待对应证据。`):g.id==='g1'?(g.checkCount===1?'客户补充了预计付款时间，实际到账仍待核对。':`第 ${g.checkCount} 次检查：尚未收到新的到账凭证。`):`第 ${g.checkCount} 次检查：已补充工作安排，结果仍待现场核实。`;
@@ -428,7 +510,7 @@ function confirmPostItems(fid,items) {
     const project=f?.eventId==='e2'||(f?.eventId==='e1'&&i===0)?'SCM':f?.eventId==='e3'||(f?.eventId==='e1'&&i===1)?'华东大区':null;
     const existingId=project==='SCM'?hasScm()?.id:project==='华东大区'?'g1':null;
     let g=data.goals.find(g=>g.id===(data.confirmedPostItems[key]||existingId||key));
-    if(!g){g={id:key,title:item.title,project:project||'会议后续',owner:item.owner||'你',status:'active',condition:'落实安排，并提供结果或完成依据',date:(item.time||'2026-11-20').slice(0,10),nextCheck:item.time||'2026-11-14T09:30',lastCheck:'刚刚',rule:'关键变化或逾期时提醒',sourceKey:'calendar',sourceIds:[fid],summary:'会后已确认，等待负责人反馈。',logs:[]};data.goals.unshift(g)}
+    if(!g){g={id:key,title:item.title,project:project||'会议后续',owner:item.owner||'你',status:'active',condition:'落实安排，并提供结果或完成依据',date:(item.time||'2026-11-20').slice(0,10),nextCheck:item.time||'2026-11-14T09:30',lastCheck:'刚刚',rule:'关键变化或逾期时提醒',sourceKey:'calendar',sourceProvider:data.events.find(event=>event.id===f?.eventId)?.provider||null,sourceIds:[fid],summary:'会后已确认，等待负责人反馈。',logs:[]};data.goals.unshift(g)}
     if(!data.confirmedPostItems[key]){
       g.sourceIds ||= [];if(!g.sourceIds.includes(fid))g.sourceIds.push(fid);
       g.logs.unshift(['刚刚 · 会议确认',`${item.title}；负责人：${item.owner||'你'}${item.time?'；安排：'+checkLabel(item.time):''}。`]);
@@ -512,7 +594,7 @@ function requiredScopes(kind,template) {
   return [...new Set(['calendar',...(FOLLOW_TEMPLATES.find(t=>t.id===template)||FOLLOW_TEMPLATES[0]).scopes])];
 }
 function hasDingScopes(kind,template) {return !!data.dingTalk?.cliConnected&&requiredScopes(kind,template).every(s=>data.dingTalk.scopes.includes(s))}
-function activationStage(a) {return !data.dingTalk.cliConnected?'connect':hasDingScopes(a.kind,a.template)?'configure':'authorize'}
+function activationStage(a) {return hasDingScopes(a.kind,a.template)?'configure':a.authPhase||'connect'}
 function beginActivation(kind,template='risk',draft=null) {
   if(kind==='calendar'&&!CALENDAR_SCENARIOS.some(s=>s.id===template))template='before';
   closeSheet(false);ui.activation={token:'activation-'+(++activationSequence),kind,template,draft};
@@ -520,14 +602,20 @@ function beginActivation(kind,template='risk',draft=null) {
 }
 function activationTitle(a) {return a.kind==='calendar'?(CALENDAR_SCENARIOS.find(s=>s.id===a.template)?.title||'会前准备'):a.kind==='provider'?'连接钉钉':a.kind==='post'?'跟进会议事项':a.template==='custom'?'设置持续跟进':FOLLOW_TEMPLATES.find(t=>t.id===a.template)?.title||'设置持续跟进'}
 function connectActivation(token) {
-  if(!ui.activation||ui.activation.token!==token)return false;
-  data.dingTalk.cliConnected=true;save();paintSheet();return true;
+  const a=ui.activation;if(!a||a.token!==token)return false;
+  a.authPhase='consent';paintSheet();return true;
 }
 function authorizeActivation(token) {
-  const a=ui.activation;if(!a||a.token!==token||!data.dingTalk.cliConnected)return false;
-  data.dingTalk.scopes=[...new Set([...data.dingTalk.scopes,...requiredScopes(a.kind,a.template)])];
-  data.settings.calendar=hasDingScopes('calendar');data.settings.group=data.dingTalk.scopes.includes('projectMessages');data.settings.dingTalk=true;
-  save();paintSheet();return true;
+  const a=ui.activation;if(!a||a.token!==token||a.authPhase!=='consent')return false;
+  a.authPhase='authorizing';paintSheet();
+  calendarAuthorizationTimer=setTimeout(()=>{
+    calendarAuthorizationTimer=null;if(ui.activation?.token!==token)return;
+    data.dingTalk.cliConnected=true;
+    data.dingTalk.scopes=[...new Set([...data.dingTalk.scopes,...requiredScopes(a.kind,a.template)])];
+    data.settings.calendar=hasDingScopes('calendar');data.settings.group=data.dingTalk.scopes.includes('projectMessages');data.settings.dingTalk=true;
+    if(data.dingTalk.scopes.includes('calendar')&&data.dingTalk.scopes.includes('minutes'))data.calendarConnections.dingtalk={...(data.calendarConnections.dingtalk||{}),connected:true,authorizationRevision:3,scopes:['calendar','minutes']};
+    save();paintSheet();
+  },900);return true;
 }
 function startActivation(values={},token=ui.activation?.token) {
   const a=ui.activation;if(!a||a.token!==token||!hasDingScopes(a.kind,a.template))return false;
@@ -546,7 +634,7 @@ function startActivation(values={},token=ui.activation?.token) {
   const project=values.project||draft.project||'SCM',title=(values.title||draft.title||t.title).trim(),condition=(values.condition||draft.condition||t.condition).trim();
   if(!title||!condition)return false;
   const key=a.template+'-'+project;
-  let g=data.goals.find(g=>g.id===data.startedTemplates[key]);
+  let g=data.goals.find(g=>g.id===data.startedTemplates[key]&&g.status!=='done');
   if(!g){
     g={id:'started-'+Date.now()+'-'+activationSequence,title,project,owner:draft.owner||'项目负责人',status:'active',phase:'working',template:a.template,condition,date:draft.date||'2026-11-20',nextCheck:draft.nextCheck||'2026-11-14T09:30',rule:values.rule||draft.rule||'关键变化或逾期时提醒',lastCheck:'尚未检查',sourceKey:'dingTalk',requiredScopes:requiredScopes(a.kind,a.template),sourceIds:a.template==='meeting'?['f3']:[],summary:'已启动，正在准备第一次检查。',logs:[['刚刚','你确认了关注范围、完成条件和提醒方式，开始执行。']]};
     data.goals.unshift(g);data.startedTemplates[key]=g.id;
@@ -567,7 +655,12 @@ function connectionAction(kind,id){
   if(!hasDingScopes(kind,id))return '授权并设置';
   return kind==='calendar'?(data.calendarAssistants[id]?'已开启 · 查看设置':'设置并开启'):'设置并开始跟进';
 }
-function templateRows(){return FOLLOW_TEMPLATES.map(t=>`<button class="template-row" data-action="startTemplate" data-id="${t.id}"><span class="template-icon">${icon(t.icon)}</span><span><strong>${t.title}</strong><small>${t.description}</small></span>${icon('right')}</button>`).join('')}
+const FOLLOW_IDEAS = [
+  {group:'点子',id:'risk',icon:'trend',title:'我来盯住 SCM 项目的重要变化',description:'设备出勤或现场安排有变化时，我会整理发生了什么、还有哪些问题待确认，及时提醒你。'},
+  {group:'点子',id:'progress',icon:'target',title:'下次周会前，我帮你盯住处理进度',description:'把需要解决的问题交给我，我会记住处理安排、卡点和下一次检查时间，直到结果得到确认。'},
+  {group:'会议与协作',id:'meeting',icon:'calendar',title:'会上定下的事，我会接着跟',description:'我会从会议记录中整理负责人、约定时间和后续事项。你确认后，我再开始跟进落实情况。'}
+];
+function templateRows(){return `<div class="follow-ideas">${['点子','会议与协作'].map(group=>`<section class="follow-idea-group" aria-label="${group}"><h2>${group}</h2>${FOLLOW_IDEAS.filter(idea=>idea.group===group).map(idea=>`<button class="follow-idea" data-action="startTemplate" data-id="${idea.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(idea.icon)}</span><span class="follow-idea-body"><strong>${idea.title}</strong><span>${idea.description}</span></span>${icon('right')}</button>`).join('')}</section>`).join('')}<button class="follow-custom" data-action="customFollow">${icon('plus')}<span>自己说一件事</span>${icon('right')}</button></div>`}
 function calendarScenarioRows(){return CALENDAR_SCENARIOS.map(scene=>`<button class="template-row scenario-row" data-action="calendarScenario" data-id="${scene.id}"><span class="template-icon">${icon(scene.icon)}</span><span><strong>${scene.title}</strong><small>${scene.description}</small><span class="scenario-link">${icon(data.calendarAssistants[scene.id]?'check':'link')}${connectionAction('calendar',scene.id)}</span></span>${icon('right')}</button>`).join('')}
 function calendarEmpty(){return `<section class="page activation-empty"><div class="page-title"><h1>日程</h1></div><div class="calendar-scenarios">${calendarScenarioRows()}</div></section>`}
 const calendarBeforeActivation=calendar;
@@ -577,8 +670,10 @@ calendar=function(){
 };
 const goalsBeforeActivation=goals;
 goals=function(){
-  if(!data.goals.length)return `<section class="page activation-empty"><div class="page-title"><h1 class="long">持续跟进中</h1></div><div class="template-list">${templateRows()}</div></section>`;
-  return goalsBeforeActivation();
+  const ongoing=data.goals.filter(goal=>goal.status!=='done');
+  if(ongoing.length)return goalsBeforeActivation();
+  const done=data.goals.filter(goal=>goal.status==='done');
+  return `<section class="page follow-page"><div class="page-title"><h1 class="long">持续跟进中</h1></div>${done.length?`<button class="follow-next" data-action="showTemplates">${icon('plus')}<span>选择新的跟进点子</span>${icon('right')}</button><details class="finished-work" open><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:templateRows()}</section>`;
 };
 const goalRowBeforeActivation=goalRow;
 goalRow=function(g){return goalRowBeforeActivation(g).replace(`<span class="work-meta">`,`<span class="work-meta">${g.status==='active'?(g.phase==='working'?'正在进行中':'跟进中')+' · ':''}`)};
@@ -592,10 +687,14 @@ paintSheet=function(){
   if(s.type==='activation'){
     const a=ui.activation;if(!a||a.token!==s.token){closeSheet();return}
     const stage=activationStage(a),template=FOLLOW_TEMPLATES.find(t=>t.id===a.template)||FOLLOW_TEMPLATES[0],v=a.draft||{};
-    const steps=`<div class="activation-steps" aria-label="连接、授权、开启">${[['connect','连接'],['authorize','授权'],['configure','开启']].map(([id,t])=>`<span class="${stage===id?'current':''}">${t}</span>`).join('<i></i>')}</div>`;
+    const steps='';
+    if(stage!=='configure'){
+      paintConnectionFlow('dingtalk',stage,requiredScopes(a.kind,a.template),{
+        next:'activationConnect',allow:'activationAuthorize',token:a.token,
+        value:'连接相关信息，让我持续了解这件事的进展。'
+      });return;
+    }
     let content='';
-    if(stage==='connect')content=`${steps}<div class="connection-identity"><span>${icon('link')}</span><strong>钉钉 CLI</strong></div><p class="activation-copy">${a.kind==='calendar'?'先连接钉钉日程，再为「'+activationTitle(a)+'」授权所需资料。':'先连接钉钉日程，再授权这个模板需要的资料。'}</p>${btn('连接钉钉日程','activationConnect',a.token,'primary full')}`;
-    if(stage==='authorize')content=`${steps}<div class="connection-ready">${icon('check')}钉钉 CLI 已连接</div><h3 class="permission-heading">允许 Snack 访问</h3><div class="permission-list">${requiredScopes(a.kind,a.template).map(scope=>`<div>${icon('check')}<span>${DING_SCOPES[scope]}</span></div>`).join('')}</div>${btn('同意授权','activationAuthorize',a.token,'primary full')}${btn('暂不授权','close','','secondary full')}`;
     if(stage==='configure'){
       const status=`${steps}<div class="connection-ready">${icon('check')}钉钉日程已授权</div>`;
       if(a.kind==='provider')content=status+btn('完成','activationFinish',a.token,'primary full');
@@ -606,11 +705,11 @@ paintSheet=function(){
       else if(a.kind==='post')content=`${status}<div class="activation-post-items">${v.items?.filter(i=>i.selected).map(i=>`<p>${esc(i.title)}</p>`).join('')||''}</div><form id="activationForm"><input name="token" type="hidden" value="${a.token}"><button class="primary full" type="submit">开始跟进</button></form>`;
       else content=`${status}<form id="activationForm" class="form"><input name="token" type="hidden" value="${a.token}"><label class="field"><span>关注项目</span><select name="project">${[...new Set([v.project||'SCM','华东大区','创新设备租赁'])].map(p=>`<option>${esc(p)}</option>`).join('')}</select></label><label class="field"><span>跟进什么</span><input name="title" required maxlength="60" value="${esc(v.title||template.title)}"></label><label class="field"><span>怎样算完成</span><textarea name="condition" required>${esc(v.condition||template.condition)}</textarea></label><label class="field"><span>什么时候提醒</span><select name="rule">${['关键变化或逾期时提醒','每天 09:30 汇报进展','仅完成时提醒'].map(r=>`<option ${v.rule===r?'selected':''}>${r}</option>`).join('')}</select></label><button type="submit" class="primary full">开始跟进</button></form>`;
     }
-    workSheet(activationTitle(a),content+'<p class="activation-demo-note">交互演示，不连接真实账号</p>');return;
+    workSheet(activationTitle(a),content);return;
   }
   if(s.type==='calendarScenarios'){workSheet('选择会议场景',`<div class="calendar-scenarios">${calendarScenarioRows()}</div>`);return}
-  if(s.type==='templates'){workSheet('选择跟进模板',`<div class="template-list">${templateRows()}</div>`);return}
-  if(s.type==='assistantActivity'){const list=data.goals.filter(g=>g.status==='active');workSheet(esc(data.name),list.length?list.map(goalRow).join(''):`<div class="assistant-idle"><p>还没有启动的跟进事项</p>${btn('选择跟进模板','showTemplates','','primary full')}</div>`);return}
+  if(s.type==='templates'){workSheet('跟进点子',templateRows());return}
+  if(s.type==='assistantActivity'){const list=data.goals.filter(g=>g.status==='active');workSheet(esc(data.name),list.length?list.map(goalRow).join(''):`<div class="assistant-idle"><p>还没有启动的跟进事项</p>${btn('选择跟进点子','showTemplates','','primary full')}</div>`);return}
   if(s.type==='disconnectDing'){workSheet('断开钉钉？','<p class="sheet-desc">停止获取新的日程、会议记录和项目消息。已经启动的事项和历史资料会保留。</p>'+btn('断开连接','disconnectDing','','primary full')+btn('取消','close','','secondary full'));return}
   paintBeforeActivation();
 };
@@ -625,7 +724,7 @@ respondToChat=function(text,key){
 sourceReply=respondToChat;
 const makeScmBeforeActivation=makeScm;
 makeScm=function(overrides={}){const existing=hasScm();if(existing)return existing;beginActivation('goal','risk',{project:'SCM',...overrides});return null};
-sourcesPage=function(){return `<section class="page"><div class="page-title"><h1>数据来源</h1></div>${settingRow('Nexus 经营数据',data.settings.nexus?'已连接':'已断开','connect','nexus')}${settingRow('钉钉 CLI',data.dingTalk.cliConnected?(data.dingTalk.scopes.length?'已连接 · 已授权':'已连接 · 待授权'):'未连接','dingConnection')}<div class="source-notice">交互演示，不访问真实账号</div></section>`};
+sourcesPage=function(){return `<section class="page"><div class="page-title"><h1>数据来源</h1></div>${settingRow('Nexus 经营数据',data.settings.nexus?'已连接':'已断开','connect','nexus')}${settingRow('钉钉',data.dingTalk.cliConnected?(data.dingTalk.scopes.length?'已连接 · 已授权':'已连接 · 待授权'):'未连接','dingConnection')}<div class="source-notice">交互演示，不访问真实账号</div></section>`};
 const handleBeforeActivation=handle;
 handle=function(action,id,el){
   if(action==='addBot'){beginActivation('provider');return}
@@ -717,7 +816,7 @@ function beginCalendarImport(provider='dingtalk',options={}){
   showSheet('calendarImport',{token:ui.calendarImport.token});return true;
 }
 function connectCalendarProvider(token){
-  const state=ui.calendarImport;if(!state||state.token!==token||state.stage!=='connect')return false;
+  const state=ui.calendarImport;if(!state||state.token!==token||state.stage!=='consent')return false;
   state.stage='authorizing';paintSheet();
   calendarAuthorizationTimer=setTimeout(()=>{
     calendarAuthorizationTimer=null;
@@ -789,21 +888,15 @@ paintSheet=function(){
   if(s.type==='calendarImport'){
     const state=ui.calendarImport;if(!state||state.token!==s.token){closeSheet();return}
     const p=CALENDAR_PROVIDERS.find(p=>p.id===state.provider);
-    if(['connect','authorizing','success'].includes(state.stage)){
-      const phase=state.stage;
-      const content=calendarAuthorizationBridge(state.provider,phase);
-      if(phase==='connect'){
-        workSheet('授权'+p.name,content+`<div class="calendar-auth-permissions"><h3>允许 Snack</h3><p>${icon('calendar')}<span>查看日程与会议信息</span></p><p>${icon('file')}<span>读取会议记录，整理会后待办</span></p></div>${btn('同意并授权','calendarProviderConnect',state.token,'primary full')}`);
-      }else if(phase==='authorizing'){
-        workSheet('正在授权',content+`<div class="calendar-auth-status" role="status"><span class="calendar-auth-spinner" aria-hidden="true"></span><p>正在连接${state.provider==='dingtalk'?'钉钉':esc(p.name)}…</p></div><button class="primary full" disabled>正在授权…</button>`);
-      }else{
-        workSheet('授权完成',content+`<p class="calendar-auth-success">已连接${esc(p.name)}</p>${btn('选择要跟踪的会议','calendarSelectionContinue',state.token,'primary full')}`);
-      }
-      return;
+    if(['connect','consent','authorizing','success'].includes(state.stage)){
+      paintConnectionFlow(state.provider,state.stage,['calendar','minutes'],{
+        next:'calendarConsentNext',allow:'calendarProviderConnect',continue:'calendarSelectionContinue',token:state.token,
+        value:'我来准备会议，跟进会后事项。',nextLabel:'选择会议'
+      });return;
     }
     const editing=state.editEventId?data.events.find(e=>e.id===state.editEventId):null;
     const meetings=editing?[{...editing,...editing.userEdits}]:providerMeetings(state.provider);
-    workSheet(editing?'会议跟踪':'选择要跟踪的会议',`<form id="calendarConsentForm"><input type="hidden" name="token" value="${state.token}"><p class="calendar-tracking-summary">会前准备、会中记录、会后跟进，一起开启。</p><div class="consent-meetings">${meetings.map(e=>`<label class="consent-meeting"><input type="checkbox" name="${editing?'tracking':'meeting'}" value="${esc(e.externalId)}" ${editing?(state.enabled?'checked':''):state.selectedIds.includes(e.externalId)?'checked':''}><span><strong>${esc(e.title)}</strong><small>${shortDate(fullDay(e))} · ${esc(e.time)}–${esc(e.end)}</small>${editing?'<small>跟踪这场会议</small>':''}</span></label>`).join('')}</div><p id="calendarImportError" class="form-error" role="alert"></p><button type="submit" class="primary full">${editing?'保存跟踪设置':'开始跟踪所选会议'}</button></form>`);return;
+    workSheet(editing?'会议跟踪':'选择要跟踪的会议',`<form id="calendarConsentForm" class="meeting-selection-form"><input type="hidden" name="token" value="${state.token}"><p class="calendar-tracking-summary">选中的会议，会前、会中、会后我都会跟进。</p>${!editing?`<div class="meeting-selection-tools"><span id="meetingSelectedCount">已选 ${state.selectedIds.length} 场</span><button type="button" class="linklike" data-action="selectAllMeetings">全选</button></div>`:''}<div class="consent-meetings">${meetings.map(e=>`<label class="consent-meeting"><input type="checkbox" name="${editing?'tracking':'meeting'}" value="${esc(e.externalId)}" ${editing?(state.enabled?'checked':''):state.selectedIds.includes(e.externalId)?'checked':''}><span><strong>${esc(e.title)}</strong><small>${shortDate(fullDay(e))} · ${esc(e.time)}–${esc(e.end)}</small>${editing?'<small>跟踪这场会议</small>':''}</span></label>`).join('')}</div><p id="calendarImportError" class="form-error" role="alert"></p><div class="meeting-selection-footer"><button type="submit" class="primary full" id="confirmMeetings" ${!editing&&!state.selectedIds.length?'disabled':''}>${editing?'保存跟踪设置':'开始跟踪'+(state.selectedIds.length?'（'+state.selectedIds.length+'）':'')}</button></div></form>`);return;
   }
   if(s.type==='manualScheduleConfirm'){
     const d=ui.manualEventDraft;if(!d)return;
@@ -895,20 +988,13 @@ document.addEventListener('submit',e=>{
 },true);
 save();
 
-// Append after the current interaction overrides, before the final render().
-// This adds no data migration and keeps the existing file-input change handler.
+// Library and memory: three product dimensions, shared records and explicit sources.
 (() => {
   const lib14Titles = {
-    memory: '关于我的了解',
-    'memory/profile': '用户身份',
-    'memory/tracking': '持续跟进',
-    'memory/calendar': '日程与会议',
-    scm: 'SCM 项目',
-    east: '华东大区',
-    meetings: '会议记录',
-    reports: '分析报告',
-    knowledge: '知识库',
-    uploads: '上传资料'
+    memory: '关于我的了解', 'memory/profile': '身份与偏好',
+    'memory/tracking': '跟进与历史', 'memory/calendar': '日程与会议',
+    scm: 'SCM 项目', east: '华东大区', meetings: '会议记录', reports: '分析报告',
+    knowledge: '知识库', uploads: '上传资料'
   };
   const lib14Children = ['memory/profile', 'memory/tracking', 'memory/calendar'];
   const lib14Text = value => String(value || '').toLocaleLowerCase();
@@ -917,10 +1003,10 @@ save();
   const lib14Title = id => lib14Titles[id] || folders.find(folder => folder[0] === id)?.[1] || id;
   const lib14Parent = id => id?.startsWith('memory/') ? 'memory' : null;
   const lib14IsKnowledge = id => id === 'memory' || id?.startsWith('memory/');
+  const lib16Profile = () => (data.memories || []).filter(item => item.category !== '项目背景');
+  const lib16Context = () => (data.memories || []).filter(item => item.category === '项目背景');
   const lib14ScopeFiles = id => {
-    if (id === 'memory/calendar') {
-      return data.files.filter(file => file.kind === '录音' || file.eventId || file.id.startsWith('prep-') || file.folder === id);
-    }
+    if (id === 'memory/calendar') return data.files.filter(file => file.kind === '录音' || file.eventId || file.id.startsWith('prep-') || file.folder === id);
     return data.files.filter(file => !id || file.folder === id);
   };
   const lib14FileMatches = file => (ui.filter === '全部' || file.kind === ui.filter || (ui.filter === '项目笔记' && ['录音', '报告'].includes(file.kind))) && lib14Matches([file.title, file.summary]);
@@ -929,55 +1015,70 @@ save();
   const lib14EventMatches = event => lib14Matches([event.title, event.desc, event.people, event.location]);
   const lib14FolderMatches = id => {
     if (!lib14Query() || lib14Matches([lib14Title(id)])) return true;
-    if (id === 'memory') return (data.memories || []).some(lib14MemoryMatches) || data.goals.some(lib14GoalMatches) || data.events.some(lib14EventMatches);
-    if (id === 'memory/profile') return (data.memories || []).some(lib14MemoryMatches);
-    if (id === 'memory/tracking') return data.goals.some(lib14GoalMatches);
+    if (id === 'memory') return (data.memories || []).some(lib14MemoryMatches) || data.goals.some(lib14GoalMatches) || data.events.some(lib14EventMatches) || lib14ScopeFiles('memory/calendar').some(lib14FileMatches);
+    if (id === 'memory/profile') return lib16Profile().some(lib14MemoryMatches);
+    if (id === 'memory/tracking') return data.goals.some(lib14GoalMatches) || lib16Context().some(lib14MemoryMatches);
     if (id === 'memory/calendar') return data.events.some(lib14EventMatches) || lib14ScopeFiles(id).some(lib14FileMatches);
     return lib14ScopeFiles(id).some(lib14FileMatches);
   };
   const lib14FolderMeta = id => {
-    if (id === 'memory') return '3 个文件夹';
-    if (id === 'memory/profile') return `${(data.memories || []).length} 条记录`;
-    if (id === 'memory/tracking') return `${data.goals.length} 件事项`;
+    if (id === 'memory') return '3 个分类';
+    if (id === 'memory/profile') return `${lib16Profile().length} 条记忆`;
+    if (id === 'memory/tracking') return `${data.goals.length} 件事项 · ${lib16Context().length} 条背景`;
     if (id === 'memory/calendar') return `${data.events.length} 项日程 · ${lib14ScopeFiles(id).length} 份资料`;
     return `${lib14ScopeFiles(id).length} 份资料`;
   };
-  const lib14FolderRow = id => `<button class="folder-row lib14-folder" data-action="folder" data-id="${esc(id)}"><span class="file-icon orange">${icon('folder')}</span><span class="file-info"><strong>${esc(lib14Title(id))}</strong><small>${lib14FolderMeta(id)}</small></span>${icon('right')}</button>`;
+  const lib14FolderRow = id => `<button class="lib16-folder" data-action="folder" data-id="${esc(id)}"><span class="lib16-folder-icon">${icon('folder')}</span><strong>${esc(lib14Title(id))}</strong><small>${lib14FolderMeta(id)}</small></button>`;
   const lib14MemoryRow = item => `<button class="folder-row lib14-memory" data-action="memoryItem" data-id="${esc(item.id)}"><span class="file-icon">${icon('file')}</span><span class="file-info"><strong>${esc(item.title)}</strong><span class="lib14-row-summary">${esc(item.text)}</span><small>${esc(item.origin || '你提供的背景')}${item.updated ? ' · ' + esc(item.updated) : ''}</small></span>${icon('right')}</button>`;
   const lib14GoalRecord = goal => `<div class="lib14-record">${goalRow(goal)}${goal.logs?.length ? `<details class="lib14-history"><summary>历史记录 · ${goal.logs.length}</summary><div class="timeline">${goal.logs.map(([time, content]) => `<div class="timeline-item"><time>${esc(time)}</time><p>${esc(content)}</p></div>`).join('')}</div></details>` : ''}</div>`;
   const lib14EventRecord = event => `<div class="lib14-record"><button class="folder-row lib14-event" data-action="event" data-id="${esc(event.id)}"><span class="file-icon">${icon('calendar')}</span><span class="file-info"><strong>${esc(event.title)}</strong><small>${esc(shortDate(fullDay(event)))} · ${esc(event.time || '')}${event.end ? '–' + esc(event.end) : ''}</small>${event.desc ? `<span class="lib14-row-summary">${esc(event.desc)}</span>` : ''}</span>${icon('right')}</button></div>`;
-  const lib14Empty = text => `<div class="empty lib14-empty"><p>${esc(text)}</p>${lib14Query() ? btn('清除搜索', 'clearSearch', '', 'linklike') : ''}</div>`;
+  const lib14Empty = (text, action = '', label = '') => `<div class="empty lib14-empty"><p>${esc(text)}</p>${lib14Query() ? btn('清除搜索', 'clearSearch', '', 'linklike') : action ? btn(label, action, '', 'linklike') : ''}</div>`;
   const lib14Files = files => files.length ? files.map(fileRow).join('') : '';
-  const lib14RootFolders = () => [...new Set(['memory', 'scm', 'east', 'meetings', 'reports', 'knowledge', ...data.files.map(file => file.folder).filter(id => id && !lib14IsKnowledge(id))])];
+  const lib14RootFolders = () => [...new Set(['scm', 'east', 'meetings', 'reports', 'knowledge', ...data.files.map(file => file.folder).filter(id => id && !lib14IsKnowledge(id))])];
+  const lib16Summary = (compact = false) => {
+    const entries = lib16Profile();
+    const preview = entries.slice(0, 2).map(item => item.text).join(' ');
+    return `<button class="lib16-summary ${compact ? 'compact' : ''}" data-action="folder" data-id="${compact ? 'memory' : 'memory/profile'}"><span class="lib16-summary-heading"><span>${icon('memory')}<strong>关于我的了解</strong></span>${icon('right')}</span><p>${esc(preview || '添加你的身份和偏好，让每次协助更贴合你。')}</p><small>${compact ? '身份与偏好 · 跟进与历史 · 日程与会议' : entries.length ? `${entries.length} 条记忆` : '添加身份与偏好'}</small></button>`;
+  };
+  const lib16Intro = () => data.memoryIntroDismissed ? '' : `<section class="lib16-intro" aria-label="补充记忆"><div class="lib16-intro-head"><h2>补充我的记忆</h2>${ib('收起补充记忆入口', 'close', 'memoryIntroDismiss')}</div>${[['upload', '上传文件', 'libraryAdd'], ['link', '连接应用', 'sources'], ['chat', '和 Snack 聊聊', 'memoryChat']].map(([i, title, action]) => `<button class="lib16-intro-row" data-action="${action}"><span>${icon(i)}${title}</span>${icon('right')}</button>`).join('')}</section>`;
 
   library = function() {
     const path = ui.folder ? ['memory', ui.folder].filter((id, index, ids) => (index || lib14IsKnowledge(ui.folder)) && ids.indexOf(id) === index) : [];
-    const breadcrumb = ui.folder ? `<nav class="lib14-path" aria-label="资料路径">${ib('返回' + (lib14Parent(ui.folder) ? lib14Title(lib14Parent(ui.folder)) : '全部资料'), 'back', 'folderBack')}<button data-action="folderBack" class="lib14-crumb-root">全部资料</button>${path.map(id => `<span aria-hidden="true">/</span>${id === ui.folder ? `<span aria-current="page">${esc(lib14Title(id))}</span>` : `<button data-action="folder" data-id="${esc(id)}">${esc(lib14Title(id))}</button>`}`).join('')}</nav>` : '';
-    return `<section class="page lib14-page">${breadcrumb}<div class="lib14-searchbar"><label class="search">${icon('search')}<input id="librarySearch" aria-label="搜索资料" placeholder="${lib14IsKnowledge(ui.folder) ? '搜索当前记录' : '搜索文件、录音、知识库'}" value="${esc(ui.query)}"></label>${ib('上传资料', 'upload', 'libraryAdd')}</div>${!lib14IsKnowledge(ui.folder) ? `<div class="filter-row" aria-label="资料类型">${['全部', '项目笔记', '知识库', '文件'].map(type => `<button class="${ui.filter === type ? 'selected' : ''}" data-action="fileFilter" data-id="${type}" aria-pressed="${ui.filter === type}">${type}</button>`).join('')}</div>` : ''}<div id="libraryResults">${libraryResults()}</div></section>`;
+    const breadcrumb = ui.folder && ui.folder !== 'memory' ? `<nav class="lib14-path" aria-label="资料路径">${ib('返回' + (lib14Parent(ui.folder) ? lib14Title(lib14Parent(ui.folder)) : '全部资料'), 'back', 'folderBack')}<button data-action="folderBack" class="lib14-crumb-root">全部资料</button>${path.map(id => `<span aria-hidden="true">/</span>${id === ui.folder ? `<span aria-current="page">${esc(lib14Title(id))}</span>` : `<button data-action="folder" data-id="${esc(id)}">${esc(lib14Title(id))}</button>`}`).join('')}</nav>` : '';
+    const memoryTools = ui.folder === 'memory' ? `<div class="lib16-memory-heading">${ib('返回全部资料','back','folderBack')}<h1>记忆</h1>${data.memoryIntroDismissed ? ib('展开补充记忆入口', 'plus', 'memoryIntroToggle') : ''}</div>` : '';
+    return `<section class="page lib14-page">${breadcrumb}${memoryTools}<div class="lib14-searchbar"><label class="search">${icon('search')}<input id="librarySearch" aria-label="搜索资料" placeholder="${lib14IsKnowledge(ui.folder) ? '搜索记忆' : '搜索文件、录音、知识库'}" value="${esc(ui.query)}"></label>${ib('上传资料', 'upload', 'libraryAdd')}</div>${!lib14IsKnowledge(ui.folder) ? `<div class="filter-row" aria-label="资料类型">${['全部', '项目笔记', '知识库', '文件'].map(type => `<button class="${ui.filter === type ? 'selected' : ''}" data-action="fileFilter" data-id="${type}" aria-pressed="${ui.filter === type}">${type}</button>`).join('')}</div>` : ''}<div id="libraryResults">${libraryResults()}</div></section>`;
   };
 
   libraryResults = function() {
     const files = lib14ScopeFiles(ui.folder).filter(lib14FileMatches);
     if (ui.folder === 'memory') {
       const children = lib14Children.filter(lib14FolderMatches);
-      return children.map(lib14FolderRow).join('') + lib14Files(files) || lib14Empty('没有找到相关记录');
+      const overview = !lib14Query() ? lib16Intro() + lib16Summary() : '';
+      return overview + (children.length ? `<div class="lib16-folder-grid memory-folders">${children.map(lib14FolderRow).join('')}</div>` : '') + lib14Files(files) || lib14Empty('没有找到相关记忆');
     }
     if (ui.folder === 'memory/profile') {
-      const rows = (data.memories || []).filter(lib14MemoryMatches).map(lib14MemoryRow).join('');
-      return rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有保存的身份与背景');
+      const rows = lib16Profile().filter(lib14MemoryMatches).map(lib14MemoryRow).join('');
+      const add = !lib14Query() ? `<div class="lib16-section-action">${btn('添加记忆', 'newMemory', '', 'linklike')}</div>` : '';
+      return add + (rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记忆' : '还没有保存的身份与偏好'));
     }
     if (ui.folder === 'memory/tracking') {
-      const rows = data.goals.filter(lib14GoalMatches).map(lib14GoalRecord).join('');
-      return rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有启动的跟进事项');
+      const context = lib16Context().filter(lib14MemoryMatches).map(lib14MemoryRow).join('');
+      const goals = data.goals.filter(lib14GoalMatches);
+      const active = goals.filter(goal => goal.status !== 'done');
+      const finished = goals.filter(goal => goal.status === 'done');
+      const rows = `${context}${active.map(lib14GoalRecord).join('')}${finished.length ? `<div class="section-line"><h2>已完成</h2></div>${finished.map(lib14GoalRecord).join('')}` : ''}`;
+      return rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有跟进记录', 'memoryGoals', '选择一件事开始跟进');
     }
     if (ui.folder === 'memory/calendar') {
       const events = data.events.filter(lib14EventMatches).slice().sort((a, b) => `${fullDay(b)} ${b.time}`.localeCompare(`${fullDay(a)} ${a.time}`));
-      return events.map(lib14EventRecord).join('') + (events.length && files.length ? '<div class="section-line"><h2>会议资料</h2></div>' : '') + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有保存的日程与会议');
+      return events.map(lib14EventRecord).join('') + (events.length && files.length ? '<div class="section-line"><h2>会议资料</h2></div>' : '') + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有保存的日程与会议', 'memoryCalendar', '添加日程');
     }
-    if (ui.folder) return lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关资料' : '这里还没有资料');
-    const folderRows = ui.filter === '全部' ? lib14RootFolders().filter(lib14FolderMatches).map(lib14FolderRow).join('') : '';
-    const recentTitle = folderRows && files.length && !lib14Query() ? '<div class="section-line"><h2>最近资料</h2></div>' : '';
-    return folderRows + recentTitle + lib14Files(files) || lib14Empty('没有找到相关资料');
+    if (ui.folder) return lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关资料' : '这里还没有资料', 'libraryAdd', '上传资料');
+    const rootFolders = ui.filter === '全部' ? lib14RootFolders().filter(lib14FolderMatches) : [];
+    const overview = ui.filter === '全部' && lib14FolderMatches('memory') ? lib16Summary(true) : '';
+    const folderRows = rootFolders.length ? `<div class="lib16-folder-grid">${rootFolders.map(lib14FolderRow).join('')}</div>` : '';
+    const recentTitle = (folderRows || overview) && files.length && !lib14Query() ? '<div class="section-line"><h2>最近资料</h2></div>' : '';
+    return overview + folderRows + recentTitle + lib14Files(files) || lib14Empty('没有找到相关资料');
   };
 
   const lib14HandleBefore = handle;
@@ -991,6 +1092,14 @@ save();
     if (action === 'folderBack') {
       stash();ui.folder = el?.classList.contains('lib14-crumb-root') ? null : lib14Parent(ui.folder);ui.query = '';ui.filter = '全部';render();return;
     }
+    if (action === 'memoryIntroDismiss' || action === 'memoryIntroToggle') {
+      data.memoryIntroDismissed = action === 'memoryIntroDismiss' || !data.memoryIntroDismissed;save();render();return;
+    }
+    if (action === 'memoryChat') {
+      go('chat');ui.inputMode = 'text';ui.reference = null;ui.goalReference = null;ui.draft = '我想补充一些关于我的信息：';render();document.getElementById('draft')?.focus();return;
+    }
+    if (action === 'memoryGoals') { go('goals');return; }
+    if (action === 'memoryCalendar') { go('calendar');handle('addEvent');return; }
     lib14HandleBefore(action, id, el);
   };
 
@@ -1002,6 +1111,95 @@ save();
     lib14PaintBefore();
   };
 })();
+
+
+// A custom idea starts as a draft. No tracking begins until the later confirmation.
+const handleBeforeCustomFollow=handle;
+handle=function(action,id,el){
+  if(action==='customFollow'){
+    go('chat');ui.inputMode='text';ui.draft='我想持续跟进：';ui.goalReference=null;ui.reference=null;
+    render();const draft=document.getElementById('draft');draft?.focus();draft?.setSelectionRange(ui.draft.length,ui.draft.length);return;
+  }
+  handleBeforeCustomFollow(action,id,el);
+};
+// Connection screens share permission language; the third-party step is an in-page prototype.
+function paintConnectionFlow(provider,phase,scopes,actions){
+  const providerName=provider==='dingtalk'?'钉钉':CALENDAR_PROVIDERS.find(p=>p.id===provider)?.name||'日历';
+  const permissions=scopes.map(scope=>`<li>${icon(scope==='calendar'?'calendar':scope==='minutes'?'file':'chat')}<span>${esc(DING_SCOPES[scope])}</span></li>`).join('');
+  if(phase==='connect'){
+    workSheet('连接'+providerName,`<div class="connection-intro">${calendarAuthorizationBridge(provider,'connect')}<h3>${actions.value}</h3><ul class="connection-permissions">${permissions}</ul></div><div class="auth-actions">${btn('前往'+providerName+'授权',actions.next,actions.token,'primary full')}${btn('稍后再说','close','','auth-cancel')}</div>`);return;
+  }
+  if(phase==='consent'){
+    workSheet(providerName+'授权',`<div class="provider-consent"><div class="provider-consent-identity"><span class="provider-small-mark">${calendarProviderMark(provider)}</span><span>${providerName}</span><span class="consent-simulation">演示</span></div><div class="consent-request"><img src="${LOGO}" alt=""><h3>允许 Snack 访问以下信息？</h3></div><ul class="connection-permissions">${permissions}</ul><p class="consent-revoke">你可以随时在「连接应用」中断开。</p></div><div class="auth-actions">${btn('同意授权',actions.allow,actions.token,'primary full')}${btn('取消','close','','auth-cancel')}</div>`);return;
+  }
+  if(phase==='authorizing'){
+    workSheet('正在连接',`<div class="auth-progress" role="status"><span class="calendar-auth-spinner" aria-hidden="true"></span><p>正在等待${providerName}授权…</p></div><button class="primary full" disabled>正在连接…</button>`);return;
+  }
+  workSheet('连接成功',`<div class="auth-complete"><span>${icon('check')}</span><h3>${providerName}已连接</h3><p>接下来，选择想让我跟进的会议。</p></div>${btn(actions.nextLabel||'继续',actions.continue,actions.token,'primary full')}`);
+}
+settings=function(){return `<section class="page settings-clean"><button class="settings-profile settings-profile-button" data-action="rename"><img src="${LOGO}" alt=""><span><strong>${esc(data.name)}</strong><small>秘书名称</small></span>${icon('right')}</button><div class="settings-clean-list">${settingRow('连接应用',String(CALENDAR_PROVIDERS.filter(p=>calendarConnected(p.id)).length+(data.settings.nexus?1:0))+' 个已连接','sources')}${settingRow('通知与提醒','','reminders')}${settingRow('关于我的了解','','memory')}${settingRow('关于 Snack','','about')}</div></section>`};
+reminders=function(){return `<section class="page">${switchRow('每日经营简报','brief')}${data.settings.brief?settingRow('简报时间',data.settings.briefTime,'briefTime'):''}${switchRow('跟进事项有重要变化','alerts')}${switchRow('会前准备提醒','prep')}${switchRow('夜间免打扰','quiet')}${data.settings.quiet?'<div class="info-row"><span>免打扰时段</span><span>22:00 – 08:00</span></div>':''}</section>`};
+sourcesPage=function(){return `<section class="page"><div class="connector-list">${CALENDAR_PROVIDERS.map(p=>`<button class="connector-row" data-action="manageConnector" data-id="${p.id}"><span class="connector-mark">${calendarProviderMark(p.id)}</span><span><strong>${p.name}</strong><small>${calendarConnected(p.id)?'已连接':'未连接'}</small></span>${icon('right')}</button>`).join('')}${settingRow('Nexus 经营数据',data.settings.nexus?'已连接':'未连接','connect','nexus')}</div></section>`};
+const refreshPaintBefore=paintSheet;
+paintSheet=function(){
+  const s=ui.sheet;
+  if(s?.type==='manageConnector'){
+    const p=CALENDAR_PROVIDERS.find(p=>p.id===s.id),connection=data.calendarConnections[s.id];
+    const scopes=s.id==='dingtalk'?data.dingTalk.scopes:connection?.scopes||['calendar','minutes'];
+    workSheet(p.name,`<div class="connector-connected">${icon('check')}已连接</div><h3 class="permission-heading">已允许访问</h3><ul class="connection-permissions">${scopes.map(scope=>`<li>${icon(scope==='calendar'?'calendar':scope==='minutes'?'file':'chat')}<span>${esc(DING_SCOPES[scope])}</span></li>`).join('')}</ul>${btn('选择要跟踪的会议','calendarProvider',s.id,'primary full')}${btn('断开连接','confirmDisconnectConnector',s.id,'danger-link')}`);return;
+  }
+  if(s?.type==='confirmDisconnectConnector'){
+    const p=CALENDAR_PROVIDERS.find(p=>p.id===s.id);
+    workSheet('断开'+p.name+'？',`<p class="sheet-desc">停止读取新的日程与会议资料。已有日程、跟进事项和历史记录会保留。</p>${btn('断开连接','disconnectConnector',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return;
+  }
+  if(s?.type==='about'){
+    workSheet('关于 Snack',`<div class="about-brand"><img src="${LOGO}" alt=""><h3>Snack · AI 秘书</h3><span>交互原型</span></div><p class="sheet-desc">业务数据、AI 回复、连接、会议录音与通知均为演示。聊天语音可使用浏览器语音识别；上传只保存文件名。你的演示记录保存在当前浏览器。</p><div class="about-actions">${settingRow('重新体验首次使用','','onboard')}${settingRow('恢复初始演示','','reset')}</div>`);return;
+  }
+  refreshPaintBefore();
+};
+const refreshHandleBefore=handle;
+handle=function(action,id,el){
+  if(action==='calendarConsentNext'){
+    const state=ui.calendarImport;if(state?.token===id&&state.stage==='connect'){state.stage='consent';paintSheet()}return;
+  }
+  if(action==='selectAllMeetings'){
+    const boxes=[...document.querySelectorAll('#calendarConsentForm input[name="meeting"]')],select=boxes.some(x=>!x.checked);
+    boxes.forEach(x=>x.checked=select);updateMeetingSelection();return;
+  }
+  if(action==='manageConnector'){
+    if(calendarConnected(id))showSheet('manageConnector',{id});else beginCalendarImport(id);return;
+  }
+  if(action==='confirmDisconnectConnector'){showSheet(action,{id});return}
+  if(action==='disconnectConnector'){
+    data.calendarConnections[id]={connected:false,authorizedIds:[],scopes:[]};
+    if(id==='dingtalk'){data.dingTalk={cliConnected:false,scopes:[]};data.settings.dingTalk=false;data.settings.group=false}
+    data.settings.calendar=CALENDAR_PROVIDERS.some(p=>calendarConnected(p.id));save();closeSheet(false);render();toast('已断开连接');return;
+  }
+  if(action==='dingConnection'){handle('manageConnector','dingtalk');return}
+  if(['prepare','record','postTasks'].includes(action)){
+    const event=action==='postTasks'?data.events.find(e=>e.recorded===id):data.events.find(e=>e.id===id);
+    if(event?.provider&&!calendarConnected(event.provider)){beginCalendarImport(event.provider,{editEventId:event.id});return;}
+  }
+  if(action==='onboard')closeSheet(false);
+  refreshHandleBefore(action,id,el);
+};
+function updateMeetingSelection(){
+  const state=ui.calendarImport;if(!state||state.stage!=='select'||state.editEventId)return;
+  state.selectedIds=[...document.querySelectorAll('#calendarConsentForm input[name="meeting"]:checked')].map(x=>x.value);
+  const count=state.selectedIds.length,all=document.querySelectorAll('#calendarConsentForm input[name="meeting"]').length;
+  const label=document.getElementById('meetingSelectedCount'),submit=document.getElementById('confirmMeetings'),selectAll=document.querySelector('[data-action="selectAllMeetings"]');
+  if(label)label.textContent='已选 '+count+' 场';if(submit){submit.disabled=!count;submit.textContent='开始跟踪'+(count?'（'+count+'）':'')}if(selectAll)selectAll.textContent=count===all?'取消全选':'全选';
+}
+document.addEventListener('change',e=>{if(e.target.matches('#calendarConsentForm input[name="meeting"]'))updateMeetingSelection()});
+
+function goalSourceConnected(goal){
+  if(goal.sourceKey==='dingTalk')return !!data.dingTalk.cliConnected&&(goal.requiredScopes||[]).every(scope=>data.dingTalk.scopes.includes(scope));
+  if(goal.sourceKey==='calendar'){
+    const providers=[...new Set([goal.sourceProvider,...(goal.sourceIds||[]).map(id=>{const file=data.files.find(file=>file.id===id);return data.events.find(event=>event.id===file?.eventId)?.provider})].filter(Boolean))];
+    if(providers.length)return providers.every(provider=>calendarConnected(provider==='dingTalk'?'dingtalk':provider));
+  }
+  return !!data.settings[goal.sourceKey];
+}
 
 render();
 </script>
