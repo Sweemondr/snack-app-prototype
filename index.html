@@ -200,6 +200,72 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 
 /* Keep the memory overview and its folders within easy reach. */
 .lib16-memory-heading{margin:0 0 16px;justify-content:flex-start;gap:10px}.lib16-memory-heading h1{flex:1}.lib16-memory-heading>.icon-button:first-child{background:transparent;color:var(--ink);width:30px;margin-left:-7px}.lib16-intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 13px 13px;gap:0;margin:16px 0}.lib16-intro-head{grid-column:1/-1}.lib16-intro-head h2{font-size:14px}.lib16-intro-row{padding:9px 2px;border:0;justify-content:center;min-height:56px;font-size:12px}.lib16-intro-row>span{flex-direction:column;gap:9px}.lib16-intro-row>svg{display:none}.lib16-summary{margin:16px 0;padding:17px}.lib16-summary p{-webkit-line-clamp:3;font-size:13px;margin:11px 0}.lib16-folder-grid{margin-top:16px}.lib16-folder{min-height:116px}
+/* Library presents remembered context and generated/uploaded files separately. */
+.library-sections{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#f4f4f4;padding:4px;border-radius:13px;margin:0 0 20px}
+.library-sections [role="tab"]{display:flex;align-items:center;justify-content:center;min-width:0;min-height:42px;border-radius:10px;padding:8px 16px;color:var(--muted);font-size:15px;font-weight:550;line-height:1.5}
+.library-sections [role="tab"][aria-selected="true"]{background:#fff;color:var(--accent);font-weight:650;box-shadow:0 1px 4px #18212e0b}
+.library-sections [role="tab"]:hover:not([aria-selected="true"]){background:#eaeaea;filter:none}
+.library-sections [role="tab"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.library-folder-heading{display:flex;align-items:center;gap:10px;min-height:42px;margin:-3px 0 18px}
+.library-folder-heading>h1{flex:1;min-width:0;font-size:22px;line-height:1.5;font-weight:650;letter-spacing:-.025em;overflow-wrap:anywhere}
+.library-folder-heading>.icon-button{flex:0 0 34px;width:34px;height:40px;min-height:40px;color:var(--accent)}
+.library-folder-heading>.icon-button:first-child{color:var(--ink);margin-left:-7px}
+.library-folder-heading>.icon-button svg{width:21px;height:21px}
+.library-split-page .library-search{width:100%;margin:0 0 18px;height:44px}
+.library-split-page .library-search input{font-size:13px}
+.library-split-page .lib-split-folders{margin:16px 0 25px;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.library-split-page .lib16-folder{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;min-height:116px;padding:16px;text-align:left;background:#faf9f7;border-radius:14px}
+.library-split-page .lib16-folder strong{font-size:15px;line-height:1.6}
+.library-split-page .lib16-folder small{font-size:11px;line-height:1.6;color:#717171}
+.library-split-page .lib16-folder-icon{display:block;color:var(--accent);margin-bottom:5px}
+.library-split-page .lib16-folder-icon svg{width:28px;height:28px;stroke-width:1.5}
+.library-split-page .lib16-folder:hover{background:#fff1e5;filter:none}
+.library-split-page .section-line h2{font-size:17px;font-weight:650}
+@media(max-width:360px){.library-folder-heading>h1{font-size:20px}.library-split-page .lib16-folder{padding:14px;min-height:110px}.library-split-page .lib-split-folders{gap:8px}.library-split-page .lib16-folder strong{font-size:14px}}
+
+/* Conversational setup keeps agreed criteria readable and past turns immutable. */
+.app .circle-header>.icon-button.library-top-upload{left:auto;right:18px;top:18px;pointer-events:auto;width:44px;height:44px;color:var(--accent);background:#fff1e5}
+.follow-question,.follow-review{overflow-wrap:anywhere}
+.follow-question>p,.follow-review>p{margin:0;font-size:15px;line-height:1.8}
+.follow-options{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
+.follow-option{padding:9px 13px;min-height:44px;background:#fff;border:1px solid #e2e4e6;border-radius:10px;color:var(--accent);font-size:13px;line-height:1.5;text-align:left}
+.follow-option:disabled{opacity:.6;color:var(--muted);cursor:default}
+.follow-fields{margin:18px 0;display:grid;gap:16px}
+.follow-fields>div{display:block}
+.follow-fields dt{font-size:12px;font-weight:500;color:var(--muted);line-height:1.6;margin-bottom:3px}
+.follow-fields dd{position:relative;margin:0;font-size:14px;line-height:1.75;overflow-wrap:anywhere}
+.follow-fields dd:has(.follow-field-edit){padding-right:36px;min-height:38px}
+.follow-field-edit{position:absolute;right:-4px;top:-5px;display:grid;place-items:center;width:40px;height:44px;color:var(--muted);border-radius:8px}
+.follow-field-edit svg{width:17px;height:17px}
+.follow-field-edit:hover{color:var(--accent);background:#fff}
+.follow-review .primary{margin:18px 0 0;min-height:46px;font-size:14px}
+.follow-history-label{color:var(--muted);font-size:11px}
+.follow-context{padding-bottom:4px}
+.follow-created{width:100%;padding:22px;background:#fff;border:1px solid #eed9c9;border-radius:18px;overflow-wrap:anywhere}
+.follow-created-state{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--accent);margin-bottom:13px}
+.follow-created-state svg{width:17px;height:17px}
+.follow-created h3{font-size:18px;font-weight:650;line-height:1.5;margin:0 0 10px}
+.follow-created>p{font-size:14px;color:var(--muted);line-height:1.8;margin:0 0 16px}
+.follow-created details>summary{font-size:12px;color:var(--muted);cursor:pointer;min-height:32px}
+.follow-view-goal{display:flex;align-items:center;justify-content:space-between;min-height:46px;width:100%;color:var(--accent);font-size:14px;border-top:1px solid var(--line);padding-top:12px;text-align:left}
+.follow-view-goal svg{width:18px;height:18px}
+.follow-add-heading{margin:28px 0 0;padding-top:14px}
+.follow-add-heading h2{font-size:18px;font-weight:650}
+.follow-active-goals{margin-top:8px}
+.follow-detail .follow-fields{padding-bottom:18px;border-bottom:1px solid var(--line)}
+.follow-detail .detail-state{gap:7px}
+@media(max-width:360px){.follow-created{padding:18px}.follow-created h3{font-size:16px}.follow-question>p,.follow-review>p{font-size:14px}.follow-fields dd{font-size:13px}}
+
+
+.follow-review-scope{margin:18px 0 12px}
+.follow-review-scope h3,.follow-review-scope p{position:relative;padding-right:36px;margin:0;min-height:30px;line-height:1.65;overflow-wrap:anywhere}
+.follow-review-scope h3{font-size:17px;font-weight:650}
+.follow-review-scope p{font-size:14px;color:var(--muted)}
+.follow-review-criteria{position:relative;padding:10px 36px 10px 0;font-size:14px;line-height:1.85;overflow-wrap:anywhere;border-top:1px solid #dfe1e4}
+.follow-review-criteria .follow-field-edit{top:4px}
+.follow-review-more{margin:12px 0 4px;color:var(--muted);font-size:12px}
+.follow-review-more>summary{line-height:1.8;cursor:pointer;padding:6px 0}
+.follow-review-more .follow-fields{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -366,7 +432,7 @@ function upgradeData() {
   data.goals.forEach(g => {
     g.owner ||= g.project==='华东大区'?'华东大区经理':'项目经理';
     g.lastCheck ||= '11 月 13 日 08:50';
-    g.nextCheck ||= '2026-11-14T09:30';
+    if(!g.setupSnapshot)g.nextCheck ||= '2026-11-14T09:30';
     g.sourceKey ||= 'nexus';
     g.sourceIds ||= g.id==='g1'?['f4','f3']:g.project==='SCM'?['f2','f3']:['f5','f3'];
   });
@@ -987,128 +1053,153 @@ document.addEventListener('submit',e=>{
 },true);
 save();
 
-// Library and memory: three product dimensions, shared records and explicit sources.
+// Library separates remembered context from files; both retain their own navigation.
 (() => {
-  const lib14Titles = {
-    memory: '关于我的了解', 'memory/profile': '身份与偏好',
+  const libTitles = {
+    memory: '关于我的记忆', 'memory/profile': '身份与偏好',
     'memory/tracking': '跟进与历史', 'memory/calendar': '日程与会议',
-    scm: 'SCM 项目', east: '华东大区', meetings: '会议记录', reports: '分析报告',
-    knowledge: '知识库', uploads: '上传资料'
+    scm: 'SCM 项目', east: '华东大区', meetings: '会议记录',
+    reports: '分析报告', knowledge: '知识库', uploads: '上传资料'
   };
-  const lib14Children = ['memory/profile', 'memory/tracking', 'memory/calendar'];
-  const lib14Text = value => String(value || '').toLocaleLowerCase();
-  const lib14Query = () => lib14Text(ui.query).trim();
-  const lib14Matches = values => !lib14Query() || values.some(value => lib14Text(value).includes(lib14Query()));
-  const lib14Title = id => lib14Titles[id] || folders.find(folder => folder[0] === id)?.[1] || id;
-  const lib14Parent = id => id?.startsWith('memory/') ? 'memory' : null;
-  const lib14IsKnowledge = id => id === 'memory' || id?.startsWith('memory/');
-  const lib16Profile = () => (data.memories || []).filter(item => item.category !== '项目背景');
-  const lib16Context = () => (data.memories || []).filter(item => item.category === '项目背景');
-  const lib14ScopeFiles = id => {
-    if (id === 'memory/calendar') return data.files.filter(file => file.kind === '录音' || file.eventId || file.id.startsWith('prep-') || file.folder === id);
-    return data.files.filter(file => !id || file.folder === id);
+  const libChildren = ['memory/profile', 'memory/tracking', 'memory/calendar'];
+  const isMemoryFolder = id => id === 'memory' || id?.startsWith('memory/');
+  const librarySection = () => {
+    if (ui.folder) return isMemoryFolder(ui.folder) ? 'memory' : 'files';
+    return ui.librarySection === 'files' ? 'files' : 'memory';
   };
-  const lib14FileMatches = file => (ui.filter === '全部' || file.kind === ui.filter || (ui.filter === '项目笔记' && ['录音', '报告'].includes(file.kind))) && lib14Matches([file.title, file.summary]);
-  const lib14MemoryMatches = item => lib14Matches([item.title, item.text, item.category, item.origin]);
-  const lib14GoalMatches = goal => lib14Matches([goal.title, goal.project, goal.summary, ...(goal.logs || []).flat()]);
-  const lib14EventMatches = event => lib14Matches([event.title, event.desc, event.people, event.location]);
-  const lib14FolderMatches = id => {
-    if (!lib14Query() || lib14Matches([lib14Title(id)])) return true;
-    if (id === 'memory') return (data.memories || []).some(lib14MemoryMatches) || data.goals.some(lib14GoalMatches) || data.events.some(lib14EventMatches) || lib14ScopeFiles('memory/calendar').some(lib14FileMatches);
-    if (id === 'memory/profile') return lib16Profile().some(lib14MemoryMatches);
-    if (id === 'memory/tracking') return data.goals.some(lib14GoalMatches) || lib16Context().some(lib14MemoryMatches);
-    if (id === 'memory/calendar') return data.events.some(lib14EventMatches) || lib14ScopeFiles(id).some(lib14FileMatches);
-    return lib14ScopeFiles(id).some(lib14FileMatches);
+  ui.librarySection = data.librarySection === 'files' ? 'files' : 'memory';
+  const persistSection = section => {
+    ui.librarySection = section;
+    if (data.librarySection !== section) { data.librarySection = section;save(); }
   };
-  const lib14FolderMeta = id => {
-    if (id === 'memory') return '3 个分类';
-    if (id === 'memory/profile') return `${lib16Profile().length} 条记忆`;
-    if (id === 'memory/tracking') return `${data.goals.length} 件事项 · ${lib16Context().length} 条背景`;
-    if (id === 'memory/calendar') return `${data.events.length} 项日程 · ${lib14ScopeFiles(id).length} 份资料`;
-    return `${lib14ScopeFiles(id).length} 份资料`;
+  // Uploads made from the former memory directory remain available under Files.
+  let migratedFiles = false;
+  data.files.forEach(file => {
+    if (isMemoryFolder(file.folder)) { file.folder = 'uploads';migratedFiles = true; }
+  });
+  if (migratedFiles) save();
+  const routeBeforeLibrarySplit = routeSnapshot;
+  routeSnapshot = function() { return {...routeBeforeLibrarySplit(), librarySection: librarySection()}; };
+
+  const libText = value => String(value || '').toLocaleLowerCase();
+  const libQuery = () => libText(ui.query).trim();
+  const libMatches = values => !libQuery() || values.some(value => libText(value).includes(libQuery()));
+  const libTitle = id => libTitles[id] || folders.find(folder => folder[0] === id)?.[1] || id;
+  const libParent = id => id?.startsWith('memory/') ? 'memory' : null;
+  const profileMemories = () => (data.memories || []).filter(item => item.category !== '项目背景');
+  const projectMemories = () => (data.memories || []).filter(item => item.category === '项目背景');
+  const libMemoryMatches = item => libMatches([item.title, item.text, item.category, item.origin]);
+  const libGoalMatches = goal => libMatches([goal.title, goal.project, goal.summary, ...(goal.logs || []).flat()]);
+  const libEventMatches = event => libMatches([event.title, event.desc, event.people, event.location]);
+  const libFileMatches = file => libMatches([file.title, file.summary, file.kind, file.meta]);
+  const libScopeFiles = id => data.files.filter(file => !id || file.folder === id);
+  const libFolderMatches = id => {
+    if (!libQuery() || libMatches([libTitle(id)])) return true;
+    if (id === 'memory') return (data.memories || []).some(libMemoryMatches) || data.goals.some(libGoalMatches) || data.events.some(libEventMatches);
+    if (id === 'memory/profile') return profileMemories().some(libMemoryMatches);
+    if (id === 'memory/tracking') return projectMemories().some(libMemoryMatches) || data.goals.some(libGoalMatches);
+    if (id === 'memory/calendar') return data.events.some(libEventMatches);
+    return libScopeFiles(id).some(libFileMatches);
   };
-  const lib14FolderRow = id => `<button class="lib16-folder" data-action="folder" data-id="${esc(id)}"><span class="lib16-folder-icon">${icon('folder')}</span><strong>${esc(lib14Title(id))}</strong><small>${lib14FolderMeta(id)}</small></button>`;
-  const lib14MemoryRow = item => `<button class="folder-row lib14-memory" data-action="memoryItem" data-id="${esc(item.id)}"><span class="file-icon">${icon('file')}</span><span class="file-info"><strong>${esc(item.title)}</strong><span class="lib14-row-summary">${esc(item.text)}</span><small>${esc(item.origin || '你提供的背景')}${item.updated ? ' · ' + esc(item.updated) : ''}</small></span>${icon('right')}</button>`;
-  const lib14GoalRecord = goal => `<div class="lib14-record">${goalRow(goal)}${goal.logs?.length ? `<details class="lib14-history"><summary>历史记录 · ${goal.logs.length}</summary><div class="timeline">${goal.logs.map(([time, content]) => `<div class="timeline-item"><time>${esc(time)}</time><p>${esc(content)}</p></div>`).join('')}</div></details>` : ''}</div>`;
-  const lib14EventRecord = event => `<div class="lib14-record"><button class="folder-row lib14-event" data-action="event" data-id="${esc(event.id)}"><span class="file-icon">${icon('calendar')}</span><span class="file-info"><strong>${esc(event.title)}</strong><small>${esc(shortDate(fullDay(event)))} · ${esc(event.time || '')}${event.end ? '–' + esc(event.end) : ''}</small>${event.desc ? `<span class="lib14-row-summary">${esc(event.desc)}</span>` : ''}</span>${icon('right')}</button></div>`;
-  const lib14Empty = (text, action = '', label = '') => `<div class="empty lib14-empty"><p>${esc(text)}</p>${lib14Query() ? btn('清除搜索', 'clearSearch', '', 'linklike') : action ? btn(label, action, '', 'linklike') : ''}</div>`;
-  const lib14Files = files => files.length ? files.map(fileRow).join('') : '';
-  const lib14RootFolders = () => [...new Set(['scm', 'east', 'meetings', 'reports', 'knowledge', ...data.files.map(file => file.folder).filter(id => id && !lib14IsKnowledge(id))])];
-  const lib16Summary = (compact = false) => {
-    const entries = lib16Profile();
-    const preview = entries.slice(0, 2).map(item => item.text).join(' ');
-    return `<button class="lib16-summary ${compact ? 'compact' : ''}" data-action="folder" data-id="${compact ? 'memory' : 'memory/profile'}"><span class="lib16-summary-heading"><span>${icon('memory')}<strong>关于我的了解</strong></span>${icon('right')}</span><p>${esc(preview || '添加你的身份和偏好，让每次协助更贴合你。')}</p><small>${compact ? '身份与偏好 · 跟进与历史 · 日程与会议' : entries.length ? `${entries.length} 条记忆` : '添加身份与偏好'}</small></button>`;
+  const libFolderMeta = id => {
+    if (id === 'memory') return '3 个文件夹';
+    if (id === 'memory/profile') return `${profileMemories().length} 条记忆`;
+    if (id === 'memory/tracking') return `${data.goals.length} 件事项 · ${projectMemories().length} 条背景`;
+    if (id === 'memory/calendar') return `${data.events.length} 项日程`;
+    return `${libScopeFiles(id).length} 份文件`;
   };
-  const lib16Intro = () => data.memoryIntroDismissed ? '' : `<section class="lib16-intro" aria-label="补充记忆"><div class="lib16-intro-head"><h2>补充我的记忆</h2>${ib('收起补充记忆入口', 'close', 'memoryIntroDismiss')}</div>${[['upload', '上传文件', 'libraryAdd'], ['link', '连接应用', 'sources'], ['chat', '和 Snack 聊聊', 'memoryChat']].map(([i, title, action]) => `<button class="lib16-intro-row" data-action="${action}"><span>${icon(i)}${title}</span>${icon('right')}</button>`).join('')}</section>`;
+  const libFolder = id => `<button class="lib16-folder" data-action="folder" data-id="${esc(id)}"><span class="lib16-folder-icon">${icon('folder')}</span><strong>${esc(libTitle(id))}</strong><small>${libFolderMeta(id)}</small></button>`;
+  const libFolderGrid = ids => ids.length ? `<div class="lib16-folder-grid lib-split-folders">${ids.map(libFolder).join('')}</div>` : '';
+  const libMemoryRow = item => `<button class="folder-row lib14-memory" data-action="memoryItem" data-id="${esc(item.id)}"><span class="file-icon">${icon('file')}</span><span class="file-info"><strong>${esc(item.title)}</strong><span class="lib14-row-summary">${esc(item.text)}</span><small>${esc(item.origin || '你提供的背景')}${item.updated ? ' · ' + esc(item.updated) : ''}</small></span>${icon('right')}</button>`;
+  const libGoalRecord = goal => `<div class="lib14-record">${goalRow(goal)}${goal.logs?.length ? `<details class="lib14-history"><summary>历史记录 · ${goal.logs.length}</summary><div class="timeline">${goal.logs.map(([time, content]) => `<div class="timeline-item"><time>${esc(time)}</time><p>${esc(content)}</p></div>`).join('')}</div></details>` : ''}</div>`;
+  const libEventRecord = event => `<div class="lib14-record"><button class="folder-row lib14-event" data-action="event" data-id="${esc(event.id)}"><span class="file-icon">${icon('calendar')}</span><span class="file-info"><strong>${esc(event.title)}</strong><small>${esc(shortDate(fullDay(event)))} · ${esc(event.time || '')}${event.end ? '–' + esc(event.end) : ''}</small>${event.desc ? `<span class="lib14-row-summary">${esc(event.desc)}</span>` : ''}</span>${icon('right')}</button></div>`;
+  const libEmpty = (text, action = '', label = '') => `<div class="empty lib14-empty"><p>${esc(text)}</p>${libQuery() ? btn('清除搜索', 'clearSearch', '', 'linklike') : action ? btn(label, action, '', 'linklike') : ''}</div>`;
+  const fileFolders = () => [...new Set(['scm', 'east', 'meetings', 'reports', 'knowledge', ...data.files.map(file => file.folder).filter(id => id && !isMemoryFolder(id))])];
+  const sectionLabel = section => section === 'memory' ? '记忆' : '文件';
 
   library = function() {
-    const path = ui.folder ? ['memory', ui.folder].filter((id, index, ids) => (index || lib14IsKnowledge(ui.folder)) && ids.indexOf(id) === index) : [];
-    const breadcrumb = ui.folder && ui.folder !== 'memory' ? `<nav class="lib14-path" aria-label="资料路径">${ib('返回' + (lib14Parent(ui.folder) ? lib14Title(lib14Parent(ui.folder)) : '全部资料'), 'back', 'folderBack')}<button data-action="folderBack" class="lib14-crumb-root">全部资料</button>${path.map(id => `<span aria-hidden="true">/</span>${id === ui.folder ? `<span aria-current="page">${esc(lib14Title(id))}</span>` : `<button data-action="folder" data-id="${esc(id)}">${esc(lib14Title(id))}</button>`}`).join('')}</nav>` : '';
-    const memoryTools = ui.folder === 'memory' ? `<div class="lib16-memory-heading">${ib('返回全部资料','back','folderBack')}<h1>记忆</h1>${data.memoryIntroDismissed ? ib('展开补充记忆入口', 'plus', 'memoryIntroToggle') : ''}</div>` : '';
-    return `<section class="page lib14-page">${breadcrumb}${memoryTools}<div class="lib14-searchbar"><label class="search">${icon('search')}<input id="librarySearch" aria-label="搜索资料" placeholder="${lib14IsKnowledge(ui.folder) ? '搜索记忆' : '搜索文件、录音、知识库'}" value="${esc(ui.query)}"></label>${ib('上传资料', 'upload', 'libraryAdd')}</div>${!lib14IsKnowledge(ui.folder) ? `<div class="filter-row" aria-label="资料类型">${['全部', '项目笔记', '知识库', '文件'].map(type => `<button class="${ui.filter === type ? 'selected' : ''}" data-action="fileFilter" data-id="${type}" aria-pressed="${ui.filter === type}">${type}</button>`).join('')}</div>` : ''}<div id="libraryResults">${libraryResults()}</div></section>`;
+    const section = librarySection();persistSection(section);
+    const tabs = !ui.folder ? `<div class="library-sections" role="tablist" aria-label="资料库分区">${[['memory', '记忆'], ['files', '文件']].map(([id, label]) => `<button type="button" role="tab" id="library-section-${id}" aria-controls="libraryPanel" aria-selected="${section === id}" tabindex="${section === id ? 0 : -1}" data-action="librarySection" data-id="${id}">${label}</button>`).join('')}</div>` : '';
+    const parent = libParent(ui.folder);
+    const heading = ui.folder ? `<div class="library-folder-heading">${ib('返回' + (parent ? libTitle(parent) : sectionLabel(section)), 'back', 'folderBack')}<h1>${esc(libTitle(ui.folder))}</h1>${ui.folder === 'memory/profile' ? ib('添加记忆', 'plus', 'newMemory') : ''}</div>` : '';
+    const searchLabel = section === 'memory' ? '搜索记忆' : '搜索文件';
+    return `<section class="page lib14-page library-split-page">${tabs}${heading}<div id="libraryPanel" ${!ui.folder ? `role="tabpanel" aria-labelledby="library-section-${section}"` : ''}><label class="search library-search">${icon('search')}<input id="librarySearch" aria-label="${searchLabel}" placeholder="${searchLabel}" value="${esc(ui.query)}"></label><div id="libraryResults">${libraryResults()}</div></div></section>`;
   };
 
   libraryResults = function() {
-    const files = lib14ScopeFiles(ui.folder).filter(lib14FileMatches);
-    if (ui.folder === 'memory') {
-      const children = lib14Children.filter(lib14FolderMatches);
-      const overview = !lib14Query() ? lib16Intro() + lib16Summary() : '';
-      return overview + (children.length ? `<div class="lib16-folder-grid memory-folders">${children.map(lib14FolderRow).join('')}</div>` : '') + lib14Files(files) || lib14Empty('没有找到相关记忆');
+    const section = librarySection();
+    if (section === 'memory') {
+      if (!ui.folder) return libFolderMatches('memory') ? libFolderGrid(['memory']) : libEmpty('没有找到相关记忆');
+      if (ui.folder === 'memory') return libFolderGrid(libChildren.filter(libFolderMatches)) || libEmpty('没有找到相关记忆');
+      if (ui.folder === 'memory/profile') return profileMemories().filter(libMemoryMatches).map(libMemoryRow).join('') || libEmpty(libQuery() ? '没有找到相关记忆' : '还没有保存的身份与偏好', 'newMemory', '添加记忆');
+      if (ui.folder === 'memory/tracking') {
+        const context = projectMemories().filter(libMemoryMatches).map(libMemoryRow).join('');
+        const goals = data.goals.filter(libGoalMatches);
+        const active = goals.filter(goal => goal.status !== 'done');
+        const finished = goals.filter(goal => goal.status === 'done');
+        return context + active.map(libGoalRecord).join('') + (finished.length ? `<div class="section-line"><h2>已完成</h2></div>${finished.map(libGoalRecord).join('')}` : '') || libEmpty(libQuery() ? '没有找到相关记录' : '还没有跟进记录', 'memoryGoals', '选择一件事开始跟进');
+      }
+      if (ui.folder === 'memory/calendar') {
+        const events = data.events.filter(libEventMatches).slice().sort((a, b) => `${fullDay(b)} ${b.time}`.localeCompare(`${fullDay(a)} ${a.time}`));
+        return events.map(libEventRecord).join('') || libEmpty(libQuery() ? '没有找到相关记录' : '还没有保存的日程与会议', 'memoryCalendar', '添加日程');
+      }
+      return libEmpty('没有找到相关记忆');
     }
-    if (ui.folder === 'memory/profile') {
-      const rows = lib16Profile().filter(lib14MemoryMatches).map(lib14MemoryRow).join('');
-      const add = !lib14Query() ? `<div class="lib16-section-action">${btn('添加记忆', 'newMemory', '', 'linklike')}</div>` : '';
-      return add + (rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记忆' : '还没有保存的身份与偏好'));
-    }
-    if (ui.folder === 'memory/tracking') {
-      const context = lib16Context().filter(lib14MemoryMatches).map(lib14MemoryRow).join('');
-      const goals = data.goals.filter(lib14GoalMatches);
-      const active = goals.filter(goal => goal.status !== 'done');
-      const finished = goals.filter(goal => goal.status === 'done');
-      const rows = `${context}${active.map(lib14GoalRecord).join('')}${finished.length ? `<div class="section-line"><h2>已完成</h2></div>${finished.map(lib14GoalRecord).join('')}` : ''}`;
-      return rows + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有跟进记录', 'memoryGoals', '选择一件事开始跟进');
-    }
-    if (ui.folder === 'memory/calendar') {
-      const events = data.events.filter(lib14EventMatches).slice().sort((a, b) => `${fullDay(b)} ${b.time}`.localeCompare(`${fullDay(a)} ${a.time}`));
-      return events.map(lib14EventRecord).join('') + (events.length && files.length ? '<div class="section-line"><h2>会议资料</h2></div>' : '') + lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关记录' : '还没有保存的日程与会议', 'memoryCalendar', '添加日程');
-    }
-    if (ui.folder) return lib14Files(files) || lib14Empty(lib14Query() ? '没有找到相关资料' : '这里还没有资料', 'libraryAdd', '上传资料');
-    const rootFolders = ui.filter === '全部' ? lib14RootFolders().filter(lib14FolderMatches) : [];
-    const overview = ui.filter === '全部' && lib14FolderMatches('memory') ? lib16Summary(true) : '';
-    const folderRows = rootFolders.length ? `<div class="lib16-folder-grid">${rootFolders.map(lib14FolderRow).join('')}</div>` : '';
-    const recentTitle = (folderRows || overview) && files.length && !lib14Query() ? '<div class="section-line"><h2>最近资料</h2></div>' : '';
-    return overview + folderRows + recentTitle + lib14Files(files) || lib14Empty('没有找到相关资料');
+    const files = libScopeFiles(ui.folder).filter(libFileMatches);
+    const rows = files.map(fileRow).join('');
+    if (ui.folder) return rows || libEmpty(libQuery() ? '没有找到相关文件' : '这里还没有文件', 'libraryAdd', '上传文件');
+    const directories = libFolderGrid(fileFolders().filter(libFolderMatches));
+    const recent = files.length && !libQuery() ? '<div class="section-line"><h2>最近文件</h2></div>' : '';
+    return directories + recent + rows || libEmpty('没有找到相关文件');
   };
 
-  const lib14HandleBefore = handle;
+  const handleBeforeLibrarySplit = handle;
   handle = function(action, id, el) {
+    if (action === 'librarySection') {
+      if (!['memory', 'files'].includes(id)) return;
+      stash();ui.folder = null;ui.query = '';ui.filter = '全部';persistSection(id);render();document.getElementById('library-section-' + id)?.focus();return;
+    }
     if (action === 'memory') {
-      stash();closeSheet(false);ui.tab = 'library';ui.page = 'main';ui.stack = [];ui.previous = null;ui.folder = 'memory';ui.query = '';ui.filter = '全部';render();return;
+      stash();closeSheet(false);ui.tab = 'library';ui.page = 'main';ui.stack = [];ui.previous = null;ui.folder = 'memory';ui.query = '';ui.filter = '全部';persistSection('memory');render();return;
     }
     if (action === 'folder') {
-      stash();ui.folder = id;ui.query = '';ui.filter = '全部';render();return;
+      stash();ui.folder = id;ui.query = '';ui.filter = '全部';persistSection(isMemoryFolder(id) ? 'memory' : 'files');render();return;
     }
     if (action === 'folderBack') {
-      stash();ui.folder = el?.classList.contains('lib14-crumb-root') ? null : lib14Parent(ui.folder);ui.query = '';ui.filter = '全部';render();return;
-    }
-    if (action === 'memoryIntroDismiss' || action === 'memoryIntroToggle') {
-      data.memoryIntroDismissed = action === 'memoryIntroDismiss' || !data.memoryIntroDismissed;save();render();return;
-    }
-    if (action === 'memoryChat') {
-      go('chat');ui.inputMode = 'text';ui.reference = null;ui.goalReference = null;ui.draft = '我想补充一些关于我的信息：';render();document.getElementById('draft')?.focus();return;
+      stash();const section = librarySection();ui.folder = libParent(ui.folder);ui.query = '';ui.filter = '全部';persistSection(section);render();return;
     }
     if (action === 'memoryGoals') { go('goals');return; }
     if (action === 'memoryCalendar') { go('calendar');handle('addEvent');return; }
-    lib14HandleBefore(action, id, el);
+    handleBeforeLibrarySplit(action, id, el);
   };
+  document.addEventListener('keydown', event => {
+    const tab = event.target.closest?.('[role="tab"][data-action="librarySection"]');
+    if (!tab || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === 'Home' ? 'memory' : event.key === 'End' ? 'files' : tab.dataset.id === 'memory' ? 'files' : 'memory';
+    handle('librarySection', next);
+  });
 
-  const lib14PaintBefore = paintSheet;
+  const paintBeforeLibrarySplit = paintSheet;
   paintSheet = function() {
     if (ui.sheet?.type === 'libraryAdd') {
       workSheet('上传资料', `<p class="lib14-upload-value">提供项目背景，让秘书在回答问题、准备会议和跟进事项时有据可查。</p><p class="lib14-upload-limit">此原型仅保存文件名，不上传或解析文件内容。</p>${btn('选择文件', 'pickFile', '', 'primary full')}<input id="fileInput" type="file" hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.md,.mp3,.wav,.m4a,.png,.jpg">`);return;
     }
-    lib14PaintBefore();
+    paintBeforeLibrarySplit();
   };
+  // Capture this specific change before the legacy shared file handler.
+  document.addEventListener('change', event => {
+    if (event.target.id !== 'fileInput' || !event.target.files?.length) return;
+    event.stopImmediatePropagation();
+    const file = event.target.files[0];
+    const attach = ui.sheet?.type === 'attach';
+    const id = 'file' + Date.now();
+    data.files.unshift({id, title: file.name, kind: '文件', folder: 'uploads', meta: '刚刚 · 本地文件名', summary: '文件已加入原型列表。', uploaded: true});
+    save();closeSheet(false);
+    if (attach) { ui.reference = id;go('chat'); }
+    else { persistSection('files');go('library'); }
+    toast('已添加文件名，未上传文件内容');
+  }, true);
 })();
 
 
@@ -1199,6 +1290,187 @@ function goalSourceConnected(goal){
   }
   return !!data.settings[goal.sourceKey];
 }
+
+// Suggestions become a conversation; only a current, explicit confirmation commits a goal.
+const FOLLOW_PROMPTS={risk:'帮我跟进一个项目的重要变化。',progress:'帮我持续跟进一个问题的处理进度。',meeting:'帮我跟进会议里定下的事项。',custom:'我想持续跟进：'};
+function activeFollowDraft(){const d=data.followDraft;return d&&!d.confirmedGoalId&&!d.cancelled&&data.messages.some(m=>m.followId===d.id)?d:null}
+function followToken(d=activeFollowDraft()){return d?d.id+':'+d.revision:''}
+function followSourceLabel(key){return ({manual:'我在聊天里补充',nexus:'Nexus 经营数据',dingTalk:'钉钉日程与记录'})[key]||'我在聊天里补充'}
+function followSnapshot(d){return {project:d.project,focus:d.focus,criteria:d.criteria,rule:d.rule,sourceKey:d.sourceKey,template:d.template}}
+function followCriteria(focus,template){
+  const items=[];
+  if(/设备|出勤|闲置|调配/.test(focus))items.push('设备出勤下降、连续闲置，或调配安排有变化');
+  if(/回款|付款|资金|收款/.test(focus))items.push('约定回款逾期、付款承诺变化，或实际到账与计划不一致');
+  if(/安全|整改|隐患/.test(focus))items.push('新增安全隐患、整改逾期，或复核结果不符合约定');
+  if(/进度|处理|卡点|工期|交付/.test(focus))items.push('约定时间未完成、处理遇到卡点，或结果需要你确认');
+  if(!items.length)items.push(template==='meeting'?'负责人或约定时间变化、事项逾期，或完成结果待确认':'与已确认的计划不一致、承诺到期仍无结果，或需要你做决定');
+  return items.join('；')+'。普通进展保留记录，有上述变化时再提醒你。';
+}
+function followQuestion(d,stage,text,options=[]){
+  d.stage=stage;d.revision++;data.messages.push({type:'followQuestion',followId:d.id,revision:d.revision,text,options:[...options]});
+}
+function followReview(d,text='这些变化值得提醒你，对吗？也可以继续补充。'){
+  d.stage='review';d.revision++;data.messages.push({type:'followReview',followId:d.id,revision:d.revision,text,snapshot:followSnapshot(d),editing:!!d.existingGoalId});
+}
+function followRender(){ui.draft='';data.followInput='';ui.inputMode='text';save();render()}
+function startFollowConversation(text,template='risk'){
+  stopSourceVoice();clearTimeout(responseTimer);ui.loading=false;ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;
+  data.followSequence=(data.followSequence||0)+1;
+  const d=data.followDraft={id:'follow-'+Date.now().toString(36)+'-'+data.followSequence,template,revision:0,project:'',focus:'',criteria:'',rule:'关键变化时提醒',sourceKey:template==='risk'&&data.settings.nexus?'nexus':'manual'};
+  data.messages.push({type:'user',text});
+  followQuestion(d,'project',template==='meeting'?'想跟进哪场会议里定下的事？可以说会议名称，也可以直接说那件事。':template==='progress'?'想跟进哪个项目里的什么问题？先告诉我项目或事项名称。':'你想跟进哪个项目？可以说一个，也可以说几个。');
+  ui.followIdeaId=null;data.followPrefill=null;followRender();
+}
+function consumeFollowReply(text,d){
+  stopSourceVoice();clearTimeout(responseTimer);ui.loading=false;data.messages.push({type:'user',text});
+  if(/^(取消|取消设置|先不设置|先不跟进)[。！!\s]*$/.test(text)){d.cancelled=true;data.messages.push({type:'followNote',text:'已取消这次设置，聊天记录会保留。'});followRender();return}
+  if(d.stage==='project'){
+    d.project=text;followQuestion(d,'focus',d.template==='meeting'?'这次要接着跟进哪些决定？你最关心谁负责、什么时候落实，还是完成后的结果？':'关于「'+text+'」，你最想关注什么？',d.template==='meeting'?['负责人和约定时间','落实进度和结果']:d.template==='progress'?['处理进度和卡点','负责人和承诺时间']:['设备出勤与调配','回款与付款承诺','项目进度和风险']);
+  }else if(d.stage==='focus'){
+    d.focus=text;d.criteria=followCriteria(text,d.template);followReview(d);
+  }else if(d.stage==='edit-project'){d.project=text;followReview(d,'已更新跟进对象。请再确认一下。')}
+  else if(d.stage==='criteria'){d.criteria=text;followReview(d,'我会按你补充的标准判断。请确认后开始跟进。')}
+  else if(d.stage==='rule'){d.rule=text;followReview(d,'已更新提醒方式。请再确认一下。')}
+  else if(d.stage==='review'){
+    if(/^(好|好的|可以|是的|对|没问题|确认|就这样|开始跟进)[。！!\s]*$/.test(text))followReview(d,'好的，点击下方按钮确认这份设置。');
+    else {d.criteria=text;followReview(d,'已把你的补充作为变化标准。这样理解对吗？')}
+  }
+  followRender();
+}
+function prefillFollow(template){
+  const current=activeFollowDraft();closeSheet(false);ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;ui.inputMode='text';
+  if(current){go('chat');toast('继续完成刚才的设置');return}
+  go('chat');ui.followIdeaId=template;ui.draft=FOLLOW_PROMPTS[template]||FOLLOW_PROMPTS.custom;data.followPrefill={template,text:ui.draft};data.followInput=ui.draft;save();render();
+  const input=document.getElementById('draft');input?.focus();input?.setSelectionRange(ui.draft.length,ui.draft.length);
+}
+function confirmFollow(token){
+  const d=activeFollowDraft();if(!d||d.stage!=='review'||followToken(d)!==token||!d.project||!d.focus||!d.criteria)return false;
+  if(d.sourceKey==='dingTalk'&&!hasDingScopes('guided',d.template)){beginActivation('guided',d.template,{followId:d.id,revision:d.revision});return false}
+  if(d.sourceKey==='nexus'&&!data.settings.nexus){toast('Nexus 已断开，请更换资料来源或重新连接');return false}
+  const snapshot=followSnapshot(d),title=d.project+' · '+d.focus;
+  let goal=d.existingGoalId?data.goals.find(g=>g.id===d.existingGoalId):null;
+  if(d.existingGoalId&&!goal)return false;
+  if(!goal){goal={id:'goal-'+d.id,title,project:d.project,owner:'我',status:'active',phase:'tracking',template:d.template,date:'',nextCheck:'',lastCheck:'尚无新进展',sourceIds:[],summary:'已记住关注范围，等待相关进展。',condition:'你确认这件事已结束时停止跟进。',logs:[]};data.goals.unshift(goal)}
+  Object.assign(goal,{title,project:d.project,focus:d.focus,changeCriteria:d.criteria,rule:d.rule,sourceKey:d.sourceKey,requiredScopes:d.sourceKey==='dingTalk'?requiredScopes('guided',d.template):[],setupSnapshot:structuredClone(snapshot)});
+  goal.logs.unshift(['刚刚',d.existingGoalId?'你确认了新的跟进设置。':'你确认了跟进对象、关注重点和重要变化的判断标准。']);
+  d.confirmedGoalId=goal.id;data.followInput='';data.followPrefill=null;ui.followIdeaId=null;ui.draft='';
+  data.messages.push({type:'followCreated',followId:d.id,goalId:goal.id,title,snapshot:structuredClone(snapshot),editing:!!d.existingGoalId});
+  save();closeSheet(false);render();return goal.id;
+}
+const respondBeforeFollowGuide=respondToChat;
+respondToChat=function(text,key){
+  text=(text||'').trim();if(!text)return;
+  const d=activeFollowDraft();
+  if(d&&!key&&!ui.goalReference&&!ui.manualEventDraft&&!ui.reference){consumeFollowReply(text,d);return}
+  const intent=/(帮我|我想|我要|开始|持续).{0,20}(跟进|跟踪|盯住)|跟进一个|跟进项目/.test(text);
+  if(!key&&!ui.goalReference&&!ui.manualEventDraft&&!ui.reference&&(ui.followIdeaId||intent)){
+    startFollowConversation(text,ui.followIdeaId||(/会议|会上/.test(text)?'meeting':/处理|问题/.test(text)?'progress':'risk'));return;
+  }
+  respondBeforeFollowGuide(text,key);
+};
+sourceReply=respondToChat;
+function followFields(snapshot,editable=false,token=''){
+  return `<dl class="follow-fields">${[['project','跟进对象',snapshot.project],['focus','关注重点',snapshot.focus],['criteria','变化标准',snapshot.criteria],['rule','提醒方式',snapshot.rule]].map(([key,label,value])=>`<div><dt>${label}</dt><dd>${esc(value||'')}${editable?`<button type="button" class="follow-field-edit" aria-label="修改${label}" data-action="followEdit" data-id="${esc(token+':'+key)}">${icon('edit')}</button>`:''}</dd></div>`).join('')}<div><dt>资料来源</dt><dd>${esc(followSourceLabel(snapshot.sourceKey))}${editable?`<button type="button" class="follow-field-edit" aria-label="更换资料来源" data-action="followChooseSource" data-id="${esc(token)}">${icon('edit')}</button>`:''}</dd></div></dl>`;
+}
+function followReviewFields(snapshot,editable,token){
+  const edit=(key,label)=>editable?`<button type="button" class="follow-field-edit" aria-label="修改${label}" data-action="followEdit" data-id="${esc(token+':'+key)}">${icon('edit')}</button>`:'';
+  return `<div class="follow-review-scope"><h3>${esc(snapshot.project)}${edit('project','跟进对象')}</h3><p>${esc(snapshot.focus)}${edit('focus','关注重点')}</p></div><div class="follow-review-criteria">${esc(snapshot.criteria)}${edit('criteria','变化标准')}</div><details class="follow-review-more"><summary>${esc(snapshot.rule)} · ${esc(followSourceLabel(snapshot.sourceKey))}</summary><dl class="follow-fields"><div><dt>提醒方式</dt><dd>${esc(snapshot.rule)}${edit('rule','提醒方式')}</dd></div><div><dt>资料来源</dt><dd>${esc(followSourceLabel(snapshot.sourceKey))}${editable?`<button type="button" class="follow-field-edit" aria-label="更换资料来源" data-action="followChooseSource" data-id="${esc(token)}">${icon('edit')}</button>`:''}</dd></div></dl></details>`;
+}
+const messageBeforeFollowGuide=message;
+message=function(m){
+  const token=m.followId+':'+m.revision,active=followToken()===token;
+  if(m.type==='followNote')return sourceBubble(m.text);
+  if(m.type==='followQuestion')return `<div class="source-message-row"><div class="source-bubble rich-bubble follow-question"><p>${esc(m.text)}</p>${m.options?.length?`<div class="follow-options">${m.options.map((label,index)=>`<button class="follow-option" type="button" data-action="followAnswer" data-id="${esc(token+':'+index)}" ${active?'':'disabled'}>${esc(label)}</button>`).join('')}</div>`:''}</div></div>`;
+  if(m.type==='followReview')return `<div class="source-message-row"><div class="source-bubble rich-bubble follow-review"><p>${esc(m.text)}</p>${followReviewFields(m.snapshot,active,token)}${active?btn(m.editing?'确认修改':'确认，开始跟进','followConfirm',token,'primary full'):'<span class="follow-history-label">当时的设置</span>'}</div></div>`;
+  if(m.type==='followCreated')return `<div class="source-message-row"><section class="follow-created"><div class="follow-created-state">${icon('check')}${m.editing?'跟进设置已更新':'已开始持续跟进'}</div><h3>${esc(m.title)}</h3><p>${esc(m.snapshot.criteria)}</p><details><summary>已确认的设置</summary>${followFields(m.snapshot)}</details>${btn('查看跟进目标'+icon('right'),'goal',m.goalId,'follow-view-goal')}</section></div>`;
+  return messageBeforeFollowGuide(m);
+};
+const composerBeforeFollowGuide=composer;
+composer=function(){
+  let html=composerBeforeFollowGuide();const d=activeFollowDraft();
+  if(d&&!ui.goalReference&&!ui.manualEventDraft&&!ui.reference)html=html.replace('<form id="chatForm"',`<div class="reference follow-context">${icon('target')}<span>设置持续跟进</span>${ib('取消本次跟进设置','close','followCancel',d.id)}</div><form id="chatForm"`);
+  return html;
+};
+goals=function(){
+  const active=data.goals.filter(g=>g.status!=='done'),done=data.goals.filter(g=>g.status==='done');
+  return `<section class="page follow-page"><div class="page-title"><h1 class="long">持续跟进中</h1>${ib('说说想跟进的事','plus','customFollow')}</div>${active.length?`<div class="follow-active-goals">${active.map(goalRow).join('')}</div><div class="section-line follow-add-heading"><h2>继续添加</h2></div>`:''}${templateRows()}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`;
+};
+const rowBeforeFollowGuide=goalRow;
+goalRow=function(g){
+  if(!g.setupSnapshot)return rowBeforeFollowGuide(g);
+  return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.status==='done'?'check':g.status==='paused'?'pause':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span><span class="work-meta">${g.status==='done'?'已结束':g.status==='paused'?'已暂停':g.sourceKey==='manual'?'等待你补充进展':'持续跟进中'}</span></span>${icon('right')}</button>`;
+};
+const detailBeforeFollowGuide=goalDetail;
+goalDetail=function(){
+  const g=data.goals.find(g=>g.id===ui.id);if(!g?.setupSnapshot)return detailBeforeFollowGuide();
+  return `<section class="page follow-detail"><div class="detail-hero"><div class="detail-state">${icon('target')}${g.status==='active'?'持续跟进中':g.status==='paused'?'已暂停':'已完成'}</div><h1>${esc(g.title)}</h1></div><section class="latest-progress"><div class="section-line"><h2>最新进展</h2><time>${esc(g.lastCheck)}</time></div><p>${esc(g.summary)}</p></section><div class="section-line"><h2>已确认的设置</h2></div>${followFields(g.setupSnapshot)}${!goalSourceConnected(g)?'<div class="source-offline">来源已断开，保留历史记录；重新连接后可继续跟进。</div>':''}<div class="section-line"><h2>进展记录</h2>${btn('补充情况','updateGoal',g.id,'linklike')}</div><div class="timeline">${g.logs.map(([time,text])=>`<div class="timeline-item"><time>${esc(time)}</time><p>${esc(text)}</p></div>`).join('')}</div></section>`;
+};
+const sourceBeforeFollowGuide=goalSourceConnected;
+goalSourceConnected=function(g){return g.sourceKey==='manual'||sourceBeforeFollowGuide(g)};
+const handleBeforeFollowGuide=handle;
+handle=function(action,id,el){
+  if(action==='startTemplate'||action==='customFollow'||action==='newGoal'){prefillFollow(action==='startTemplate'?id:'custom');return}
+  const d=activeFollowDraft(),parts=(id||'').split(':'),token=parts.slice(0,2).join(':');
+  if(action==='followAnswer'){
+    if(!d||followToken(d)!==token)return;
+    const m=data.messages.find(m=>m.type==='followQuestion'&&m.followId===d.id&&m.revision===d.revision),value=m?.options?.[Number(parts[2])];if(value)consumeFollowReply(value,d);return;
+  }
+  if(action==='followConfirm'){confirmFollow(id);return}
+  if(action==='followCancel'){
+    if(!d||d.id!==id)return;d.cancelled=true;data.messages.push({type:'followNote',text:'已取消这次设置，聊天记录会保留。'});followRender();return;
+  }
+  if(action==='followEdit'){
+    if(!d||d.stage!=='review'||token!==followToken(d))return;
+    const field=parts[2],labels={project:'想改为跟进哪个项目或事项？',focus:'你希望重点关注什么？',criteria:'什么情况才需要提醒你？可以补充阈值、时间或判断依据。',rule:'希望什么时候提醒你？'};
+    if(!labels[field])return;followQuestion(d,field==='project'?'edit-project':field,labels[field]);followRender();document.getElementById('draft')?.focus();return;
+  }
+  if(action==='followChooseSource'){
+    if(!d||d.stage!=='review'||id!==followToken(d))return;showSheet('followSources',{token:id});return;
+  }
+  if(action==='followSource'){
+    if(!d||d.stage!=='review'||token!==followToken(d)||!['manual','nexus','dingTalk'].includes(parts[2]))return;
+    d.sourceKey=parts[2];closeSheet(false);followReview(d,'已更新资料来源。请确认这份设置。');followRender();return;
+  }
+  if(action==='followAuthReturn'){
+    const a=ui.activation;if(!d||a?.kind!=='guided'||a.token!==id||a.draft.followId!==d.id||a.draft.revision!==d.revision||!hasDingScopes('guided',d.template))return;
+    closeSheet(false);followReview(d,'钉钉已连接。确认后，我会按这份设置跟进。');followRender();return;
+  }
+  if(action==='editGoal'&&data.goals.find(g=>g.id===id)?.setupSnapshot){
+    if(d){go('chat');toast('先完成或取消当前设置');return}
+    const g=data.goals.find(g=>g.id===id);data.followSequence=(data.followSequence||0)+1;
+    data.followDraft={...structuredClone(g.setupSnapshot),id:'follow-'+Date.now().toString(36)+'-'+data.followSequence,revision:0,existingGoalId:id};
+    ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;followReview(data.followDraft,'想调整哪里？修改后确认保存。');followRender();go('chat');return;
+  }
+  if(['newChat','loadHistory'].includes(action)){
+    if(d)d.cancelled=true;data.followInput='';data.followPrefill=null;ui.followIdeaId=null;ui.draft='';save();
+  }
+  handleBeforeFollowGuide(action,id,el);
+};
+const paintBeforeFollowGuide=paintSheet;
+paintSheet=function(){
+  const d=activeFollowDraft(),a=ui.activation;
+  if(ui.sheet?.type==='goalMenu'&&data.goals.find(g=>g.id===ui.sheet.id)?.setupSnapshot){
+    const g=data.goals.find(g=>g.id===ui.sheet.id);
+    workSheet('跟进目标',btn('调整跟进设置','editGoal',g.id,'sheet-choice')+btn(g.status==='active'?'暂停跟进':g.status==='paused'?'恢复跟进':'重新开启',g.status==='active'?'pauseGoal':'resumeGoal',g.id,'sheet-choice')+(g.status!=='done'?btn('标记完成','completeGoal',g.id,'sheet-choice'):''));return;
+  }
+  if(ui.sheet?.type==='followSources'){
+    const token=ui.sheet.token;if(!d||token!==followToken(d)){closeSheet(false);return}
+    workSheet('资料来源',`${[['manual','我在聊天里补充','收到你补充的情况后更新'],['nexus','Nexus 经营数据',data.settings.nexus?'已连接':'尚未连接'],['dingTalk','钉钉日程与记录',hasDingScopes('guided',d.template)?'已授权':'开始前需要授权']].map(([key,label,description])=>`<button type="button" class="sheet-choice" data-action="followSource" data-id="${token+':'+key}" ${key==='nexus'&&!data.settings.nexus?'disabled':''}><span>${label}<small>${description}</small></span>${icon(d.sourceKey===key?'check':'right')}</button>`).join('')}`);return;
+  }
+  if(ui.sheet?.type==='activation'&&a?.kind==='guided'&&activationStage(a)==='configure'){
+    workSheet('钉钉已连接',`<div class="auth-complete"><span>${icon('check')}</span><h3>可以读取已授权的资料</h3></div>${btn('返回确认跟进设置','followAuthReturn',a.token,'primary full')}`);return;
+  }
+  paintBeforeFollowGuide();
+};
+const headerBeforeLibraryAction=header;
+header=function(){const html=headerBeforeLibraryAction();return ui.page==='main'&&ui.tab==='library'?html.replace('</header>',`<button type="button" class="icon-button library-top-upload" aria-label="上传资料" data-action="libraryAdd">${icon('upload')}</button></header>`):html};
+const settingsBeforeMemorySplit=settings;
+settings=function(){return settingsBeforeMemorySplit().replace('关于我的了解','关于我的记忆')};
+document.addEventListener('input',event=>{
+  if(event.target.id==='draft'&&(activeFollowDraft()||data.followPrefill)){data.followInput=event.target.value;save()}
+});
+if(activeFollowDraft()||data.followPrefill){ui.draft=data.followInput||'';ui.followIdeaId=data.followPrefill?.template||null;ui.inputMode='text'}
+
 
 render();
 </script>
