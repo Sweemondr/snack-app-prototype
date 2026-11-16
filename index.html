@@ -266,6 +266,27 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .follow-review-more{margin:12px 0 4px;color:var(--muted);font-size:12px}
 .follow-review-more>summary{line-height:1.8;cursor:pointer;padding:6px 0}
 .follow-review-more .follow-fields{color:var(--ink)}
+.activity-page{padding-top:28px}
+.activity-identity{display:flex;align-items:center;gap:17px;margin:8px 0 33px}
+.activity-identity>img{width:66px;height:66px;object-fit:contain;background:var(--soft);border-radius:50%;padding:16px}
+.activity-identity h1{font-size:26px;line-height:1.35;letter-spacing:-.025em;margin:0 0 7px;overflow-wrap:anywhere}
+.activity-identity p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.activity-section{margin:0 0 28px}
+.activity-section .section-line{margin:0;padding:0 0 8px}
+.activity-section .section-line h2{font-size:18px;font-weight:650}
+.activity-section .section-line .linklike{font-size:12px;min-height:40px}
+.activity-row{display:flex;align-items:flex-start;gap:12px;padding:19px 0;width:100%;text-align:left;border-bottom:1px solid var(--line)}
+.activity-row-icon{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;color:var(--accent)}
+.activity-row-icon svg{width:22px;height:22px}
+.activity-row-body{display:flex;flex:1;flex-direction:column;gap:6px;min-width:0;overflow-wrap:anywhere}
+.activity-row-body strong{font-size:15px;font-weight:600;line-height:1.6}
+.activity-row-body>span{font-size:13px;color:var(--muted);line-height:1.8}
+.activity-row-body small{font-size:11px;color:var(--muted);line-height:1.7}
+.activity-row>svg{flex-shrink:0;width:16px;height:16px;margin-top:6px;color:var(--muted)}
+.activity-empty{margin:4px 0 34px}
+.activity-empty .primary{margin:0;min-height:46px}
+@media(max-width:360px){.activity-identity{gap:13px}.activity-identity h1{font-size:24px}.activity-row{gap:8px}.activity-row-body strong{font-size:14px}}
+
 
 /* Three-scenario guidance */
 .scenario-step h2{font-size:20px;line-height:1.5;margin:0 0 24px;font-weight:650;letter-spacing:-.02em}
@@ -414,8 +435,8 @@ function nexusOverviewText(){
 }
 
 function header(){if(ui.page==='onboarding')return `<header class="topbar">${ib('返回聊天','back','home')}<span class="page-label">认识 ${esc(data.name)}</span>${btn('跳过','skipOnboard','','linklike')}</header>`;if(ui.page!=='main')return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${({settings:'设置',goal:'目标详情',event:'日程详情',file:'资料详情',memory:'关于我的记忆',sources:'连接应用',reminders:'通知与提醒'})[ui.page]||''}</span>${ui.page==='goal'?ib('目标操作','dots','goalMenu',ui.id):ui.page==='file'?ib('分享资料','share','share',ui.id):'<span class="icon-button"></span>'}</header>`;return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'}"><button class="brand-button" aria-label="打开 Snack 设置" data-action="settings"><img src="${LOGO}" alt="Snack 头像"><span class="source-nameplate"><strong>${esc(data.name)}</strong><small>你的 AI 秘书</small></span></button></header>`}
-function nav(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['calendar','calendar','日程'],['goals','target','持续跟踪的目标'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`}
-function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
+function nav(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟踪的目标'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`}
+function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='activity')body=assistantActivityPage();else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
 function formatSourceText(text){return esc(text).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')}
 function sourceOptions(active,selected){return `<div class="source-options" role="group" aria-label="回复选项">${nexusFocusOptions().map(o=>`<button class="source-option ${selected===o.key?'is-selected':''}" data-action="sourceReply" data-id="${o.key}" aria-pressed="${selected===o.key}" ${active?'':'disabled'}><span><strong>${esc(o.title)}</strong><small>${esc(o.subtitle)}</small></span><span class="source-option-end">${icon(selected===o.key?'check':'right')}</span></button>`).join('')}</div>`}
 function sourceBubble(text,options=''){return `<div class="source-message-row"><div class="source-bubble ${options?'has-options':''}">${formatSourceText(text)}${options}</div></div>`}
@@ -528,7 +549,7 @@ header = function() {
   if(ui.page==='memory')h=h.replace('<span class="icon-button"></span>',ib('添加一条记忆','plus','newMemory'));
   return h;
 };
-nav = function() {return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['calendar','calendar','日程'],['goals','target','持续跟进中'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}${id==='goals'&&unreadCount()?`，${unreadCount()} 件事有新进展`:''}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}${id==='goals'&&unreadCount()?`<span class="nav-badge">${unreadCount()}</span>`:''}</button>`).join('')}</nav>`};
+nav = function() {return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟进中'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}${id==='goals'&&unreadCount()?`，${unreadCount()} 件事有新进展`:''}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}${id==='goals'&&unreadCount()?`<span class="nav-badge">${unreadCount()}</span>`:''}</button>`).join('')}</nav>`};
 const baseComposer=composer;
 composer = function() {let html=baseComposer();if(ui.goalReference){const g=data.goals.find(x=>x.id===ui.goalReference);html=html.replace('<form id="chatForm"',`<div class="reference goal-reference">${icon('target')}<span>${esc(g?.title||'跟进事项')}</span>${ib('结束围绕此事讨论','close','clearGoalReference')}</div><form id="chatForm"`)}return html};
 const baseMessage=message;
@@ -765,7 +786,7 @@ header=function(){
   if(ui.page!=='main')return previousHeader();
   return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'} circle-header"><div class="assistant-mask" aria-hidden="true"></div>${ib('打开设置','settings','settings')}<button class="brand-circle" data-action="assistantActivity" aria-label="查看 ${esc(data.name)} 的动态"><img src="${LOGO}" alt=""><strong>${esc(data.name)}</strong></button></header>`;
 };
-nav=function(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['calendar','calendar','日程'],['goals','target','持续跟进中'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`};
+nav=function(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟进中'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`};
 function connectionAction(kind,id){
   if(!data.dingTalk.cliConnected)return '连接钉钉日程';
   if(!data.dingTalk.scopes.includes('calendar'))return '授权钉钉日程';
@@ -910,7 +931,7 @@ Object.values(PREVIEW_ROLES).forEach(r=>{r.greeting='你好，我是你的 AI �
 const sourceOptionsNov14=sourceOptions;
 sourceOptions=function(active,selected){return sourceOptionsNov14(!ui.loading,selected)};
 const calendarBeforeNov14=calendarBeforeActivation;
-calendarEmpty=function(){return `<section class="page calendar-welcome"><div class="page-title"><h1>日程</h1>${ib('添加日程','plus','addEvent')}</div><div class="calendar-promise"><p>我可以在会前整理背景和待讨论的问题，会中记录讨论与决定，会后帮你跟进责任事项和约定时间。</p>${btn('选择要协助的会议','calendarSetup','','primary full')}</div></section>`};
+calendarEmpty=function(){return `<section class="page calendar-welcome"><div class="page-title"><h1>日程</h1>${ib('添加日程','plus','addEvent')}</div><div class="calendar-promise"><p>我可以在会前整理背景和待讨论的问题，会中记录讨论与决定，会后帮你跟进责任事项和约定时间。</p>${btn('开始帮我跟进','calendarSetup','','primary full')}</div></section>`};
 calendar=function(){return data.events.length?calendarBeforeNov14():calendarEmpty()};
 function providerMeetings(provider){
   const p=CALENDAR_PROVIDERS.find(p=>p.id===provider);if(!p)return [];
@@ -1071,7 +1092,7 @@ confirmPostItems=function(fid,items){const file=data.files.find(f=>f.id===fid);c
 const composerNov14=composer;
 composer=function(){const html=composerNov14();if(!ui.manualEventDraft)return html;return html.replace('<form id="chatForm"',`<div class="reference">${icon('calendar')}<span>添加日程</span>${ib('取消添加日程','close','cancelManualSchedule')}</div><form id="chatForm"`)};
 const messageNov14=message;
-message=function(m){if(m.type==='prepare'&&(!data.calendarAssistants.before||!data.events.some(e=>e.id===(m.event||'e1'))))return `<div class="source-message-row"><div class="source-bubble"><p>先选择需要协助的会议，我会为你整理会前资料。</p>${btn('选择要协助的会议','calendarSetup','','primary')}</div></div>`;if(m.type==='schedulePrompt')return `<div class="source-message-row"><div class="source-bubble">${esc(m.text)}</div></div>`;return messageNov14(m)};
+message=function(m){if(m.type==='prepare'&&(!data.calendarAssistants.before||!data.events.some(e=>e.id===(m.event||'e1'))))return `<div class="source-message-row"><div class="source-bubble"><p>先选择需要协助的会议，我会为你整理会前资料。</p>${btn('开始帮我跟进','calendarSetup','','primary')}</div></div>`;if(m.type==='schedulePrompt')return `<div class="source-message-row"><div class="source-bubble">${esc(m.text)}</div></div>`;return messageNov14(m)};
 const respondNov14=respondToChat;
 respondToChat=function(text,key){if(ui.manualEventDraft&&!key){ui.draft='';receiveManualSchedule(text);return}if(key)ui.manualEventDraft=null;respondNov14(text,key)};
 sourceReply=respondToChat;
@@ -1113,7 +1134,9 @@ save();
     memory: '关于我的记忆', 'memory/profile': '身份与偏好',
     'memory/tracking': '跟进与历史', 'memory/calendar': '日程与会议',
     scm: 'SCM 项目', east: '华东大区', meetings: '会议记录',
-    reports: '分析报告', knowledge: '知识库', uploads: '上传资料'
+    reports: '分析报告', knowledge: '知识库', uploads: '上传资料',
+    'collection/daily': '经营简报', 'collection/meetings': '会议记录',
+    'collection/analysis': '分析与方案', 'collection/reference': '参考资料'
   };
   const libChildren = ['memory/profile', 'memory/tracking', 'memory/calendar'];
   const isMemoryFolder = id => id === 'memory' || id?.startsWith('memory/');
@@ -1145,8 +1168,54 @@ save();
   const libMemoryMatches = item => libMatches([item.title, item.text, item.category, item.origin]);
   const libGoalMatches = goal => libMatches([goal.title, goal.project, goal.summary, ...(goal.logs || []).flat()]);
   const libEventMatches = event => libMatches([event.title, event.desc, event.people, event.location]);
-  const libFileMatches = file => libMatches([file.title, file.summary, file.kind, file.meta]);
-  const libScopeFiles = id => data.files.filter(file => !id || file.folder === id);
+  const FILE_COLLECTIONS = {daily:'经营简报', meetings:'会议记录', analysis:'分析与方案', reference:'参考资料'};
+  const collectionAliases = {
+    daily:'daily', dailybrief:'daily', 'daily-brief':'daily', daily_brief:'daily', brief:'daily', '每日简报':'daily', '经营简报':'daily', 'scheduled-brief':'daily',
+    meetings:'meetings', meeting:'meetings', minutes:'meetings', recording:'meetings', prep:'meetings',
+    'meeting-record':'meetings', 'meeting-prep':'meetings', 'meeting-minutes':'meetings', '会议记录':'meetings', '会前资料':'meetings',
+    analysis:'analysis', report:'analysis', plan:'analysis', draft:'analysis', table:'analysis',
+    'analysis-report':'analysis', '分析与方案':'analysis',
+    reference:'reference', upload:'reference', uploaded:'reference', knowledge:'reference', nexus:'reference', '参考资料':'reference'
+  };
+  // Explicit purpose is authoritative. A matching upload filename is never proof of a daily push.
+  const fileCollection = file => {
+    for (const value of [file.collection, file.purpose]) {
+      const key = String(value || '').trim().toLowerCase().replace(/^collection\//, '');
+      if (collectionAliases[key]) return collectionAliases[key];
+    }
+    const title = String(file.title || ''), kind = String(file.kind || ''), meta = String(file.meta || '');
+    const source = String(file.source || file.sourceKey || file.origin || '').toLowerCase();
+    if (file.uploaded || kind === '知识库' || ['upload','uploaded','user-upload','knowledge','knowledgebase'].includes(source) || /上传|本地文件名/.test(meta) || /nexus/.test(source + ' ' + meta.toLowerCase())) return 'reference';
+    const generated = file.generated === true || source === 'snack' || /Snack\s*(?:生成|推送)/i.test(meta);
+    // Scheduled business briefs use their linked brief goal, never an ID prefix alone.
+    if (generated && (data.goals || []).some(goal => goal.template === 'brief' && file.id === 'brief-' + goal.id)) return 'daily';
+    if (file.eventId || String(file.id || '').startsWith('prep-') || kind === '录音' || kind === '会议纪要' ||
+        (generated && /会前|会议纪要|会议记录|会议录音/.test(title))) return 'meetings';
+    if (generated && /^(?:(?:今日|每日|早间|晨间|晚间)(?:经营)?简报|(?:经营)?日报)(?:[\s·\-\d年月日]|$)/.test(title)) return 'daily';
+    if (generated || ['报告', '表格', '方案', '草案'].includes(kind)) return 'analysis';
+    return 'reference';
+  };
+  const fileTime = file => {
+    for (const value of [file.updatedAt, file.modifiedAt, file.generatedAt, file.createdAt, file.timestamp]) {
+      if (typeof value === 'number' && Number.isFinite(value) && value >= 1e9) return value < 1e12 ? value * 1000 : value;
+      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}(?:T|$)/.test(value)) {
+        const parsed = Date.parse(value);if (Number.isFinite(parsed)) return parsed;
+      }
+    }
+    return null;
+  };
+  const recentFiles = files => {
+    const rows = files.map((file, index) => ({file, index, time:fileTime(file)}));
+    const dated = rows.filter(row => row.time !== null).sort((a,b) => b.time - a.time || a.index - b.index);
+    let next = 0;
+    // Undated legacy records retain their original slots; no date is inferred from display copy.
+    return rows.map(row => row.time === null ? row.file : dated[next++].file);
+  };
+  const libFileMatches = file => libMatches([file.title, file.summary, file.kind, file.meta, FILE_COLLECTIONS[fileCollection(file)]]);
+  const libScopeFiles = id => {
+    const collection = id?.startsWith('collection/') ? id.slice('collection/'.length) : null;
+    return data.files.filter(file => !id || (collection && FILE_COLLECTIONS[collection] ? fileCollection(file) === collection : file.folder === id));
+  };
   const libFolderMatches = id => {
     if (!libQuery() || libMatches([libTitle(id)])) return true;
     if (id === 'memory') return (data.memories || []).some(libMemoryMatches) || data.goals.some(libGoalMatches) || data.events.some(libEventMatches);
@@ -1168,7 +1237,7 @@ save();
   const libGoalRecord = goal => `<div class="lib14-record">${goalRow(goal)}${goal.logs?.length ? `<details class="lib14-history"><summary>历史记录 · ${goal.logs.length}</summary><div class="timeline">${goal.logs.map(([time, content]) => `<div class="timeline-item"><time>${esc(time)}</time><p>${esc(content)}</p></div>`).join('')}</div></details>` : ''}</div>`;
   const libEventRecord = event => `<div class="lib14-record"><button class="folder-row lib14-event" data-action="event" data-id="${esc(event.id)}"><span class="file-icon">${icon('calendar')}</span><span class="file-info"><strong>${esc(event.title)}</strong><small>${esc(shortDate(fullDay(event)))} · ${esc(event.time || '')}${event.end ? '–' + esc(event.end) : ''}</small>${event.desc ? `<span class="lib14-row-summary">${esc(event.desc)}</span>` : ''}</span>${icon('right')}</button></div>`;
   const libEmpty = (text, action = '', label = '') => `<div class="empty lib14-empty"><p>${esc(text)}</p>${libQuery() ? btn('清除搜索', 'clearSearch', '', 'linklike') : action ? btn(label, action, '', 'linklike') : ''}</div>`;
-  const fileFolders = () => [...new Set(['scm', 'east', 'meetings', 'reports', 'knowledge', ...data.files.map(file => file.folder).filter(id => id && !isMemoryFolder(id))])];
+  const fileFolders = () => ['collection/daily', 'collection/meetings'];
   const sectionLabel = section => section === 'memory' ? '记忆' : '文件';
 
   library = function() {
@@ -1199,10 +1268,10 @@ save();
       }
       return libEmpty('没有找到相关记忆');
     }
-    const files = libScopeFiles(ui.folder).filter(libFileMatches);
+    const files = recentFiles(libScopeFiles(ui.folder).filter(libFileMatches));
     const rows = files.map(fileRow).join('');
     if (ui.folder) return rows || libEmpty(libQuery() ? '没有找到相关文件' : '这里还没有文件', 'libraryAdd', '上传文件');
-    const directories = libFolderGrid(fileFolders().filter(libFolderMatches));
+    const directories = libQuery() ? '' : libFolderGrid(fileFolders());
     const recent = files.length && !libQuery() ? '<div class="section-line"><h2>最近文件</h2></div>' : '';
     return directories + recent + rows || libEmpty('没有找到相关文件');
   };
@@ -1248,7 +1317,7 @@ save();
     const file = event.target.files[0];
     const attach = ui.sheet?.type === 'attach';
     const id = 'file' + Date.now();
-    data.files.unshift({id, title: file.name, kind: '文件', folder: 'uploads', meta: '刚刚 · 本地文件名', summary: '文件已加入原型列表。', uploaded: true});
+    data.files.unshift({id, title: file.name, kind: '文件', folder: 'uploads', collection: 'reference', createdAt: new Date().toISOString(), meta: '刚刚 · 本地文件名', summary: '文件已加入原型列表。', uploaded: true});
     save();closeSheet(false);
     if (attach) { ui.reference = id;go('chat'); }
     else { persistSection('files');go('library'); }
@@ -1525,6 +1594,47 @@ document.addEventListener('input',event=>{
 });
 if(activeFollowDraft()||data.followPrefill){ui.draft=data.followInput||'';ui.followIdeaId=data.followPrefill?.template||null;ui.inputMode='text'}
 
+
+// The avatar opens a navigable work overview, derived from existing prototype records.
+function assistantActivityData(){
+  const draft=activeFollowDraft(),manual=ui.manualEventDraft;
+  const active=data.goals.filter(g=>g.status==='active');
+  const meetings=data.events.filter(e=>e.type==='meeting'&&e.provider&&Object.values(meetingPreference(e)).some(Boolean));
+  const outputs=data.files.filter(f=>!f.uploaded&&(/Snack\s*生成/.test(f.meta||'')||String(f.id).startsWith('prep-')||(/^record/.test(f.id||'')&&f.eventId)));
+  return {draft:manual?null:draft,manual,active,meetings,outputs};
+}
+function activityItem(title,detail,action,id,mark='file',meta=''){
+  return `<button type="button" class="activity-row" data-action="${action}" data-id="${esc(id||'')}"><span class="activity-row-icon">${icon(mark)}</span><span class="activity-row-body"><strong>${esc(title)}</strong>${detail?`<span>${esc(detail)}</span>`:''}${meta?`<small>${esc(meta)}</small>`:''}</span>${icon('right')}</button>`;
+}
+function assistantActivityPage(){
+  const {draft,manual,active,meetings,outputs}=assistantActivityData();
+  const pending=!!(draft||manual),count=active.length+meetings.length;
+  const blocked=active.filter(g=>!goalSourceConnected(g)).length+meetings.filter(e=>!calendarConnected(e.provider==='dingTalk'?'dingtalk':e.provider)).length;
+  const status=pending?'有一件事等你确认':count?(blocked===count?count+' 件事等待连接资料':blocked?'正在跟进 '+(count-blocked)+' 件事 · '+blocked+' 件待连接':'正在跟进 '+count+' 件事'):'暂时没有正在跟进的事';
+  let waiting='';
+  if(draft)waiting=activityItem(draft.template==='brief'?'设置经营简报':draft.project||'设置持续跟进',({review:'设置已整理好，等你确认',sources:'连接资料来源后继续',delivery:'继续确认接收方式',preview:'继续核对预览内容'})[draft.stage]||'继续完成这次设置','activityResumeFollow',draft.id,'chat',draft.existingGoalId?'更改尚未生效':draft.template==='brief'?'尚未开启推送':'尚未开始跟进');
+  if(manual)waiting=activityItem(manual.title||'添加日程',manual.time?'日程安排待确认':'继续补充名称和时间','activityResumeSchedule',manual.token,'calendar','尚未添加');
+  const goalItems=active.slice(0,3).map(g=>activityItem(g.title,g.summary,'goal',g.id,'target',!goalSourceConnected(g)?'来源已断开':g.sourceKey==='manual'?'等待你补充进展':g.flowVersion===2&&g.setupSnapshot?.channel==='dingtalk'&&typeof scenarioPushReady==='function'&&!scenarioPushReady()?'钉钉推送暂停，结果保留在 Snack':'关注相关资料的新变化')).join('');
+  const meetingItems=meetings.slice(0,2).map(e=>activityItem(e.title,shortDate(fullDay(e))+' · '+(e.time||''),'event',e.id,'calendar',calendarConnected(e.provider==='dingTalk'?'dingtalk':e.provider)?'已开启会议协助':'来源已断开')).join('');
+  return `<section class="page activity-page"><div class="activity-identity"><img src="${LOGO}" alt=""><div><h1>${esc(data.name)}</h1><p>${status}</p></div></div>${waiting?`<section class="activity-section"><div class="section-line"><h2>待你确认</h2></div>${waiting}</section>`:''}${count?`<section class="activity-section"><div class="section-line"><h2>正在跟进</h2>${active.length>3?btn('全部目标','tab','goals','linklike'):''}</div>${goalItems}${meetingItems}${meetings.length>2?btn('查看全部会议','tab','calendar','linklike'):''}</section>`:!pending?`<div class="activity-empty">${btn('交代一件事','customFollow','','primary full')}</div>`:''}${outputs.length?`<section class="activity-section"><div class="section-line"><h2>最近产出</h2>${btn('全部文件','activityFiles','','linklike')}</div>${outputs.slice(0,3).map(fileRow).join('')}</section>`:''}</section>`;
+}
+const headerBeforeActivityPage=header;
+header=function(){return ui.page==='activity'?`<header class="topbar">${ib('返回','back','back')}<span class="page-label">工作动态</span><span class="icon-button" aria-hidden="true"></span></header>`:headerBeforeActivityPage()};
+const handleBeforeActivityPage=handle;
+handle=function(action,id,el){
+  if(action==='assistantActivity'){openPage('activity');return}
+  if(action==='activityResumeFollow'){
+    const d=activeFollowDraft();if(!d||d.id!==id){render();return}
+    ui.goalReference=null;ui.reference=null;go('chat');ui.inputMode='text';ui.draft=data.followInput||'';render();document.getElementById('draft')?.focus();return;
+  }
+  if(action==='activityResumeSchedule'){
+    const d=ui.manualEventDraft;if(!d||d.token!==id){render();return}
+    ui.goalReference=null;ui.reference=null;go('chat');ui.inputMode='text';render();
+    if(d.title&&d.day&&d.time&&d.end&&!d.error)showSheet('manualScheduleConfirm');else document.getElementById('draft')?.focus();return;
+  }
+  if(action==='activityFiles'){ui.librarySection='files';data.librarySection='files';save();go('library');return}
+  handleBeforeActivityPage(action,id,el);
+};
 
 // BEGIN THREE SCENARIOS
 // Three guided scenarios. Integrations and delivery are deliberately local demonstrations.
