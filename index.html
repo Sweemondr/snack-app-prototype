@@ -976,7 +976,7 @@ sourceOptions=function(active,selected){return sourceOptionsNov14(!ui.loading,se
 const calendarBeforeNov14=calendarBeforeActivation;
 function calendarEntryRows(){return `<div class="follow-ideas calendar-entry-rows"><button type="button" class="follow-idea" data-action="calendarSetup"><span class="follow-idea-icon calendar-import-icon" aria-hidden="true">${calendarProviderMark('dingtalk')}</span><span class="follow-idea-body"><strong>从钉钉快速导入</strong><span>会前准备、会中记录、会后跟进。</span></span>${icon('right')}</button></div>`}
 calendar=function(){
-  const title='<div class="page-title"><h1>日程</h1></div>';
+  const title='<h1 class="sr-only">日程</h1>';
   if(!data.events.length)return `<section class="page calendar-welcome">${title}${calendarEntryRows()}</section>`;
   return calendarBeforeNov14().replace(`<div class="page-title"><h1>日程</h1>${ib('添加日程','plus','addEvent')}</div>`,title).replace(`<div class="empty">${icon('calendar')}<p>这一天没有安排</p>${btn('添加日程','addEvent','','secondary')}</div>`,'<p class="calendar-day-empty">这一天没有安排</p>').replace('</section>',`${calendarEntryRows()}</section>`);
 };
@@ -1567,7 +1567,7 @@ composer=function(){
 };
 goals=function(){
   const active=data.goals.filter(g=>g.status!=='done'),done=data.goals.filter(g=>g.status==='done');
-  return `<section class="page follow-page"><div class="page-title"><h1 class="long">持续跟进中</h1></div>${active.length?`<div class="follow-active-goals">${active.map(goalRow).join('')}</div><div class="section-line follow-add-heading"><h2>继续添加</h2></div>`:''}${templateRows()}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`;
+  return `<section class="page follow-page"><h1 class="sr-only">持续跟进</h1>${active.length?`<div class="follow-active-goals">${active.map(goalRow).join('')}</div><div class="section-line follow-add-heading"><h2>继续添加</h2></div>`:''}${templateRows()}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`;
 };
 const rowBeforeFollowGuide=goalRow;
 goalRow=function(g){
