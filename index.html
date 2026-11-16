@@ -266,6 +266,60 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .follow-review-more{margin:12px 0 4px;color:var(--muted);font-size:12px}
 .follow-review-more>summary{line-height:1.8;cursor:pointer;padding:6px 0}
 .follow-review-more .follow-fields{color:var(--ink)}
+
+/* Three-scenario guidance */
+.scenario-step h2{font-size:20px;line-height:1.5;margin:0 0 24px;font-weight:650;letter-spacing:-.02em}
+.scenario-step form{display:flex;flex-direction:column;gap:19px;min-width:0}
+.scenario-step .field{margin:0;min-width:0}
+.scenario-step input:not([type=checkbox]):not([type=hidden]),.scenario-step select,.scenario-step textarea{width:100%;min-width:0;font-size:14px}
+.scenario-step textarea{min-height:92px;resize:vertical}
+.scenario-step fieldset{border:0;margin:0;padding:0;min-width:0}
+.scenario-step legend{font-size:13px;font-weight:600;margin-bottom:11px;padding:0}
+.scenario-checks{display:flex;flex-direction:column;gap:3px}
+.scenario-checks label,.scenario-choice{display:flex;align-items:center;gap:11px;min-height:44px;font-size:14px;cursor:pointer}
+.scenario-step input[type=checkbox]{width:18px;height:18px;flex:0 0 18px;accent-color:var(--accent)}
+.scenario-step input:focus-visible,.scenario-step select:focus-visible,.scenario-step textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.scenario-step-actions{display:flex;align-items:center;gap:10px;margin-top:8px}
+.scenario-step-actions .primary{flex:1;margin:0;min-height:46px}
+.scenario-step-actions .secondary{min-height:46px}
+.scenario-history{border-bottom:1px solid var(--line);padding-bottom:13px;max-width:100%}
+.scenario-history>span{font-size:12px;color:var(--muted)}
+.scenario-history p{font-size:14px;line-height:1.7;margin:5px 0 0;overflow-wrap:anywhere}
+.scenario-note,.scenario-data-time{font-size:12px;line-height:1.75;color:var(--muted);margin:0;overflow-wrap:anywhere}
+.scenario-data-time{margin-top:16px}
+.scenario-provider{display:flex;align-items:center;gap:14px;min-height:48px;font-size:17px}
+.scenario-provider img{width:48px;height:48px;object-fit:contain}
+.scenario-provider svg{width:23px;height:23px;color:var(--accent)}
+.scenario-connection-state{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);margin:0;line-height:1.7}
+.scenario-connection-state svg{width:18px;height:18px;flex-shrink:0}
+.scenario-decision{padding:0 0 15px;border-bottom:1px solid var(--line)}
+.scenario-decision summary{font-size:12px;line-height:1.7;padding:7px 0 7px 29px;color:var(--muted);cursor:pointer}
+.scenario-decision details[open]{display:flex;flex-direction:column;gap:12px}
+.scenario-decision details[open] .field{margin:12px 0}
+.scenario-preview{padding:0 0 18px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.scenario-preview strong,.scenario-preview-item>strong{font-size:15px;font-weight:650}
+.scenario-preview p,.scenario-preview-item p{font-size:13px;line-height:1.8;margin:8px 0}
+.scenario-preview .scenario-data-time{font-size:11px;margin:16px 0 0}
+.scenario-preview-item{padding:13px 0;border-bottom:1px solid var(--line)}
+.scenario-preview-item:first-child{padding-top:0}
+.scenario-preview-item:last-child{border:0}
+.scenario-metrics{margin:10px 0 0;display:grid;gap:9px}
+.scenario-metrics>div{display:grid;gap:2px}
+.scenario-metrics dt{font-size:12px;color:var(--muted)}
+.scenario-metrics dd{margin:0;font-size:14px;line-height:1.6;font-variant-numeric:tabular-nums}
+.scenario-auth-value{font-size:16px;line-height:1.7;margin:18px 0}
+.scenario-next{padding:15px 0;color:var(--accent);font-size:14px;line-height:1.7;border-top:1px solid var(--line)}
+.scenario-settings{margin:22px 0}
+.scenario-settings>summary{font-size:14px;line-height:1.8;min-height:44px;cursor:pointer}
+.scenario-step .follow-fields{margin:0;gap:14px}
+.scenario-step .secondary.full{width:100%;white-space:normal}
+.follow-idea{align-items:center;padding:25px 0}
+.follow-idea-icon,.follow-idea>svg{margin-top:0}
+@media(max-width:360px){.scenario-step h2{font-size:18px}.scenario-step-actions{gap:8px}.scenario-step-actions button{padding-left:12px;padding-right:12px}.scenario-step .field input,.scenario-step .field select{font-size:13px}}
+
+.source-bubble.scenario-step{width:100%;max-width:100%;background:#fff;padding:18px 4px 22px;border-radius:0}
+.source-bubble.scenario-history{width:100%;max-width:100%;background:#fff;padding:12px 4px;border-radius:0}
+
 </style>
 </head>
 <body>
@@ -453,7 +507,7 @@ function upgradeData() {
     data.calendarSceneRevision=1;
   }
   data.calendarAssistants ||= {before:false,during:false,after:false};
-  data.goals.forEach(g=>{if(g.sourceKey==='dingTalk')g.requiredScopes=[...new Set(['calendar',...(g.requiredScopes||[])])];});
+  data.goals.forEach(g=>{if(g.sourceKey==='dingTalk'&&g.flowVersion!==2)g.requiredScopes=[...new Set(['calendar',...(g.requiredScopes||[])])];});
   data.workRevision=5;
 }
 upgradeData();
@@ -1471,6 +1525,277 @@ document.addEventListener('input',event=>{
 });
 if(activeFollowDraft()||data.followPrefill){ui.draft=data.followInput||'';ui.followIdeaId=data.followPrefill?.template||null;ui.inputMode='text'}
 
+
+// BEGIN THREE SCENARIOS
+// Three guided scenarios. Integrations and delivery are deliberately local demonstrations.
+const SCENARIOS={
+  risk:{title:'盯住项目的重要变化',icon:'trend',stages:['scope','sources','preview','delivery','review']},
+  meeting:{title:'接着跟进会上的决策',icon:'calendar',stages:['meeting','decisions','sources','preview','delivery','review']},
+  brief:{title:'每天推送项目经营简报',icon:'clock',stages:['sources','scope','preview','delivery','review']}
+};
+const SCENARIO_PROJECTS=['SCM','华东大区','创新设备租赁'];
+const SCENARIO_METRICS={attendance:'设备出勤与闲置',output:'项目产值',payment:'计划与实际回款'};
+const SCENARIO_FOCUS={attendance:'设备出勤与调配',payment:'回款与付款承诺',progress:'进度、阻塞与待决策事项'};
+const SCENARIO_PERMISSIONS={projectRead:'读取我可见的项目经营数据',projectMessages:'读取选定项目的相关消息',minutes:'读取我已授权的会议记录',messageSend:'通过 Snack 机器人向我发送消息'};
+Object.assign(DING_SCOPES,SCENARIO_PERMISSIONS);
+FOLLOW_IDEAS.splice(0,FOLLOW_IDEAS.length,...Object.entries(SCENARIOS).map(([id,s])=>({id,icon:s.icon,title:s.title,description:''})));
+Object.assign(FOLLOW_PROMPTS,{risk:'帮我盯住项目的重要变化。',meeting:'帮我接着跟进会上的决策。',brief:'每个工作日早上 9 点，把项目经营简报通过钉钉发给我。'});
+templateRows=function(){return `<div class="follow-ideas">${FOLLOW_IDEAS.map(s=>`<button class="follow-idea" data-action="startTemplate" data-id="${s.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(s.icon)}</span><span class="follow-idea-body"><strong>${s.title}</strong></span>${icon('right')}</button>`).join('')}</div>`};
+function scenarioDraft(){const d=activeFollowDraft();return d?.flowVersion===2?d:null}
+function scenarioSnapshot(d){return structuredClone({flowVersion:2,template:d.template,project:d.project,projects:d.projects,focus:d.focus,customFocus:d.customFocus||'',focusKeys:d.focusKeys,decisionsMeetingId:d.decisionsMeetingId,criteria:d.criteria,sourceKey:d.sourceKey,resource:d.resource,metrics:d.metrics,meetingId:d.meetingId,meetingTitle:d.meetingTitle,decisions:d.decisions,channel:d.channel,frequency:d.frequency,time:d.time,weekday:d.weekday,rule:d.rule,previewNote:d.previewNote,timezone:'Asia/Shanghai'})}
+function scenarioSourceReady(d){return d.sourceKey==='manual'||(d.sourceKey==='nexus'?!!data.settings.nexus:d.sourceKey==='dingTalk'&&!!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('projectMessages'))}
+function scenarioPushReady(){return !!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('messageSend')}
+function scenarioSchedule(d){return `${d.frequency==='daily'?'每天':d.frequency==='weekly'?'每周'+['日','一','二','三','四','五','六'][Number(d.weekday)]:'周一至周五'} ${d.time} · 北京时间`}
+function nextScenarioRun(d,now=new Date()){
+  const local=new Date(now.getTime()+8*3600000),[h,m]=String(d.time||'09:00').split(':').map(Number);
+  for(let i=0;i<8;i++){
+    const candidate=new Date(Date.UTC(local.getUTCFullYear(),local.getUTCMonth(),local.getUTCDate()+i,h,m));
+    const day=candidate.getUTCDay();if(d.frequency==='weekdays'&&(day===0||day===6))continue;
+    if(d.frequency==='weekly'&&day!==Number(d.weekday))continue;
+    if(candidate.getTime()<=local.getTime())continue;
+    return candidate.toISOString().slice(0,16)+'+08:00';
+  }
+  return '';
+}
+function scenarioRunLabel(value){return value?value.slice(5,10).replace('-','月')+'日 '+value.slice(11,16)+' · 北京时间':'待安排'}
+function scenarioSourceName(d){return d.sourceKey==='manual'?'我在聊天里补充':d.sourceKey==='nexus'?'Nexus 经营数据':'钉钉项目消息'}
+function scenarioTitle(d){return d.template==='brief'?(d.projects||[]).join('、')+' · 经营简报':d.template==='meeting'?d.meetingTitle+' · 决策跟进':d.project+' · '+d.focus}
+function scenarioSummary(d){return d.template==='brief'?Object.values(SCENARIO_METRICS).filter((_,i)=>d.metrics?.includes(Object.keys(SCENARIO_METRICS)[i])).join('、'):d.template==='meeting'?d.decisions?.map(x=>x.title).join('；'):d.focus}
+function scenarioShow(stage,d=scenarioDraft()){
+  if(!d)return;const current=data.messages.find(m=>m.type==='scenarioStep'&&m.followId===d.id&&m.revision===d.revision);if(current)current.snapshot=scenarioSnapshot(d);d.stage=stage;d.revision++;d.error='';
+  data.messages.push({type:'scenarioStep',followId:d.id,revision:d.revision,stage,snapshot:scenarioSnapshot(d)});followRender();
+}
+const startFollowBeforeScenarios=startFollowConversation;
+startFollowConversation=function(text,template='risk'){
+  if(!SCENARIOS[template])return startFollowBeforeScenarios(text,template);
+  stopSourceVoice();clearTimeout(responseTimer);ui.loading=false;ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;
+  data.followSequence=(data.followSequence||0)+1;
+  const d=data.followDraft={flowVersion:2,id:'scenario-'+Date.now().toString(36)+'-'+data.followSequence,revision:0,template,project:'SCM',projects:['SCM'],focusKeys:['attendance'],focus:'设备出勤与调配',metrics:['attendance','output','payment'],criteria:'出勤下降、连续闲置或调配安排变化时提醒；普通进展保留记录。',sourceKey:template==='meeting'?'dingTalk':'nexus',resource:'SCM 项目资料',channel:'dingtalk',frequency:'weekdays',time:'09:00',weekday:'1',rule:template==='meeting'?'有关键进展、到期前一天、到期仍未确认时提醒':'关键变化时提醒',decisions:[],meetingId:'f3',meetingTitle:'',previewNote:''};
+  data.messages.push({type:'user',text});ui.followIdeaId=null;data.followPrefill=null;
+  scenarioShow(SCENARIOS[template].stages[0],d);
+};
+function scenarioMeetings(){
+  const list=data.files.filter(f=>f.kind==='录音'||f.folder==='meetings').map(f=>({id:f.id,title:f.title,origin:'Snack 会议记录'}));
+  if(data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('minutes'))list.unshift({id:'ding-weekly',title:'项目运营周会 · 11 月 16 日',origin:'钉钉 · 演示记录'});
+  return list;
+}
+function scenarioDecisions(meetingId){
+  const title=scenarioMeetings().find(m=>m.id===meetingId)?.title||'会议';
+  return [
+    {id:'d1',title:'确认闲置设备调配方案',project:'SCM',owner:'项目经理',due:'2026-11-20',evidence:'经负责人确认的调配方案',quote:'确认设备调配安排，并反馈现场落实情况。'},
+    {id:'d2',title:'核对本期回款安排',project:'华东大区',owner:'大区经理',due:'2026-11-20',evidence:'财务确认的到账记录',quote:'核对本期回款，跟进未到账款项。'},
+    {id:'d3',title:'完成安全整改复核',project:'创新设备租赁',owner:'项目负责人',due:'2026-11-23',evidence:'整改复核记录',quote:'确认安全整改结果并完成复核。'}
+  ].map(x=>({...x,origin:title}));
+}
+function scenarioValues(form){
+  const fd=new FormData(form),v={};for(const key of ['project','source','resource','meetingId','channel','frequency','time','weekday','rule','criteria','customFocus','previewNote'])if(fd.has(key))v[key]=String(fd.get(key)||'').trim();
+  for(const key of ['focus','metrics','projects','decisionIds'])if(form.querySelector(`[name="${key}"]`))v[key]=fd.getAll(key).map(String);
+  for(const [key,value] of fd.entries())if(/^(owner|due|evidence)_/.test(key))v[key]=String(value).trim();return v;
+}
+function scenarioApply(d,v){
+  for(const key of ['project','resource','meetingId','channel','frequency','time','weekday','rule','criteria','previewNote'])if(v[key]!==undefined)d[key]=String(v[key]);
+  if(v.source!==undefined)d.sourceKey=v.source;
+  if(v.metrics)d.metrics=v.metrics.filter(x=>SCENARIO_METRICS[x]);
+  if(v.projects){d.projects=v.projects.filter(x=>SCENARIO_PROJECTS.includes(x));d.project=d.projects.join('、')}
+  if(v.focus){d.focusKeys=v.focus.filter(x=>SCENARIO_FOCUS[x]);d.focus=d.focusKeys.map(x=>SCENARIO_FOCUS[x]).join('、');}
+  if(v.customFocus!==undefined){d.customFocus=v.customFocus;if(v.customFocus)d.focus=[d.focusKeys.map(x=>SCENARIO_FOCUS[x]).join('、'),v.customFocus].filter(Boolean).join('、')}
+  if(v.decisionIds){d.decisions=scenarioDecisions(d.meetingId).filter(x=>v.decisionIds.includes(x.id)).map(x=>({...x,...d.decisions.find(y=>y.id===x.id),owner:v['owner_'+x.id]??x.owner,due:v['due_'+x.id]??x.due,evidence:v['evidence_'+x.id]??x.evidence}));d.projects=[...new Set(d.decisions.map(x=>x.project))];d.project=d.projects.join('、');d.resource=d.project+' 项目资料'}
+}
+function scenarioError(d,text){d.error=text;save();render();return false}
+function scenarioAdvance(values={},token=followToken()){
+  const d=scenarioDraft();if(!d||token!==followToken(d))return false;
+  scenarioApply(d,values);
+  if(d.stage==='meeting'){
+    const m=scenarioMeetings().find(x=>x.id===d.meetingId);if(!m)return scenarioError(d,'请选择一场可用会议，或先连接钉钉会议记录。');
+    d.meetingTitle=m.title;if(d.decisionsMeetingId!==d.meetingId){d.decisions=scenarioDecisions(d.meetingId).slice(0,2);d.decisionsMeetingId=d.meetingId;}scenarioShow('decisions');return true;
+  }
+  if(d.stage==='decisions'&&(!d.decisions.length||d.decisions.some(x=>!x.owner||!x.due||!x.evidence)))return scenarioError(d,'至少选择一项决策，并补齐负责人、检查日期和完成依据。');
+  if(d.stage==='scope'){
+    if(d.template==='brief'&&(!d.projects.length||!d.metrics.length))return scenarioError(d,'至少选择一个项目和一项经营指标。');
+    if(d.template==='risk'&&(!d.project||!d.focus))return scenarioError(d,'请选择项目和关注重点，也可以补充自己的关注点。');
+    if(d.template==='risk'){d.projects=[d.project];d.criteria=followCriteria(d.focus,'risk');}
+    d.resource=d.projects.join('、')+' 项目资料';
+  }
+  if(d.stage==='sources'){
+    if(!['nexus','dingTalk','manual'].includes(d.sourceKey)||d.template==='brief'&&d.sourceKey!=='nexus')return scenarioError(d,'经营简报需要连接 Nexus 经营数据。');
+    if(!scenarioSourceReady(d))return scenarioError(d,'先连接并授权所选数据源，再继续。');
+    if(d.sourceKey==='dingTalk'&&d.resource!=='全部可见项目'&&!d.projects.every(p=>d.resource.includes(p)))return scenarioError(d,'资料范围需覆盖所选项目，请选择对应项目资料。');
+  }
+  if(d.stage==='preview'&&d.template==='risk'&&!d.criteria.trim())return scenarioError(d,'请补充重要变化的判断标准。');
+  if(d.stage==='delivery'){
+    if(!['snack','dingtalk'].includes(d.channel))return scenarioError(d,'请选择接收渠道。');
+    if(d.channel==='dingtalk'&&!scenarioPushReady())return scenarioError(d,'先授权钉钉消息推送，或选择仅在 Snack 查看。');
+    if(d.template==='brief'&&(!/^([01]\d|2[0-3]):[0-5]\d$/.test(d.time)||!['daily','weekdays','weekly'].includes(d.frequency)||!/^[0-6]$/.test(d.weekday)))return scenarioError(d,'请设置有效的推送时间和频率。');
+  }
+  const stages=SCENARIOS[d.template].stages,index=stages.indexOf(d.stage);if(index<0||index===stages.length-1)return false;
+  scenarioShow(stages[index+1]);return true;
+}
+function scenarioBack(token){const d=scenarioDraft();if(!d||followToken(d)!==token)return;const stages=SCENARIOS[d.template].stages,i=stages.indexOf(d.stage);if(i>0)scenarioShow(stages[i-1])}
+function scenarioCapture(){const d=scenarioDraft(),form=document.getElementById('scenarioForm');if(d&&form){scenarioApply(d,scenarioValues(form));save()}}
+let scenarioAuthTimer=null,scenarioAuthSequence=0;
+function scenarioAuthorize(provider,scopes,token=followToken()){
+  const d=scenarioDraft();if(!d||token!==followToken(d)||!['nexus','dingtalk'].includes(provider))return false;
+  const needed=provider==='nexus'?['projectRead']:scopes.filter(x=>['projectMessages','minutes','messageSend'].includes(x));if(!needed.length)return false;
+  closeSheet(false);ui.scenarioAuth={id:'scenario-auth-'+(++scenarioAuthSequence),draftToken:token,provider,scopes:needed,stage:'connect'};showSheet('scenarioAuth');return ui.scenarioAuth.id;
+}
+function scenarioGrant(token){
+  const a=ui.scenarioAuth,d=scenarioDraft();if(!a||!d||a.id!==token||a.stage!=='consent'||a.draftToken!==followToken(d))return false;
+  a.stage='authorizing';paintSheet();scenarioAuthTimer=setTimeout(()=>{
+    scenarioAuthTimer=null;if(ui.scenarioAuth!==a||ui.sheet?.type!=='scenarioAuth'||a.draftToken!==followToken())return;
+    if(a.provider==='nexus')data.settings.nexus=true;
+    else {data.dingTalk||={cliConnected:false,scopes:[]};data.dingTalk.cliConnected=true;data.dingTalk.scopes=[...new Set([...data.dingTalk.scopes,...a.scopes])];if(a.scopes.includes('messageSend'))data.notificationAccount='我（钉钉演示账号）';}
+    a.stage='success';save();paintSheet();
+  },650);return true;
+}
+const closeSheetBeforeScenarios=closeSheet;
+closeSheet=function(restore=true){if(scenarioAuthTimer){clearTimeout(scenarioAuthTimer);scenarioAuthTimer=null}ui.scenarioAuth=null;closeSheetBeforeScenarios(restore)};
+function scenarioPreview(d){
+  const foot=`<p class="scenario-data-time">演示数据 · 截至 11 月 16 日 08:30</p>`;
+  if(d.template==='meeting')return `<div class="scenario-preview">${d.decisions.map(x=>`<div class="scenario-preview-item"><strong>${esc(x.title)}</strong><p>${esc(x.owner)} · ${esc(x.due)} 前检查</p><p>尚未找到新的完成依据，待核对「${esc(x.evidence)}」。</p></div>`).join('')}${foot}</div>`;
+  if(d.sourceKey==='manual')return '<div class="scenario-preview"><p>记录你补充的进展，并与你确认的计划比较。尚无新的进展资料。</p></div>';
+  if(d.template==='risk')return `<div class="scenario-preview"><strong>${esc(d.project)} · 当前基准</strong><p>${d.focusKeys?.includes('attendance')?d.project==='SCM'?'设备出勤率 64%，6 台设备闲置。':d.project==='创新设备租赁'?'设备出勤率 58%，恢复安排待核实。':'设备出勤率 82%，当前排班待复核。':''}${d.focusKeys?.includes('payment')?'本期计划回款 3 笔，2 笔已确认，1 笔待核对。':''}${d.focusKeys?.includes('progress')?'现场安排仍有待确认事项，需要结合后续记录判断。':''}</p><p>后续将与这次确认的情况比较；首次检查建立基准。</p>${foot}</div>`;
+  const rows={SCM:{attendance:'64% · 6 台闲置',output:'42 万元 · 较上期 +3 万元',payment:'计划 30 万元 / 已到账 20 万元'},'华东大区':{attendance:'82% · 2 台闲置',output:'86 万元 · 较上期 +8 万元',payment:'计划 60 万元 / 已到账 45 万元'},'创新设备租赁':{attendance:'58% · 4 台闲置',output:'28 万元 · 较上期 −2 万元',payment:'计划 20 万元 / 已到账 20 万元'}};
+  return `<div class="scenario-preview">${d.projects.map(p=>`<div class="scenario-preview-item"><strong>${esc(p)}</strong><dl class="scenario-metrics">${d.metrics.map(m=>`<div><dt>${SCENARIO_METRICS[m]}</dt><dd>${rows[p]?.[m]||'暂无数据'}</dd></div>`).join('')}</dl></div>`).join('')}<p><strong>需要关注</strong><br>${d.metrics.includes('attendance')&&d.projects.some(p=>p==='SCM'||p==='创新设备租赁')?'低出勤项目的恢复安排仍需核实。':d.metrics.includes('payment')&&d.projects.some(p=>p!=='创新设备租赁')?'计划与到账的差额需要核对付款安排。':d.metrics.includes('output')?'核对产值变化对应的项目与统计口径。':'所选项目的出勤暂无低于 80% 的情况。'}</p>${foot}</div>`;
+}
+function scenarioFields(d){return `<dl class="follow-fields"><div><dt>${d.template==='meeting'?'会议':'项目'}</dt><dd>${esc(d.template==='meeting'?d.meetingTitle:d.projects.join('、'))}</dd></div><div><dt>${d.template==='brief'?'经营指标':d.template==='meeting'?'跟进决策':'关注重点'}</dt><dd>${esc(scenarioSummary(d))}</dd></div>${d.template==='risk'?`<div><dt>重要变化</dt><dd>${esc(d.criteria)}</dd></div>`:''}<div><dt>数据来源</dt><dd>${esc(scenarioSourceName(d))}${d.sourceKey!=='manual'?' · '+esc(d.resource):''}</dd></div><div><dt>${d.template==='brief'?'发送时间':'提醒规则'}</dt><dd>${esc(d.template==='brief'?scenarioSchedule(d):d.rule)}</dd></div><div><dt>接收渠道</dt><dd>${d.channel==='dingtalk'?'钉钉 · 我（演示账号）':'仅在 Snack 查看'}</dd></div>${d.previewNote?`<div><dt>简报偏好</dt><dd>${esc(d.previewNote)}</dd></div>`:''}</dl>`}
+function scenarioConfirm(token){
+  const d=scenarioDraft();if(!d||d.stage!=='review'||token!==followToken(d))return false;
+  if(!scenarioSourceReady(d))return scenarioError(d,'数据源已断开，请返回连接数据源。');
+  if(d.channel==='dingtalk'&&!scenarioPushReady())return scenarioError(d,'钉钉推送授权已失效，请返回接收设置重新授权。');
+  const snapshot=scenarioSnapshot(d);let g=d.existingGoalId?data.goals.find(x=>x.id===d.existingGoalId):null;if(d.existingGoalId&&!g)return false;
+  if(!g){g={id:'goal-'+d.id,owner:'我',status:'active',phase:'tracking',logs:[],sourceIds:[],date:'',lastCheck:'尚未运行'};data.goals.unshift(g)}
+  Object.assign(g,{flowVersion:2,title:scenarioTitle(d),template:d.template,project:d.project,focus:d.focus,changeCriteria:d.criteria,sourceKey:d.sourceKey,requiredScopes:d.sourceKey==='dingTalk'?['projectMessages']:[],rule:d.template==='brief'?scenarioSchedule(d):d.rule,condition:d.template==='meeting'?'逐项核对完成依据，由你确认结束。':'你暂停或结束时停止。',setupSnapshot:snapshot,nextCheck:d.template==='brief'?nextScenarioRun(d):'',summary:d.template==='brief'?'已设置经营简报，等待下次运行。':d.template==='meeting'?'已记录 '+d.decisions.length+' 项决策，等待后续进展。':'已建立当前基准，等待新的项目资料。'});
+  g.logs.unshift(['刚刚',d.existingGoalId?'已确认更新设置。':'已确认数据范围与接收方式。']);d.confirmedGoalId=g.id;data.followInput='';data.followPrefill=null;ui.followIdeaId=null;
+  data.messages.push({type:'scenarioCreated',goalId:g.id,title:g.title,snapshot:structuredClone(snapshot),nextCheck:g.nextCheck,editing:!!d.existingGoalId});closeSheet(false);followRender();return g.id;
+}
+function scenarioRenderStep(m){
+  const d=scenarioDraft(),active=d&&m.followId===d.id&&m.revision===d.revision,s=active?d:m.snapshot;
+  if(!active)return `<div class="source-message-row"><div class="source-bubble scenario-history"><span>${esc(({scope:'项目与关注范围',meeting:'选择会议',decisions:'会议决策',sources:'资料来源',preview:'预览',delivery:'接收设置',review:'已核对设置'})[m.stage])}</span><p>${esc(m.stage==='sources'?scenarioSourceName(s):m.stage==='delivery'?s.channel==='dingtalk'?'钉钉 · 发送给我':'仅在 Snack 查看':m.stage==='meeting'?s.meetingTitle||'选择会议记录':scenarioSummary(s))}</p></div></div>`;
+  const token=followToken(d),title=({scope:d.template==='brief'?'选择项目和经营指标':'你想盯住什么？',meeting:'选择要跟进的会议',decisions:'确认需要跟进的决策',sources:d.template==='meeting'?'后续进展在哪里更新？':'连接项目资料',preview:d.template==='brief'?'先看一份经营简报':'先核对我的理解',delivery:d.template==='brief'?'什么时候、发到哪里？':'有进展时，发到哪里？',review:d.template==='brief'?'确认定时推送':'确认持续跟进'})[d.stage];
+  const select=(name,label,options,value)=>`<label class="field"><span>${label}</span><select name="${name}">${options.map(([v,t])=>`<option value="${v}" ${v===value?'selected':''}>${esc(t)}</option>`).join('')}</select></label>`;
+  const checks=(name,values,selected)=>`<div class="scenario-checks">${values.map(([v,t])=>`<label><input type="checkbox" name="${name}" value="${v}" ${selected.includes(v)?'checked':''}><span>${esc(t)}</span></label>`).join('')}</div>`;
+  const auth=(provider,scope,label)=>btn(label,'scenarioConnect',token+':'+provider+':'+scope,'secondary full');let body='';
+  if(d.stage==='scope'){
+    if(d.template==='brief')body=`<fieldset><legend>项目范围</legend>${checks('projects',SCENARIO_PROJECTS.map(x=>[x,x]),d.projects)}</fieldset><fieldset><legend>经营指标</legend>${checks('metrics',Object.entries(SCENARIO_METRICS),d.metrics)}</fieldset>`;
+    else body=select('project','项目',SCENARIO_PROJECTS.map(x=>[x,x]),d.project)+`<fieldset><legend>关注重点</legend>${checks('focus',Object.entries(SCENARIO_FOCUS),d.focusKeys)}</fieldset><label class="field"><span>补充关注点（选填）</span><textarea name="customFocus" maxlength="240" placeholder="例如：恢复时间变化时告诉我">${esc(d.customFocus||'')}</textarea></label>`;
+  }
+  if(d.stage==='meeting')body=select('meetingId','会议记录',scenarioMeetings().map(x=>[x.id,x.title+' · '+x.origin]),d.meetingId)+auth('dingtalk','minutes',data.dingTalk.scopes.includes('minutes')?'查看会议记录权限':'连接钉钉会议记录');
+  if(d.stage==='decisions')body=`<p class="scenario-note">${esc(d.meetingTitle)} · 识别结果为演示</p>${scenarioDecisions(d.meetingId).map(x=>{const v=d.decisions.find(y=>y.id===x.id)||x;return `<div class="scenario-decision"><label class="scenario-choice"><input type="checkbox" name="decisionIds" value="${x.id}" ${d.decisions.some(y=>y.id===x.id)?'checked':''}><strong>${x.title}</strong></label><details><summary>${esc(v.owner)} · ${esc(v.due)} · 修改</summary><label class="field"><span>负责人</span><input name="owner_${x.id}" value="${esc(v.owner)}" maxlength="40"></label><label class="field"><span>检查日期</span><input type="date" name="due_${x.id}" value="${esc(v.due)}"></label><label class="field"><span>完成依据</span><input name="evidence_${x.id}" value="${esc(v.evidence)}" maxlength="160"></label><p class="scenario-note">会议依据：${esc(x.quote)}</p></details></div>`}).join('')}`;
+  if(d.stage==='sources')body=(d.template==='brief'?'<div class="scenario-provider"><span class="work-icon">'+icon('trend')+'</span><strong>Nexus 经营数据</strong></div>':select('source','数据来源',[['nexus','Nexus 经营数据'],['dingTalk','钉钉项目消息'],['manual','仅用我补充的进展']],d.sourceKey))+(d.sourceKey==='manual'?'<p class="scenario-note">收到你补充的情况后更新，不会自动获取项目进展。</p>':`<p class="scenario-connection-state">${icon(scenarioSourceReady(d)?'check':'link')}${scenarioSourceReady(d)?'已连接 · 可读取已授权资料':'尚未连接'}</p>`+(d.sourceKey==='dingTalk'?select('resource','资料范围',[...new Set([d.projects.join('、')+' 项目资料','全部可见项目'])].map(x=>[x,x]),d.resource):'<p class="scenario-note">设备出勤、项目产值、计划与实际回款</p>')+auth(d.sourceKey==='nexus'?'nexus':'dingtalk',d.sourceKey==='nexus'?'projectRead':'projectMessages',scenarioSourceReady(d)?'查看数据访问权限':'连接'+(d.sourceKey==='nexus'?' Nexus 经营数据':'钉钉项目消息')));
+  if(d.stage==='preview')body=scenarioPreview(d)+(d.template==='risk'?`<label class="field"><span>什么变化值得提醒你</span><textarea name="criteria" required maxlength="400">${esc(d.criteria)}</textarea></label>`:d.template==='brief'?`<label class="field"><span>简报偏好（选填）</span><input name="previewNote" value="${esc(d.previewNote)}" maxlength="160" placeholder="例如：先看异常，最多三条"></label>`:'');
+  if(d.stage==='delivery')body=(d.template==='brief'?select('frequency','频率',[['weekdays','每个工作日（周一至周五）'],['daily','每天'],['weekly','每周']],d.frequency)+(d.frequency==='weekly'?select('weekday','星期',[['1','周一'],['2','周二'],['3','周三'],['4','周四'],['5','周五'],['6','周六'],['0','周日']],d.weekday):'')+`<label class="field"><span>发送时间 · 北京时间</span><input type="time" name="time" required value="${esc(d.time)}"></label>`:select('rule','提醒时机',(d.template==='meeting'?['有关键进展、到期前一天、到期仍未确认时提醒','仅到期仍未确认时提醒','有关键进展时提醒']:['关键变化时提醒','每天汇总一次重要变化','仅需要我决策时提醒']).map(x=>[x,x]),d.rule))+select('channel','接收渠道',[['dingtalk','钉钉消息'],['snack','仅在 Snack 查看']],d.channel)+(d.channel==='dingtalk'?`<p class="scenario-connection-state">${icon(scenarioPushReady()?'check':'link')}${scenarioPushReady()?'消息推送已授权':'消息推送待授权'}</p><p class="scenario-note">发送给：我（钉钉演示账号）</p>${auth('dingtalk','messageSend',scenarioPushReady()?'查看消息推送权限':'授权钉钉消息推送')}${scenarioPushReady()?btn('模拟发送测试消息','scenarioTest',token,'linklike')+(d.testSent?'<p class="scenario-note" role="status">测试消息已模拟送达，未发送真实消息。</p>':''):''}`:'<p class="scenario-note">结果保存在 Snack，打开应用后查看。</p>');
+  if(d.stage==='review')body=scenarioFields(d)+(d.template==='brief'?`<div class="scenario-next">下次：${scenarioRunLabel(nextScenarioRun(d))}</div>`:'');
+  const first=SCENARIOS[d.template].stages[0]===d.stage;
+  return `<div class="source-message-row"><section class="source-bubble rich-bubble scenario-step"><h2>${title}</h2><form id="scenarioForm" data-token="${esc(token)}"><input type="hidden" name="token" value="${esc(token)}">${body}${d.error?`<p class="form-error" role="alert">${esc(d.error)}</p>`:''}<div class="scenario-step-actions">${!first?btn('上一步','scenarioBack',token,'secondary'):''}<button type="submit" class="primary">${d.stage==='review'?(d.existingGoalId?'确认修改':d.template==='brief'?'开启定时推送':d.template==='meeting'?'跟进这些决策':'开始跟进'):d.stage==='preview'?'设置接收方式':d.stage==='delivery'?'核对并开启':d.stage==='sources'?'使用这些资料':'继续'}</button></div></form></section></div>`;
+}
+const messageBeforeScenarios=message;
+message=function(m){
+  if(m.type==='scenarioStep')return scenarioRenderStep(m);
+  if(m.type==='scenarioCreated')return `<div class="source-message-row"><section class="follow-created"><div class="follow-created-state">${icon('check')}${m.editing?'设置已更新':m.snapshot.template==='brief'?'定时推送已开启':'已开始持续跟进'}</div><h3>${esc(m.title)}</h3><p>${m.snapshot.template==='brief'?'下次：'+esc(scenarioRunLabel(m.nextCheck)):esc(scenarioSummary(m.snapshot))}</p><p>${m.snapshot.channel==='dingtalk'?'钉钉 · 发给我':'仅在 Snack 查看'}</p><details><summary>已确认的设置</summary>${scenarioFields(m.snapshot)}</details>${btn('查看'+(m.snapshot.template==='brief'?'定时简报':'跟进事项')+icon('right'),'goal',m.goalId,'follow-view-goal')}</section></div>`;
+  return messageBeforeScenarios(m);
+};
+const consumeBeforeScenarios=consumeFollowReply;
+consumeFollowReply=function(text,d){
+  if(d.flowVersion!==2)return consumeBeforeScenarios(text,d);
+  data.messages.push({type:'user',text});if(/^(取消|取消设置|先不设置)[。！!\s]*$/.test(text)){d.cancelled=true;followRender();return}
+  if(d.stage==='scope'&&d.template==='risk'){d.customFocus=text;d.focus=text;d.criteria=followCriteria(text,'risk')}
+  else if(d.stage==='preview'&&d.template==='risk')d.criteria=text;
+  else if(d.template==='brief')d.previewNote=text;
+  else d.previewNote=text;
+  scenarioShow(d.stage,d);
+};
+const respondBeforeScenarios=respondToChat;
+respondToChat=function(text,key){if(!activeFollowDraft()&&!key&&!ui.goalReference&&!ui.manualEventDraft&&!ui.reference&&/定时|每天|每个工作日|每周/.test(text||'')&&/简报|经营|推送/.test(text||'')){startFollowConversation(text,'brief');return}return respondBeforeScenarios(text,key)};sourceReply=respondToChat;
+const paintBeforeScenarios=paintSheet;
+paintSheet=function(){
+  const a=ui.scenarioAuth;
+  if(ui.sheet?.type==='scenarioAuth'&&a){
+    const name=a.provider==='nexus'?'Nexus':'钉钉',send=a.scopes.includes('messageSend'),ready=a.provider==='nexus'?data.settings.nexus:a.scopes.every(x=>data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes(x));
+    const permissions=`<ul class="connection-permissions">${a.scopes.map(x=>`<li>${icon(send?'chat':'file')}<span>${SCENARIO_PERMISSIONS[x]}</span></li>`).join('')}</ul>`;
+    const mark=a.provider==='dingtalk'?calendarAuthorizationBridge('dingtalk','connect'):`<div class="scenario-provider"><img src="${LOGO}" alt="Snack"><span>${icon('link')}</span><strong>Nexus</strong></div>`;
+    if(a.stage==='connect')workSheet(send?'用钉钉接收提醒':'连接'+name,`${mark}<p class="scenario-auth-value">${send?'按你确认的规则，把结果发送给你。':'读取所选资料，用于这次跟进。'}</p>${permissions}<p class="scenario-note">${send?'接收人：我（钉钉演示账号）':'资料范围：'+esc(scenarioDraft()?.resource||'所选会议')}</p>${ready?btn('返回设置','scenarioAuthReturn',a.id,'primary full'):btn('前往'+name+'授权','scenarioConsent',a.id,'primary full')}`);
+    else if(a.stage==='consent')workSheet(name+'授权',`<div class="provider-consent"><div class="provider-consent-identity"><strong>${name}</strong><span class="consent-simulation">演示</span></div><div class="consent-request"><img src="${LOGO}" alt="Snack"><h3>${send?'允许 Snack 向你发送消息？':'允许 Snack 读取这些资料？'}</h3></div>${permissions}<p class="consent-revoke">${send?'只向你本人推送；不会向同事或群聊发送。':'仅用于你确认的跟进范围。'}可随时在「连接应用」中撤销。</p></div>${btn('同意授权','scenarioGrant',a.id,'primary full')}${btn('取消','close','','auth-cancel')}`);
+    else if(a.stage==='authorizing')workSheet('正在连接',`<div class="auth-progress" role="status"><span class="calendar-auth-spinner"></span><p>正在等待${name}授权…</p></div><button class="primary full" disabled>正在连接…</button>`);
+    else workSheet('授权完成',`<div class="auth-complete"><span>${icon('check')}</span><h3>${send?'钉钉消息推送已授权':'资料访问已授权'}</h3></div>${btn('返回继续设置','scenarioAuthReturn',a.id,'primary full')}`);return;
+  }
+  if(ui.sheet?.type==='scenarioConnector'){
+    const send=scenarioPushReady(),read=!!data.dingTalk?.cliConnected;
+    workSheet('钉钉连接',`<div class="scenario-connection-state">${icon(read?'check':'link')}${read?'已连接':'未连接'}</div><dl class="follow-fields">${[['calendar','会议日程'],['minutes','会议记录'],['projectMessages','项目消息'],['messageSend','向我推送消息']].map(([k,l])=>`<div><dt>${l}</dt><dd>${read&&data.dingTalk.scopes.includes(k)?'已授权':'未授权'}</dd></div>`).join('')}</dl>${send?btn('撤销消息推送授权','scenarioRevokePush','','secondary full'):''}${read?btn('断开钉钉连接','confirmDisconnectConnector','dingtalk','danger-link'):''}`);return;
+  }
+  if(ui.sheet?.type==='confirmDisconnectConnector'&&ui.sheet.id==='dingtalk'){workSheet('断开钉钉？','<p class="sheet-desc">停止读取钉钉资料，并停止所有钉钉消息推送。已有跟进、简报与历史记录会保留。</p>'+btn('断开连接','disconnectConnector','dingtalk','danger-button full')+btn('取消','close','','secondary full'));return}
+  paintBeforeScenarios();
+};
+function scenarioRun(id){
+  const g=data.goals.find(x=>x.id===id);if(g?.flowVersion!==2||g.status!=='active')return false;
+  const d=g.setupSnapshot;if(!scenarioSourceReady(d)){g.lastRunStatus='数据源已断开';save();render();toast('请重新连接数据源后重试');return false}
+  const delivered=g.template==='brief'&&d.channel==='dingtalk'&&scenarioPushReady(),blocked=d.channel==='dingtalk'&&!scenarioPushReady();
+  g.lastRunStatus=g.template!=='brief'?'暂无新变化，未推送':blocked?'已生成，钉钉推送暂停':delivered?'已模拟推送至钉钉':'已保存到 Snack';g.lastCheck='刚刚 · 演示';
+  g.summary=g.template==='brief'?'经营简报已生成。'+g.lastRunStatus:g.template==='meeting'?'尚未找到新的完成依据，保留原约定继续核对。':'未发现新的相关资料，保留当前基准。';
+  g.logs.unshift([g.lastCheck,g.summary]);if(g.template==='brief'){g.latestPreview=scenarioPreview(d);g.nextCheck=nextScenarioRun(d);const fid='brief-'+g.id;let f=data.files.find(x=>x.id===fid);if(!f){f={id:fid,title:g.title,kind:'报告',folder:'reports',summary:g.summary};data.files.unshift(f)}Object.assign(f,{meta:'刚刚 · Snack 生成 · 演示',summary:g.summary,scenarioReport:true,reportHtml:g.latestPreview})}
+  save();render();toast(g.lastRunStatus);return true;
+}
+const goalRowBeforeScenarios=goalRow;
+goalRow=function(g){if(g.flowVersion!==2)return goalRowBeforeScenarios(g);const d=g.setupSnapshot;const state=g.status==='paused'?'已暂停':g.status==='done'?'已结束':!scenarioSourceReady(d)?'数据源待连接':d.channel==='dingtalk'&&!scenarioPushReady()?'钉钉推送暂停':g.template==='brief'?'下次 '+scenarioRunLabel(g.nextCheck):d.rule;return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.template==='brief'?'clock':g.template==='meeting'?'calendar':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span><span class="work-meta">${esc(state)} · ${d.channel==='dingtalk'?'钉钉':'Snack'}</span></span>${icon('right')}</button>`};
+const goalDetailBeforeScenarios=goalDetail;
+goalDetail=function(){
+  const g=data.goals.find(x=>x.id===ui.id);if(g?.flowVersion!==2)return goalDetailBeforeScenarios();const d=g.setupSnapshot;
+  return `<section class="page follow-detail"><div class="detail-hero"><div class="detail-state">${icon(SCENARIOS[g.template].icon)}${g.status==='paused'?'已暂停':g.status==='done'?'已结束':g.template==='brief'?'定时简报':'持续跟进中'}</div><h1>${esc(g.title)}</h1></div>${g.template==='brief'&&g.status==='active'?`<div class="scenario-next">下次：${esc(scenarioRunLabel(g.nextCheck))}</div>`:''}${!scenarioSourceReady(d)?'<div class="source-offline">数据源已断开，暂停读取新的资料。</div>':''}${d.channel==='dingtalk'&&!scenarioPushReady()?'<div class="source-offline">钉钉推送授权已撤销。结果保留在 Snack，重新授权后恢复推送。</div>':''}<section class="latest-progress"><div class="section-line"><h2>${g.template==='brief'?'最近一次运行':'最新进展'}</h2><time>${esc(g.lastCheck)}</time></div><p>${esc(g.summary)}</p></section>${g.latestPreview||''}${g.template==='meeting'?`<div class="section-line"><h2>跟进的决策</h2></div>${d.decisions.map(x=>`<div class="scenario-preview-item"><strong>${esc(x.title)}</strong><p>${esc(x.owner)} · ${esc(x.due)}</p><p>完成依据：${esc(x.evidence)}</p></div>`).join('')}`:''}<details class="scenario-settings"><summary>已确认的设置</summary>${scenarioFields(d)}</details><div class="section-line"><h2>${g.template==='brief'?'运行记录':'进展记录'}</h2></div><div class="timeline">${g.logs.map(([t,c])=>`<div class="timeline-item"><time>${esc(t)}</time><p>${esc(c)}</p></div>`).join('')}</div>${g.status==='active'?btn(g.template==='brief'?'模拟生成并推送一次':'模拟检查新进展','scenarioRun',g.id,'secondary full'):''}</section>`;
+};
+const fileDetailBeforeScenarios=fileDetail;
+fileDetail=function(){const f=data.files.find(x=>x.id===ui.id);if(!f?.scenarioReport)return fileDetailBeforeScenarios();return `<section class="page"><div class="detail-hero"><h1>${esc(f.title)}</h1><p>${esc(f.meta)}</p></div>${f.reportHtml}</section>`};
+const goalSourceBeforeScenarios=goalSourceConnected;
+goalSourceConnected=function(g){return g.flowVersion===2?scenarioSourceReady(g.setupSnapshot):goalSourceBeforeScenarios(g)};
+const calendarConnectedBeforeScenarios=calendarConnected;
+calendarConnected=function(provider){return provider==='dingtalk'?!!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('calendar'):calendarConnectedBeforeScenarios(provider)};
+const sourcesBeforeScenarios=sourcesPage;
+sourcesPage=function(){return sourcesBeforeScenarios().replace('<div class="connector-list">','<div class="connector-list">'+settingRow('钉钉消息与资料',data.dingTalk.cliConnected?'已连接':'未连接','scenarioManageConnector'))};
+const remindersBeforeScenarios=reminders;
+reminders=function(){return `<section class="page">${settingRow('项目经营简报',String(data.goals.filter(g=>g.flowVersion===2&&g.template==='brief'&&g.status==='active').length)+' 项已开启','scenarioBriefList')}${switchRow('跟进事项有重要变化','alerts')}${switchRow('会前准备提醒','prep')}${switchRow('夜间免打扰','quiet')}${data.settings.quiet?'<div class="info-row"><span>免打扰时段</span><span>22:00 – 08:00</span></div>':''}</section>`};
+const handleBeforeScenarios=handle;
+handle=function(action,id='',el){
+  const d=scenarioDraft();
+  if(action==='postTasks'&&data.files.some(f=>f.id===id)){
+    if(activeFollowDraft()){go('chat');toast('先完成或取消当前设置');return}
+    go('chat');startFollowConversation('接着跟进这场会议的决策。','meeting');const draft=scenarioDraft();draft.meetingId=id;scenarioAdvance({meetingId:id},followToken(draft));return;
+  }
+  if(action==='scenarioBack'){scenarioCapture();scenarioBack(id);return}
+  if(action==='scenarioConnect'){
+    const parts=id.split(':'),token=parts.slice(0,2).join(':');if(!d||token!==followToken(d))return;scenarioCapture();scenarioAuthorize(parts[2],[parts[3]],token);return;
+  }
+  if(action==='scenarioConsent'){const a=ui.scenarioAuth;if(a?.id===id&&a.stage==='connect'&&a.draftToken===followToken()){a.stage='consent';paintSheet()}return}
+  if(action==='scenarioGrant'){scenarioGrant(id);return}
+  if(action==='scenarioAuthReturn'){const a=ui.scenarioAuth;if(a?.id===id&&a.draftToken===followToken()){closeSheet(false);d.error='';followRender()}return}
+  if(action==='scenarioTest'){if(d&&id===followToken(d)&&scenarioPushReady()){scenarioCapture();d.testSent=true;save();render()}return}
+  if(action==='scenarioRun'){scenarioRun(id);return}
+  if(action==='scenarioManageConnector'){showSheet('scenarioConnector');return}
+  if(action==='scenarioRevokePush'){data.dingTalk.scopes=data.dingTalk.scopes.filter(x=>x!=='messageSend');save();paintSheet();return}
+  if(action==='scenarioBriefList'){go('goals');return}
+  if(action==='editGoal'&&data.goals.find(g=>g.id===id)?.flowVersion===2){
+    if(activeFollowDraft()){go('chat');toast('先完成或取消当前设置');return}
+    const g=data.goals.find(x=>x.id===id);data.followSequence=(data.followSequence||0)+1;data.followDraft={...structuredClone(g.setupSnapshot),id:'scenario-'+Date.now().toString(36)+'-'+data.followSequence,revision:0,existingGoalId:g.id};ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;scenarioShow('review',data.followDraft);go('chat');return;
+  }
+  if(action==='followConfirm'&&d){scenarioConfirm(id);return}
+  if(action==='followCancel'&&d){closeSheet(false)}
+  handleBeforeScenarios(action,id,el);
+  if(action==='resumeGoal'){const g=data.goals.find(x=>x.id===id);if(g?.flowVersion===2&&g.template==='brief'){g.nextCheck=nextScenarioRun(g.setupSnapshot);save();render()}}
+};
+document.addEventListener('submit',event=>{
+  if(event.target.id!=='scenarioForm')return;event.preventDefault();event.stopImmediatePropagation();const d=scenarioDraft();if(!d)return;
+  const token=new FormData(event.target).get('token');if(d.stage==='review')scenarioConfirm(token);else scenarioAdvance(scenarioValues(event.target),token);
+},true);
+document.addEventListener('change',event=>{
+  const form=event.target.closest?.('#scenarioForm');if(!form||!scenarioDraft())return;scenarioCapture();
+  if(['source','channel','frequency'].includes(event.target.name))render();
+});
+document.addEventListener('input',event=>{if(event.target.closest?.('#scenarioForm')&&scenarioDraft())scenarioCapture()});
+
+const scrollBeforeScenarios=scrollBottom;
+scrollBottom=function(){
+  if(!scenarioDraft()||ui.page!=='main'||ui.tab!=='chat')return scrollBeforeScenarios();
+  requestAnimationFrame(()=>{const pane=document.getElementById('scroll'),card=document.querySelector('.scenario-step'),header=document.querySelector('.source-topbar');if(!pane||!card?.getBoundingClientRect)return;const top=header?.getBoundingClientRect().bottom||pane.getBoundingClientRect().top;pane.scrollTop+=card.getBoundingClientRect().top-top-12;});
+};
+
+// END THREE SCENARIOS
 
 render();
 </script>
