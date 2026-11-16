@@ -1,5 +1,7 @@
 # Snack App 交互原型
 
+[在线预览](https://sweemondr.github.io/snack-app-prototype/)
+
 Snack 移动端交互演示，包含聊天、日程、持续跟进和资料库。
 
 ## 预览
