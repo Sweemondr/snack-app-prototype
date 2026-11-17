@@ -365,6 +365,10 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .chat-attachment{display:flex;align-items:center;gap:7px;min-width:0;max-width:240px;flex-shrink:0;padding:2px 2px 2px 10px;border:1px solid var(--line);border-radius:12px;background:var(--canvas);font-size:12px}
 .chat-attachment>svg{width:18px;height:18px;flex-shrink:0}.chat-attachment>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chat-attachment .icon-button{width:40px;height:40px;flex-shrink:0}
 .chat-message-attachments{display:grid;gap:7px;margin-bottom:8px}.chat-message-attachments:last-child{margin-bottom:0}.chat-message-attachments>span{display:flex;align-items:center;gap:7px;overflow-wrap:anywhere}.chat-message-attachments svg{width:18px;height:18px;flex-shrink:0}
+.overlay.chat-attachment-overlay{background:transparent;display:block}
+.sheet.chat-attachment-popover{position:absolute;left:16px;bottom:150px;width:min(260px,calc(100% - 32px));max-height:calc(100% - 48px);padding:10px 16px 14px;border-radius:16px;box-shadow:0 8px 30px #17212f26;animation:none}
+.chat-attachment-popover .sheet-handle{display:none}.chat-attachment-popover .sheet-head{margin:0 0 4px;gap:12px}.chat-attachment-popover .sheet-head h2{font-size:14px}.chat-attachment-popover .sheet-head .icon-button{width:36px;height:36px}
+.chat-attachment-popover .sheet-choice{min-height:50px;padding:12px 0;font-size:15px}.chat-attachment-popover .memory-import-note{font-size:11px;margin:10px 0 0;line-height:1.6}
 .app .circle-header>.icon-button.page-top-add{left:auto;right:18px;top:18px;width:40px;height:40px;border-radius:50%;background:#f1f2f4;color:#46515f}
 .calendar-entry-rows{margin-bottom:30px}.agenda-page>.calendar-entry-rows{margin-top:30px;margin-bottom:0}.calendar-import-icon{background:#f0f7ff}.calendar-import-icon img{width:34px;height:34px;object-fit:contain}.calendar-day-empty{padding:20px 0;color:var(--muted);font-size:14px;text-align:center}
 @media(max-width:375px){.app .circle-header>.icon-button.page-top-add{right:16px}}
@@ -396,26 +400,17 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .lib17-folder small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .lib17-folder>svg{width:16px;height:16px;color:var(--muted);flex-shrink:0}
 .lib17-folder:hover,.lib17-file:hover{background:var(--canvas)}
-.lib17-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:21px 0 6px}
-.lib17-toolbar h2{font-size:13px;font-weight:600;color:var(--muted)}
-.lib17-toolbar button{min-height:40px;font-size:12px}
-.lib17-file .file-info strong{font-size:14px;overflow-wrap:anywhere}
-.lib17-file .file-info small{font-size:11px;line-height:1.7;overflow-wrap:anywhere}
-.lib17-file{padding:17px 0}
+.lib17-file[data-action="file"] .file-info strong{font-size:16px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}.lib17-file[data-action="memoryItem"] .file-info strong{font-size:14px;overflow-wrap:anywhere}
+.lib17-file .file-info small{font-size:11px;line-height:1.7;overflow-wrap:anywhere}.lib17-file[data-action="file"] .file-info small{font-size:12px;line-height:1.5;margin-top:4px}
+.lib17-file{padding:17px 0}.lib17-file[data-action="file"]{padding:19px 0}
 .lib17-memory-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:12px;line-height:1.75;margin-top:5px}
 .lib17-reading{font-size:15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;padding:4px 0 22px}
 .lib17-source{font-size:12px;line-height:1.8;color:var(--muted);padding:15px 0;border-top:1px solid var(--line)}
 .lib17-source .source{margin-top:10px}
 .lib17-actions{display:flex;gap:10px;margin-top:18px}
 .lib17-actions button{flex:1}
-.lib17-organization-row{padding:18px 0;border-bottom:1px solid var(--line)}
-.lib17-organization-row strong{display:block;font-size:14px;line-height:1.65;overflow-wrap:anywhere;margin-bottom:8px}
-.lib17-organization-row small{display:block;color:var(--muted);font-size:11px;line-height:1.7;margin:7px 0}
-.lib17-organization-row select{max-width:100%;min-width:0;width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:10px;background:var(--canvas);color:var(--ink);font-size:13px}
-.lib17-organize-footer{position:sticky;bottom:-1px;background:var(--paper);padding:16px 0 0;margin-top:12px}
 .lib17-empty{padding:36px 4px;text-align:left;color:var(--muted);font-size:14px;line-height:1.8}
 .lib17-empty button{margin-top:12px}
-.lib17-location{font-size:12px;color:var(--muted);line-height:1.8;overflow-wrap:anywhere}
 .lib17-detail-links{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
 .lib17-detail-links .actions{flex-wrap:wrap}
 .lib17-detail-links button{font-size:12px}
@@ -424,8 +419,7 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .lib17-page .library-folder-heading button{flex-shrink:0}
 .lib17-note{font-size:12px;color:var(--muted);line-height:1.8;margin:12px 0 18px}
 .lib17-form-error{font-size:12px;color:var(--danger);line-height:1.7}
-@media(max-width:360px){.lib17-folder{gap:10px}.lib17-folder strong{font-size:14px}.lib17-organization-row select{font-size:12px}.lib17-actions{flex-wrap:wrap}.lib17-actions button{min-width:100px}}
-.lib17-filters{display:flex;gap:8px;margin:12px 0 10px}.lib17-filters button{min-width:52px;min-height:36px;padding:6px 13px;border-radius:9px;font-size:12px;color:var(--muted);background:transparent}.lib17-filters button[aria-pressed="true"]{background:var(--soft);color:var(--accent)}
+@media(max-width:360px){.lib17-folder{gap:10px}.lib17-folder strong{font-size:14px}.lib17-actions{flex-wrap:wrap}.lib17-actions button{min-width:100px}}
 /* END LIBRARY 17 STYLES */
 
 /* BEGIN CALENDAR 20261117 */
@@ -439,16 +433,19 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 
 .cal17-detail-header .icon-button{border-radius:50%;background:var(--canvas)}.cal17-pending{color:#955420!important}
 
-.cal17-landing-intro{cursor:default}.cal17-landing-intro:hover{background:transparent}.cal17-service.template-output input{position:absolute;right:0;width:28px;height:28px;opacity:0}.cal17-service .template-check{flex:0 0 27px}.cal17-landing>.primary{min-height:52px;border-radius:26px;font-size:16px}
+.cal17-service.template-output input{position:absolute;right:0;width:28px;height:28px;opacity:0}.cal17-service .template-check{flex:0 0 27px}.cal17-landing>.primary{min-height:52px;border-radius:26px;font-size:16px}
 
 .cal17-action-details{margin-top:14px}.cal17-action-details>summary{font-size:13px;line-height:1.7;color:var(--accent);cursor:pointer;padding:8px 0}.cal17-action-details>summary:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
 
 /* END CALENDAR 20261117 */
+
+.follow-trigger-guide{margin:8px 0 28px}.follow-trigger-row{display:flex;gap:16px;align-items:center;padding:16px 0}.follow-trigger-row strong{font-size:16px;line-height:1.5}.follow-trigger-row p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.6}.follow-trigger-row .follow-idea-icon{flex-shrink:0}
+.cal17-capabilities{margin:4px 0 25px}.cal17-capabilities .cal17-service{cursor:default;align-items:flex-start}.cal17-capabilities .cal17-service>span:last-child{flex:1}.cal17-capabilities .cal17-service>.cal17-capability-icon{flex:0 0 24px;color:var(--accent);margin-top:3px}.cal17-capability-icon svg{width:24px;height:24px}.cal17-connection{display:flex;align-items:center;gap:12px;padding:18px 0;margin-bottom:14px}.cal17-connection>span:nth-child(2){flex:1}.cal17-connection>.source-provider-icon{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center}.cal17-connection>.source-provider-icon img{width:28px;height:28px;object-fit:contain}.cal17-connection strong{font-size:15px;font-weight:600}.cal17-connection>svg{width:18px;color:var(--muted)}.cal17-service-status{margin:8px 0 16px}.cal17-service-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:20px 0;border-bottom:1px solid var(--line);text-align:left;font-size:15px}.cal17-service-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:4px}
 </style>
 </head>
 <body>
 <div class="stage">
-<aside class="review-nav"><div class="wordmark"><img class="logo" src="data:image/png;base64,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" alt="">Snack</div><p>App 交互原型 · 2026.11</p><div class="scene-list"><button data-action="scene" data-id="brief">项目经营对话 <span>→</span></button><button data-action="scene" data-id="anomaly">异常与持续跟踪 <span>→</span></button><button data-action="scene" data-id="meeting">会前 · 会中 · 会后 <span>→</span></button><button data-action="scene" data-id="onboarding">首次使用 <span>→</span></button></div><div class="review-foot">全部内容为演示数据<br>操作仅保存在当前浏览器<br><button data-action="reset">恢复初始演示</button></div></aside>
+<aside class="review-nav"><div class="wordmark"><img class="logo" src="data:image/png;base64,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" alt="">Snack</div><p>App 交互原型 · 2026.11</p><div class="scene-list"><button data-action="scene" data-id="brief">项目经营对话 <span>→</span></button><button data-action="scene" data-id="anomaly">异常与持续跟踪 <span>→</span></button><button data-action="scene" data-id="meeting">会前准备 · 会后跟进 <span>→</span></button><button data-action="scene" data-id="onboarding">首次使用 <span>→</span></button></div><div class="review-foot">全部内容为演示数据<br>操作仅保存在当前浏览器<br><button data-action="reset">恢复初始演示</button></div></aside>
 <main class="device" aria-label="Snack App 交互原型"><div class="app" id="app"></div></main>
 <aside class="review-notes"><h3>从一件事，持续跟进</h3><p><span class="dot"></span>聊天里理解情况<br>把异常加入持续目标</p><p><span class="dot"></span>日程里准备会议<br>资料库里找回依据</p><p>点击左上角齿轮<br>进入设置</p></aside>
 </div>
@@ -1028,7 +1025,7 @@ const CALENDAR_PROVIDERS = [
   {id:'dingtalk',name:'钉钉日程',place:'钉钉会议'},
   {id:'wecom',name:'企业微信日程',place:'企业微信会议'},
   {id:'feishu',name:'飞书日程',place:'飞书会议'},
-  {id:'system',name:'系统日历',place:'系统日历'}
+  {id:'system',name:'手机日历',place:'手机日历'}
 ];
 function upgradeCalendarSelection(){
   data.calendarConnections ||= {};
@@ -1183,7 +1180,7 @@ function parseScheduleText(text,previous={}){
   const relative=clean.match(/今天|明天|后天/);
   if(iso){day=`${iso[1]}-${iso[2].padStart(2,'0')}-${iso[3].padStart(2,'0')}`;clean=clean.replace(iso[0],' ')}
   else if(md){day=`2026-${md[1].padStart(2,'0')}-${md[2].padStart(2,'0')}`;clean=clean.replace(md[0],' ')}
-  else if(relative){day=shiftDay('2026-11-14',({今天:0,明天:1,后天:2})[relative[0]]);clean=clean.replace(relative[0],' ')}
+  else if(relative){day=shiftDay(data.calendarDemoAnchor||'2026-11-17',({今天:0,明天:1,后天:2})[relative[0]]);clean=clean.replace(relative[0],' ')}
   const dm=clean.match(/(\d+)\s*分钟/);if(dm){duration=Number(dm[1]);clean=clean.replace(dm[0],' ')}else if(clean.includes('半小时')){duration=30;clean=clean.replace('半小时',' ')}else{const hm=clean.match(/(\d+)\s*小时/);if(hm){duration=Number(hm[1])*60;clean=clean.replace(hm[0],' ')}}
   const clock=clean.match(/(上午|下午|晚上|中午|早上)?\s*(\d{1,2})[:：](\d{2})/);
   const spoken=clean.match(/(上午|下午|晚上|中午|早上)?\s*([一二三四五六七八九十两\d]+)[点时](半|[一二三四五六七八九十两\d]+分)?/);
@@ -1192,7 +1189,7 @@ function parseScheduleText(text,previous={}){
   clean=clean.replace(/^(请|帮我|给我|添加|安排|新建|一个|日程|名称是|名称叫|叫|在|，|,|\s)+/g,'').replace(/[，,。；;]+/g,' ').trim();
   if(/^(改成|改为)/.test(clean))clean=clean.replace(/^(改成|改为)/,'').trim();
   const title=clean.length>=2?clean:previous.title||'';
-  if(!day&&time)day=ui.selectedDate||'2026-11-14';
+  if(!day&&time)day=data.calendarDemoAnchor||'2026-11-17';
   return {...previous,title,day,time,end,error:''};
 }
 function receiveManualSchedule(text){
@@ -2104,7 +2101,12 @@ handle=function(action,id,el){
 const paintBeforeChatAttachments=paintSheet;
 paintSheet=function(){
   if(ui.sheet?.type==='chatAttach'){
-    workSheet('添加附件',btn(icon('image')+'<span>上传图片</span>'+icon('right'),'chatPickImage','','sheet-choice')+btn(icon('file')+'<span>上传文件</span>'+icon('right'),'chatPickFile','','sheet-choice')+'<p class="memory-import-note">演示仅保存文件名，不上传或读取内容。</p><input id="chatImageInput" type="file" hidden multiple accept="image/*"><input id="chatFileInput" type="file" hidden multiple>');return;
+    workSheet('添加附件',btn(icon('image')+'<span>图片</span>','chatPickImage','','sheet-choice')+btn(icon('file')+'<span>文件</span>','chatPickFile','','sheet-choice')+'<p class="memory-import-note">演示仅保存文件名，不读取内容。</p><input id="chatImageInput" type="file" hidden multiple accept="image/*"><input id="chatFileInput" type="file" hidden multiple>');
+    const overlay=document.querySelector('.overlay'),popover=overlay?.querySelector('.sheet');
+    overlay?.classList.add('chat-attachment-overlay');popover?.classList.add('chat-attachment-popover');
+    const composerBounds=document.getElementById('chatForm')?.getBoundingClientRect?.(),appBounds=app.getBoundingClientRect?.();
+    if(composerBounds&&appBounds&&popover){popover.style.bottom=Math.max(16,appBounds.bottom-composerBounds.top+8)+'px';popover.style.left=Math.max(16,composerBounds.left-appBounds.left)+'px'}
+    return;
   }
   paintBeforeChatAttachments();
 };
@@ -2130,43 +2132,48 @@ message=function(m){if(m.type==='user'&&m.attachments?.length)return `<div class
 
 // Template detail -> selected outcomes -> conversational setup. Local demonstration only.
 const FOLLOW_TEMPLATE_DETAILS={
-  brief:{id:'brief',scenario:'brief',icon:'clock',title:'每天 9:30，把项目经营简报发给我',description:'汇总所辖项目的经营情况，先看主要变化和今天需要关注的事。',detail:'每天整理所选项目的设备出勤、产值和回款。你可以一起查看正在跟进的事项，也可以把详细分析保存下来。',outputs:[
-    {id:'dailyBrief',title:'每日经营简报',description:'核心数据、变化和需要关注的项目',checked:true},
-    {id:'goalProgress',title:'重点事项进展',description:'正在跟进的事情，有什么新进展'},
-    {id:'report',title:'经营分析报告',description:'按日更新报告，保留每次分析'}]},
-  risk:{id:'risk',scenario:'risk',icon:'trend',title:'盯住项目的开工异常，恢复时告诉我',description:'按你确认的标准，跟进设备出勤、闲置和恢复情况。',detail:'选择要关注的项目，确认什么情况需要提醒。出现符合条件的变化时告诉你，后续继续核对是否恢复。',outputs:[
-    {id:'anomaly',title:'异常变化提醒',description:'达到你设定的条件时提醒',checked:true},
-    {id:'recovery',title:'恢复进展提醒',description:'满足你确认的恢复条件时告诉你',checked:true},
-    {id:'logFile',title:'异常变化记录',description:'持续记录数据变化、措施和结果'}]},
-  meeting:{id:'meeting',scenario:'meeting',icon:'calendar',title:'下次周会前，核对上次交代的事',description:'接着跟进负责人和约定时间，把待决策的问题带到下次周会。',detail:'选择上次会议中要跟进的决策，核对最新进展。会前整理完成情况和待确认问题，会后可以继续整理新的待办建议。',outputs:[
-    {id:'beforeBrief',title:'会前待办进展简报',description:'会前一天，整理上次事项的进展',checked:true},
-    {id:'dueReminder',title:'临期与到期未反馈提醒',description:'按每件事约定的检查日期提醒',checked:true},
-    {id:'reschedule',title:'周会改期提醒',description:'读取日程变化，并调整会前准备时间'},
-    {id:'newActions',title:'会后新待办建议',description:'新纪要到达后整理，由你选择继续跟进'}]}
+  brief:{id:'brief',scenario:'brief',icon:'clock',title:'每天 9:30，把项目经营简报发给我',description:'汇总项目经营情况，按时告诉你需要关注的变化。',detail:'选好项目和经营指标，我会在约定时间整理简报。',outputs:[
+    {id:'dailyBrief',kind:'trigger',title:'定时提醒',description:'每天 9:30，可在对话中调整',checked:true},
+    {id:'report',kind:'tool',title:'生成项目经营简报',description:'保存简报，保留每次更新',checked:true},
+    {id:'dingtalk',kind:'delivery',title:'通过钉钉提醒我',description:'发送给我本人'}]},
+  risk:{id:'risk',scenario:'risk',icon:'trend',title:'盯住项目的开工异常，恢复时通过钉钉提醒我',description:'按你确认的标准，跟进设备出勤、闲置和恢复情况。',detail:'选择项目，确认异常和恢复的标准。数据变动达到条件时，通过钉钉告诉你。',outputs:[
+    {id:'dataChange',kind:'trigger',title:'数据变动时提醒',description:'达到异常或恢复条件时告诉你',checked:true},
+    {id:'logFile',kind:'tool',title:'生成跟进记录',description:'保存变化、处理措施和结果'},
+    {id:'dingtalk',kind:'delivery',title:'通过钉钉提醒我',description:'发送给我本人',checked:true}]},
+  meeting:{id:'meeting',scenario:'meeting',icon:'calendar',title:'下次周会前，核对上次交代的事',description:'跟进负责人和约定时间，把待决策的问题带到下次周会。',detail:'接着跟进上次会议的决定，在约定的时间核对进展。',outputs:[
+    {id:'beforeBrief',kind:'trigger',title:'日程到达时提醒',description:'按下次周会的时间，提前核对进展',checked:true},
+    {id:'dueReminder',kind:'trigger',title:'定时提醒',description:'按各事项约定的检查日期提醒',checked:true},
+    {id:'reschedule',kind:'trigger',title:'数据变动时提醒',description:'周会改期时告诉你，并调整提醒时间'},
+    {id:'report',kind:'tool',title:'生成会前简报',description:'汇总完成情况和待确认问题',checked:true},
+    {id:'newActions',kind:'context',title:'从钉钉获取会议记录',description:'新纪要到达后，整理后续待办建议'},
+    {id:'dingtalk',kind:'delivery',title:'通过钉钉提醒我',description:'发送给我本人'}]}
 };
 function templateDynamicCandidate(){
   if(!data.goals.length)return null;
   const memory=data.memories.find(m=>m.category==='项目背景'&&/SCM/.test(m.title+' '+m.text)&&/调配|调出/.test(m.text));
   if(!memory||!data.files.some(f=>f.id===memory.sourceId))return null;
   if(data.goals.some(g=>g.status!=='done'&&g.template!=='brief'&&g.project?.includes('SCM')&&(/调配/.test(g.title+' '+g.focus)||g.setupSnapshot?.decisions?.some(x=>x.project==='SCM'&&/调配/.test(x.title)))))return null;
-  return {id:'scm-plan',scenario:'risk',icon:'target',title:'核对 SCM 闲置设备的调配安排',description:'结合后续运量、人员准入和已有安排，跟到负责人确认。',detail:'你记录过：设备是否调出，还需要核实后续运量、人员准入和现有安排。我可以持续整理这些条件，在约定复核日把待确认的问题带给你。',sourceMemoryId:memory.id,sourceId:memory.sourceId,outputs:[
-    {id:'progress',title:'调配条件进展',description:'核对运量、人员准入和负责人反馈',checked:true},
-    {id:'deadline',title:'到期复核提醒',description:'到约定日期，整理已确认和仍缺的信息',checked:true},
-    {id:'report',title:'调配复核记录',description:'更新依据、措施和最后的确认结果'}]};
+  return {id:'scm-plan',scenario:'risk',icon:'target',title:'核对 SCM 闲置设备的调配安排',description:'结合后续运量、人员准入和已有安排，跟到负责人确认。',detail:'跟进运量、人员准入和调配安排的变化，到约定日期再核对还缺哪些确认。',sourceMemoryId:memory.id,sourceId:memory.sourceId,outputs:[
+    {id:'progress',kind:'trigger',title:'数据变动时提醒',description:'运量、人员准入或调配确认有新变化时',checked:true},
+    {id:'deadline',kind:'trigger',title:'定时提醒',description:'到约定复核日期，核对仍缺的信息',checked:true},
+    {id:'report',kind:'tool',title:'生成调配复核记录',description:'保存依据、措施和确认结果'},
+    {id:'dingtalk',kind:'delivery',title:'通过钉钉提醒我',description:'发送给我本人'}]};
 }
 function followTemplate(id){return FOLLOW_TEMPLATE_DETAILS[id]||(id==='scm-plan'?templateDynamicCandidate():null)}
 function templateCovered(t){return data.goals.some(g=>g.status!=='done'&&g.setupSnapshot?.templateId===t.id)}
 function getFollowTemplates(){const dynamic=templateDynamicCandidate();return [FOLLOW_TEMPLATE_DETAILS.risk,FOLLOW_TEMPLATE_DETAILS.meeting,FOLLOW_TEMPLATE_DETAILS.brief,...(dynamic?[dynamic]:[])].filter(t=>!templateCovered(t))}
-function templateSelected(t){return (data.templateSelections?.[t.id]||t.outputs.filter(o=>o.checked).map(o=>o.id)).filter(id=>t.outputs.some(o=>o.id===id))}
-function templateOutputNames(d){const t=FOLLOW_TEMPLATE_DETAILS[d.templateId]||(d.templateId==='scm-plan'?{outputs:[{id:'progress',title:'调配条件进展'},{id:'deadline',title:'到期复核提醒'},{id:'report',title:'调配复核记录'}]}:null);return t?t.outputs.filter(o=>d.selectedOutputs?.includes(o.id)).map(o=>o.title):[]}
+function templateNormalizeOutputs(outputs){return [...new Set((outputs||[]).map(id=>['anomaly','recovery'].includes(id)?'dataChange':id))]}
+function templateSelected(t){return templateNormalizeOutputs(data.templateSelections?.[t.id]||t.outputs.filter(o=>o.checked).map(o=>o.id)).filter(id=>t.outputs.some(o=>o.id===id))}
+function templateValidSelection(outputs){return outputs.some(id=>id!=='dingtalk')}
+function templateOutputNames(d){const t=FOLLOW_TEMPLATE_DETAILS[d.templateId]||(d.templateId==='scm-plan'?{outputs:[{id:'progress',title:'数据变动时提醒'},{id:'deadline',title:'定时提醒'},{id:'report',title:'生成调配复核记录'},{id:'dingtalk',title:'通过钉钉提醒我'}]}:null),selected=templateNormalizeOutputs(d.selectedOutputs);return t?t.outputs.filter(o=>o.id==='dingtalk'?d.channel==='dingtalk':selected.includes(o.id)).map(o=>o.title):[]}
 function templateHas(d,id){return !!d.selectedOutputs?.includes(id)}
-function templateNotifications(d){return d.selectedOutputs?.some(id=>!['report','logFile'].includes(id))}
-function templateNeedsDecisions(d){return templateHas(d,'beforeBrief')||templateHas(d,'dueReminder')}
+function templateNotifications(d){return d.selectedOutputs?.some(id=>!['report','logFile','dingtalk'].includes(id))||d.channel==='dingtalk'}
+function templateNeedsDecisions(d){return templateHas(d,'beforeBrief')||templateHas(d,'dueReminder')||templateHas(d,'report')}
 function templateStageList(d){
   const stages=SCENARIOS[d.template].stages;
   if(d.template!=='meeting')return stages;
   if(!d.templateId)return stages.filter(s=>s!=='schedule');
-  if(templateNeedsDecisions(d))return stages.filter(s=>s!=='schedule'||d.selectedOutputs.some(o=>['beforeBrief','reschedule','newActions'].includes(o)));
+  if(templateNeedsDecisions(d))return stages.filter(s=>s!=='schedule'||d.selectedOutputs.some(o=>['beforeBrief','reschedule','newActions','report'].includes(o)));
   return [...(templateHas(d,'newActions')?['meeting']:[]),'schedule','preview','delivery','review'];
 }
 templateRows=function(){return `<div class="follow-ideas">${getFollowTemplates().map(t=>`<button class="follow-idea" data-action="startTemplate" data-id="${t.id}"><span class="follow-idea-icon" aria-hidden="true">${icon(t.icon)}</span><span class="follow-idea-body"><strong>${esc(t.title)}</strong><span>${esc(t.description)}</span></span>${icon('right')}</button>`).join('')}</div>`};
@@ -2174,36 +2181,41 @@ const goalsBeforeTemplates=goals;
 goals=function(){const html=goalsBeforeTemplates();return getFollowTemplates().length?html:html.replace('<div class="section-line follow-add-heading"><h2>继续添加</h2></div>','')};
 function templateBeginDraft(t,outputs){
   startFollowConversation(t.title,t.scenario);const d=scenarioDraft();
-  Object.assign(d,{templateId:t.id,selectedOutputs:[...outputs],templateTitle:t.title,channel:'snack',time:'09:30',criteria:'',rule:t.scenario==='meeting'?'按所选事项和约定日期提醒':'满足已确认条件时提醒',nextMeetingAt:'',calendarEventId:'',meetingTimeSource:'manual',meetingLeadHours:'24',reviewDate:'',completionEvidence:'',sourceMemoryId:t.sourceMemoryId||null});
+  Object.assign(d,{templateId:t.id,selectedOutputs:[...outputs],templateTitle:t.title,channel:outputs.includes('dingtalk')?'dingtalk':'snack',time:'09:30',criteria:'',rule:t.scenario==='meeting'?'按所选事项和约定日期提醒':'满足已确认条件时提醒',nextMeetingAt:'',calendarEventId:'',meetingTimeSource:'manual',meetingLeadHours:'24',reviewDate:'',completionEvidence:'',sourceMemoryId:t.sourceMemoryId||null});
   if(t.scenario==='brief')d.frequency='daily';
-  if(t.scenario==='meeting'){d.frequency='weekly';d.weekday='1';if(!templateNeedsDecisions(d)){d.projects=[];d.project='';d.focus='';d.sourceKey='manual'}}
+  if(t.scenario==='meeting'){d.rule=t.outputs.filter(o=>o.kind==='trigger'&&outputs.includes(o.id)).map(o=>o.title).join('、')||'按下次会议时间更新';d.frequency='weekly';d.weekday='1';if(!templateNeedsDecisions(d)){d.projects=[];d.project='';d.focus='';d.sourceKey='manual'}}
   if(t.id==='scm-plan')Object.assign(d,{project:'SCM',projects:['SCM'],focusKeys:['progress'],focus:'闲置设备的调配安排',completionEvidence:'负责人确认后续运量、人员准入及设备调配安排',sourceKey:'nexus',criteria:'有新的运量安排、人员准入结果或负责人调配反馈时记录。'});
   d.stage=templateStageList(d)[0];const current=data.messages.find(m=>m.type==='scenarioStep'&&m.followId===d.id&&m.revision===d.revision);if(current){current.stage=d.stage;current.snapshot=scenarioSnapshot(d)}
   go('chat');followRender();return true;
 }
 function beginTemplate(id,outputs){
   const t=followTemplate(id);if(!t||!Array.isArray(outputs))return false;
-  const selected=[...new Set(outputs)].filter(value=>t.outputs.some(o=>o.id===value));if(!selected.length)return false;
+  const selected=templateNormalizeOutputs(outputs).filter(value=>t.outputs.some(o=>o.id===value));if(!templateValidSelection(selected))return false;
   if(activeFollowDraft()){closeSheet(false);go('chat');toast('继续完成刚才的设置');return false}
   data.templateSelections||={};data.templateSelections[id]=selected;closeSheet(false);return templateBeginDraft(t,selected);
 }
 const sheetBeforeTemplates=paintSheet;
 paintSheet=function(){
+  if(ui.sheet?.type==='followIntroduction'){
+    workSheet('我能帮你持续跟进什么？',`<p class="template-description">在对话中告诉我想跟进的目标，我会和你确认提醒的条件与时间。</p><div class="follow-trigger-guide">${[['trend','数据变动时提醒','数据变化达到你确认的条件时，告诉你。'],['clock','定时提醒','到约定的时间，提醒你或整理进展。'],['calendar','日程到达时提醒','围绕会议等日程，提前准备并提醒你。']].map(([mark,title,description])=>`<div class="follow-trigger-row"><span class="follow-idea-icon" aria-hidden="true">${icon(mark)}</span><div><strong>${title}</strong><p>${description}</p></div></div>`).join('')}</div>${btn('前往对话','followGoChat','','primary full')}`);return;
+  }
   if(ui.sheet?.type!=='followTemplate')return sheetBeforeTemplates();
-  const t=followTemplate(ui.sheet.id);if(!t){closeSheet(false);return}const selected=templateSelected(t);
-  workSheet(t.title,`<form id="followTemplateForm" data-template="${t.id}" class="template-detail"><p class="template-description">${esc(t.detail)}</p><fieldset class="template-outputs"><legend>包含的内容</legend>${t.outputs.map(o=>`<label class="template-output"><span><strong>${esc(o.title)}</strong><small>${esc(o.description)}</small></span><input type="checkbox" name="output" value="${o.id}" ${selected.includes(o.id)?'checked':''}><span class="template-check" aria-hidden="true">${icon('check')}</span></label>`).join('')}</fieldset><div class="template-footer"><p class="form-error" id="templateSelectionError" role="status">${selected.length?'':'至少选择一项内容'}</p><button type="submit" class="primary full" ${selected.length?'':'disabled'}>继续设置${icon('right')}</button></div></form>`);
+  const t=followTemplate(ui.sheet.id);if(!t){closeSheet(false);return}const selected=templateSelected(t),valid=templateValidSelection(selected);
+  workSheet(t.title,`<form id="followTemplateForm" data-template="${t.id}" class="template-detail"><p class="template-description">${esc(t.detail)}</p><fieldset class="template-outputs"><legend>包含的内容</legend>${t.outputs.map(o=>`<label class="template-output"><span><strong>${esc(o.title)}</strong><small>${esc(o.description)}</small></span><input type="checkbox" name="output" value="${o.id}" ${selected.includes(o.id)?'checked':''}><span class="template-check" aria-hidden="true">${icon('check')}</span></label>`).join('')}</fieldset><div class="template-footer"><p class="form-error" id="templateSelectionError" role="status">${valid?'':'请选择提醒或要生成的内容'}</p><button type="submit" class="primary full" ${valid?'':'disabled'}>继续设置${icon('right')}</button></div></form>`);
   document.querySelector('.sheet')?.classList.add('template-sheet');
 };
 const handleBeforeTemplates=handle;
 handle=function(action,id='',el){
   if(action==='startTemplate'&&followTemplate(id)){showSheet('followTemplate',{id});return}
+  if(action==='customFollow'||action==='newGoal'){showSheet('followIntroduction');return}
+  if(action==='followGoChat'){closeSheet(false);prefillFollow('custom');return}
   if(action==='templateMeetingSource'){return}
   handleBeforeTemplates(action,id,el);
 };
 document.addEventListener('change',event=>{
   const form=event.target.closest?.('#followTemplateForm');if(!form)return;
   const selected=[...form.querySelectorAll('input[name="output"]:checked')].map(x=>x.value);data.templateSelections||={};data.templateSelections[form.dataset.template]=selected;save();
-  form.querySelector('button[type="submit"]').disabled=!selected.length;form.querySelector('#templateSelectionError').textContent=selected.length?'':'至少选择一项内容';
+  form.querySelector('button[type="submit"]').disabled=!templateValidSelection(selected);form.querySelector('#templateSelectionError').textContent=templateValidSelection(selected)?'':'请选择提醒或要生成的内容';
 });
 document.addEventListener('submit',event=>{
   const form=event.target;if(form.id!=='followTemplateForm')return;event.preventDefault();event.stopImmediatePropagation();beginTemplate(form.dataset.template,new FormData(form).getAll('output'));
@@ -2213,7 +2225,7 @@ scenarioSnapshot=function(d){return {...snapshotBeforeTemplates(d),templateId:d.
 const valuesBeforeTemplates=scenarioValues;
 scenarioValues=function(form){const values=valuesBeforeTemplates(form),fd=new FormData(form);for(const k of ['nextMeetingAt','calendarEventId','meetingTimeSource','meetingLeadHours','reviewDate','completionEvidence'])if(fd.has(k))values[k]=String(fd.get(k)||'').trim();return values};
 const applyBeforeTemplates=scenarioApply;
-scenarioApply=function(d,v){applyBeforeTemplates(d,v);for(const k of ['nextMeetingAt','calendarEventId','meetingTimeSource','meetingLeadHours','reviewDate','completionEvidence'])if(v[k]!==undefined)d[k]=v[k]};
+scenarioApply=function(d,v){applyBeforeTemplates(d,v);if(d.templateId&&v.channel!==undefined){d.selectedOutputs=templateNormalizeOutputs(d.selectedOutputs).filter(id=>id!=='dingtalk');if(d.channel==='dingtalk')d.selectedOutputs.push('dingtalk')}for(const k of ['nextMeetingAt','calendarEventId','meetingTimeSource','meetingLeadHours','reviewDate','completionEvidence'])if(v[k]!==undefined)d[k]=v[k]};
 SCENARIOS.meeting.stages=['meeting','decisions','sources','schedule','preview','delivery','review'];
 function templateCalendarReady(){return !!data.dingTalk?.cliConnected&&data.dingTalk.scopes.includes('calendar')}
 function templateCalendarMeetings(){
@@ -2228,14 +2240,14 @@ const stepBeforeTemplates=scenarioRenderStep;
 scenarioRenderStep=function(m){
   const d=scenarioDraft(),active=d&&m.followId===d.id&&m.revision===d.revision;
   if(active&&d.templateId&&d.stage==='schedule'){
-    const calendar=templateHas(d,'reschedule'),needsTime=templateHas(d,'beforeBrief')||calendar;
+    const calendar=templateHas(d,'reschedule'),needsTime=templateHas(d,'beforeBrief')||templateHas(d,'report')||calendar;
     const choices=templateCalendarMeetings();if(calendar)d.meetingTimeSource='calendar';
     const select=(name,label,options,value)=>`<label class="field"><span>${label}</span><select name="${name}">${options.map(([id,text])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(text)}</option>`).join('')}</select></label>`;
     let body='';if(needsTime){
       if(!calendar)body+=select('meetingTimeSource','下次会议时间',[['manual','直接填写'],['calendar','从钉钉日程选择']],d.meetingTimeSource);
       if(d.meetingTimeSource==='calendar')body+=templateCalendarReady()?select('calendarEventId','会议日程',[['','选择一场会议'],...choices.map(e=>[e.id,e.title+' · '+e.day+' '+e.time])],d.calendarEventId):`<p class="scenario-note">连接钉钉日程，跟随会议时间安排准备。</p>${btn('连接钉钉日程','scenarioConnect',followToken(d)+':dingtalk:calendar','secondary full')}`;
       else body+='<label class="field"><span>下次会议 · 北京时间</span><input type="datetime-local" name="nextMeetingAt" required value="'+esc(d.nextMeetingAt||'')+'"></label>';
-      if(templateHas(d,'beforeBrief'))body+=select('meetingLeadHours','会前多久准备',[['24','提前一天'],['2','提前两小时'],['1','提前一小时']],d.meetingLeadHours||'24');
+      if(templateHas(d,'beforeBrief')||templateHas(d,'report'))body+=select('meetingLeadHours','会前多久准备',[['24','提前一天'],['2','提前两小时'],['1','提前一小时']],d.meetingLeadHours||'24');
     }
     if(templateHas(d,'newActions'))body+=data.dingTalk.scopes.includes('minutes')&&data.dingTalk.cliConnected?'<p class="scenario-connection-state">会议记录已授权</p>':`<p class="scenario-note">读取这个会议的新纪要，整理下一轮待办建议。</p>${btn('连接钉钉会议记录','scenarioConnect',followToken(d)+':dingtalk:minutes','secondary full')}`;
     return templateStep(d,'安排下一次周会',body);
@@ -2245,6 +2257,7 @@ scenarioRenderStep=function(m){
   if(active&&d.templateId&&d.template==='brief'&&!templateNotifications(d)&&d.stage==='delivery'){
     html=html.replace('什么时候、发到哪里？','什么时候更新报告？').replace('发送时间 · 北京时间','更新时间 · 北京时间').replace(/<label class="field"><span>接收渠道<\/span><select name="channel">[\s\S]*?<\/select><\/label>/,'').replace('<p class="scenario-note">结果保存在 Snack，打开应用后查看。</p>','');
   }
+  if(active&&d.templateId&&d.stage==='delivery'&&d.template!=='brief')html=html.replace(/<label class="field"><span>提醒时机<\/span><select name="rule">[\s\S]*?<\/select><\/label>/,'');
   if(active&&d.templateId&&d.stage==='review')html=html.replace('确认持续跟进','确认开启').replace('确认定时推送','确认开启');
   return html;
 };
@@ -2261,7 +2274,7 @@ scenarioAdvance=function(values={},token=followToken()){
     if(d.stage==='schedule'){
       if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return scenarioError(d,'请先连接钉钉日程。');
       templateSetMeeting(d);
-      if((templateHas(d,'beforeBrief')||templateHas(d,'reschedule'))&&!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(d.nextMeetingAt||''))return scenarioError(d,'请选择或填写下次会议时间。');
+      if((templateHas(d,'beforeBrief')||templateHas(d,'report')||templateHas(d,'reschedule'))&&!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(d.nextMeetingAt||''))return scenarioError(d,'请选择或填写下次会议时间。');
       if(d.meetingTimeSource==='calendar'&&!templateCalendarMeetings().some(e=>e.id===d.calendarEventId))return scenarioError(d,'请选择要跟进的会议日程。');
       if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return scenarioError(d,'请先授权读取新会议记录。');
     }
@@ -2271,7 +2284,7 @@ scenarioAdvance=function(values={},token=followToken()){
     }
   }
   const ok=advanceBeforeTemplates(values,token);if(!ok)return ok;
-  if(d.stage==='schedule'&&(!d.templateId||!d.selectedOutputs.some(x=>['beforeBrief','reschedule','newActions'].includes(x))))scenarioShow('preview');
+  if(d.stage==='schedule'&&(!d.templateId||!d.selectedOutputs.some(x=>['beforeBrief','reschedule','newActions','report'].includes(x))))scenarioShow('preview');
   if(d.stage==='delivery'&&d.templateId&&!templateNotifications(d)){d.channel='snack';if(d.template!=='brief')scenarioShow('review')}
   return ok;
 };
@@ -2286,7 +2299,7 @@ scenarioSourceReady=function(d){if(d?.templateId&&d.template==='meeting'&&!templ
 const confirmBeforeTemplates=scenarioConfirm;
 scenarioConfirm=function(token){
   const d=scenarioDraft();if(d?.templateId){
-    if(!d.selectedOutputs?.length)return scenarioError(d,'请至少选择一项内容。');
+    if(!templateValidSelection(d.selectedOutputs||[]))return scenarioError(d,'请选择提醒或要生成的内容。');
     if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return scenarioError(d,'日程授权已失效，请返回重新连接。');
     if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return scenarioError(d,'会议记录授权已失效，请返回重新连接。');
   }
@@ -2294,7 +2307,7 @@ scenarioConfirm=function(token){
   const g=data.goals.find(x=>x.id===id);g.selectedOutputs=[...d.selectedOutputs];g.templateId=d.templateId;
   if(d.template==='meeting'&&!templateNeedsDecisions(d))g.summary='已开启'+templateOutputNames(d).join('、')+'。';
   if(d.templateId==='scm-plan'){g.date=d.reviewDate;g.condition=d.completionEvidence;g.nextCheck=d.reviewDate+'T09:30+08:00'}
-  if(d.template==='meeting'&&templateHas(d,'beforeBrief'))g.nextCheck=templateBeforeTime(d);
+  if(d.template==='meeting'&&(templateHas(d,'beforeBrief')||templateHas(d,'report')))g.nextCheck=templateBeforeTime(d);
   save();render();return id;
 };
 function templateBeforeTime(d){const time=Date.parse(d.nextMeetingAt+':00+08:00')-Number(d.meetingLeadHours||24)*3600000;return Number.isFinite(time)?new Date(time).toISOString():''}
@@ -2309,17 +2322,17 @@ scenarioPreview=function(d){
   return previewBeforeTemplates(d);
 };
 function templateResult(g,body){data.messages.push({type:'templateResult',goalId:g.id,title:g.title,body})}
-function templateSaveFile(g,html){const id='template-report-'+g.id;let f=data.files.find(f=>f.id===id);if(!f){f={id,title:g.title+' · '+(g.template==='brief'?'经营报告':'跟进记录'),kind:'报告',folder:'reports',collection:g.template==='brief'?'briefs':'analysis',versions:[]};data.files.unshift(f)}f.versions||=[];f.versions.unshift({at:new Date().toISOString(),html});Object.assign(f,{meta:'刚刚 · Snack 生成 · 演示',summary:g.summary,scenarioReport:true,reportHtml:html});g.reportFileId=f.id}
+function templateSaveFile(g,html){const id='template-report-'+g.id;let f=data.files.find(f=>f.id===id);if(!f){f={id,title:g.title+' · '+(g.template==='brief'?'经营简报':g.template==='meeting'?'会前简报':'跟进记录'),kind:'报告',folder:'reports',collection:g.template==='brief'?'briefs':'analysis',versions:[]};data.files.unshift(f)}f.versions||=[];f.versions.unshift({at:new Date().toISOString(),html});Object.assign(f,{meta:'刚刚 · Snack 生成 · 演示',summary:g.summary,scenarioReport:true,reportHtml:html,outputKind:g.template==='meeting'?'meeting-prep':g.template==='brief'?'daily-brief':'follow-record',goalId:g.id});g.reportFileId=f.id}
 function templateRunGoal(id){
   const g=data.goals.find(g=>g.id===id);if(!g?.setupSnapshot?.templateId||g.status!=='active')return false;const d=g.setupSnapshot;
   if(!scenarioSourceReady(d)){g.lastRunStatus='数据源已断开';save();render();toast('请重新连接数据源');return false}
   if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady()){g.lastRunStatus='日程连接已断开';save();render();toast('请重新连接钉钉日程');return false}
-  let body='',deliver=false;g.lastCheck='刚刚 · 演示';
-  if(g.template==='brief'){body=scenarioPreview(d);deliver=templateHas(d,'dailyBrief')||templateHas(d,'goalProgress');g.nextCheck=nextScenarioRun(d);g.summary='已按所选内容生成经营简报。'}
+  let body='',deliver=false,preparedReport=false;g.lastCheck='刚刚 · 演示';
+  if(g.template==='brief'){body=scenarioPreview(d);deliver=templateHas(d,'dailyBrief')||templateHas(d,'goalProgress')||d.channel==='dingtalk';g.nextCheck=nextScenarioRun(d);g.summary='已按所选内容生成经营简报。'}
   else if(g.template==='meeting'){
     const before=d.nextMeetingAt;templateSetMeeting(d);
     if(before!==d.nextMeetingAt&&d.nextMeetingAt){if(templateHas(d,'reschedule')){body+='<p>周会已改期至 '+esc(d.nextMeetingAt.replace('T',' '))+'。</p>';deliver=true}g.nextCheck=templateBeforeTime(d)}
-    const now=Date.now();if(templateHas(d,'beforeBrief')&&d.nextMeetingAt&&now>=Date.parse(templateBeforeTime(d))&&now<Date.parse(d.nextMeetingAt+':00+08:00')&&g.preparedFor!==d.nextMeetingAt){body+=scenarioPreview(d);g.preparedFor=d.nextMeetingAt;deliver=true}
+    const now=Date.now();if((templateHas(d,'beforeBrief')||templateHas(d,'report'))&&d.nextMeetingAt&&now>=Date.parse(templateBeforeTime(d))&&now<Date.parse(d.nextMeetingAt+':00+08:00')&&g.preparedFor!==d.nextMeetingAt){body+=scenarioPreview(d);g.preparedFor=d.nextMeetingAt;preparedReport=true;deliver=templateHas(d,'beforeBrief')||d.channel==='dingtalk'}
     if(templateHas(d,'dueReminder')){const today=new Date(now+8*3600000).toISOString().slice(0,10),soon=new Date(now+32*3600000).toISOString().slice(0,10);const due=d.decisions.filter(x=>x.due<=soon);if(due.length&&g.dueCheckedOn!==today){body+='<p>'+due.map(x=>esc(x.title)+'：'+(x.due<today?'已过检查日期，进展待确认':'临近检查日期')+'。').join('<br>')+'</p>';g.dueCheckedOn=today;deliver=true}}
     if(templateHas(d,'newActions')){if(!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))body+='<p>会议记录连接已断开，暂不能整理新的待办建议。</p>';else{const latest=data.files.find(f=>f.id!==d.meetingId&&(f.kind==='录音'||f.folder==='meetings')&&(f.followMeetingId===d.meetingId||f.eventId===d.calendarEventId));if(latest&&g.processedMinutes!==latest.id){body+='<p>有一份新的会议记录可整理待办。</p>'+btn('选择需要跟进的新待办','postTasks',latest.id,'secondary');g.processedMinutes=latest.id;deliver=true}}}
     g.summary=body?'已核对所选事项，进展仍以完成依据为准。':'暂无新的完成依据，继续按约定时间核对。';
@@ -2327,7 +2340,7 @@ function templateRunGoal(id){
     const due=d.reviewDate&&new Date(Date.now()+8*3600000).toISOString().slice(0,10)>=d.reviewDate;g.summary=due?'已到复核日，尚缺负责人确认，进展待核实。':'尚未收到新的运量、人员准入或调配确认。';if(due&&templateHas(d,'deadline')&&!g.reviewNotified){body='<p>'+esc(g.summary)+'</p>';deliver=true;g.reviewNotified=true}
   }else g.summary='没有新的资料，未判定异常发生或恢复。';
   if(!body)body='<p>'+esc(g.summary)+'</p>';g.latestPreview=body;
-  if(templateHas(d,'report')||templateHas(d,'logFile'))templateSaveFile(g,body);
+  if((templateHas(d,'report')||templateHas(d,'logFile'))&&(g.template!=='meeting'||preparedReport))templateSaveFile(g,body);
   const blocked=deliver&&d.channel==='dingtalk'&&!scenarioPushReady();g.lastRunStatus=deliver?(blocked?'结果已保留，钉钉推送暂停':d.channel==='dingtalk'?'已模拟推送至钉钉':'已更新到会话'):'检查完成，未触发提醒';
   if(deliver)templateResult(g,body);g.logs.unshift([g.lastCheck,g.summary+' '+g.lastRunStatus]);save();render();toast(g.lastRunStatus);return true;
 }
@@ -2337,7 +2350,7 @@ const messageBeforeTemplates=message;
 message=function(m){if(m.type==='templateResult')return `<div class="source-message-row"><section class="source-bubble rich-bubble"><h3>${esc(m.title)}</h3>${m.body}${btn('查看跟进事项','goal',m.goalId,'linklike')}</section></div>`;return messageBeforeTemplates(m)};
 const detailBeforeTemplates=goalDetail;
 function templateDependencyIssue(d){if(!d?.templateId)return '';if((templateHas(d,'reschedule')||d.meetingTimeSource==='calendar')&&!templateCalendarReady())return '日程待连接';if(templateHas(d,'newActions')&&!(data.dingTalk.cliConnected&&data.dingTalk.scopes.includes('minutes')))return '会议记录待连接';return ''}
-goalDetail=function(){const g=data.goals.find(g=>g.id===ui.id);let html=detailBeforeTemplates();if(g?.reportFileId)html=html.replace('<details class="scenario-settings">',btn('查看'+(g.template==='brief'?'经营报告':'跟进记录'),'file',g.reportFileId,'secondary full')+'<details class="scenario-settings">');const issue=templateDependencyIssue(g?.setupSnapshot);if(issue)html=html.replace('<section class="latest-progress">','<div class="source-offline">'+issue+'，受影响的内容暂不更新。</div><section class="latest-progress">');return html};
+goalDetail=function(){const g=data.goals.find(g=>g.id===ui.id);let html=detailBeforeTemplates();if(g?.reportFileId)html=html.replace('<details class="scenario-settings">',btn('查看'+(g.template==='brief'?'经营简报':g.template==='meeting'?'会前简报':'跟进记录'),'file',g.reportFileId,'secondary full')+'<details class="scenario-settings">');const issue=templateDependencyIssue(g?.setupSnapshot);if(issue)html=html.replace('<section class="latest-progress">','<div class="source-offline">'+issue+'，受影响的内容暂不更新。</div><section class="latest-progress">');return html};
 const rowBeforeTemplates=goalRow;
 goalRow=function(g){const html=rowBeforeTemplates(g),issue=templateDependencyIssue(g.setupSnapshot);return issue&&g.status==='active'?html.replace(/(<span class="work-meta">)[\s\S]*?(<\/span>)/,'$1'+issue+'$2'):html};
 document.addEventListener('change',event=>{if(event.target.closest?.('#scenarioForm')&&event.target.name==='meetingTimeSource'){scenarioCapture();render()}});
@@ -2345,7 +2358,7 @@ document.addEventListener('change',event=>{if(event.target.closest?.('#scenarioF
 // Personal reminder criteria. Install after the template-selection layer.
 // Demonstrates confirmation and persistence; it does not evaluate live business data.
 function personalRuleApplies(d){return d?.template==='risk'&&d.templateId!=='scm-plan'}
-function personalRuleNeeds(d,key){return Array.isArray(d.selectedOutputs)?d.selectedOutputs.includes(key):key==='anomaly'}
+function personalRuleNeeds(d,key){return Array.isArray(d.selectedOutputs)?d.selectedOutputs.includes(key)||(['anomaly','recovery'].includes(key)&&d.selectedOutputs.includes('dataChange')):key==='anomaly'}
 function personalRuleNeedsTrigger(d){return personalRuleNeeds(d,'anomaly')||personalRuleNeeds(d,'logFile')}
 function personalRuleScope(d){return [d.project,(d.focusKeys||[]).join(','),d.customFocus||''].join('|')}
 function ensurePersonalRule(d){
@@ -2481,13 +2494,16 @@ consumeFollowReply=function(text,d){
 (function () {
   const cal17Services = [
     {id:'before',title:'会前准备',description:'结合历史转写和待办，整理一份会前简报'},
-    {id:'during',title:'会中同步转写',description:'读取钉钉已有的转写文本，内容就绪后同步'},
     {id:'after',title:'会后持续跟进',description:'识别与你有关的待办，持续跟进进展'}
   ];
   const cal17Original = {calendar,header,eventDetail,eventActions,paintSheet,handle,message,fileDetail,closeSheet,beginCalendarImport,goalDetail,createUpdate,save};
   function cal17Migrate() {
     data.calendarConnections ||= {}; data.meetingPreferences ||= {}; data.calendarActivities ||= {};
-    data.calendarServiceDefaults ||= {before:true,during:true,after:true};
+    data.calendarServiceDefaults ||= {before:true,during:false,after:true};
+    data.calendarServiceDefaults.during=false;
+    for(const preference of Object.values(data.meetingPreferences))preference.during=false;
+    data.calendarAssistants={before:Object.values(data.meetingPreferences).some(preference=>preference.before),during:false,after:Object.values(data.meetingPreferences).some(preference=>preference.after)};
+    if(data.calendarDraft?.services){data.calendarDraft.services.during=false;if(data.calendarDraft.requiredScopes)data.calendarDraft.requiredScopes=cal17RequiredScopes(data.calendarDraft.services,data.calendarDraft.provider);}
     data.calendarDemoAnchor ||= '2026-11-17';
     data.calendarTrackingRevision=3;
     if(data.calendarDraft?.stage==='authorizing')data.calendarDraft.stage='consent';
@@ -2502,9 +2518,9 @@ consumeFollowReply=function(text,d){
   function cal17Now(){return new Date().toISOString()}
   function cal17Date(day){const date=new Date(day+'T12:00:00+08:00');return `${date.getMonth()+1} 月 ${date.getDate()} 日 · 周${'日一二三四五六'[date.getDay()]}`}
   function cal17Preference(event){return data.meetingPreferences[event.id]||{before:false,during:false,after:false}}
-  function cal17RequiredScopes(services){return ['calendar',...(Object.values(services).some(Boolean)?['minutes']:[])]}
+  function cal17RequiredScopes(services,provider='dingtalk'){return ['calendar',...(provider!=='system'&&Object.values(services).some(Boolean)?['minutes']:[])]}
   function cal17ScopeReady(provider,scopes){const connection=provider==='dingtalk'?{connected:data.dingTalk?.cliConnected,scopes:data.dingTalk?.scopes}:data.calendarConnections[provider];return !!connection?.connected&&scopes.every(scope=>connection.scopes?.includes(scope))}
-  function cal17EventSourceReady(event,service){if(!event.provider)return true;return cal17ScopeReady(event.provider==='dingTalk'?'dingtalk':event.provider,cal17RequiredScopes({[service]:true}))}
+  function cal17EventSourceReady(event,service){if(!event.provider)return true;return cal17ScopeReady(event.provider==='dingTalk'?'dingtalk':event.provider,cal17RequiredScopes({[service]:true},event.provider))}
   function cal17Meetings(provider='dingtalk') {
     const anchor=data.calendarDemoAnchor;
     return [
@@ -2512,7 +2528,7 @@ consumeFollowReply=function(text,d){
       {externalId:'weekly-20261118',title:'项目运营周会',offset:1,time:'10:00',end:'11:00',people:'你、运营经理、各项目负责人',organizer:'运营经理',desc:'回顾各项目的重要变化，复核上次会议待办，确认需要决策的问题。',project:'SCM',recurrence:'每周一次',seriesId:'weekly-ops'},
       {externalId:'regional-20261120',title:'大区经营复盘',offset:3,time:'09:30',end:'10:30',people:'你、大区经理、财务负责人',organizer:'大区经理',desc:'复盘本周经营变化与回款进展，明确下一步责任与检查时间。',project:'华东'},
       {externalId:'planning-20261123',title:'下周项目计划',offset:6,time:'16:00',end:'16:30',people:'你、运营经理',organizer:'运营经理',desc:'确认下周资源安排和重点事项。',project:'SCM'}
-    ].map(meeting=>({...meeting,id:'meeting-'+provider+'-'+meeting.externalId,day:shiftDay(anchor,meeting.offset),date:Number(shiftDay(anchor,meeting.offset).slice(8)),provider,type:'meeting',location:provider==='dingtalk'?'钉钉会议':'线上会议',sourceLabel:CALENDAR_PROVIDERS.find(source=>source.id===provider)?.name||'日历',attendees:meeting.people.split('、').map(name=>({name,response:name==='你'?'已接受':'未回复',self:name==='你'}))}));
+    ].map(meeting=>({...meeting,id:'meeting-'+provider+'-'+meeting.externalId,day:shiftDay(anchor,meeting.offset),date:Number(shiftDay(anchor,meeting.offset).slice(8)),provider,type:'meeting',location:'',sourceLabel:CALENDAR_PROVIDERS.find(source=>source.id===provider)?.name||'日历',attendees:meeting.people.split('、').map(name=>({name,response:name==='你'?'已接受':'未回复',self:name==='你'}))}));
   }
   function cal17Begin(provider='dingtalk',options={}){
     const editing=options.editEventId?data.events.find(event=>event.id===options.editEventId):null;
@@ -2525,9 +2541,9 @@ consumeFollowReply=function(text,d){
   }
   function cal17ChooseServices(services){
     const draft=data.calendarDraft;if(!draft)return {ok:false,error:'请重新打开会议设置。'};
-    draft.services=Object.fromEntries(cal17Services.map(service=>[service.id,!!services[service.id]]));
+    draft.services={before:!!services.before,during:false,after:!!services.after};
     if(!Object.values(draft.services).some(Boolean)&&!draft.editEventId)return {ok:false,error:'至少选择一项服务。'};
-    draft.requiredScopes=cal17RequiredScopes(draft.services);
+    draft.requiredScopes=cal17RequiredScopes(draft.services,draft.provider);
     if(draft.editEventId&&(!data.events.find(event=>event.id===draft.editEventId)?.provider||!Object.values(draft.services).some(Boolean)||cal17ScopeReady(draft.provider,draft.requiredScopes)))return cal17ConfirmSelection([]);
     draft.stage=cal17ScopeReady(draft.provider,draft.requiredScopes)?'select':'connect';save();return {ok:true,stage:draft.stage};
   }
@@ -2536,7 +2552,7 @@ consumeFollowReply=function(text,d){
     draft.stage='authorizing';save();paintSheet();
     calendarAuthorizationTimer=setTimeout(()=>{
       calendarAuthorizationTimer=null;if(data.calendarDraft?.token!==token||data.calendarDraft.stage!=='authorizing'||ui.sheet?.type!=='cal17Flow')return;
-      const scopes=draft.requiredScopes||cal17RequiredScopes(draft.services);
+      const scopes=draft.requiredScopes||cal17RequiredScopes(draft.services,draft.provider);
       const connection=data.calendarConnections[draft.provider]||{authorizedIds:[]};
       Object.assign(connection,{connected:true,authorizationRevision:3,scopes:[...new Set([...(connection.scopes||[]),...scopes])]});data.calendarConnections[draft.provider]=connection;
       if(draft.provider==='dingtalk'){data.dingTalk||={cliConnected:false,scopes:[]};data.dingTalk.cliConnected=true;data.dingTalk.scopes=[...new Set([...data.dingTalk.scopes,...scopes])];data.settings.dingTalk=true}
@@ -2546,7 +2562,7 @@ consumeFollowReply=function(text,d){
   function cal17ConfirmSelection(selectedIds){
     const draft=data.calendarDraft;if(!draft)return {ok:false,error:'请重新打开会议选择。'};
     const editing=data.events.find(event=>event.id===draft.editEventId);
-    if((!editing||editing.provider)&&Object.values(draft.services).some(Boolean)&&!cal17ScopeReady(draft.provider,cal17RequiredScopes(draft.services)))return {ok:false,error:'连接已失效，请重新授权。'};
+    if((!editing||editing.provider)&&Object.values(draft.services).some(Boolean)&&!cal17ScopeReady(draft.provider,cal17RequiredScopes(draft.services,draft.provider)))return {ok:false,error:'连接已失效，请重新授权。'};
     const meetings=editing?[editing]:cal17Meetings(draft.provider).filter(event=>selectedIds.includes(event.externalId));
     if(!meetings.length)return {ok:false,error:'请选择至少一场会议。'};
     const ids=[];
@@ -2558,9 +2574,9 @@ consumeFollowReply=function(text,d){
       ids.push(event.id);
     }
     const connection=data.calendarConnections[draft.provider];if(connection)connection.authorizedIds=[...new Set([...(connection.authorizedIds||[]),...meetings.map(meeting=>meeting.externalId).filter(Boolean)])];
-    data.calendarServiceDefaults={...draft.services};data.calendarAssistants=Object.fromEntries(cal17Services.map(service=>[service.id,Object.values(data.meetingPreferences).some(preference=>preference[service.id])]));data.calendarActivated=true;
+    data.calendarServiceDefaults={...draft.services};data.calendarAssistants={during:false,...Object.fromEntries(cal17Services.map(service=>[service.id,Object.values(data.meetingPreferences).some(preference=>preference[service.id])]))};data.calendarActivated=true;
     const names=cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join('、');
-    data.messages.push({type:'cal17Notice',title:editing?'会议服务已更新':`已为 ${ids.length} 场会议开启跟进`,text:names?`已选择${names}。转写内容就绪后再同步。`:'已停止这场会议的自动处理，历史内容保留。',eventIds:ids});
+    data.messages.push({type:'cal17Notice',title:editing?'会议服务已更新':`已为 ${ids.length} 场会议开启跟进`,text:names?`已开启${names}。`:'已停止这场会议的自动处理，历史内容保留。',eventIds:ids});
     data.calendarDraft=null;save();return {ok:true,ids,editing:!!editing};
   }
   function cal17Activity(event,activity){data.calendarActivities[event.id]||=[];const list=data.calendarActivities[event.id];if(!list.some(item=>item.id===activity.id))list.push({...activity,at:cal17Now(),sequence:list.length})}
@@ -2570,9 +2586,9 @@ consumeFollowReply=function(text,d){
     Object.assign(file,{title:event.title+' · '+title,meta:'刚刚 · 演示产物',summary:text.split('\n')[0],text,points});return file;
   }
   function cal17ActionSpecs(event){return [
-    {key:'calendar',title:'下次周会前汇总设备调配答复',trigger:'日程驱动',rule:'下次项目运营周会前 2 小时，整理答复和未完成项；改期时跟随调整。',condition:'相关负责人给出调配结论，并由我确认。',owner:'你',evidence:'请你在下次周会前汇总大家的调配答复。'},
-    {key:'data',title:'跟进 SCM 设备出勤恢复',trigger:'数据驱动',rule:'检查每次更新的 SCM 台班数据；出勤率连续 2 个有效工作日达到 80% 时提醒并结束。',condition:'出勤率连续 2 个有效工作日达到 80%；数据缺失不算恢复。',owner:'你',evidence:'继续看 SCM 出勤，连续两个工作日达到 80% 就可以结束观察。'},
-    {key:'scheduled',title:'每天查看项目待答复事项',trigger:'定时任务',rule:'每天 09:00（北京时间）在聊天里提醒；由我确认完成或手动停止。',condition:'我确认本轮事项完成，或主动停止。',owner:'你',evidence:'每天早上九点提醒我看一遍还没有答复的事项。'},
+    {key:'calendar',title:'下次周会前汇总设备调配答复',trigger:'日程到达时提醒',rule:'下次项目运营周会前 2 小时，整理答复和未完成项；改期时跟随调整。',condition:'相关负责人给出调配结论，并由我确认。',owner:'你',evidence:'请你在下次周会前汇总大家的调配答复。'},
+    {key:'data',title:'跟进 SCM 设备出勤恢复',trigger:'数据变动时提醒',rule:'检查每次更新的 SCM 台班数据；出勤率连续 2 个有效工作日达到 80% 时提醒并结束。',condition:'出勤率连续 2 个有效工作日达到 80%；数据缺失不算恢复。',owner:'你',evidence:'继续看 SCM 出勤，连续两个工作日达到 80% 就可以结束观察。'},
+    {key:'scheduled',title:'每天查看项目待答复事项',trigger:'定时提醒',rule:'每天 09:00（北京时间）在聊天里提醒；由我确认完成或手动停止。',condition:'我确认本轮事项完成，或主动停止。',owner:'你',evidence:'每天早上九点提醒我看一遍还没有答复的事项。'},
     {key:'pending',title:'继续观察项目异常',trigger:'待确认',rule:'尚缺具体项目、观察指标和恢复条件。',condition:'',owner:'待确认',evidence:'还有那个异常，继续观察一下。'}
   ]}
   function cal17CreateGoal(eventId,key,options={}){
@@ -2615,14 +2631,14 @@ consumeFollowReply=function(text,d){
       const points=['上次讨论\n'+historyText,'待办进展\n'+pendingText,'本次需确认\n'+decisions.join('\n')];
       const file=cal17SaveFile(event,'brief','会前简报',points.join('\n\n'),points);file.sourceIds=history.map(source=>source.id);
       cal17Activity(event,{id:'before-'+event.id,phase:'before',title:'会前简报已准备',body:'已结合现有资料与相关待办整理。',fileId:file.id});event.prepared=file.id;
-      if(!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会前简报',text:'简报已存入资料中的会议记录。',fileId:file.id,eventIds:[event.id]});
+      if(!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会前简报',text:'会前简报已存入资料。',fileId:file.id,eventIds:[event.id]});
     }else if(phase==='during'){
       const text='钉钉已有转写 · 演示文本\n\n运营经理：请你在下次周会前汇总大家的调配答复。\n你：收到，下次周会前两小时整理。\nSCM 项目经理：继续看 SCM 出勤，连续两个有效工作日达到 80% 就可以结束观察，数据缺失时先保留待核实。\n你：每天早上九点提醒我看一遍还没有答复的事项，完成后停止。\n运营经理：还有那个异常，继续观察一下。';
       const file=cal17SaveFile(event,'transcript','会议原文',text);file.cal17DemoTranscript=true;event.transcriptId=file.id;
       cal17Activity(event,{id:'during-'+event.id,phase:forAfter?'after':'during',title:forAfter?'会后整理的原文已归档':'会议原文已同步',body:forAfter?'已取得会后分析所需的转写，并保留原文依据。':'读取的是钉钉已生成的文本，可在会议结束后到达。',fileId:file.id});
       if(!forAfter&&!data.messages.some(message=>message.type==='cal17Notice'&&message.fileId===file.id))data.messages.push({type:'cal17Notice',title:event.title+'的会议原文',text:'已同步转写并归档，可以开始整理会后行动。',fileId:file.id,eventIds:[event.id]});
     }else if(phase==='after'){
-      if(!event.transcriptId&&event.provider){const result=cal17SimulateStage(eventId,'during',true);if(!result.ok)return result}
+      if(!event.transcriptId&&event.provider&&event.provider!=='system'){const result=cal17SimulateStage(eventId,'during',true);if(!result.ok)return result}
       if(!event.transcriptId)return {ok:false,error:'尚无会议转写，请先补充文本或关联已有听记。'};
       if(!event.cal17Actions){const file=data.files.find(item=>item.id===event.transcriptId);event.cal17Actions=!file?.cal17DemoTranscript?[{key:'pending',title:'确认这次会议的后续行动',trigger:'待确认',rule:file?.text?'请确认负责人、具体行动和完成条件。':'当前资料没有逐字稿，请补充原文或明确行动后再跟进。',condition:'',owner:'待确认',evidence:file?.text?.slice(0,180)||'当前只有摘要，需补充会议原文或明确的行动依据。'}]:cal17ActionSpecs(event)}
       for(const action of event.cal17Actions){if(action.condition&&action.owner!=='待确认'){const result=cal17CreateGoal(event.id,action.key,{silent:true});if(!result.ok)action.pendingReason=result.error}}
@@ -2634,7 +2650,7 @@ consumeFollowReply=function(text,d){
   }
   function cal17Status(event){const preference=cal17Preference(event);if(event.provider&&Object.values(preference).some(Boolean)&&!cal17EventSourceReady(event,'after'))return '来源待连接';if(event.cal17Actions)return event.cal17Actions.filter(action=>action.goalId).length+' 项持续跟进';if(event.transcriptId)return '会议原文已同步';if(event.prepared||data.files.some(file=>file.id==='prep-'+event.id))return '简报已就绪';return Object.values(preference).some(Boolean)?'已开启会议跟进':'未开启会议服务'}
   calendar=function(){
-    if(!data.events.length)return `<section class="page calendar-welcome cal17-landing"><h1 class="sr-only">日程</h1><div class="follow-ideas"><div class="follow-idea cal17-landing-intro"><span class="follow-idea-icon calendar-import-icon">${calendarProviderMark('dingtalk')}</span><span class="follow-idea-body"><strong>从钉钉快速导入</strong><span>会前准备，会议原文，会后持续跟进。</span></span></div></div>${btn(data.calendarDraft?'继续设置':'开始跟进','cal17Begin','','primary full')}</section>`;
+    if(!data.events.length)return `<section class="page calendar-welcome cal17-landing"><h1 class="sr-only">日程</h1><div class="follow-ideas">${[['dingtalk','从钉钉快速导入'],['system','从手机日历导入']].map(([provider,title])=>`<button type="button" class="follow-idea" data-action="cal17Begin" data-id="${provider}"><span class="follow-idea-icon calendar-import-icon" aria-hidden="true">${calendarProviderMark(provider)}</span><span class="follow-idea-body"><strong>${title}</strong></span>${icon('right')}</button>`).join('')}</div></section>`;
     const meetings=[...data.events].sort((a,b)=>(fullDay(a)+' '+a.time).localeCompare(fullDay(b)+' '+b.time));let day='';
     return `<section class="page cal17-list"><h1 class="sr-only">日程</h1>${meetings.map(event=>{const label=fullDay(event)!==day?`<h2 class="cal17-day">${cal17Date(fullDay(event))}</h2>`:'';day=fullDay(event);return label+`<button class="cal17-meeting" data-action="event" data-id="${esc(event.id)}"><span class="cal17-time">${esc(event.time||'全天')}<small>${esc(event.end||'')}</small></span><span class="cal17-meeting-body"><strong>${esc(event.title)}</strong><small>${esc(cal17Status(event))}</small></span>${icon('right')}</button>`}).join('')}</section>`;
   };
@@ -2648,26 +2664,34 @@ consumeFollowReply=function(text,d){
     activities.sort((a,b)=>String(b.at).localeCompare(String(a.at))||(b.sequence||0)-(a.sequence||0));
     const participants=event.attendees||String(event.people||'你').split('、').map(name=>({name}));
     const link=/^https?:\/\//.test(event.meetingUrl||event.url||'')?(event.meetingUrl||event.url):'';
-    return `<section class="page cal17-detail"><div class="cal17-detail-head"><h1>${esc(event.title)}</h1><p class="cal17-date">${cal17Date(fullDay(event))}<br>${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?' · '+esc(event.recurrence):''}</p><details class="cal17-people"><summary><span class="cal17-avatars">${participants.slice(0,3).map(person=>`<span aria-hidden="true">${esc(person.name.slice(0,1))}</span>`).join('')}</span><span>${participants.length} 位参与人</span>${icon('right')}</summary><div>${participants.map(person=>`<p><strong>${esc(person.name)}</strong><span>${person.name===event.organizer?'组织者':esc(person.response||'')}</span></p>`).join('')}</div></details>${event.desc?`<details class="cal17-description" open><summary>会议描述</summary><p>${esc(event.desc)}</p></details>`:''}${event.location?`<p class="cal17-location">${esc(event.location)}</p>`:''}${link?`<a class="secondary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">加入会议</a>`:''}</div><div class="section-line cal17-dynamic-title"><h2>动态</h2>${btn('服务设置','cal17EditServices',event.id,'linklike')}</div>${event.provider&&!cal17EventSourceReady(event,'after')?'<p class="cal17-offline">来源待连接，已保存的内容仍可查看。</p>':''}<div class="cal17-timeline">${activities.length?activities.map(activity=>`<article class="cal17-activity"><div class="cal17-activity-meta"><span>${({before:'会前准备',during:'会中同步转写',after:'会后持续跟进',setup:'跟进设置'})[activity.phase]}</span><time>${esc(activity.label||new Date(activity.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}))}</time></div><h3>${esc(activity.title)}</h3><p>${esc(activity.body)}</p>${activity.fileId?btn('查看'+(activity.phase==='before'?'简报':activity.phase==='during'?'原文':'行动'),'file',activity.fileId,'linklike'):''}${activity.goalId?btn('查看跟进','goal',activity.goalId,'linklike'):''}${activity.actions?'<details class="cal17-action-details"><summary>'+event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进 · '+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认</summary>'+event.cal17Actions.map(action=>cal17ActionHTML(event,action)).join('')+'</details>':''}</article>`).join(''):'<p class="cal17-no-activity">开启的服务将在这里留下动态。</p>'}</div></section>`;
+    return `<section class="page cal17-detail"><div class="cal17-detail-head"><h1>${esc(event.title)}</h1><p class="cal17-date">${cal17Date(fullDay(event))}<br>${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?' · '+esc(event.recurrence):''}</p><details class="cal17-people"><summary><span class="cal17-avatars">${participants.slice(0,3).map(person=>`<span aria-hidden="true">${esc(person.name.slice(0,1))}</span>`).join('')}</span><span>${participants.length} 位参与人</span>${icon('right')}</summary><div>${participants.map(person=>`<p><strong>${esc(person.name)}</strong><span>${person.name===event.organizer?'组织者':esc(person.response||'')}</span></p>`).join('')}</div></details>${event.desc?`<details class="cal17-description" open><summary>会议描述</summary><p>${esc(event.desc)}</p></details>`:''}${event.location&&event.location!=='钉钉会议'?`<p class="cal17-location">${esc(event.location)}</p>`:''}${link?`<a class="secondary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">加入会议</a>`:''}</div><div class="section-line cal17-dynamic-title"><h2>动态</h2></div>${event.provider&&!cal17EventSourceReady(event,'after')?'<p class="cal17-offline">来源待连接，已保存的内容仍可查看。</p>':''}<div class="cal17-timeline">${activities.length?activities.map(activity=>`<article class="cal17-activity"><div class="cal17-activity-meta"><span>${({before:'会前准备',during:'会议原文',after:'会后持续跟进',setup:'跟进设置'})[activity.phase]}</span><time>${esc(activity.label||new Date(activity.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}))}</time></div><h3>${esc(activity.title)}</h3><p>${esc(activity.body)}</p>${activity.fileId?btn('查看'+(activity.phase==='before'?'简报':activity.phase==='during'?'原文':'行动'),'file',activity.fileId,'linklike'):''}${activity.goalId?btn('查看跟进','goal',activity.goalId,'linklike'):''}${activity.actions?'<details class="cal17-action-details"><summary>'+event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进 · '+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认</summary>'+event.cal17Actions.map(action=>cal17ActionHTML(event,action)).join('')+'</details>':''}</article>`).join(''):'<p class="cal17-no-activity">开启的服务将在这里留下动态。</p>'}</div></section>`;
   };
   eventActions=function(){return nav()};
-  function cal17ServiceForm(draft){return `<form id="cal17ServiceForm"><div class="cal17-service-options">${cal17Services.map(service=>`<label class="cal17-service template-output"><span><strong>${service.title}</strong><small>${service.description}</small></span><input type="checkbox" name="${service.id}" ${draft.services[service.id]?'checked':''}><span class="template-check" aria-hidden="true">${icon('check')}</span></label>`).join('')}</div><p class="cal17-permission">需要读取日程基本信息及有权访问的钉钉转写。</p>${draft.editEventId?'<p class="cal17-permission">取消服务会停止后续处理；已有资料和独立跟进任务保留。</p>':''}<div class="template-footer"><p id="cal17Error" class="form-error" role="alert"></p><button type="submit" class="primary full" id="cal17ServiceSubmit" ${!draft.editEventId&&!Object.values(draft.services).some(Boolean)?'disabled':''}>${draft.editEventId?'保存服务':'开始吧'}</button></div></form>`}
+  function cal17ServiceForm(draft){
+    const providerName=draft.provider==='system'?'手机日历':CALENDAR_PROVIDERS.find(provider=>provider.id===draft.provider)?.name||'钉钉日程';
+    const ready=cal17ScopeReady(draft.provider,cal17RequiredScopes(draft.services,draft.provider));
+    return `<form id="cal17ServiceForm"><section class="cal17-capabilities" aria-label="秘书能为你做什么">${cal17Services.map(service=>`<div class="cal17-service"><span class="cal17-capability-icon" aria-hidden="true">${icon(service.id==='before'?'calendar':'target')}</span><span><strong>${service.title}</strong><small>${service.description}</small></span></div>`).join('')}</section><div class="cal17-connection"><span class="source-provider-icon" aria-hidden="true">${calendarProviderMark(draft.provider)}</span><span><strong>${ready?'已连接':'需要连接'}${providerName}</strong></span>${ready?icon('check'):icon('link')}</div><div class="template-footer"><p id="cal17Error" class="form-error" role="alert"></p><button type="submit" class="primary full" id="cal17ServiceSubmit">${ready?'选择会议':'连接'+providerName}</button></div></form>`;
+  }
+  function cal17ServiceStatus(event){
+    const preference=cal17Preference(event);
+    return `<div class="cal17-service-status">${[['before','会前提醒'],['after','会后待办跟进']].map(([key,label])=>`<button type="button" class="cal17-service-toggle" data-action="cal17ToggleService" data-id="${esc(event.id)}|${key}" role="switch" aria-checked="${!!preference[key]}" aria-label="${label}"><span>${preference[key]?'已开启':'已关闭'}${label}</span><span class="switch ${preference[key]?'on':''}" aria-hidden="true"></span></button>`).join('')}</div>`;
+  }
   paintSheet=function(){
     const sheet=ui.sheet;if(!sheet)return;
     if(sheet.type==='cal17Flow'){
       const draft=data.calendarDraft;if(!draft){closeSheet();return}
-      if(draft.stage==='services'){workSheet(draft.editEventId?'会议服务':'帮你跟进钉钉会议',cal17ServiceForm(draft));document.querySelector('.sheet')?.classList.add('cal17-service-sheet');return}
-      if(['connect','consent','authorizing','success'].includes(draft.stage)){paintConnectionFlow(draft.provider,draft.stage,draft.requiredScopes||cal17RequiredScopes(draft.services),{next:'cal17Consent',allow:'cal17Authorize',continue:'cal17Select',token:draft.token,value:'读取日程和你有权访问的会议转写。',nextLabel:draft.editEventId?'保存服务':'选择会议'});return}
-      const meetings=cal17Meetings(draft.provider);workSheet('选择要跟进的会议',`<form id="cal17SelectForm"><div class="cal17-selection-title"><strong>未来 7 天</strong><span>${cal17Date(data.calendarDemoAnchor).split(' · ')[0]} — ${cal17Date(shiftDay(data.calendarDemoAnchor,6)).split(' · ')[0]}</span></div><div class="cal17-selected-services">${cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join(' · ')}${btn('调整','cal17BackServices','','linklike')}</div><div class="consent-meetings">${meetings.map(event=>`<label class="consent-meeting"><input type="checkbox" name="meeting" value="${event.externalId}" ${draft.selectedIds.includes(event.externalId)?'checked':''}><span><strong>${esc(event.title)}</strong><small>${cal17Date(event.day)} · ${event.time}–${event.end}</small></span></label>`).join('')}</div><p class="cal17-permission">仅开启选中的会议；周期会议先跟进本次。</p><p id="cal17Error" class="form-error" role="alert"></p><button class="primary full" id="cal17SelectionSubmit" ${draft.selectedIds.length?'':'disabled'}>为 ${draft.selectedIds.length} 场会议开启</button></form>`);return;
+      if(draft.stage==='services'){workSheet('帮你跟进会议',cal17ServiceForm(draft));document.querySelector('.sheet')?.classList.add('cal17-service-sheet');return}
+      if(['connect','consent','authorizing','success'].includes(draft.stage)){paintConnectionFlow(draft.provider,draft.stage,draft.requiredScopes||cal17RequiredScopes(draft.services,draft.provider),{next:'cal17Consent',allow:'cal17Authorize',continue:'cal17Select',token:draft.token,value:draft.provider==='system'?'读取你选择的手机日历日程。':'读取日程和你有权访问的会议转写。',nextLabel:draft.editEventId?'保存服务':'选择会议'});return}
+      const meetings=cal17Meetings(draft.provider);workSheet('选择要跟进的会议',`<form id="cal17SelectForm"><div class="cal17-selection-title"><strong>未来 7 天</strong><span>${cal17Date(data.calendarDemoAnchor).split(' · ')[0]} — ${cal17Date(shiftDay(data.calendarDemoAnchor,6)).split(' · ')[0]}</span></div><div class="cal17-selected-services">${cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join(' · ')}</div><div class="consent-meetings">${meetings.map(event=>`<label class="consent-meeting"><input type="checkbox" name="meeting" value="${event.externalId}" ${draft.selectedIds.includes(event.externalId)?'checked':''}><span><strong>${esc(event.title)}</strong><small>${cal17Date(event.day)} · ${event.time}–${event.end}</small></span></label>`).join('')}</div><p class="cal17-permission">仅开启选中的会议；周期会议先跟进本次。</p><p id="cal17Error" class="form-error" role="alert"></p><button class="primary full" id="cal17SelectionSubmit" ${draft.selectedIds.length?'':'disabled'}>为 ${draft.selectedIds.length} 场会议开启</button></form>`);return;
     }
-    if(sheet.type==='cal17Add'){workSheet('添加日程',btn(icon('chat')+'<span>临时会议</span>'+icon('right'),'cal17Temporary','','sheet-choice')+btn(calendarProviderMark('dingtalk')+'<span>从钉钉或连接器添加</span>'+icon('right'),'cal17Connectors','','sheet-choice')+btn(icon('calendar')+'<span>从日历导入</span>'+icon('right'),'cal17System','','sheet-choice'));document.querySelector('.sheet')?.classList.add('cal17-add-sheet');return}
+    if(sheet.type==='cal17Add'){workSheet('添加日程',btn(calendarProviderMark('dingtalk')+'<span>从钉钉添加</span>'+icon('right'),'cal17Begin','dingtalk','sheet-choice')+btn(icon('calendar')+'<span>从手机日历导入</span>'+icon('right'),'cal17Begin','system','sheet-choice')+btn(icon('chat')+'<span>在聊天中告诉我</span>'+icon('right'),'manualCalendar','','sheet-choice'));document.querySelector('.sheet')?.classList.add('cal17-add-sheet');return}
     if(sheet.type==='cal17Connectors'){workSheet('选择连接器',CALENDAR_PROVIDERS.filter(provider=>provider.id!=='system').map(provider=>btn(`<span class="source-provider-icon">${calendarProviderMark(provider.id)}</span><span>${provider.name}</span>${icon('right')}`,'cal17Begin',provider.id,'sheet-choice')).join(''));return}
     if(sheet.type==='cal17Temporary'){workSheet('临时会议',btn(icon('chat')+'<span>通过对话添加</span>'+icon('right'),'manualCalendar','','sheet-choice')+btn(icon('file')+'<span>关联已有听记</span>'+icon('right'),'cal17ExistingMinutes',sheet.id||'','sheet-choice')+btn(icon('edit')+'<span>补充会议文本</span>'+icon('right'),'cal17Text',sheet.id||'','sheet-choice'));return}
     if(sheet.type==='cal17ExistingMinutes'){
       const files=data.files.filter(file=>file.kind==='会议原文'||file.kind==='录音'||file.folder==='meetings');workSheet('选择已有会议资料',files.length?files.map(file=>btn('<span>'+esc(file.title)+'</span>'+icon('right'),'cal17AttachMinutes',(sheet.id||'')+'|'+file.id,'sheet-choice')).join(''):'<p class="sheet-desc">暂无已有听记，可先补充会议文本。</p>'+btn('补充会议文本','cal17Text',sheet.id||'','primary full'));return;
     }
     if(sheet.type==='cal17Text'){workSheet('补充会议文本',`<form id="cal17TextForm"><input type="hidden" name="eventId" value="${esc(sheet.id||'')}">${!sheet.id?'<label class="field"><span>会议名称</span><input name="title" required maxlength="80" placeholder="例如：项目临时沟通"></label>':''}<label class="field"><span>会议原文</span><textarea name="text" required maxlength="20000" placeholder="粘贴你有权使用的转写文本"></textarea></label><button class="primary full" type="submit">保存会议文本</button></form>`);return}
-    if(sheet.type==='cal17Menu'){const event=data.events.find(item=>item.id===sheet.id);if(!event)return;const pref=cal17Preference(event);workSheet('会议操作',btn('调整会议服务','cal17EditServices',event.id,'sheet-choice')+btn('补充或关联会议原文','cal17Temporary',event.id,'sheet-choice')+btn('编辑日程','editEvent',event.id,'sheet-choice')+`<div class="cal17-demo-controls"><h3>模拟 Agent 行动</h3><p>使用演示文本，不连接外部平台。</p>${[['before','生成会前简报'],['during','同步已有转写'],['after','整理会后行动']].map(([phase,label])=>`<button class="sheet-choice" data-action="cal17Simulate" data-id="${event.id}|${phase}" ${pref[phase]?'':'disabled'}><span>${label}${pref[phase]?'':' · 未开启'}</span>${icon('right')}</button>`).join('')}</div>`);return}
+    if(sheet.type==='cal17Menu'){const event=data.events.find(item=>item.id===sheet.id);if(!event)return;workSheet('会议设置',cal17ServiceStatus(event)+btn('编辑日程','editEvent',event.id,'sheet-choice'));return}
     if(sheet.type==='cal17Clarify'){const [eventId,key]=sheet.id.split('|'),event=data.events.find(item=>item.id===eventId),action=event?.cal17Actions?.find(item=>item.key===key);if(!action)return;workSheet('补齐跟进条件',`<form id="cal17ClarifyForm"><input type="hidden" name="eventId" value="${esc(eventId)}"><input type="hidden" name="key" value="${esc(key)}"><label class="field"><span>具体行动</span><input name="title" value="${esc(action.title)}" required></label><label class="field"><span>负责人</span><input name="owner" value="${action.owner==='待确认'?'':esc(action.owner)}" placeholder="例如：我" required></label><label class="field"><span>何时检查</span><input name="rule" placeholder="例如：每个工作日 09:00 汇总最新反馈" required></label><label class="field"><span>完成条件</span><textarea name="condition" placeholder="需要哪份可以核实的结果？" required></textarea></label><button class="primary full" type="submit">保存条件并开始跟进</button></form>`);return}
     return cal17Original.paintSheet();
   };
@@ -2689,7 +2713,19 @@ consumeFollowReply=function(text,d){
     if(action==='cal17Add'||action==='addEvent'){showSheet('cal17Add');return}
     if(action==='cal17System'){cal17Begin('system',{fresh:true});return}
     if(['cal17Connectors','cal17Temporary','cal17ExistingMinutes','cal17Text','cal17Menu','cal17Clarify'].includes(action)){showSheet(action,{id});return}
-    if(action==='cal17EditServices'||action==='editMeetingAssistance'){const event=data.events.find(item=>item.id===id);if(event){if(event.provider)cal17Begin(event.provider==='dingTalk'?'dingtalk':event.provider,{editEventId:id});else{cal17Original.closeSheet(false);data.calendarDraft={token:'cal17-'+Date.now(),provider:'dingtalk',stage:'services',services:{...cal17Preference(event)},editEventId:id,selectedIds:[]};showSheet('cal17Flow')}}return}
+    if(action==='cal17ToggleService'){
+      const [eventId,key]=id.split('|'),event=data.events.find(item=>item.id===eventId);if(!event||!['before','after'].includes(key))return;
+      const services={...cal17Preference(event),[key]:!cal17Preference(event)[key],during:false};
+      const provider=event.provider==='dingTalk'?'dingtalk':event.provider;
+      if(services[key]&&provider&&!cal17ScopeReady(provider,cal17RequiredScopes(services,provider))){
+        cal17Begin(provider,{editEventId:eventId});data.calendarDraft.services=services;data.calendarDraft.requiredScopes=cal17RequiredScopes(services,provider);data.calendarDraft.stage='consent';save();paintSheet();return;
+      }
+      data.meetingPreferences[eventId]=services;
+      data.calendarAssistants={before:Object.values(data.meetingPreferences).some(preference=>preference.before),during:false,after:Object.values(data.meetingPreferences).some(preference=>preference.after)};
+      cal17Activity(event,{id:'services-'+eventId+'-'+Date.now(),phase:'setup',title:(services[key]?'已开启':'已关闭')+(key==='before'?'会前提醒':'会后待办跟进'),body:services[key]?'后续按这项设置跟进。':'停止后续处理，已有资料和跟进任务保留。'});
+      save();render();showSheet('cal17Menu',{id:eventId});return;
+    }
+    if(action==='cal17EditServices'||action==='editMeetingAssistance'){showSheet('cal17Menu',{id});return}
     if(action==='cal17Consent'){if(data.calendarDraft?.token===id){data.calendarDraft.stage='consent';save();paintSheet()}return}
     if(action==='cal17Authorize'){cal17Authorize(id);return}
     if(action==='cal17Select'){const draft=data.calendarDraft;if(draft?.token===id){if(draft.editEventId){const result=cal17ConfirmSelection([]);if(result.ok){closeSheet(false);render()}}else{draft.stage='select';save();paintSheet()}}return}
@@ -2709,13 +2745,13 @@ consumeFollowReply=function(text,d){
   fileDetail=function(){const file=data.files.find(item=>item.id===ui.id);if(!file?.cal17)return cal17Original.fileDetail();return `<section class="page cal17-file"><div class="detail-hero"><h1>${esc(file.title)}</h1><p>${esc(file.meta)}</p></div><div class="cal17-file-text">${esc(file.text)}</div>${file.sourceIds?.length?'<div class="sources">'+file.sourceIds.map(id=>{const related=data.files.find(item=>item.id===id);return related?source(related.title,id):''}).join('')+'</div>':''}${file.eventId?btn('回到会议动态','event',file.eventId,'secondary full'):''}</section>`};
   goalDetail=function(){let html=cal17Original.goalDetail();const goal=data.goals.find(item=>item.id===ui.id);if(goal?.cal17)html=html.replace('</section>',`<div class="info-row"><span>触发方式</span><span>${esc(goal.cal17Trigger)}</span></div>${btn('查看来源会议','event',goal.cal17EventId,'secondary full')}<p class="cal17-permission">本地演示任务，不执行真实调度或外部发送。</p></section>`);return html};
   document.addEventListener('change',event=>{
-    if(event.target.closest?.('#cal17ServiceForm')){const form=event.target.form,draft=data.calendarDraft;draft.services=Object.fromEntries(cal17Services.map(service=>[service.id,form.elements[service.id].checked]));save();const button=document.getElementById('cal17ServiceSubmit');button.disabled=!draft.editEventId&&!Object.values(draft.services).some(Boolean)}
+
     if(event.target.closest?.('#cal17SelectForm')){data.calendarDraft.selectedIds=[...event.target.form.querySelectorAll('input[name="meeting"]:checked')].map(input=>input.value);save();const count=data.calendarDraft.selectedIds.length,button=document.getElementById('cal17SelectionSubmit');button.textContent=`为 ${count} 场会议开启`;button.disabled=!count}
   });
   document.addEventListener('submit',event=>{
     const form=event.target;if(!['cal17ServiceForm','cal17SelectForm','cal17TextForm','cal17ClarifyForm'].includes(form.id))return;
     event.preventDefault();event.stopImmediatePropagation();const values=new FormData(form),get=name=>String(values.get(name)||'').trim();
-    if(form.id==='cal17ServiceForm'){const draft=data.calendarDraft,result=cal17ChooseServices(Object.fromEntries(cal17Services.map(service=>[service.id,values.has(service.id)])));if(!result.ok){document.getElementById('cal17Error').textContent=result.error;return}if(result.ids){closeSheet(false);render();toast('会议服务已保存')}else paintSheet();return}
+    if(form.id==='cal17ServiceForm'){const draft=data.calendarDraft,result=cal17ChooseServices({before:true,during:false,after:true});if(!result.ok){document.getElementById('cal17Error').textContent=result.error;return}if(result.ids){closeSheet(false);render();toast('会议服务已保存')}else{if(draft.stage==='connect'){draft.stage='consent';save()}paintSheet()}return}
     if(form.id==='cal17SelectForm'){const result=cal17ConfirmSelection(values.getAll('meeting'));if(!result.ok){document.getElementById('cal17Error').textContent=result.error;return}closeSheet(false);go('calendar');toast('已为 '+result.ids.length+' 场会议开启所选服务');return}
     if(form.id==='cal17TextForm'){if(!get('text'))return;cal17OpenEvent(cal17AttachText(get('eventId'),get('title'),get('text')));return}
     if(form.id==='cal17ClarifyForm'){const meeting=data.events.find(item=>item.id===get('eventId')),action=meeting?.cal17Actions?.find(item=>item.key===get('key'));if(!action)return;Object.assign(action,{title:get('title'),owner:get('owner'),rule:get('rule'),condition:get('condition'),trigger:'按已确认条件跟进'});const result=cal17CreateGoal(meeting.id,action.key);if(result.ok){closeSheet(false);render();toast('已按确认条件开始跟进')}else toast(result.error)}
@@ -2742,81 +2778,45 @@ consumeFollowReply=function(text,d){
 (() => {
   const memoryFolders={profile:'关于我',business:'项目与业务',people:'人物与协作',decisions:'约定与决策'};
   const memoryCategories={'关于我':'profile','偏好':'profile','项目背景':'business','人物与协作':'people','约定与决策':'decisions'};
-  const fileKinds={base:'基础资料',meetings:'会议资料',reports:'简报与报告',plans:'方案与交付'};
-  const roots={projects:'项目资料',shared:'跨项目资料',general:'通用资料',inbox:'待整理'};
-  const generalKinds={policies:'制度规范',knowledge:'业务知识',templates:'模板范例'};
+  const outputFolders={daily:'每日简报',prep:'会前提醒',follow:'跟进记录',actions:'会后行动'};
   const newId=prefix=>prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
   const isMemory=()=>ui.folder?.startsWith('memory/')||(!ui.folder&&ui.librarySection==='memory');
   function initLibrary(){
-    data.libraryProjects ||= [{id:'scm',name:'SCM 项目'},{id:'east',name:'华东大区'}];
     data.memories ||= [];
-    let discovered=false;
-    data.files.filter(f=>!f.uploaded).forEach(f=>{
-      const names=fileProjectNames(f);
-      names.forEach(name=>{
-        if(!name||typeof name!=='string'||/全部|跨项目|所有|自定义|所辖/.test(name)||projectKey(name))return;
-        data.libraryProjects.push({id:newId('project'),name:name.trim()});discovered=true;
-      });
-    });
-    if(discovered)save();
-    // Keep legacy category values: existing template recommendations depend on 项目背景.
-    if(data.libraryDirectoryVersion!==1){data.libraryDirectoryVersion=1;save()}
+    // Classification is a view of known Snack outputs. Preserve legacy paths and source links.
+    if(data.libraryDirectoryVersion!==2){data.libraryDirectoryVersion=2;save()}
+    if(ui.folder&&!ui.folder.startsWith('memory/')&&!validOutputPath(ui.folder))ui.folder=null;
+    ui.lib17Filter='all';
   }
-  initLibrary();
-  function projectKey(name){
-    if(!name)return '';
-    const s=String(name).trim();
-    return data.libraryProjects.find(p=>p.name===s||p.id===s.toLowerCase()||p.name.replace(/\s*项目$/,'')===s)?.id||'';
+  function linkedGoal(f){return data.goals.find(g=>g.reportFileId===f.id||f.id==='brief-'+g.id||f.id==='template-report-'+g.id||g.id===f.goalId)}
+  function outputGroup(f){
+    // Inputs remain flat, even when their names or previous locations resemble an output.
+    if(f.uploaded||/本地文件名|聊天附件文件名|上传文件/.test(f.meta||''))return '';
+    const explicit={'daily-brief':'daily','meeting-prep':'prep','follow-record':'follow','meeting-actions':'actions'}[f.outputKind];
+    if(explicit)return explicit;
+    if(f.cal17){if(f.id.startsWith('cal17-brief-'))return 'prep';if(f.id.startsWith('cal17-actions-'))return 'actions';return ''}
+    if(f.id.startsWith('prep-')&&(/Snack\s*生成/.test(f.meta||'')||data.events.some(e=>f.id==='prep-'+e.id)))return 'prep';
+    const goal=linkedGoal(f);
+    if(f.scenarioReport&&(goal||f.id.startsWith('template-report-')||f.id.startsWith('brief-')))return goal?.template==='brief'||f.collection==='briefs'||f.id.startsWith('brief-')?'daily':goal?.template==='meeting'?'prep':'follow';
+    // This ID is the bundled daily-brief sample, not a rule inferred from a user's filename.
+    if(f.id==='f1'&&f.folder==='reports'&&/Snack\s*生成/.test(f.meta||''))return 'daily';
+    return '';
   }
-  function fileProjectNames(f){
-    const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id);
-    const goal=data.goals.find(g=>g.reportFileId===f.id||f.id==='brief-'+g.id||g.id===f.goalId);
-    const values=f.projectIds||f.projects||goal?.setupSnapshot?.projects;
-    if(Array.isArray(values)&&values.length)return values;
-    const name=f.project||event?.project||goal?.project;return name?[name]:[];
+  const pathOf=f=>outputGroup(f)?'output/'+outputGroup(f):'';
+  const validOutputPath=path=>typeof path==='string'&&path.startsWith('output/')&&Object.hasOwn(outputFolders,path.split('/')[1])&&path.split('/').length===2;
+  function titleOf(path){if(!path)return isMemory()?'记忆':'文件';const p=path.split('/');return p[0]==='memory'?memoryFolders[p[1]]||'记忆':outputFolders[p[1]]||'文件'}
+  function enabledOutputGroups(){
+    const groups=new Set(data.files.map(outputGroup).filter(Boolean));
+    const currentGoals=data.goals.filter(g=>g.status!=='done');
+    if(data.settings.brief||currentGoals.some(g=>g.template==='brief'))groups.add('daily');
+    if(data.events.some(e=>data.meetingPreferences?.[e.id]?.before)||currentGoals.some(g=>g.template==='meeting'&&g.setupSnapshot?.selectedOutputs?.includes('report')))groups.add('prep');
+    if(currentGoals.some(g=>!['brief','meeting'].includes(g.template)&&g.setupSnapshot?.selectedOutputs?.some(id=>['logFile','report'].includes(id))))groups.add('follow');
+    if(data.events.some(e=>data.meetingPreferences?.[e.id]?.after))groups.add('actions');
+    return Object.keys(outputFolders).filter(group=>groups.has(group));
   }
-  function inferredPath(f){
-    // Name-only uploads have no semantic content available in this prototype.
-    if(f.uploaded||/本地文件名/.test(f.meta||''))return 'inbox';
-    const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id);
-    const goal=data.goals.find(g=>g.reportFileId===f.id||f.id==='brief-'+g.id||g.id===f.goalId);
-    const projects=fileProjectNames(f);
-    const explicit=projects.length===1?projectKey(projects[0]):projectKey(f.project||event?.project||goal?.project);
-    const legacy=projectKey(f.folder);
-    const project=projects.length>1?'':explicit||legacy;
-    const scope=project?'projects/'+project:'shared';
-    const collection=String(f.collection||f.purpose||'').toLowerCase();
-    if(f.eventId||event||f.id.startsWith('prep-')||f.folder==='meetings'||['录音','会议纪要','转写'].includes(f.kind)||/meeting|minutes|transcript|prep/.test(collection))return scope+'/meetings';
-    if(f.kind==='知识库'||f.folder==='knowledge')return f.id==='f5'||f.purpose==='policy'?'general/policies':'general/knowledge';
-    if(/plan|方案|交付/.test(collection)||['方案','草案'].includes(f.kind))return scope+'/plans';
-    if(f.kind==='报告'||f.generated||/daily|brief|report|analysis/.test(collection)||/Snack\s*(生成|推送)/.test(f.meta||''))return scope+'/reports';
-    if(project)return scope+'/base';
-    return 'inbox';
-  }
-  function pathOf(f){return validPath(f.libraryPath)?f.libraryPath:inferredPath(f)}
-  function leafPaths(){return ['inbox',...data.libraryProjects.flatMap(p=>Object.keys(fileKinds).map(k=>'projects/'+p.id+'/'+k)),...['meetings','reports','plans'].map(k=>'shared/'+k),...Object.keys(generalKinds).map(k=>'general/'+k)]}
-  function validPath(path){return typeof path==='string'&&leafPaths().includes(path)}
-  function titleOf(path){
-    if(!path)return isMemory()?'记忆':'文件';
-    const p=path.split('/');
-    if(p[0]==='memory')return memoryFolders[p[1]]||'记忆';
-    if(p.length===1)return roots[p[0]]||path;
-    if(p[0]==='projects'&&p.length===2)return data.libraryProjects.find(x=>x.id===p[1])?.name||'项目资料';
-    return p[0]==='general'?generalKinds[p[1]]:fileKinds[p.at(-1)]||path;
-  }
-  function fullPath(path){return path.split('/').map((_,i,a)=>titleOf(a.slice(0,i+1).join('/'))).join(' / ')}
-  function children(path){
-    if(!path)return Object.keys(roots);
-    if(path==='projects')return data.libraryProjects.map(p=>'projects/'+p.id);
-    if(/^projects\/[^/]+$/.test(path))return Object.keys(fileKinds).map(k=>path+'/'+k);
-    if(path==='shared')return ['meetings','reports','plans'].map(k=>'shared/'+k);
-    if(path==='general')return Object.keys(generalKinds).map(k=>'general/'+k);
-    return [];
-  }
-  const inPath=(file,path)=>!path||pathOf(file)===path||pathOf(file).startsWith(path+'/');
+  const inPath=(file,path)=>!path||pathOf(file)===path;
   const memoryGroup=m=>memoryCategories[m.category]||'business';
-  const priorRoute=routeSnapshot;routeSnapshot=function(){return {...priorRoute(),lib17Filter:ui.lib17Filter||'all'}};
-  const filterMatches=f=>!ui.lib17Filter||ui.lib17Filter==='all'||pathOf(f).endsWith('/'+ui.lib17Filter);
+  initLibrary();
   const query=()=>String(ui.query||'').trim().toLocaleLowerCase();
   const matches=(...values)=>!query()||values.some(x=>String(x||'').toLocaleLowerCase().includes(query()));
   const empty=(text,action,label)=>`<div class="lib17-empty"><p>${esc(text)}</p>${action?btn(label,action,'','linklike'):''}</div>`;
@@ -2824,14 +2824,14 @@ consumeFollowReply=function(text,d){
     const count=path.startsWith('memory/')?data.memories.filter(m=>memoryGroup(m)===path.split('/')[1]).length:data.files.filter(f=>inPath(f,path)).length;
     return `<button class="lib17-folder" data-action="folder" data-id="${esc(path)}"><span class="lib17-folder-icon">${icon('folder')}</span><strong>${esc(titleOf(path))}</strong><small>${count}${path.startsWith('memory/')?' 条':' 份'}</small>${icon('right')}</button>`;
   }
-  function documentRow(f){return `<button class="folder-row lib17-file" data-action="file" data-id="${esc(f.id)}"><span class="file-icon ${f.kind==='报告'?'orange':''}">${icon('file')}</span><span class="file-info"><strong>${esc(f.title)}</strong><small>${esc(fullPath(pathOf(f)))}<br>${esc(f.meta||'已保存')}</small></span>${icon('right')}</button>`}
+  function documentRow(f){const extension=String(f.title||'').match(/\.([a-z0-9]{1,8})$/i)?.[1]?.toUpperCase();return `<button class="folder-row lib17-file" data-action="file" data-id="${esc(f.id)}"><span class="file-icon ${outputGroup(f)?'orange':''}">${icon('file')}</span><span class="file-info"><strong>${esc(f.title)}</strong><small>${esc(extension||f.kind||'文件')}</small></span>${icon('right')}</button>`}
   function memoryRow(m){return `<button class="folder-row lib17-file" data-action="memoryItem" data-id="${esc(m.id)}"><span class="file-info"><strong>${esc(m.title)}</strong><span class="lib17-memory-text">${esc(m.text)}</span><small>${esc(m.origin||'你补充的记忆')}${m.updated?' · '+esc(m.updated):''}</small></span>${icon('right')}</button>`}
   function recent(files){return files.map((f,i)=>({f,i,t:Date.parse(f.updatedAt||f.createdAt||f.generatedAt||'')})).sort((a,b)=>(Number.isFinite(b.t)?b.t:0)-(Number.isFinite(a.t)?a.t:0)||a.i-b.i).map(x=>x.f)}
   library=function(){
     initLibrary();const section=isMemory()?'memory':'files';
     const tabs=!ui.folder?`<div class="library-sections" role="tablist" aria-label="资料分区">${[['files','文件'],['memory','记忆']].map(([id,label])=>`<button type="button" role="tab" id="library-section-${id}" aria-controls="libraryPanel" aria-selected="${id===section}" tabindex="${id===section?0:-1}" data-action="librarySection" data-id="${id}">${label}</button>`).join('')}</div>`:'';
     const heading=ui.folder?`<div class="library-folder-heading">${ib('返回上一级','back','folderBack')}<h1>${esc(titleOf(ui.folder))}</h1></div>`:'';
-    return `<section class="page library-split-page lib17-page">${tabs}${heading}<div id="libraryPanel" ${!ui.folder?`role="tabpanel" aria-labelledby="library-section-${section}"`:''}><label class="search library-search">${icon('search')}<input id="librarySearch" aria-label="搜索${section==='memory'?'记忆':'文件'}" placeholder="搜索${section==='memory'?'记忆':'文件'}" value="${esc(ui.query)}"></label>${section==='files'?`<div class="lib17-filters" role="group" aria-label="文件类型">${[['all','全部'],['meetings','会议'],['reports','报告']].map(([id,label])=>`<button type="button" data-action="lib17Filter" data-id="${id}" aria-pressed="${(ui.lib17Filter||'all')===id}">${label}</button>`).join('')}</div>`:''}<div id="libraryResults">${libraryResults()}</div></div></section>`;
+    return `<section class="page library-split-page lib17-page">${tabs}${heading}<div id="libraryPanel" ${!ui.folder?`role="tabpanel" aria-labelledby="library-section-${section}"`:''}><label class="search library-search">${icon('search')}<input id="librarySearch" aria-label="搜索${section==='memory'?'记忆':'文件'}" placeholder="搜索${section==='memory'?'记忆':'文件'}" value="${esc(ui.query)}"></label><div id="libraryResults">${libraryResults()}</div></div></section>`;
   };
   libraryResults=function(){
     if(isMemory()){
@@ -2840,48 +2840,33 @@ consumeFollowReply=function(text,d){
       const rows=data.memories.filter(m=>(!group||memoryGroup(m)===group)&&matches(m.title,m.text,m.origin,memoryFolders[memoryGroup(m)])).map(memoryRow).join('');
       return rows||empty(query()?'没有找到相关记忆':'这里还没有记忆',query()?'clearSearch':'newMemory',query()?'清除搜索':'添加记忆');
     }
-    const files=recent(data.files.filter(f=>inPath(f,ui.folder)&&filterMatches(f)&&matches(f.title,f.summary,f.meta,fullPath(pathOf(f)))));
-    let dirs=query()||(ui.lib17Filter&&ui.lib17Filter!=='all')?[]:children(ui.folder);
-    // Keep the main choices stable; show deeper purpose folders only when populated.
-    if(ui.folder&&ui.folder!=='projects')dirs=dirs.filter(path=>data.files.some(f=>inPath(f,path)));
-    let html=dirs.length?`<div class="lib17-folders">${dirs.map(folderRow).join('')}</div>`:'';
-    if(!query())html+=`<div class="lib17-toolbar"><h2>${!ui.folder?'最近文件':ui.folder==='inbox'?'待整理文件':dirs.length?'全部文件':'文件'}</h2>${ui.folder==='projects'?btn('新建项目','lib17NewProject','','linklike'):btn('整理','lib17Organize',ui.folder||'','linklike')}</div>`;
-    html+=files.map(documentRow).join('')||empty(query()?'没有找到相关文件':'这里还没有文件',query()?'clearSearch':'libraryPickFile',query()?'清除搜索':'上传文件');
-    if(!ui.folder&&!query()&&data.libraryUndo?.length)html+=btn('撤销上次整理','lib17Undo','','linklike');
-    return html;
+    const files=recent(data.files.filter(f=>(ui.folder?inPath(f,ui.folder):query()||!outputGroup(f))&&matches(f.title,f.summary,f.meta,titleOf(pathOf(f)))));
+    const dirs=!ui.folder&&!query()?enabledOutputGroups().map(group=>'output/'+group):[];
+    const folders=dirs.length?`<div class="lib17-folders">${dirs.map(folderRow).join('')}</div>`:'';
+    if(files.length)return folders+files.map(documentRow).join('');
+    if(folders)return folders;
+    return empty(query()?'没有找到相关文件':ui.folder?'生成后会保存在这里':'这里还没有文件',query()?'clearSearch':ui.folder?'':'libraryPickFile',query()?'清除搜索':'上传文件');
   };
+
   function navigate(path){
     if(path==='memory')path=null;
     if(path==='memory/tracking')path='memory/business';
     if(path==='memory/calendar'){go('calendar');return}
-    const legacy={scm:'projects/scm',east:'projects/east',meetings:'shared/meetings',reports:'shared/reports',knowledge:'general',uploads:'inbox','collection/daily':'shared/reports','collection/meetings':'shared/meetings','collection/analysis':'shared/reports','collection/reference':'general'};
-    path=legacy[path]||path;ui.lib17Filter='all';stash();closeSheet(false);ui.folder=path;ui.query='';ui.filter='全部';
+    const legacy={'collection/daily':'output/daily'};
+    path=legacy[path]||path;if(path&&!path.startsWith('memory/')&&!validOutputPath(path))path=null;
+    ui.lib17Filter='all';stash();closeSheet(false);ui.folder=path;ui.query='';ui.filter='全部';
     if(path)ui.librarySection=path.startsWith('memory/')?'memory':'files';
     data.librarySection=ui.librarySection;save();render();
     document.getElementById('scroll')?.scrollTo?.(0,0);
   }
-  function options(selected){return leafPaths().map(path=>`<option value="${esc(path)}" ${path===selected?'selected':''}>${esc(fullPath(path))}</option>`).join('')}
-  function recordMoves(changes){
-    const undo=[];
-    changes.forEach(({id,path,title})=>{const f=data.files.find(x=>x.id===id);if(!f||!validPath(path))return;
-      const nextTitle=(title||f.title).trim();
-      if(pathOf(f)===path&&f.title===nextTitle&&f.libraryPath===path)return;
-      undo.push({id,before:{path:f.libraryPath??null,title:f.title},after:{path,title:nextTitle}});
-      f.libraryPath=path;f.title=nextTitle;
-    });
-    if(undo.length)data.libraryUndo=undo;save();return undo.length;
-  }
   const previousHandle=handle;
   handle=function(action,id='',el){
-    if(action==='lib17Filter'){if(!['all','meetings','reports'].includes(id))return;ui.lib17Filter=id;render();return}
+    if(['lib17Filter','lib17Organize','lib17FileEdit','lib17NewProject','lib17Undo'].includes(action))return;
     if(action==='folder'){navigate(id);return}
-    if(action==='folderBack'){const parts=(ui.folder||'').split('/');navigate(parts.length>1&&parts[0]!=='memory'?parts.slice(0,-1).join('/'):null);return}
+    if(action==='folderBack'){navigate(null);return}
     if(action==='librarySection'){if(!['files','memory'].includes(id))return;ui.librarySection=id;navigate(null);document.getElementById('library-section-'+id)?.focus();return}
     if(action==='libraryPickFile'||action==='libraryAdd'){showSheet('lib17Upload');return}
     if(action==='lib17ChooseUpload'){document.getElementById('lib17UploadInput')?.click();return}
-    if(action==='lib17Organize'){showSheet('lib17Organize',{scope:id});return}
-    if(action==='lib17FileEdit'){showSheet('lib17FileEdit',{id});return}
-    if(action==='lib17NewProject'){showSheet('lib17NewProject');return}
     if(action==='memoryItem'){showSheet('lib17MemoryRead',{id});return}
     if(action==='newMemory'||action==='lib17MemoryEdit'){showSheet('lib17MemoryEdit',{id});return}
     if(action==='lib17FromFile'){const f=data.files.find(x=>x.id===id);if(f)showSheet('lib17MemoryEdit',{sourceId:id,draft:{title:f.title.slice(0,40),text:f.uploaded?'':f.summary||'',category:'项目背景'}});return}
@@ -2889,10 +2874,6 @@ consumeFollowReply=function(text,d){
     if(action==='removeMemory'){showSheet('lib17MemoryRemove',{id});return}
     if(action==='lib17MemoryRemoveConfirm'){const m=data.memories.find(x=>x.id===id);if(!m)return;data.libraryMemoryUndo=structuredClone(m);data.memories=data.memories.filter(x=>x.id!==id);save();closeSheet(false);render();toast('已移除记忆；原文件和跟进保持不变');return}
     if(action==='lib17MemoryRestore'){const m=data.libraryMemoryUndo;if(m&&!data.memories.some(x=>x.id===m.id))data.memories.unshift(m);data.libraryMemoryUndo=null;save();render();return}
-    if(action==='lib17Undo'){
-      let restored=0;(data.libraryUndo||[]).forEach(change=>{const f=data.files.find(x=>x.id===change.id);if(!f||f.libraryPath!==change.after.path||f.title!==change.after.title)return;if(change.before.path===null)delete f.libraryPath;else f.libraryPath=change.before.path;f.title=change.before.title;restored++});
-      data.libraryUndo=null;save();render();toast(restored?'已撤销上次整理':'文件之后已被修改，未覆盖后续整理');return;
-    }
     return previousHandle(action,id,el);
   };
   const resultsWithoutRestore=libraryResults;
@@ -2900,16 +2881,8 @@ consumeFollowReply=function(text,d){
   const previousPaint=paintSheet;
   paintSheet=function(){
     const s=ui.sheet;if(!s)return;
-    if(s.type==='lib17Upload'){workSheet('上传文件',`<p class="lib17-note">演示仅保存文件名，不上传或读取内容。新文件会放入「待整理」。</p>${btn('选择文件','lib17ChooseUpload','','primary full')}<input type="file" id="lib17UploadInput" multiple hidden>`);return}
-    if(s.type==='lib17Organize'){
-      const files=data.files.filter(f=>inPath(f,s.scope));
-      workSheet('整理文件',files.length?`<form id="lib17OrganizeForm"><p class="lib17-note">按已知来源与项目关联归档；你可以调整存放位置。</p>${files.map((f,i)=>`<div class="lib17-organization-row"><strong>${esc(f.title)}</strong><small>${f.uploaded?'仅有文件名，请选择归属':'当前：'+esc(fullPath(pathOf(f)))}</small><label class="sr-only" for="lib17-dest-${i}">${esc(f.title)}的存放位置</label><select id="lib17-dest-${i}" data-file-id="${esc(f.id)}">${options(pathOf(f))}</select></div>`).join('')}<div class="lib17-organize-footer"><button type="submit" class="primary full">保存整理</button></div></form>`:empty('这里还没有可整理的文件','libraryPickFile','上传文件'));return;
-    }
-    if(s.type==='lib17FileEdit'){
-      const f=data.files.find(x=>x.id===s.id);if(!f){closeSheet();return}
-      workSheet('整理这份文件',`<form id="lib17FileEditForm" class="form"><input type="hidden" name="fileId" value="${esc(f.id)}"><label class="field"><span>文件名称</span><input name="title" value="${esc(f.title)}" maxlength="120" required></label><label class="field"><span>存放位置</span><select name="path">${options(pathOf(f))}</select></label><button type="submit" class="primary full">保存</button></form>`);return;
-    }
-    if(s.type==='lib17NewProject'){workSheet('新建项目文件夹',`<form id="lib17ProjectForm" class="form"><label class="field"><span>项目名称</span><input name="name" required maxlength="30" placeholder="输入项目名称"></label><p id="lib17ProjectError" class="lib17-form-error" role="alert"></p><button type="submit" class="primary full">创建文件夹</button></form>`);return}
+    if(s.type==='lib17Upload'){workSheet('上传文件',`<p class="lib17-note">演示仅保存文件名，不上传或读取内容。</p>${btn('选择文件','lib17ChooseUpload','','primary full')}<input type="file" id="lib17UploadInput" multiple hidden>`);return}
+    if(['lib17Organize','lib17FileEdit','lib17NewProject'].includes(s.type)){closeSheet(false);return}
     if(s.type==='lib17MemoryRead'){
       const m=data.memories.find(x=>x.id===s.id);if(!m){closeSheet();return}
       const relatedGoal=data.goals.find(g=>g.id===m.goalId),relatedEvent=data.events.find(e=>e.id===m.eventId);
@@ -2929,7 +2902,7 @@ consumeFollowReply=function(text,d){
     initLibrary();const f=data.files.find(x=>x.id===ui.id);let html=previousFileDetail();if(!f)return html;
     const event=data.events.find(e=>e.id===f.eventId||e.recorded===f.id||f.id==='prep-'+e.id);
     const goal=data.goals.find(g=>g.reportFileId===f.id||g.id===f.goalId||f.id==='brief-'+g.id);
-    const extra=`<div class="lib17-detail-links"><p class="lib17-location">${esc(fullPath(pathOf(f)))}</p><div class="actions">${btn('整理文件','lib17FileEdit',f.id,'linklike')}${!f.uploaded?btn('补充为记忆','lib17FromFile',f.id,'linklike'):''}${event?btn('查看关联日程','event',event.id,'linklike'):''}${goal?btn('查看关联跟进','goal',goal.id,'linklike'):''}</div></div>`;
+    const extra=`<div class="lib17-detail-links"><div class="actions">${!f.uploaded?btn('补充为记忆','lib17FromFile',f.id,'linklike'):''}${event?btn('查看关联日程','event',event.id,'linklike'):''}${goal?btn('查看关联跟进','goal',goal.id,'linklike'):''}</div></div>`;
     const index=html.lastIndexOf('</section>');return index>=0?html.slice(0,index)+extra+html.slice(index):html+extra;
   };
   // Import retains the existing two-step preview/confirm flow and token protection.
@@ -2960,17 +2933,12 @@ consumeFollowReply=function(text,d){
   document.addEventListener('change',event=>{
     if(event.target.id!=='lib17UploadInput'||!event.target.files?.length)return;
     event.stopImmediatePropagation();const count=event.target.files.length;
-    Array.from(event.target.files).forEach(file=>data.files.unshift({id:newId('file'),title:file.name,kind:'文件',folder:'uploads',libraryPath:'inbox',createdAt:new Date().toISOString(),meta:'刚刚 · 本地文件名',summary:'仅保存文件名，未读取文件内容。',uploaded:true}));
-    save();closeSheet(false);ui.librarySection='files';data.librarySection='files';go('library');navigate('inbox');toast('已添加 '+count+' 个文件名，等待整理');
+    Array.from(event.target.files).forEach(file=>data.files.unshift({id:newId('file'),title:file.name,kind:'文件',folder:'uploads',createdAt:new Date().toISOString(),meta:'刚刚 · 本地文件名',summary:'仅保存文件名，未读取文件内容。',uploaded:true}));
+    save();closeSheet(false);ui.librarySection='files';data.librarySection='files';go('library');navigate(null);toast('已添加 '+count+' 个文件名');
   },true);
   document.addEventListener('submit',event=>{
-    const form=event.target;if(!['lib17OrganizeForm','lib17FileEditForm','lib17MemoryForm','lib17ProjectForm'].includes(form.id))return;
+    const form=event.target;if(form.id!=='lib17MemoryForm')return;
     event.preventDefault();event.stopImmediatePropagation();const fd=new FormData(form),get=k=>String(fd.get(k)||'').trim();
-    if(form.id==='lib17ProjectForm'){
-      const name=get('name');if(!name||name.length>30)return;
-      if(data.libraryProjects.some(p=>p.name===name)){document.getElementById('lib17ProjectError').textContent='已有同名项目，请使用现有文件夹。';return}
-      const id=newId('project');data.libraryProjects.push({id,name});save();closeSheet(false);navigate('projects/'+id);toast('已创建项目文件夹');return;
-    }
     if(form.id==='lib17MemoryForm'){
       const title=get('title'),text=get('text'),category=get('category');
       if(!title||!text||title.length>40||text.length>1000||!memoryCategories[category]){document.getElementById('lib17MemoryError').textContent='请填写标题、分类和内容。';return}
@@ -2979,10 +2947,6 @@ consumeFollowReply=function(text,d){
       else data.memories.unshift({id:newId('memory'),title,text,category,sourceId:sourceId||null,origin:sourceId?'你核对来源后保存':'你补充的记忆',updated:'刚刚',history:[]});
       save();closeSheet(false);ui.librarySection='memory';data.librarySection='memory';go('library');navigate('memory/'+memoryCategories[category]);toast('记忆已保存');return;
     }
-    let changes=[];
-    if(form.id==='lib17FileEditForm'){if(!get('title')||get('title').length>120||!validPath(get('path')))return;changes=[{id:get('fileId'),path:get('path'),title:get('title')}];}
-    else changes=Array.from(form.querySelectorAll('select[data-file-id]')).map(el=>({id:el.dataset.fileId,path:el.value}));
-    const count=recordMoves(changes);closeSheet(false);render();toast(count?'已保存整理，可在文件首页撤销':'文件已在所选位置');
   },true);
 })();
 // END LIBRARY 17
