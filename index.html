@@ -3311,6 +3311,125 @@ let memoryDocumentPage;
 })();
 // END REAL MEETING RECORDING 17
 
+// BEGIN FOLLOWUP CHAT AFTER DRAWER 17
+// Keep the existing creation drawers. Only their conversational continuation is mocked.
+(function(){
+  const previous={consume:consumeFollowReply,respond:respondToChat,handle,message,goalRow,source:goalSourceConnected};
+  const mocked=d=>!!d?.conversationDemo;
+  function ask(d,stage,text,options=[]){
+    d.stage=stage;d.revision++;
+    data.messages.push({type:'demoFollowQuestion',followId:d.id,revision:d.revision,text,options});
+  }
+  function clearInput(){
+    stopSourceVoice();clearTimeout(responseTimer);ui.loading=false;ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;
+    ui.followIdeaId=null;data.followPrefill=null;ui.draft='';data.followInput='';ui.inputMode='text';
+  }
+  function configure(d,t,outputs){
+    d.template=t.scenario;d.templateId=t.id;d.selectedOutputs=[...outputs];d.channel=outputs.includes('dingtalk')?'dingtalk':'snack';d.sourceMemoryId=t.sourceMemoryId||null;d.sourceIds=t.sourceId?[t.sourceId]:[];
+    d.project=t.scenario==='meeting'?'项目运营周会':t.scenario==='brief'?'SCM、华东大区':'SCM';
+    d.focus=t.scenario==='meeting'?'设备调配和回款待办':t.scenario==='brief'?'出勤、产值和回款':t.id==='scm-plan'?'设备调配安排':'设备出勤与闲置';
+    d.rule=t.scenario==='brief'?'每天 09:30':t.scenario==='meeting'?(outputs.some(id=>['beforeBrief','report'].includes(id))?'下次周会前一天':'有新的会议记录时'):'有重要变化时';
+    d.criteria=t.scenario==='meeting'?'核对负责人、约定时间和完成情况。':t.scenario==='brief'?'先列需要关注的变化，再汇总项目经营情况。':'开工异常和恢复时，结合台班与现场安排核对原因。';
+    d.title=d.project+' · '+(t.scenario==='brief'?'经营简报':t.scenario==='meeting'?'待办跟进':d.focus);
+  }
+  function opening(d){
+    if(!d.templateId){ask(d,'scope','想让我持续跟进什么？',['帮我盯住 SCM 的开工变化','下次周会前，核对上次交代的事','每天把项目经营简报发给我']);return}
+    const text=d.template==='brief'?'我先用 SCM 和华东大区的经营数据整理简报。你想先看哪些内容？':d.template==='meeting'?'上次项目运营周会留下了设备调配和回款两件待办。这轮先跟进它们，可以吗？':d.templateId==='scm-plan'?'SCM 的设备调配还在等运量和人员准入确认。我接着盯住这两件事，可以吗？':'SCM 还有 6 台设备闲置。我会结合台班和现场安排，核对开工异常与恢复情况。你想先关注什么？';
+    ask(d,'scope',text,d.template==='brief'?['先看异常，再看整体经营情况','重点看出勤和回款']:d.template==='meeting'||d.templateId==='scm-plan'?['好，就先跟进这些']:['异常和恢复都帮我盯着','重点关注后续恢复安排']);
+  }
+  function begin(t=null,outputs=[],text=''){
+    if(activeFollowDraft()){closeSheet(false);go('chat');return false}
+    clearInput();closeSheet(false);data.followSequence=(data.followSequence||0)+1;
+    const d=data.followDraft={id:'drawer-chat-'+Date.now().toString(36)+'-'+data.followSequence,revision:0,flowVersion:3,conversationDemo:true,sourceKey:'manual',template:'custom',templateId:'',selectedOutputs:[],channel:'snack'};
+    if(t)configure(d,t,outputs);
+    if(text)data.messages.push({type:'user',text});
+    opening(d);ui.fresh=false;ui.tab='chat';ui.page='main';ui.previous=null;followRender();return true;
+  }
+  // beginTemplate still validates and persists exactly the choices made in the existing drawer.
+  templateBeginDraft=function(t,outputs){return begin(t,outputs,t.scenario==='brief'?'帮我定时整理项目经营简报。':t.scenario==='meeting'?'帮我接着跟进周会里的待办。':t.id==='scm-plan'?'帮我跟进 SCM 的设备调配安排。':'帮我关注项目的开工变化和恢复情况。')};
+  function summary(d){
+    const descriptions={dataChange:'有异常或恢复时，我会告诉你。',dailyBrief:'到时间提醒你查看。',beforeBrief:'下次周会前，我会提醒你核对。',report:'整理好的简报也会保存下来。',logFile:'处理过程和结果也会记下来。',newActions:'有新会议记录时，再整理后续待办。',progress:'运量、人员准入或调配安排有变化时告诉你。',deadline:'到复核时间，再检查还缺哪些确认。'};
+    const actions=d.selectedOutputs.map(id=>descriptions[id]||'').join('');
+    const plan=d.template==='brief'?d.rule+'整理「'+d.project+'」的经营情况':d.template==='meeting'?'接着核对「'+d.project+'」的待办':'接着关注「'+d.project+'」的'+d.focus;
+    return '好，我会'+plan+'。'+(d.preference?'\n按你说的「'+d.preference+'」来跟进。':'')+'\n'+actions+'\n'+(d.channel==='dingtalk'?'有消息会通过钉钉告诉你。':'进展留在 Snack，随时可以回来查看。')+'\n就这样开始，可以吗？';
+  }
+  function review(d){ask(d,'review',summary(d),['好，开始跟进'])}
+  function confirm(d){
+    if(activeFollowDraft()!==d||d.stage!=='review'||d.confirmedGoalId)return false;
+    const snapshot=structuredClone(d);delete snapshot.id;delete snapshot.revision;
+    const g={id:'goal-'+d.id,flowVersion:3,conversationDemo:true,template:d.template,templateId:d.templateId,selectedOutputs:[...d.selectedOutputs],title:d.title,project:d.project,focus:d.focus,owner:'我',status:'active',phase:'tracking',sourceKey:'manual',sourceIds:[...(d.sourceIds||[])],date:'',nextCheck:'',lastCheck:'刚刚 · 演示',rule:d.rule,condition:'你确认结束时停止跟进。',changeCriteria:d.criteria,setupSnapshot:snapshot,
+      summary:d.template==='brief'?d.rule+'整理出勤、产值和回款，先看需要关注的变化。':d.template==='meeting'?(d.selectedOutputs.some(id=>['beforeBrief','report'].includes(id))?'设备调配和回款待办尚待确认，将在下次周会前核对进展。':'新纪要到达后，整理下一轮待办建议。'):d.templateId==='scm-plan'?'运量和人员准入待确认，继续跟进设备调配安排。':'SCM 仍有 6 台设备闲置，继续关注原因和恢复安排。',
+      logs:[['刚刚 · 演示','已按对话和抽屉中选择的内容开始跟进。'],['当前情况 · 演示',d.criteria]]};
+    data.goals.unshift(g);d.confirmedGoalId=g.id;
+    data.messages.push({type:'demoFollowCreated',followId:d.id,goalId:g.id,text:'好，已经开始跟进「'+g.title+'」。'});
+    clearInput();save();go('goals');toast('已开始跟进');return g.id;
+  }
+  consumeFollowReply=function(text,d){
+    if(!mocked(d))return previous.consume(text,d);
+    text=String(text||'').trim();if(!text)return;
+    data.messages.push({type:'user',text});
+    if(/^(取消|先不跟进|先不设置|取消设置)[。！!\s]*$/.test(text)){d.cancelled=true;clearInput();save();go('goals');return}
+    if(d.stage==='scope'){
+      if(!d.templateId){const t=FOLLOW_TEMPLATE_DETAILS[/简报|每天/.test(text)?'brief':/周会|会议|待办/.test(text)?'meeting':'risk'];configure(d,t,t.outputs.filter(o=>o.checked).map(o=>o.id));d.preference=text}
+      else d.preference=/^(好|可以)/.test(text)?'':text;
+      review(d);
+    }else if(d.stage==='review'){
+      if(/^(好[的]?|好，开始跟进|可以|确认|开始跟进|就这样|没问题)[。！!\s]*$/.test(text)){confirm(d);return}
+      d.preference=text;
+      if(/Snack|不要钉钉/.test(text)){d.channel='snack';d.selectedOutputs=d.selectedOutputs.filter(id=>id!=='dingtalk')}
+      else if(/钉钉/.test(text)){d.channel='dingtalk';if(!d.selectedOutputs.includes('dingtalk'))d.selectedOutputs.push('dingtalk')}
+      review(d);
+    }
+    followRender();
+  };
+  respondToChat=function(text,key){
+    if(!activeFollowDraft()&&!key&&!ui.goalReference&&!ui.manualEventDraft&&!ui.reference&&(ui.followIdeaId||/(帮我|我想|持续).*(跟进|盯住|跟踪)|每天.*简报/.test(text||''))){
+      begin(null,[],text);const d=activeFollowDraft();if(/^我想持续跟进[：:]?\s*$/.test(text||''))return;if(d){d.preference=text;const t=FOLLOW_TEMPLATE_DETAILS[/简报|每天/.test(text)?'brief':/周会|会议|待办/.test(text)?'meeting':'risk'];configure(d,t,t.outputs.filter(o=>o.checked).map(o=>o.id));review(d);followRender()}return;
+    }
+    return previous.respond(text,key);
+  };sourceReply=respondToChat;
+  message=function(m){
+    if(m.type==='demoFollowQuestion'){
+      const token=m.followId+':'+m.revision,active=mocked(activeFollowDraft())&&followToken()===token;
+      return `<div class="source-message-row"><div class="source-bubble rich-bubble follow-question"><p>${esc(m.text).replace(/\n/g,'<br>')}</p>${active?`<div class="follow-options">${(m.options||[]).map((label,index)=>`<button class="follow-option" type="button" data-action="drawerChatAnswer" data-id="${esc(token+':'+index)}">${esc(label)}</button>`).join('')}</div>`:''}</div></div>`;
+    }
+    if(m.type==='demoFollowCreated')return sourceBubble(m.text,`<div class="actions">${btn('查看跟进事项','goal',m.goalId,'linklike')}</div>`);
+    return previous.message(m);
+  };
+  goals=function(){
+    const active=data.goals.filter(g=>g.status!=='done'),done=data.goals.filter(g=>g.status==='done'),remaining=getFollowTemplates();
+    return `<section class="page follow-page"><h1 class="sr-only">持续跟进</h1>${active.length?`<div class="section-line"><h2>跟进中</h2></div><div class="follow-active-goals">${active.map(goalRow).join('')}</div>`:''}${remaining.length?`${active.length||done.length?'<div class="section-line follow-add-heading"><h2>我还能帮你</h2></div>':''}${templateRows()}`:''}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`;
+  };
+  goalRow=function(g){
+    if(!mocked(g))return previous.goalRow(g);
+    return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.template==='brief'?'clock':g.template==='meeting'?'calendar':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span>${g.status==='paused'?'<span class="work-meta">已暂停</span>':''}</span>${icon('right')}</button>`;
+  };
+  goalSourceConnected=function(g){return mocked(g)||previous.source(g)};
+  handle=function(action,id='',el){
+    const d=activeFollowDraft();
+    if(action==='drawerChatAnswer'){
+      const parts=id.split(':'),token=parts.slice(0,2).join(':');if(!mocked(d)||token!==followToken(d))return;
+      const m=data.messages.find(m=>m.type==='demoFollowQuestion'&&m.followId===d.id&&m.revision===d.revision),value=m?.options?.[Number(parts[2])];if(value)consumeFollowReply(value,d);return;
+    }
+    if(action==='followCancel'&&mocked(d)&&d.id===id){d.cancelled=true;clearInput();save();go('goals');return}
+    return previous.handle(action,id,el);
+  };
+  // Resume an unfinished template conversation with its drawer selections intact.
+  const pending=activeFollowDraft();
+  if(mocked(pending)&&!Array.isArray(pending.selectedOutputs)){
+    const t=followTemplate(pending.templateId)||FOLLOW_TEMPLATE_DETAILS[pending.template]||FOLLOW_TEMPLATE_DETAILS.risk;
+    const channel=pending.channel,values={...pending};
+    const outputs=t.outputs.filter(o=>o.checked&&o.id!=='dingtalk').map(o=>o.id);if(channel==='dingtalk')outputs.push('dingtalk');
+    configure(pending,t,outputs);
+    for(const key of ['project','focus','title','rule','criteria'])if(values[key])pending[key]=values[key];
+    save();
+  }
+  if(pending?.flowVersion===2&&pending.templateId&&!pending.existingGoalId){
+    const t=followTemplate(pending.templateId);if(t){Object.assign(pending,{flowVersion:3,conversationDemo:true,sourceKey:'manual'});configure(pending,t,pending.selectedOutputs||templateSelected(t));opening(pending);save()}
+  }
+})();
+// END FOLLOWUP CHAT AFTER DRAWER 17
+
 render();
 </script>
 </body></html>
