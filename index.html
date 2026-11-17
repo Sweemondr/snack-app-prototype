@@ -3311,6 +3311,160 @@ let memoryDocumentPage;
 })();
 // END REAL MEETING RECORDING 17
 
+// BEGIN CONVERSATIONAL FOLLOWUP 17
+// Short local demo conversations. No connector grants or external delivery occur here.
+(function(){
+  const previous={consume:consumeFollowReply,handle,message,goalRow,goalDetail,composer,source:goalSourceConnected};
+  const isDemo=d=>!!d?.conversationDemo;
+  composer=function(){const html=previous.composer();return isDemo(activeFollowDraft())?html.replace('<span>设置持续跟进</span>','<span>持续跟进</span>'):html};
+  function question(d,stage,text,options=[]){
+    d.stage=stage;d.revision++;
+    data.messages.push({type:'demoFollowQuestion',followId:d.id,revision:d.revision,text,options});
+  }
+  function resetComposer(){
+    stopSourceVoice();clearTimeout(responseTimer);ui.loading=false;ui.reference=null;ui.goalReference=null;ui.manualEventDraft=null;
+    ui.followIdeaId=null;data.followPrefill=null;ui.draft='';data.followInput='';ui.inputMode='text';
+  }
+  function draft(template,existing=null){
+    data.followSequence=(data.followSequence||0)+1;
+    return {flowVersion:3,conversationDemo:true,id:'conversation-'+Date.now().toString(36)+'-'+data.followSequence,revision:0,template,
+      templateId:template==='custom'?'':template,project:'SCM',focus:'设备出勤与闲置',criteria:'出勤低于 80% 或连续闲置 3 天时提醒；恢复到 80% 以上时再告诉我。',rule:'有重要变化时提醒',channel:'dingtalk',sourceKey:'manual',
+      ...(existing?structuredClone(existing.setupSnapshot||{}):{}),...(existing?{existingGoalId:existing.id,title:existing.title}:{}),conversationDemo:true,flowVersion:3};
+  }
+  function opening(d){
+    if(d.template==='brief')question(d,'scope','可以。简报里先看哪些项目？',['SCM 和华东大区，关注出勤、产值和回款']);
+    else if(d.template==='meeting')question(d,'scope','好，接着跟进哪场周会的待办？',['项目运营周会，重点跟进设备调配和回款']);
+    else if(d.template==='scm-plan')question(d,'scope','我会接着跟 SCM 的闲置设备调配。你最关心哪一步？',['运量和人员准入确认后，核对设备调配安排']);
+    else if(d.template==='custom')question(d,'scope','想让我持续跟进什么？',['盯住 SCM 项目的设备出勤和闲置','下次周会前，核对上次交代的事','每天 9:30，把项目经营简报发给我']);
+    else question(d,'scope','可以。想先盯住哪个项目、哪些变化？',['SCM 项目，重点看设备出勤和闲置','华东大区，重点看回款进展']);
+  }
+  function begin(template,text='',existing=null,context={}){
+    const current=activeFollowDraft();
+    if(current){closeSheet(false);go('chat');toast('继续刚才的对话');return false}
+    resetComposer();closeSheet(false);
+    const d=data.followDraft=Object.assign(draft(template,existing),{initialRequest:text},context);
+    if(text)data.messages.push({type:'user',text});
+    if(existing){d.stage='review';question(d,'review','想怎么调整「'+existing.title+'」？直接告诉我就好。',['保持原来的安排'])}
+    else opening(d);
+    ui.fresh=false;ui.tab='chat';ui.page='main';ui.previous=null;followRender();return true;
+  }
+  function scope(d,text){
+    if(d.template==='custom'){
+      d.template=/简报|每天|定时/.test(text)?'brief':/会议|周会|待办/.test(text)?'meeting':'risk';
+      d.templateId='';
+    }
+    d.request=text;
+    const projects=SCENARIO_PROJECTS.filter(p=>text.includes(p));
+    d.project=projects.length?projects.join('、'):text;
+    if(d.template==='brief'){
+      d.focus='设备出勤、项目产值和回款';d.time='09:30';d.rule='每天 09:30';d.criteria='汇总项目经营情况，先看异常和需要关注的变化。';
+      d.title=(projects.length?d.project:'项目')+' · 经营简报';
+    }else if(d.template==='meeting'){
+      d.project=d.meetingTitle||text.split(/[，,。]/)[0].replace(/^(帮我|跟进|接着跟进)/,'').trim()||'项目周会';d.focus=text;d.rule='下次周会前一天';d.criteria='核对负责人、约定时间和完成情况，整理未完成事项与待决策问题。';
+      d.title=d.project+' · 待办跟进';
+    }else if(d.template==='scm-plan'){
+      d.project='SCM';d.focus='闲置设备调配';d.criteria='运量、人员准入或调配安排有变化时提醒，跟到负责人确认。';d.title='SCM · 设备调配安排';
+    }else{
+      d.focus=/回款|付款/.test(text)?'回款进展':/出勤|设备|闲置/.test(text)?'设备出勤与闲置':text;
+      d.criteria=/回款|付款/.test(text)?'款项到账、付款承诺变化或约定日期仍未到账时提醒。':/出勤|设备|闲置/.test(text)?'出勤低于 80% 或连续闲置 3 天时提醒；恢复到 80% 以上时再告诉我。':'有进展、遇到阻碍或需要你决定时提醒。';
+      d.title=projects.length?d.project+' · '+d.focus:text;
+    }
+    const request=text+' '+(d.initialRequest||''),time=request.match(/(?:每天|早上|上午|下午|晚上)?\s*(\d{1,2})[:：点](\d{2})?/);
+    if(d.template==='brief'&&time&&Number(time[1])<24&&Number(time[2]||0)<60){d.time=time[1].padStart(2,'0')+':'+(time[2]||'00');d.rule=(/工作日/.test(request)?'每个工作日 ':'每天 ')+d.time}
+  }
+  function recap(d){
+    const channel=d.channel==='snack'?'在 Snack 告诉你':'通过钉钉告诉你';
+    if(d.template==='brief')return '我会'+d.rule+'整理「'+d.project+'」的出勤、产值和回款，先列需要关注的变化，'+channel+'。'+(d.note?'\n'+d.note:'')+'\n这样安排可以吗？';
+    if(d.template==='meeting')return '我会在下次周会前一天，核对「'+d.focus+'」的负责人、约定时间和完成情况，把未完成事项和待决策问题'+channel+'。'+(d.note?'\n'+d.note:'')+'\n就这样接着跟进吗？';
+    return '我会跟进「'+(d.title||d.project)+'」。'+d.criteria+'\n'+(d.channel==='snack'?'有变化时在 Snack 告诉你。':'有变化时通过钉钉告诉你。')+(d.note?'\n'+d.note:'')+'\n就这样跟进吗？';
+  }
+  function review(d){question(d,'review',recap(d),['好，就这样跟进','有变化时在 Snack 告诉我'])}
+  function finish(d){
+    if(activeFollowDraft()!==d||d.stage!=='review'||d.confirmedGoalId)return false;
+    const originEvent=data.events.find(x=>x.id===d.originEventId),originAction=originEvent?.cal17Actions?.find(x=>x.key===d.originActionKey);
+    let g=d.existingGoalId?data.goals.find(x=>x.id===d.existingGoalId):originAction?.goalId?data.goals.find(x=>x.id===originAction.goalId):null;
+    if(d.existingGoalId&&!g)return false;
+    const snapshot=structuredClone(d);delete snapshot.id;delete snapshot.revision;delete snapshot.existingGoalId;
+    if(!g){g={id:'goal-'+d.id,status:'active',phase:'tracking',owner:'我',date:'',nextCheck:'',sourceIds:[],logs:[]};data.goals.unshift(g)}
+    Object.assign(g,{flowVersion:3,conversationDemo:true,title:d.title||d.project,project:d.project,template:d.template,templateId:d.templateId,focus:d.focus,
+      rule:d.rule,changeCriteria:d.criteria,condition:'你确认结束时停止跟进。',sourceKey:'manual',setupSnapshot:snapshot,lastCheck:'刚刚',
+      summary:d.template==='brief'?d.rule+'整理经营简报，先看需要关注的变化。':d.template==='meeting'?'下次周会前核对待办，整理未完成事项与待决策问题。':d.criteria});
+    g.logs.unshift(['刚刚',d.existingGoalId?'已根据对话更新演示目标。':'已根据对话建立演示目标，等待新的进展。']);
+    if(d.note)g.logs.unshift(['刚刚',d.note]);
+    if(d.sourceFileId)g.sourceIds=[d.sourceFileId];
+    if(originAction){originAction.goalId=g.id;originAction.pendingReason='';Object.assign(g,{eventId:originEvent.id,cal17EventId:originEvent.id,cal17:true})}
+    d.confirmedGoalId=g.id;data.messages.push({type:'demoFollowCreated',followId:d.id,goalId:g.id,text:d.existingGoalId?'好，跟进安排已更新。':'好，已经开始跟进「'+g.title+'」。'});
+    resetComposer();save();go('goals');toast(d.existingGoalId?'跟进安排已更新':'已开始跟进');return g.id;
+  }
+  startFollowConversation=function(text,template='risk'){return begin(SCENARIOS[template]||template==='scm-plan'?template:'custom',text)};
+  consumeFollowReply=function(text,d){
+    if(!isDemo(d))return previous.consume(text,d);
+    text=String(text||'').trim();if(!text)return;
+    data.messages.push({type:'user',text});
+    if(/^(取消|取消设置|先不设置|先不跟进)[。！!\s]*$/.test(text)){d.cancelled=true;resetComposer();save();go('goals');return}
+    if(d.stage==='scope'){scope(d,text);review(d)}
+    else if(d.stage==='review'){
+      if(/^(好[的]?|好，就这样跟进|就这样|可以|确认|开始跟进|保持原来的安排)[。！!\s]*$/.test(text)){finish(d);return}
+      if(text==='有变化时在 Snack 告诉我'){d.channel='snack';finish(d);return}
+      d.note='补充要求：'+text;
+      if(/Snack|不要钉钉/.test(text))d.channel='snack';else if(/钉钉/.test(text))d.channel='dingtalk';
+      const time=text.match(/(\d{1,2})[:：点](\d{2})?/);
+      if(d.template==='brief'&&time&&Number(time[1])<24&&Number(time[2]||0)<60){d.time=time[1].padStart(2,'0')+':'+(time[2]||'00');d.rule=(/工作日/.test(text)?'每个工作日 ':'每天 ')+d.time}
+      else if(d.template!=='brief'&&d.template!=='meeting'&&!/Snack|钉钉/.test(text))d.criteria=text;
+      review(d);
+    }
+    followRender();
+  };
+  message=function(m){
+    if(m.type==='demoFollowQuestion'){
+      const token=m.followId+':'+m.revision,active=isDemo(activeFollowDraft())&&followToken()===token;
+      return `<div class="source-message-row"><div class="source-bubble rich-bubble follow-question"><p>${esc(m.text).replace(/\n/g,'<br>')}</p>${active&&m.options?.length?`<div class="follow-options">${m.options.map((label,index)=>`<button class="follow-option" type="button" data-action="demoFollowAnswer" data-id="${esc(token+':'+index)}">${esc(label)}</button>`).join('')}</div>`:''}</div></div>`;
+    }
+    if(m.type==='demoFollowCreated')return sourceBubble(m.text,`<div class="actions">${btn('查看跟进事项','goal',m.goalId,'linklike')}</div>`);
+    return previous.message(m);
+  };
+  goals=function(){
+    const active=data.goals.filter(g=>g.status!=='done'),done=data.goals.filter(g=>g.status==='done'),templates=getFollowTemplates();
+    return `<section class="page follow-page"><h1 class="sr-only">持续跟进</h1>${active.length?`<div class="section-line"><h2>跟进中</h2></div><div class="follow-active-goals">${active.map(goalRow).join('')}</div>`:''}${templates.length?`${active.length||done.length?'<div class="section-line follow-add-heading"><h2>我还能帮你</h2></div>':''}${templateRows()}`:''}${done.length?`<details class="finished-work"><summary>已结束 <span>${done.length}</span></summary>${done.map(goalRow).join('')}</details>`:''}</section>`;
+  };
+  goalRow=function(g){
+    if(!isDemo(g))return previous.goalRow(g);
+    return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.template==='brief'?'clock':g.template==='meeting'?'calendar':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span><span class="work-meta">${g.status==='done'?'已结束':g.status==='paused'?'已暂停':'跟进中'} · ${g.setupSnapshot.channel==='dingtalk'?'钉钉':'Snack'} · 演示</span></span>${icon('right')}</button>`;
+  };
+  goalDetail=function(){
+    const g=data.goals.find(x=>x.id===ui.id);if(!isDemo(g))return previous.goalDetail();
+    return `<section class="page follow-detail"><div class="detail-hero"><div class="detail-state">${icon('target')}${g.status==='done'?'已结束':g.status==='paused'?'已暂停':'跟进中'} · 演示</div><h1>${esc(g.title)}</h1><p>${esc(g.summary)}</p></div><div class="section-line"><h2>跟进动态</h2>${btn('补充进展','updateGoal',g.id,'linklike')}</div><div class="timeline">${g.logs.map(([time,text])=>`<div class="timeline-item"><time>${esc(time)}</time><p>${esc(text)}</p></div>`).join('')}</div></section>`;
+  };
+  goalSourceConnected=function(g){return isDemo(g)||previous.source(g)};
+  handle=function(action,id='',el){
+    if(action==='startTemplate'){const t=followTemplate(id);if(t)return begin(id,t.title)}
+    if(['customFollow','newGoal','followGoChat'].includes(action))return begin('custom');
+    if(['track','draftGoal','discussScm'].includes(action))return begin('risk','帮我持续跟进'+(id&&id!=='scm'?id:' SCM 项目的重要变化')+'。');
+    if(action==='postTasks'&&data.files.some(f=>f.id===id)){const file=data.files.find(f=>f.id===id);return begin('meeting','帮我跟进「'+file.title+'」里的待办。',null,{meetingTitle:file.title,sourceFileId:file.id})}
+    if(action==='cal17Clarify'){
+      const [eventId,key]=id.split('|'),event=data.events.find(x=>x.id===eventId),item=event?.cal17Actions?.find(x=>x.key===key);
+      if(item){if(item.goalId&&data.goals.some(g=>g.id===item.goalId))return previous.handle('goal',item.goalId,el);return begin('custom','帮我跟进「'+item.title+'」。',null,{originEventId:eventId,originActionKey:key})}
+    }
+    if(action==='editGoal'&&isDemo(data.goals.find(g=>g.id===id))){const g=data.goals.find(g=>g.id===id);return begin(g.template,'我想调整「'+g.title+'」的跟进安排。',g)}
+    const d=activeFollowDraft();
+    if(action==='demoFollowAnswer'){
+      const parts=id.split(':'),token=parts.slice(0,2).join(':');if(!isDemo(d)||followToken(d)!==token)return;
+      const m=data.messages.find(m=>m.type==='demoFollowQuestion'&&m.followId===d.id&&m.revision===d.revision),text=m?.options?.[Number(parts[2])];
+      if(text)consumeFollowReply(text,d);return;
+    }
+    if(action==='followCancel'&&isDemo(d)&&d.id===id){d.cancelled=true;resetComposer();save();go('goals');return}
+    previous.handle(action,id,el);
+  };
+  // Continue an unfinished older setup as chat, without discarding its conversation.
+  const old=activeFollowDraft();
+  if(old&&!isDemo(old)){
+    const migrated=draft(old.template||'custom');
+    for(const key of ['project','focus','criteria','rule','channel','templateId','existingGoalId'])if(old[key])migrated[key]=old[key];
+    data.followDraft=migrated;opening(migrated);save();
+  }
+})();
+// END CONVERSATIONAL FOLLOWUP 17
+
 render();
 </script>
 </body></html>
