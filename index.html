@@ -441,30 +441,19 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 
 .follow-trigger-guide{margin:8px 0 28px}.follow-trigger-row{display:flex;gap:16px;align-items:center;padding:16px 0}.follow-trigger-row strong{font-size:16px;line-height:1.5}.follow-trigger-row p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.6}.follow-trigger-row .follow-idea-icon{flex-shrink:0}
 .cal17-capabilities{margin:4px 0 25px}.cal17-capabilities .cal17-service{cursor:default;align-items:flex-start}.cal17-capabilities .cal17-service>span:last-child{flex:1}.cal17-capabilities .cal17-service>.cal17-capability-icon{flex:0 0 24px;color:var(--accent);margin-top:3px}.cal17-capability-icon svg{width:24px;height:24px}.cal17-connection{display:flex;align-items:center;gap:12px;padding:18px 0;margin-bottom:14px}.cal17-connection>span:nth-child(2){flex:1}.cal17-connection>.source-provider-icon{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center}.cal17-connection>.source-provider-icon img{width:28px;height:28px;object-fit:contain}.cal17-connection strong{font-size:15px;font-weight:600}.cal17-connection>svg{width:18px;color:var(--muted)}.cal17-service-status{margin:8px 0 16px}.cal17-service-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;padding:20px 0;border-bottom:1px solid var(--line);text-align:left;font-size:15px}.cal17-service-toggle:focus-visible{outline:2px solid var(--brand);outline-offset:4px}
-/* Populated calendar: one surface per date group. */
-.agenda17-page{padding-top:12px}
-.agenda17-group{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;background:#f6f7f8;border-radius:14px;padding:20px 16px;margin-bottom:16px}
-.agenda17-label{margin:3px 0 0;font-size:13px;font-weight:550;line-height:1.5;color:var(--muted);overflow-wrap:anywhere}
-.agenda17-label>span,.agenda17-label>small{display:block}
-.agenda17-label>small{margin-top:4px;font-size:11px;font-weight:400;font-variant-numeric:tabular-nums}
-.agenda17-entries{min-width:0}
-.agenda17-row{display:block;width:100%;min-width:0;padding:20px 0;text-align:left;border-bottom:1px solid #e0e4e8;border-radius:0}
-.agenda17-row:first-child{padding-top:0}.agenda17-row:last-child{padding-bottom:0;border-bottom:0}
-.agenda17-heading{display:flex;align-items:baseline;gap:10px}
-.agenda17-heading>strong{min-width:0;flex:1;font-size:17px;font-weight:600;line-height:1.55;overflow-wrap:anywhere}
-.agenda17-status{flex-shrink:0;font-size:11px;font-weight:550;line-height:1.6;white-space:nowrap}
-.agenda17-status.upcoming,.agenda17-service.attention{color:var(--accent)}.agenda17-status.live{color:var(--green)}.agenda17-status.muted{color:var(--muted)}
-.agenda17-time{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:7px 0 12px;font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums}
-.agenda17-cycle{padding:1px 5px;border:1px solid #d8dde2;border-radius:4px;color:#586370;font-size:10px;white-space:nowrap}
-.agenda17-meta{display:block;font-size:12px;color:#606b78;line-height:1.8;overflow-wrap:anywhere}
-.agenda17-service{display:block;margin-top:12px;font-size:11px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
-.agenda17-history{margin:24px 0 8px}
-.agenda17-history>summary{min-height:44px;display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-size:13px;color:var(--muted)}
-.agenda17-history>summary::-webkit-details-marker{display:none}.agenda17-history>summary>span{font-size:11px}.agenda17-history>summary>svg{width:14px;height:14px;margin-left:auto;transition:transform .2s var(--ease)}.agenda17-history[open]>summary>svg{transform:rotate(90deg)}
-.agenda17-history[open]>summary{margin-bottom:12px}
-.agenda17-row:focus-visible,.agenda17-history>summary:focus-visible{outline:2px solid var(--accent);outline-offset:5px;border-radius:4px}
-@media(hover:hover){.agenda17-row:hover .agenda17-heading>strong{color:var(--accent)}}
-@media(max-width:359px){.agenda17-group{grid-template-columns:36px minmax(0,1fr);gap:8px;padding:16px 12px}.agenda17-label{font-size:12px}.agenda17-heading{flex-wrap:wrap;gap:3px 8px}.agenda17-heading>strong{flex-basis:100%;font-size:16px}.agenda17-time{font-size:15px}}
+/* Calendar search and history preserve the original meeting rows. */
+.app .circle-header>.icon-button.cal17-top-search{left:auto;right:18px;top:18px;width:40px;height:40px;border-radius:50%;background:#f1f2f4;color:#46515f}
+.cal17-history-entry{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;flex-shrink:0;border-top:1px solid var(--line);font-size:13px;color:var(--muted);background:#fff}
+.cal17-history-entry svg{width:16px;height:16px}.cal17-history-entry svg:last-child{width:13px;height:13px}
+.cal17-history-entry:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+.cal17-search-line{display:flex;gap:8px;align-items:center;margin:12px 0 22px}.cal17-search-line .search{flex:1;min-width:0;margin:0}.cal17-search-line input{min-width:0}.cal17-search-line>.linklike{flex-shrink:0;min-height:44px}
+.cal17-list-empty{padding:32px 0;color:var(--muted);text-align:center;font-size:13px}
+@media(max-width:375px){.app .circle-header>.icon-button.cal17-top-search{right:16px}}
+
+
+
+.cal17-add-fab{position:absolute;right:22px;bottom:calc(94px + env(safe-area-inset-bottom));z-index:4;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--action);color:#fff;box-shadow:0 4px 12px #7b330b29}
+.cal17-add-fab.with-history{bottom:calc(140px + env(safe-area-inset-bottom))}.cal17-add-fab svg{width:25px;height:25px}.cal17-add-fab:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.cal17-main-list{padding-bottom:88px}
 
 </style>
 </head>
@@ -562,7 +551,7 @@ function nexusOverviewText(){
 
 function header(){if(ui.page==='onboarding')return `<header class="topbar">${ib('返回聊天','back','home')}<span class="page-label">认识 ${esc(data.name)}</span>${btn('跳过','skipOnboard','','linklike')}</header>`;if(ui.page!=='main')return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${({settings:'设置',goal:'目标详情',event:'日程详情',file:'资料详情',memory:'关于我的记忆',sources:'连接应用',reminders:'通知与提醒'})[ui.page]||''}</span>${ui.page==='goal'?ib('目标操作','dots','goalMenu',ui.id):ui.page==='file'?ib('分享资料','share','share',ui.id):'<span class="icon-button"></span>'}</header>`;return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'}"><button class="brand-button" aria-label="打开 Snack 设置" data-action="settings"><img src="${LOGO}" alt="Snack 头像"><span class="source-nameplate"><strong>${esc(data.name)}</strong><small>你的 AI 秘书</small></span></button></header>`}
 function nav(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟踪的目标'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`}
-function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='activity')body=assistantActivityPage();else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
+function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='calendarHistory'){body=calendarHistoryPage();footer=nav()}else if(ui.page==='calendarSearch'){body=calendarSearchPage();footer=nav()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='activity')body=assistantActivityPage();else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
 function formatSourceText(text){return esc(text).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')}
 function sourceOptions(active,selected){return `<div class="source-options" role="group" aria-label="回复选项">${nexusFocusOptions().map(o=>`<button class="source-option ${selected===o.key?'is-selected':''}" data-action="sourceReply" data-id="${o.key}" aria-pressed="${selected===o.key}" ${active?'':'disabled'}><span><strong>${esc(o.title)}</strong><small>${esc(o.subtitle)}</small></span><span class="source-option-end">${icon(selected===o.key?'check':'right')}</span></button>`).join('')}</div>`}
 function sourceBubble(text,options=''){return `<div class="source-message-row"><div class="source-bubble ${options?'has-options':''}">${formatSourceText(text)}${options}</div></div>`}
@@ -2511,6 +2500,7 @@ consumeFollowReply=function(text,d){
 
 
 
+let calendarHistoryPage,calendarSearchPage;
 // BEGIN CALENDAR 20261117
 // 2026-11-17: selected calendar services and a meeting activity timeline.
 // Local interaction demonstration only. No network, recording, or real scheduling.
@@ -2519,7 +2509,7 @@ consumeFollowReply=function(text,d){
     {id:'before',title:'会前准备',description:'结合历史转写和待办，整理一份会前简报'},
     {id:'after',title:'会后持续跟进',description:'识别与你有关的待办，持续跟进进展'}
   ];
-  const cal17Original = {calendar,header,eventDetail,eventActions,paintSheet,handle,message,fileDetail,closeSheet,beginCalendarImport,goalDetail,createUpdate,save};
+  const cal17Original = {calendar,header,nav,routeSnapshot,eventDetail,eventActions,paintSheet,handle,message,fileDetail,closeSheet,beginCalendarImport,goalDetail,createUpdate,save};
   function cal17Migrate() {
     data.calendarConnections ||= {}; data.meetingPreferences ||= {}; data.calendarActivities ||= {};
     data.calendarServiceDefaults ||= {before:true,during:false,after:true};
@@ -2672,12 +2662,46 @@ consumeFollowReply=function(text,d){
     save();return {ok:true};
   }
   function cal17Status(event){const preference=cal17Preference(event);if(event.provider&&Object.values(preference).some(Boolean)&&!cal17EventSourceReady(event,'after'))return '来源待连接';if(event.cal17Actions)return event.cal17Actions.filter(action=>action.goalId).length+' 项持续跟进';if(event.transcriptId)return '会议原文已同步';if(event.prepared||data.files.some(file=>file.id==='prep-'+event.id))return '简报已就绪';return Object.values(preference).some(Boolean)?'已开启会议跟进':'未开启会议服务'}
+  function cal17IsHistory(event,now=Date.now()){
+    const day=fullDay(event),start=Date.parse(day+'T'+event.time+':00+08:00');
+    let end=Date.parse(day+'T'+event.end+':00+08:00');
+    if(Number.isFinite(start)&&Number.isFinite(end)&&end<start)end+=86400000;
+    if(Number.isFinite(end))return end<=now;
+    return Date.parse(day+'T23:59:59+08:00')<now;
+  }
+  function cal17Sorted(meetings,history=false){return [...meetings].sort((a,b)=>history?(fullDay(b)+' '+(b.time||'')).localeCompare(fullDay(a)+' '+(a.time||'')):(fullDay(a)+' '+(a.time||'')).localeCompare(fullDay(b)+' '+(b.time||'')))}
+  function cal17Rows(meetings){
+    let day='';
+    return meetings.map(event=>{const label=fullDay(event)!==day?`<h2 class="cal17-day">${cal17Date(fullDay(event))}</h2>`:'';day=fullDay(event);return label+`<button class="cal17-meeting" data-action="event" data-id="${esc(event.id)}"><span class="cal17-time">${esc(event.time||'全天')}<small>${esc(event.end||'')}</small></span><span class="cal17-meeting-body"><strong>${esc(event.title)}</strong><small>${esc(cal17Status(event))}</small></span>${icon('right')}</button>`}).join('');
+  }
+  function cal17SearchResults(){
+    const normalize=value=>String(value||'').normalize('NFKC').toLowerCase();
+    const query=normalize(ui.calendarSearchQuery).trim();
+    const meetings=cal17Sorted(data.events.filter(event=>normalize([event.title,fullDay(event),event.time,event.end,event.people,event.organizer,event.location,...(event.attendees||[]).map(person=>person.name)].join(' ')).includes(query)));
+    return meetings.length?cal17Rows(meetings):'<p class="cal17-list-empty" role="status">没有找到相关会议</p>';
+  }
+  calendarHistoryPage=function(){const meetings=cal17Sorted(data.events.filter(event=>cal17IsHistory(event)),true);return `<section class="page cal17-list"><h1 class="sr-only">历史会议</h1>${meetings.length?cal17Rows(meetings):'<p class="cal17-list-empty">暂无历史会议</p>'}</section>`};
+  calendarSearchPage=function(){return `<section class="page cal17-list"><h1 class="sr-only">搜索会议</h1><div class="cal17-search-line"><label class="search">${icon('search')}<input id="cal17MeetingSearch" type="search" aria-label="搜索会议" placeholder="搜索会议" autocomplete="off" value="${esc(ui.calendarSearchQuery||'')}"></label><button type="button" class="linklike" data-action="cal17SearchClear">清空</button></div><div id="cal17SearchResults">${cal17SearchResults()}</div></section>`};
+  document.addEventListener('input',event=>{if(event.target.id!=='cal17MeetingSearch')return;ui.calendarSearchQuery=event.target.value;const results=document.getElementById('cal17SearchResults');if(results)results.innerHTML=cal17SearchResults()});
   calendar=function(){
     if(!data.events.length)return `<section class="page calendar-welcome cal17-landing"><h1 class="sr-only">日程</h1><div class="follow-ideas">${[['dingtalk','从钉钉快速导入'],['system','从手机日历导入']].map(([provider,title])=>`<button type="button" class="follow-idea" data-action="cal17Begin" data-id="${provider}"><span class="follow-idea-icon calendar-import-icon" aria-hidden="true">${calendarProviderMark(provider)}</span><span class="follow-idea-body"><strong>${title}</strong></span>${icon('right')}</button>`).join('')}</div></section>`;
-    return list17Calendar(cal17Status);
+    const meetings=cal17Sorted(data.events.filter(event=>!cal17IsHistory(event)));
+    return `<section class="page cal17-list cal17-main-list"><h1 class="sr-only">日程</h1>${meetings.length?cal17Rows(meetings):'<p class="cal17-list-empty">暂无即将开始的会议</p>'}</section>`;
   };
   calendarEmpty=calendar;
-  header=function(){let html=cal17Original.header();if(ui.page==='main'&&ui.tab==='calendar')html=html.replace('aria-label="通过对话添加日程" data-action="manualCalendar"','aria-label="添加日程" data-action="cal17Add"');if(ui.page==='event')return `<header class="topbar cal17-detail-header">${ib('返回','back','back')}<span aria-hidden="true"></span>${ib('更多会议操作','dots','cal17Menu',ui.id)}</header>`;return html};
+  header=function(){
+    let html=cal17Original.header();
+    if(ui.page==='main'&&ui.tab==='calendar'){
+      html=html.replace(/<button\b[^>]*\bpage-top-add\b[^>]*>[\s\S]*?<\/button>/,'');
+      if(data.events.length)html=html.replace('</header>',`<button type="button" class="icon-button cal17-top-search" aria-label="搜索会议" data-action="cal17Search">${icon('search')}</button></header>`);
+    }
+    if(ui.page==='calendarHistory'||ui.page==='calendarSearch')return `<header class="topbar cal17-detail-header">${ib('返回','back','back')}<span class="page-label">${ui.page==='calendarHistory'?'历史会议':'搜索会议'}</span>${ui.page==='calendarHistory'?ib('搜索会议','search','cal17Search'):'<span class="icon-button" aria-hidden="true"></span>'}</header>`;
+    if(ui.page==='event')return `<header class="topbar cal17-detail-header">${ib('返回','back','back')}<span aria-hidden="true"></span>${ib('更多会议操作','dots','cal17Menu',ui.id)}</header>`;
+    return html;
+  };
+  nav=function(){return (ui.page==='main'&&ui.tab==='calendar'?`<button type="button" class="cal17-add-fab ${data.events.length?'with-history':''}" aria-label="添加日程" data-action="cal17Add">${icon('plus')}</button>`:'')+(ui.page==='main'&&ui.tab==='calendar'&&data.events.length?`<button type="button" class="cal17-history-entry" data-action="cal17History">${icon('clock')}<span>历史会议</span>${icon('right')}</button>`:'')+cal17Original.nav()};
+  routeSnapshot=function(){return {...cal17Original.routeSnapshot(),calendarSearchQuery:ui.calendarSearchQuery||''}};
+
   function cal17ActionHTML(event,action){const goal=data.goals.find(item=>item.id===action.goalId);return `<div class="cal17-action"><strong>${esc(action.title)}</strong><small>${esc(action.trigger)}${action.owner==='待确认'?'':' · '+esc(action.owner)}</small><p>${esc(action.rule)}</p>${action.pendingReason&&!goal?'<p class="cal17-pending">'+esc(action.pendingReason)+'</p>':''}${goal?btn(goal.status==='active'?'查看持续跟进':goal.status==='done'?'查看已完成事项':'查看已暂停事项','goal',goal.id,'linklike'):btn(action.condition?'开始跟进':'补充条件',action.condition?'cal17CreateGoal':'cal17Clarify',event.id+'|'+action.key,'linklike')}</div>`}
   eventDetail=function(){
     const event=data.events.find(item=>item.id===ui.id);if(!event)return '<div class="empty">日程不存在</div>';
@@ -2731,6 +2755,10 @@ consumeFollowReply=function(text,d){
     cal17Activity(event,{id:'attached-'+file.id,phase:'during',title:'会议原文已补充',body:existingFile?'已关联资料中的同一份会议记录。':'已保存你补充的文本。',fileId:file.id});save();return event.id;
   }
   handle=function(action,id='',element){
+    if(action==='cal17History'){openPage('calendarHistory');return}
+    if(action==='cal17Search'){ui.calendarSearchQuery='';openPage('calendarSearch');requestAnimationFrame(()=>document.getElementById('cal17MeetingSearch')?.focus());return}
+    if(action==='cal17SearchClear'){ui.calendarSearchQuery='';const input=document.getElementById('cal17MeetingSearch');if(input){input.value='';input.focus()}const results=document.getElementById('cal17SearchResults');if(results)results.innerHTML=cal17SearchResults();return}
+
     if(['cal17Begin','calendarSetup','calendarProvider'].includes(action)){cal17Begin(id||'dingtalk');return}
     if(action==='cal17Add'||action==='addEvent'){showSheet('cal17Add');return}
     if(action==='cal17System'){cal17Begin('system',{fresh:true});return}
@@ -2973,56 +3001,7 @@ consumeFollowReply=function(text,d){
 })();
 // END LIBRARY 17
 
-// BEGIN POPULATED LISTS 20261117
-// Shared populated-list presentation. Existing records and setup flows are unchanged.
-function list17Today(now=new Date()){
-  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);
-  const part=type=>parts.find(item=>item.type===type).value;
-  return `${part('year')}-${part('month')}-${part('day')}`;
-}
-function list17Date(day,today=list17Today()){
-  const date=new Date(day+'T12:00:00+08:00');
-  if(Number.isNaN(date.getTime()))return {title:'待定',detail:''};
-  const offset=Math.round((Date.parse(day+'T12:00:00+08:00')-Date.parse(today+'T12:00:00+08:00'))/86400000);
-  return {title:offset===0?'今天':offset===1?'明天':offset===-1?'昨天':`${Number(day.slice(5,7))}/${Number(day.slice(8))}`,detail:day.slice(0,4)!==today.slice(0,4)?day.slice(0,4):'周'+'日一二三四五六'[date.getUTCDay()]};
-}
-function list17Group(title,detail,body){
-  return `<section class="agenda17-group"><h2 class="agenda17-label"><span>${esc(title)}</span>${detail?`<small>${esc(detail)}</small>`:''}</h2><div class="agenda17-entries">${body}</div></section>`;
-}
-function list17MeetingState(event,now=new Date()){
-  if(['cancelled','canceled'].includes(event.status))return {text:'已取消',tone:'muted'};
-  const day=fullDay(event),today=list17Today(now);
-  const start=Date.parse(day+'T'+event.time+':00+08:00');
-  let end=Date.parse(day+'T'+event.end+':00+08:00');
-  if(Number.isFinite(start)&&Number.isFinite(end)&&end<start)end+=86400000;
-  if(Number.isFinite(end)&&now.getTime()>=end)return {text:'已结束',tone:'muted'};
-  if(Number.isFinite(start)&&Number.isFinite(end)&&now.getTime()>=start)return {text:'进行中',tone:'live'};
-  if(day<today)return {text:'已结束',tone:'muted'};
-  if(Number.isFinite(start)&&now.getTime()<start||day>today)return {text:'待开始',tone:'upcoming'};
-  return {text:!event.time||event.time==='全天'?'全天':'今日',tone:'muted'};
-}
-function list17MeetingRow(event,serviceStatus){
-  const state=list17MeetingState(event);
-  const people=(Array.isArray(event.attendees)&&event.attendees.length?event.attendees.map(person=>person.name):String(event.people||'').split('、')).filter(Boolean);
-  const participantText=people.slice(0,2).join('、')+(people.length>2?' 等 '+people.length+' 人':'');
-  const location=event.location&&event.location!=='钉钉会议'?event.location:'';
-  const status=serviceStatus(event);
-  const usefulStatus=!['已开启会议跟进','未开启会议服务'].includes(status)?status:'';
-  return `<button type="button" class="agenda17-row" data-action="event" data-id="${esc(event.id)}"><span class="agenda17-heading"><strong>${esc(event.title)}</strong><span class="agenda17-status ${state.tone}">${state.text}</span></span><span class="agenda17-time">${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?`<span class="agenda17-cycle">${esc(event.recurrence)}</span>`:''}</span>${event.organizer?`<span class="agenda17-meta">发起人：${esc(event.organizer)}</span>`:''}${participantText?`<span class="agenda17-meta">参与人：${esc(participantText)}</span>`:''}${location?`<span class="agenda17-meta">地点：${esc(location)}</span>`:''}${usefulStatus?`<span class="agenda17-service ${status==='来源待连接'?'attention':''}">${esc(usefulStatus)}</span>`:''}</button>`;
-}
-function list17Meetings(events,serviceStatus){
-  const groups=new Map();
-  for(const event of events){const day=fullDay(event);if(!groups.has(day))groups.set(day,[]);groups.get(day).push(event)}
-  return [...groups].map(([day,meetings])=>{const date=list17Date(day);return list17Group(date.title,date.detail,meetings.map(event=>list17MeetingRow(event,serviceStatus)).join(''))}).join('');
-}
-function list17Calendar(serviceStatus){
-  const sorted=[...data.events].sort((a,b)=>(fullDay(a)+' '+(a.time||'00:00')).localeCompare(fullDay(b)+' '+(b.time||'00:00')));
-  // Keep an overnight meeting visible while it is still in progress.
-  const past=sorted.filter(event=>fullDay(event)<list17Today()&&list17MeetingState(event).text!=='进行中');
-  const current=sorted.filter(event=>!past.includes(event));
-  return `<section class="page agenda17-page"><h1 class="sr-only">日程</h1>${list17Meetings(current,serviceStatus)}${past.length?`<details class="agenda17-history" ${!current.length?'open':''}><summary>历史日程 <span>${past.length}</span>${icon('right')}</summary>${list17Meetings([...past].sort((a,b)=>fullDay(b).localeCompare(fullDay(a))||(a.time||'').localeCompare(b.time||'')),serviceStatus)}</details>`:''}</section>`;
-}
-// END POPULATED LISTS 20261117
+
 render();
 </script>
 </body></html>
