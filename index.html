@@ -400,10 +400,15 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .lib17-folder small{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .lib17-folder>svg{width:16px;height:16px;color:var(--muted);flex-shrink:0}
 .lib17-folder:hover,.lib17-file:hover{background:var(--canvas)}
-.lib17-file[data-action="file"] .file-info strong{font-size:16px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}.lib17-file[data-action="memoryItem"] .file-info strong{font-size:14px;overflow-wrap:anywhere}
-.lib17-file .file-info small{font-size:11px;line-height:1.7;overflow-wrap:anywhere}.lib17-file[data-action="file"] .file-info small{font-size:12px;line-height:1.5;margin-top:4px}
-.lib17-file{padding:17px 0}.lib17-file[data-action="file"]{padding:19px 0}
-.lib17-memory-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:12px;line-height:1.75;margin-top:5px}
+.lib17-file .file-info strong{font-size:16px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}
+.lib17-file .file-info small{font-size:12px;line-height:1.5;margin-top:4px;overflow-wrap:anywhere}
+.lib17-file{padding:19px 0}
+.lib17-document h1{font-size:23px;line-height:1.5;overflow-wrap:anywhere;margin:5px 0 22px}
+.lib17-document .lib17-source summary{cursor:pointer;font-size:13px;color:var(--muted);min-height:28px}
+.lib17-document .lib17-source p{margin-top:10px}
+.lib17-document .lib17-actions{justify-content:space-between;align-items:center}
+.lib17-document .lib17-actions button{flex:initial}
+.lib17-header-edit{min-width:48px;min-height:44px;font-size:14px;color:var(--accent)}
 .lib17-reading{font-size:15px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;padding:4px 0 22px}
 .lib17-source{font-size:12px;line-height:1.8;color:var(--muted);padding:15px 0;border-top:1px solid var(--line)}
 .lib17-source .source{margin-top:10px}
@@ -454,11 +459,46 @@ html,body{background:#f7f7f7}.app,.source-chat,.source-footer,.bottom-nav{backgr
 .cal17-add-fab{position:absolute;right:22px;bottom:calc(94px + env(safe-area-inset-bottom));z-index:4;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--action);color:#fff;box-shadow:0 4px 12px #7b330b29}
 .cal17-add-fab svg{width:25px;height:25px}.cal17-add-fab:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.cal17-main-list{padding-bottom:88px}
 
+/* Settings follow the existing light Snack palette and the supplied grouped layout. */
+.settings17-logout{width:100%;min-height:52px;margin-top:24px;padding:15px 0;text-align:left;font-size:15px;color:var(--red)}
+.settings-clean-list .setting-row{padding:20px 0;font-size:15px}.settings-profile-button small{font-size:13px}.settings-profile-button strong{overflow-wrap:anywhere}
+.settings17-connectors .search{height:46px;margin-bottom:16px}.settings17-connectors .search input{font-size:14px}
+.settings17-segment{margin:0 0 28px;padding:5px;border-radius:13px}.settings17-segment button{min-height:38px;font-size:14px;border-radius:9px}
+.settings17-section-title{font-size:17px;font-weight:650;line-height:1.4;margin:28px 0 13px}.settings17-section-title.first{margin-top:0}
+.settings17-group{border-radius:16px;background:var(--canvas);padding:0 16px;overflow:hidden}
+.settings17-app-row{display:flex;align-items:center;gap:14px;width:100%;min-height:82px;padding:18px 0;text-align:left;border-bottom:1px solid var(--line)}
+.settings17-app-row:last-child,.settings17-group .setting-row:last-child,.settings17-channel:last-child{border-bottom:0}
+.settings17-app-name{flex:1;min-width:0}.settings17-app-name strong{display:block;font-weight:550;font-size:16px;line-height:1.5;overflow-wrap:anywhere}
+.settings17-app-name small{display:block;color:var(--muted);font-size:13px;line-height:1.5;margin-top:3px}
+.settings17-app-row.featured{min-height:96px;border-bottom:0}.settings17-app-row.featured+.featured{padding-top:10px}
+.settings17-mark{width:40px;height:40px;flex:0 0 40px;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--accent);overflow:hidden}
+.settings17-mark svg,.settings17-mark img{width:32px;height:32px;object-fit:contain}.settings17-mark.mark-dingtalk img{width:40px;height:40px}.settings17-mark.mark-whatsapp svg{width:40px;height:40px}
+.settings17-mark:is(.mark-feishu,.mark-whatsapp,.mark-googleDrive,.mark-gmail)>svg{stroke:none}
+.settings17-mark.mark-googleCalendar{color:#2465c5}.settings17-mark.mark-wecom{color:#238b59}.settings17-mark.mark-system{color:#b53f36}
+.settings17-link{flex-shrink:0;color:var(--accent);font-size:14px}.settings17-app-row:focus-visible,.settings17-channel:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:8px}
+.settings17-intro{font-size:14px;line-height:1.75;color:var(--muted);margin:3px 0 30px}.settings17-channel{width:100%;display:flex;align-items:center;gap:14px;min-height:83px;padding:18px 0;text-align:left;border-bottom:1px solid var(--line)}
+.settings17-channel strong{font-weight:550;font-size:17px;flex:1}.settings17-channel>svg{width:18px;color:var(--muted)}
+.settings17-form .field{margin-bottom:20px}.settings17-form .field>span{font-size:14px}.settings17-form .field input,.settings17-form .field textarea{font-size:15px;line-height:1.7}.settings17-form textarea{min-height:190px;resize:vertical}
+.settings17-save{min-width:44px;min-height:44px;font-size:14px;color:var(--accent)}.settings17-avatar{display:flex;justify-content:center;margin:3px 0 26px}.settings17-avatar img{width:68px;height:68px}
+.settings17-connection-brand{display:flex;align-items:center;gap:14px;margin:12px 0 30px}.settings17-connection-brand strong{font-size:19px}.settings17-scope{font-size:15px;line-height:1.8;margin:12px 0 26px}.settings17-boundary{font-size:12px;color:var(--muted);line-height:1.75;margin:12px 0 24px}
+.settings17-chat-brand{display:flex;align-items:center;gap:10px;margin-bottom:24px}.settings17-chat-brand .small-tag{margin-left:auto}.settings17-chat-log{display:flex;flex-direction:column;gap:14px}.settings17-bubble{font-size:14px;line-height:1.8;padding:12px 14px;background:var(--canvas);border-radius:14px;max-width:88%;overflow-wrap:anywhere}.settings17-bubble.mine{background:var(--soft);align-self:flex-end}
+.settings17-channel-form{display:flex;gap:9px;position:sticky;bottom:0;background:#fff;padding:18px 0 6px;margin-top:22px}.settings17-channel-form input{width:0;flex:1;min-width:0;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:14px}
+.settings17-signed-out{margin:auto;padding:32px;width:100%;max-width:370px;text-align:center}.settings17-signed-out img{width:76px;height:76px}.settings17-signed-out h1{font-size:30px;margin:16px 0 12px}.settings17-signed-out p{font-size:14px;color:var(--muted);margin-bottom:38px}
+@media(max-width:360px){.settings17-group{padding:0 13px}.settings17-app-row{gap:10px}.settings17-app-name strong{font-size:15px}.settings17-mark{width:36px;height:36px;flex-basis:36px}.settings17-channel strong{font-size:16px}}
+
+/* Real meeting recording: keep the existing sheet and list language. */
+.meeting-recorder{text-align:center;padding:28px 0 30px}
+.meeting-record-state{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;color:var(--text)}
+.meeting-record-state>span{width:8px;height:8px;background:#c94b08;border-radius:50%}
+.meeting-record-clock{font-size:52px;line-height:1.4;font-variant-numeric:tabular-nums;letter-spacing:2px;margin-top:16px}
+.meeting-record-note{font-size:12px;line-height:1.65;color:var(--muted);margin:14px 0 20px}
+.meeting-record-audio{display:block;width:100%;margin:18px 0;min-height:54px}
+.meeting-record-download{display:flex;align-items:center;justify-content:center;text-decoration:none;margin-top:12px}
 </style>
 </head>
 <body>
 <div class="stage">
-<aside class="review-nav"><div class="wordmark"><img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAQKADAAQAAAABAAAAQAAAAABGUUKwAAAIRUlEQVR4Ae2aC4hUVRjH75nZdd3dNMsoNVMzywgypVKT6AG9VHqQhD2hxB4kPXaNMipKgwpCDbKXRWQq9FCyzNQiwR5IRW4ilD19pGm5pabtrO7O3H7/O+dOd5v3uO1Mdb/lN+dxzz33fN/5znfOnVnHCSW0QGiB0AKhBUILhBYILfA/tYD5L+idaKyTGvq4AOphJTRHZrWQ5JaKNIBVKMrQowzwgFQwWZSJN9Y6Eaeb4zpt02g2HarhWbgD2vIZIUKjihKrfF8G9Tgsch3nfBf1bH3aWI1jpHx/LlwH3UCTejYcDnmlKm+L8jSYxGMb7KMHoNNY8tv/PpTEVLweCyFy/aFeLvnxKUlzoJw1W3EeYEd6VGDEx5EfHCj/lU0qrzU/EbRkJFr4r0I8n/urcaUaYKMGZ0VruodfyJCeTt3oQP1n5NcEyjmzlWqA3YFR15BP8wAFP2KDxn8l9LTt5ROvwZ6ErciXVKoB5AGxwOC1DDqIgh9/Q6i8KHDhe/LLVa7KsmsE2nrZSjXANka3KzDYXm6tcbygR6U7tda/dAmZgX6BdCkEl0/gUuZspRpAgSzoAYNMzJXPe+K63vFF29yEZI33KYMtUq6Q4OfdwUelboNSZhOkuT51vpxFZrhfIP0QmgJlL9ve2F2xgi0iqjOCTNjhcFRxHuC63jTLA+bCBvgGXqQ6Zpj45IHI1Zan2e8OkjbQ1hcLzr7aGpryp3PC67AAhql+3xR1UYEeEJ0d8099cmfNqvz9ZylvZrbYa0Zb41Hgy5dkVvkFpQm7S3Df5RSfgKNVb+XaupoajNZSmUvAzqJ2su3+iFOpwUMSphWzLKTuBFs/m3SH38Yem6uw2Q3UPQJH+NdIk1NvKyouBtjBa72eBCNAIf83aEL171kK7fIGZD58BCr9AF7wC9x/K1XTwT8jqMk6eAza2u0ZMNmVLpVZNPB4JO5EE9FTGEojjAXNnMYob1gPl8Lm4DqnnBKrvI7G98EdUJe66DifkL8FvlCd30dFeEBcwYpBobyC1ZPguzZZTxSsDwMvQiarsn5eyBUZUCdIX94lczt8rQpfeeXLbgC3sd7bptBsFON5CoZoYBlERihkvDKUlpBEBnsLboMfg4pT9qTs26D2aKQPaG1mU15tpFgwkqsuk6ygcglsgWfgZsioPPWe5yktiyTXrMusGik/tYBBzDDGPKizQqbZ1P02DujtsRfshNZsbblWPgPYgWoMl8FLcCjkk600uAkDrMAQbi7F8nXkXy/bLmANMJiB6MAzwh9QAekO2rwJH8NuOBzegZ2lGKQsBgi4qdboNVCKaGuMg3SYDPM6xQDJwemo4R5JpwpKrFHvlLWR9EApD+G+lFjltT8/BA2g/g9WFtPB1VD0+Do83A6OLcS9is7uhKGgneJXkMstos0q83VLc2JovROd9QdVhYvtX2v9ftC+3OH5hfeU1nIkNQPgu7QreSpSS0CDMyZhXDcyhXsUlTVLiqIHoDfoSKr8OlgK2m6+MhF3n3YyMzNGMbMkFdcbnDmVFjqljYPOUl4PbQNN2uJiPbTDIFD+ZDq5G6Ts06CDSSvoZCYXuwT0JeRpIPdd7ybMatLPUXID6R74nW/q4y7mJK8DiY6z9GvGk14MfaCzpZoOjy+lU88D4nxpYJIvBw/QyQzQ7Mqiu2VRO4MoY86lTu47BrQ0fNEMaJkoKv8C+0FvXfXQDxRPgkdTip0uL7M9Xl/s9uh5gFVeszXaDkvHR095lZNGqMX9zUrig5bAvTAZtEwkmgHNrDgRyiH9UV5Gbi3m4cFZ9GesnQ7SgklkVgxDeEFP+7CWiU5umu1KEY3f8+hiBhQ0gPbUFpBXKKJmFBtkcHH3ORrcAlszNvyXVHoG0M+LGA8XT32peAZlk1z76ZokjaCvZtrf4KqMsDm9VZfXSImiJWkA3JsZ1c2rQYXzKOsMkFWSRog6iUh0GY1uBP0oUU75CQ3wzOIkuAR05xr4EAbCrVCdzQu4RkyIOSYe14b3HsWbYaPqyyQbCAAJu0QLHkLKAK0HtAKcvTDHpteTTlBUyWWE6OwWx+VUzoHofZrqELUFuloUv74t5aEpA9TNUfD3ZAWfz0MPeBy3GqfaXEaIWCOw9S+nqYzQ1YHxZ57ZBEVLygC607qPDjWPggJcf1C0vwKiOY3gxRFNhPM2aPlsU6GLRF94birlWR0MoA6sEfTfFXpZWQJHw1x4GPqtXXCm4zbopJwugfWndwXFhE3prTq9RhO2GPYHnl/wQ9IMoDttR3JjRffZoJPeNFg2fO3aKa4xxyQa6iKZPEIxg6CoZD1oZv5p+YwHrCz1IRpoVrEK1tDgUrgHhtvGOilqt5CCynsRlLQKBsGZcA4MBs2QPKovZDQ49aWKtuxJ8AqxitdzneOKk5wGUFfxhnonUt3muO1V/ShOhCthGHQHPbfdQuIZQEZQv/tAszMPPgcZUPfLmzpLXqCj2yDnF5+5HpbXAP7N+peU/Ux0d6dG38HplXgUnAq9oRfoKyq9De6ET2ENNPHd5V77e/4hlBUXGkHGPFjRbjUZtpWy9v2HF2wA/wal+s1dP2NVJ6o1m3qLrFM9orelNhONtsViMSewtXrbKN9m88LmjKTNXTAeMkdTLuSR5VyfAhtLdX2//5IM4N9cSmrjigw2DjSDY0BnjkJkF43mw2Ow/WBm3n9YlxtAD4431DmRCL8JuUbLQstJ3iBDHAuHgQKvlpQCqCLbDvgAFoICb9FffnJPRimLAYIjSfj/8OSantRrpxgEihFSXvFEbMPVmxlsQf/8SPtQQguEFggtEFogtEBogdACoQXyWeBPL+46Q78AwJsAAAAASUVORK5CYII=" alt="">Snack</div><p>App 交互原型 · 2026.11</p><div class="scene-list"><button data-action="scene" data-id="brief">项目经营对话 <span>→</span></button><button data-action="scene" data-id="anomaly">异常与持续跟踪 <span>→</span></button><button data-action="scene" data-id="meeting">会前准备 · 会后跟进 <span>→</span></button><button data-action="scene" data-id="onboarding">首次使用 <span>→</span></button></div><div class="review-foot">全部内容为演示数据<br>操作仅保存在当前浏览器<br><button data-action="reset">恢复初始演示</button></div></aside>
+<aside class="review-nav"><div class="wordmark"><img class="logo" src="data:image/png;base64,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" alt="">Snack</div><p>App 交互原型 · 2026.11</p><div class="scene-list"><button data-action="scene" data-id="brief">项目经营对话 <span>→</span></button><button data-action="scene" data-id="anomaly">异常与持续跟踪 <span>→</span></button><button data-action="scene" data-id="meeting">会前准备 · 会后跟进 <span>→</span></button><button data-action="scene" data-id="onboarding">首次使用 <span>→</span></button></div><div class="review-foot">业务示例为演示数据<br>操作仅保存在当前浏览器<br><button data-action="reset">恢复初始演示</button></div></aside>
 <main class="device" aria-label="Snack App 交互原型"><div class="app" id="app"></div></main>
 <aside class="review-notes"><h3>从一件事，持续跟进</h3><p><span class="dot"></span>聊天里理解情况<br>把异常加入持续目标</p><p><span class="dot"></span>日程里准备会议<br>资料库里找回依据</p><p>点击左上角齿轮<br>进入设置</p></aside>
 </div>
@@ -550,7 +590,7 @@ function nexusOverviewText(){
 
 function header(){if(ui.page==='onboarding')return `<header class="topbar">${ib('返回聊天','back','home')}<span class="page-label">认识 ${esc(data.name)}</span>${btn('跳过','skipOnboard','','linklike')}</header>`;if(ui.page!=='main')return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${({settings:'设置',goal:'目标详情',event:'日程详情',file:'资料详情',memory:'关于我的记忆',sources:'连接应用',reminders:'通知与提醒'})[ui.page]||''}</span>${ui.page==='goal'?ib('目标操作','dots','goalMenu',ui.id):ui.page==='file'?ib('分享资料','share','share',ui.id):'<span class="icon-button"></span>'}</header>`;return `<header class="topbar ${ui.tab==='chat'?'source-topbar':'compact-topbar'}"><button class="brand-button" aria-label="打开 Snack 设置" data-action="settings"><img src="${LOGO}" alt="Snack 头像"><span class="source-nameplate"><strong>${esc(data.name)}</strong><small>你的 AI 秘书</small></span></button></header>`}
 function nav(){return `<nav class="bottom-nav" aria-label="主导航">${[['chat','chat','聊天'],['goals','target','持续跟踪的目标'],['calendar','calendar','日程'],['library','library','资料库']].map(([id,i,t])=>`<button aria-label="${t}" data-action="tab" data-id="${id}" class="${ui.tab===id?'active':''}" ${ui.tab===id?'aria-current="page"':''}>${icon(i)}</button>`).join('')}</nav>`}
-function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='calendarSearch'){body=calendarSearchPage();footer=nav()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='activity')body=assistantActivityPage();else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
+function render(){stopSourceVoice();const status=`<div class="status"><span>9:41 <button class="demo-mark" aria-label="查看原型说明" data-action="about">演示</button></span><div class="status-right">${icon('signal')}${icon('wifi')}${icon('battery')}</div></div>`;let body='',footer='';if(ui.page==='main'){body=({chat:chat,calendar:calendar,goals:goals,library:library})[ui.tab]();if(ui.tab==='chat')footer=composer();footer+=nav()}else if(ui.page==='goal'){body=goalDetail();footer=goalActions()}else if(ui.page==='event'){body=eventDetail();footer=eventActions()}else if(ui.page==='calendarSearch'){body=calendarSearchPage();footer=nav()}else if(ui.page==='file'){body=fileDetail();footer=`<div class="bottom-actions">${btn('围绕这份资料聊聊','askFile',ui.id,'primary')}</div>`}else if(ui.page==='activity')body=assistantActivityPage();else if(ui.page==='settings')body=settings();else if(ui.page==='memory')body=memory();else if(ui.page==='memoryDocument')body=memoryDocumentPage();else if(ui.page==='sources')body=sourcesPage();else if(ui.page==='reminders')body=reminders();else if(ui.page==='onboarding')body=onboarding();app.classList.toggle('source-chat',ui.page==='main'&&ui.tab==='chat');app.innerHTML=status+header()+`<div class="scroll" id="scroll">${body}</div>`+footer+'<div class="home-bar"></div>';if(ui.page==='main'&&ui.tab==='chat')bindSourceVoice();if(ui.sheet)paintSheet();document.querySelectorAll('.logo').forEach(x=>x.src=LOGO);if(ui.page==='main'&&ui.tab==='chat')scrollBottom();}
 function formatSourceText(text){return esc(text).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')}
 function sourceOptions(active,selected){return `<div class="source-options" role="group" aria-label="回复选项">${nexusFocusOptions().map(o=>`<button class="source-option ${selected===o.key?'is-selected':''}" data-action="sourceReply" data-id="${o.key}" aria-pressed="${selected===o.key}" ${active?'':'disabled'}><span><strong>${esc(o.title)}</strong><small>${esc(o.subtitle)}</small></span><span class="source-option-end">${icon(selected===o.key?'check':'right')}</span></button>`).join('')}</div>`}
 function sourceBubble(text,options=''){return `<div class="source-message-row"><div class="source-bubble ${options?'has-options':''}">${formatSourceText(text)}${options}</div></div>`}
@@ -599,7 +639,7 @@ function onboarding(){const n=ui.onboardStep;return `<section class="onboarding"
 function postSpecs(id){const f=data.files.find(f=>f.id===id),eventId=f?.eventId||'e1',e=data.events.find(e=>e.id===eventId);return eventId==='e1'?[['确认 SCM 闲置设备调配安排','今天 17:00'],['核对华东项目本周回款','今天 18:00']]:eventId==='e2'?[['确认 SCM 闲置设备原因','今天 17:00'],['落实 SCM 调配负责人及恢复时间','明天 10:00']]:eventId==='e3'?[['核对华东回款到账情况','明天 12:00'],['确认剩余款项付款时间','明天 18:00']]:[['确认「'+(e?.title||'本次会议')+'」会议结论','会后'],['落实「'+(e?.title||'本次会议')+'」后续行动','会后']]}
 function showSheet(type,params={}){stash();lastFocus=document.activeElement;ui.sheet={type,...params};paintSheet()}
 function closeSheet(restore=true){if(recordTimer){clearInterval(recordTimer);recordTimer=null}ui.recordStart=null;ui.sheet=null;document.querySelector('.overlay')?.remove();if(restore){if(lastFocus?.isConnected)lastFocus.focus();else app.querySelector('.topbar button')?.focus()}}
-function paintSheet(){document.querySelector('.overlay')?.remove();if(!ui.sheet)return;const s=ui.sheet;let title='',content='';const g=data.goals.find(g=>g.id===s.id);if(s.type==='track'||s.type==='newGoal'){title=s.type==='track'?'持续跟踪 SCM':'新建跟踪目标';content=`<form id="goalForm" class="form"><label class="field"><span>目标</span><input name="title" required maxlength="60" value="${s.type==='track'?'SCM 设备出勤恢复至 80%':''}" placeholder="想持续关注哪件事？"></label><label class="field"><span>完成条件</span><textarea name="condition" required placeholder="怎样才算完成？">${s.type==='track'?'设备出勤率恢复至 80%，并连续保持 3 天':''}</textarea></label><label class="field"><span>截止日期</span><input name="date" type="date" required value="2026-11-16" min="2026-11-12"></label><label class="field"><span>什么时候提醒你</span><select name="rule"><option>关键变化或逾期时提醒</option><option>每天 09:30 汇报进展</option><option>仅完成时提醒</option></select></label><button class="primary full" type="submit">确认并开始跟踪</button></form>`}else if(s.type==='updateGoal'){title='补充进展';content=`<form id="updateForm" class="form"><label class="field"><span>${esc(g?.title)}</span><textarea name="update" required placeholder="记录最新情况、反馈或下一步…" maxlength="500"></textarea></label><button class="primary full" type="submit">保存进展</button></form>`}else if(s.type==='goalMenu'){title='目标操作';content=btn(icon('check')+' 标记完成','completeGoal',s.id,'sheet-choice')+btn(icon('edit')+' 补充进展','updateGoal',s.id,'sheet-choice')+btn(icon('share')+' 分享目标','share',s.id,'sheet-choice')}else if(s.type==='history'){title='历史对话';content=`${btn(icon('plus')+' 新对话','newChat','','sheet-choice')}<div class="section-line"><h2>最近</h2></div>${data.history.length?data.history.map(h=>btn(`<span>${esc(h.title)}<small>11 月 12 日 · ${h.messages.length} 条消息</small></span>${icon('right')}`,'loadHistory',h.id,'sheet-choice')).join(''):'<p class="sheet-desc">新建对话后，当前聊天会保存在这里。</p>'}${btn('<span>今天的经营简报<small>每日简报 · 09:30</small></span>'+icon('right'),'scene','brief','sheet-choice')}`}else if(s.type==='rename'){title='秘书名称';content=`<form id="renameForm" class="form"><label class="field"><span>名称</span><input name="name" required maxlength="20" value="${esc(data.name)}"></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='editMemory'){title='编辑记忆';content=`<form id="memoryForm" class="form"><label class="field"><span>身份角色</span><select name="role">${['CEO','大区经理','项目经理'].map(r=>`<option ${r===data.role?'selected':''}>${r}</option>`).join('')}</select></label><label class="field"><span>背景与偏好</span><textarea name="memory" required maxlength="1000" style="min-height:150px">${esc(data.memory)}</textarea></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='briefTime'){title='简报时间';content=`<form id="timeForm" class="form"><label class="field"><span>每天发送时间</span><input type="time" name="time" required value="${esc(data.settings.briefTime)}"></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='connect'){const name=({nexus:'Nexus 经营数据',calendar:'钉钉日历',group:'项目群消息'})[s.id];title=name;content=`<p class="sheet-desc">${data.settings[s.id]?'已连接。可以读取与你角色相关的演示资料。断开后，原型将停止使用这个来源。':'连接后，Snack 可以结合相关信息准备简报和跟踪变化。'}</p><div class="info-row"><span>连接方式</span><span>原型模拟，不访问真实账号</span></div>${btn(data.settings[s.id]?'断开演示连接':'模拟连接','confirmConnect',s.id,'primary full')}`}else if(s.type==='attach'||s.type==='libraryAdd'){title=s.type==='attach'?'添加到对话':'添加资料';content=`${btn(icon('upload')+'<span>上传本地文件<small>仅保留名称，不上传文件内容</small></span>'+icon('right'),'pickFile','','sheet-choice')}${btn(icon('library')+'<span>从资料库选择</span>'+icon('right'),'chooseFile','','sheet-choice')}${s.type==='libraryAdd'?btn(icon('link')+'<span>同步 Nexus 项目资料<small>使用演示资料</small></span>'+icon('right'),'syncFiles','','sheet-choice'):''}<input id="fileInput" type="file" hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.md,.mp3,.wav,.m4a,.png,.jpg">`}else if(s.type==='chooseFile'){title='选择资料';content=data.files.map(f=>btn(`<span>${esc(f.title)}<small>${esc(f.kind)}</small></span>${icon('plus')}`,'attachFile',f.id,'sheet-choice')).join('')}else if(s.type==='addEvent'||s.type==='editEvent'){const e=data.events.find(e=>e.id===s.id)||{title:'',date:ui.day,time:'15:00',end:'16:00',location:'线上会议 · 钉钉',desc:'',people:'你'};title=s.type==='addEvent'?'添加日程':'编辑日程';content=`<form id="eventForm" class="form"><label class="field"><span>日程名称</span><input name="title" required maxlength="60" value="${esc(e.title)}" placeholder="例如：项目经营复盘"></label><label class="field"><span>日期</span><input name="date" type="date" value="2026-11-${String(e.date).padStart(2,'0')}" required min="2026-11-09" max="2026-11-15"></label><div style="display:flex;gap:12px"><label class="field" style="flex:1"><span>开始</span><input name="time" type="time" value="${e.time}" required></label><label class="field" style="flex:1"><span>结束</span><input name="end" type="time" value="${e.end}" required></label></div><label class="field"><span>地点</span><input name="location" value="${esc(e.location)}" required></label><label class="field"><span>议题</span><textarea name="desc" placeholder="准备讨论什么？">${esc(e.desc)}</textarea></label><p id="eventError" role="alert" style="font-size:12px;color:var(--red)"></p><button type="submit" class="primary full">保存日程</button></form>`}else if(s.type==='record'){title='会议录音';content=`<div class="recording"><span class="small-tag orange">模拟录音 · 不使用麦克风</span><div class="record-time" id="recordTime">00:00</div><div class="wave">${Array.from({length:26},(_,i)=>`<i style="height:${12+i*13%29}px;animation-delay:${i*.08}s"></i>`).join('')}</div><p>${esc(data.events.find(e=>e.id===s.id)?.title||'会议录音')}</p></div>${btn(icon('stop')+' 结束并生成纪要','stopRecord',s.id,'primary full')}`}else if(s.type==='generating'){title='正在整理会议';content='<p class="sheet-desc">录音已结束，正在生成演示纪要和待办。</p><div class="loading-line"></div>'}else if(s.type==='postTasks'){title='确认会后待办';const specs=postSpecs(s.id),f=data.files.find(f=>f.id===s.id);content=`<p class="sheet-desc">确认后加入日程待办，已确认过的事项不会重复添加。</p><form id="postForm" class="form">${specs.map(([title,time],i)=>`<label class="sheet-choice"><input type="checkbox" name="item${i}" checked><span>${esc(title)}<small>${esc(time)} · 我负责</small></span></label>`).join('')}${!f?.eventId||['e1','e2'].includes(f.eventId)?'<label style="display:flex;gap:10px;font-size:12px;align-items:center"><input type="checkbox" name="track" checked>同时持续跟踪 SCM 出勤恢复</label>':''}<button type="submit" class="primary full">确认待办</button></form>`}else if(s.type==='share'){title='分享';const file=data.files.find(f=>f.id===s.id),goal=data.goals.find(g=>g.id===s.id);content=`<div class="share-preview"><span class="small-tag orange">Snack · 演示卡片</span><h3>${esc(file?.title||goal?.title||'SCM 设备出勤异常')}</h3><p>${esc(file?.summary||goal?.summary||'今日出勤率 64%，6 台设备闲置，建议核实原因与调配安排。')}</p></div><p class="sheet-desc">选择渠道预览后续流程，不会发送真实消息。</p>${btn('<span>钉钉</span>'+icon('right'),'shareTarget','钉钉','sheet-choice')}${btn('<span>微信</span>'+icon('right'),'shareTarget','微信','sheet-choice')}`}else if(s.type==='shareTarget'){title=`分享到${s.target}`;const obj=data.files.find(f=>f.id===s.sharedId)||data.goals.find(g=>g.id===s.sharedId)||{title:'SCM 设备出勤异常',summary:'今日出勤率 64%，6 台设备闲置。请确认原因及恢复安排。'};content=`<div class="share-preview"><h3>项目运营群</h3><p><strong>${esc(obj.title)}</strong><br>${esc(obj.summary)}</p></div><p class="sheet-desc">这是分享流程演示。确认后将模拟跟踪群内反馈，不会发送真实消息。</p>${btn('模拟分享','shareDone',s.target,'primary full')}`}else if(s.type==='shareDone'){title='分享流程演示';const sharedGoal=data.goals.find(g=>g.id===s.sharedId)||(s.sharedId==='scm'?hasScm():null);content=`<div class="success-icon">${icon('check')}</div><p class="center">已模拟分享到项目运营群</p><p class="sheet-desc center" style="margin:12px 0 20px">${data.settings.group?'Snack 会结合群内反馈持续更新跟踪目标。':'群里还没有 Snack，可以模拟添加机器人，接收后续反馈。'}</p>${btn(data.settings.group?(sharedGoal?'查看跟踪目标':'完成'):'模拟添加 Snack 机器人',data.settings.group?(sharedGoal?'goal':'close'):'addBot',sharedGoal?.id||'','primary full')}${btn('稍后再说','close','','secondary full')}`}else if(s.type==='voice'){title='语音输入';content=`<div class="recording"><span class="small-tag orange">语音交互演示</span><div class="wave">${Array.from({length:20},(_,i)=>`<i style="height:${12+i*7%25}px;animation-delay:${i*.09}s"></i>`).join('')}</div><p>不启用麦克风，演示语音转文字。</p></div>${btn('使用示例语音','voiceResult','','primary full')}`}else if(s.type==='about'){title='关于这个原型';content='<p class="sheet-desc">参考 Muse 的聊天、目标、时间安排和资料产物分工，以及 Nexus × Snack 的业务方案。</p><p class="sheet-desc">业务数据、AI 回复、会议录音、通知及外部连接均为交互演示。聊天语音沿用原型中的浏览器语音识别，需允许麦克风权限；不会发送真实业务消息。浏览器保存的状态可随时重置。</p>'+btn('了解了','close','','primary full')}else if(s.type==='reset'){title='恢复初始演示？';content='<p class="sheet-desc">会清空当前浏览器中新增的对话、目标、资料名称和设置，恢复初始示例。这个操作无法撤销。</p>'+btn('恢复初始演示','confirmReset','','primary full')+btn('取消','close','','secondary full')}
+function paintSheet(){document.querySelector('.overlay')?.remove();if(!ui.sheet)return;const s=ui.sheet;let title='',content='';const g=data.goals.find(g=>g.id===s.id);if(s.type==='track'||s.type==='newGoal'){title=s.type==='track'?'持续跟踪 SCM':'新建跟踪目标';content=`<form id="goalForm" class="form"><label class="field"><span>目标</span><input name="title" required maxlength="60" value="${s.type==='track'?'SCM 设备出勤恢复至 80%':''}" placeholder="想持续关注哪件事？"></label><label class="field"><span>完成条件</span><textarea name="condition" required placeholder="怎样才算完成？">${s.type==='track'?'设备出勤率恢复至 80%，并连续保持 3 天':''}</textarea></label><label class="field"><span>截止日期</span><input name="date" type="date" required value="2026-11-16" min="2026-11-12"></label><label class="field"><span>什么时候提醒你</span><select name="rule"><option>关键变化或逾期时提醒</option><option>每天 09:30 汇报进展</option><option>仅完成时提醒</option></select></label><button class="primary full" type="submit">确认并开始跟踪</button></form>`}else if(s.type==='updateGoal'){title='补充进展';content=`<form id="updateForm" class="form"><label class="field"><span>${esc(g?.title)}</span><textarea name="update" required placeholder="记录最新情况、反馈或下一步…" maxlength="500"></textarea></label><button class="primary full" type="submit">保存进展</button></form>`}else if(s.type==='goalMenu'){title='目标操作';content=btn(icon('check')+' 标记完成','completeGoal',s.id,'sheet-choice')+btn(icon('edit')+' 补充进展','updateGoal',s.id,'sheet-choice')+btn(icon('share')+' 分享目标','share',s.id,'sheet-choice')}else if(s.type==='history'){title='历史对话';content=`${btn(icon('plus')+' 新对话','newChat','','sheet-choice')}<div class="section-line"><h2>最近</h2></div>${data.history.length?data.history.map(h=>btn(`<span>${esc(h.title)}<small>11 月 12 日 · ${h.messages.length} 条消息</small></span>${icon('right')}`,'loadHistory',h.id,'sheet-choice')).join(''):'<p class="sheet-desc">新建对话后，当前聊天会保存在这里。</p>'}${btn('<span>今天的经营简报<small>每日简报 · 09:30</small></span>'+icon('right'),'scene','brief','sheet-choice')}`}else if(s.type==='rename'){title='秘书名称';content=`<form id="renameForm" class="form"><label class="field"><span>名称</span><input name="name" required maxlength="20" value="${esc(data.name)}"></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='editMemory'){title='编辑记忆';content=`<form id="memoryForm" class="form"><label class="field"><span>身份角色</span><select name="role">${['CEO','大区经理','项目经理'].map(r=>`<option ${r===data.role?'selected':''}>${r}</option>`).join('')}</select></label><label class="field"><span>背景与偏好</span><textarea name="memory" required maxlength="1000" style="min-height:150px">${esc(data.memory)}</textarea></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='briefTime'){title='简报时间';content=`<form id="timeForm" class="form"><label class="field"><span>每天发送时间</span><input type="time" name="time" required value="${esc(data.settings.briefTime)}"></label><button type="submit" class="primary full">保存</button></form>`}else if(s.type==='connect'){const name=({nexus:'Nexus 经营数据',calendar:'钉钉日历',group:'项目群消息'})[s.id];title=name;content=`<p class="sheet-desc">${data.settings[s.id]?'已连接。可以读取与你角色相关的演示资料。断开后，原型将停止使用这个来源。':'连接后，Snack 可以结合相关信息准备简报和跟踪变化。'}</p><div class="info-row"><span>连接方式</span><span>原型模拟，不访问真实账号</span></div>${btn(data.settings[s.id]?'断开演示连接':'模拟连接','confirmConnect',s.id,'primary full')}`}else if(s.type==='attach'||s.type==='libraryAdd'){title=s.type==='attach'?'添加到对话':'添加资料';content=`${btn(icon('upload')+'<span>上传本地文件<small>仅保留名称，不上传文件内容</small></span>'+icon('right'),'pickFile','','sheet-choice')}${btn(icon('library')+'<span>从资料库选择</span>'+icon('right'),'chooseFile','','sheet-choice')}${s.type==='libraryAdd'?btn(icon('link')+'<span>同步 Nexus 项目资料<small>使用演示资料</small></span>'+icon('right'),'syncFiles','','sheet-choice'):''}<input id="fileInput" type="file" hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.md,.mp3,.wav,.m4a,.png,.jpg">`}else if(s.type==='chooseFile'){title='选择资料';content=data.files.map(f=>btn(`<span>${esc(f.title)}<small>${esc(f.kind)}</small></span>${icon('plus')}`,'attachFile',f.id,'sheet-choice')).join('')}else if(s.type==='addEvent'||s.type==='editEvent'){const e=data.events.find(e=>e.id===s.id)||{title:'',date:ui.day,time:'15:00',end:'16:00',location:'线上会议 · 钉钉',desc:'',people:'你'};title=s.type==='addEvent'?'添加日程':'编辑日程';content=`<form id="eventForm" class="form"><label class="field"><span>日程名称</span><input name="title" required maxlength="60" value="${esc(e.title)}" placeholder="例如：项目经营复盘"></label><label class="field"><span>日期</span><input name="date" type="date" value="2026-11-${String(e.date).padStart(2,'0')}" required min="2026-11-09" max="2026-11-15"></label><div style="display:flex;gap:12px"><label class="field" style="flex:1"><span>开始</span><input name="time" type="time" value="${e.time}" required></label><label class="field" style="flex:1"><span>结束</span><input name="end" type="time" value="${e.end}" required></label></div><label class="field"><span>地点</span><input name="location" value="${esc(e.location)}" required></label><label class="field"><span>议题</span><textarea name="desc" placeholder="准备讨论什么？">${esc(e.desc)}</textarea></label><p id="eventError" role="alert" style="font-size:12px;color:var(--red)"></p><button type="submit" class="primary full">保存日程</button></form>`}else if(s.type==='record'){title='会议录音';content=`<div class="recording"><span class="small-tag orange">模拟录音 · 不使用麦克风</span><div class="record-time" id="recordTime">00:00</div><div class="wave">${Array.from({length:26},(_,i)=>`<i style="height:${12+i*13%29}px;animation-delay:${i*.08}s"></i>`).join('')}</div><p>${esc(data.events.find(e=>e.id===s.id)?.title||'会议录音')}</p></div>${btn(icon('stop')+' 结束并生成纪要','stopRecord',s.id,'primary full')}`}else if(s.type==='generating'){title='正在整理会议';content='<p class="sheet-desc">录音已结束，正在生成演示纪要和待办。</p><div class="loading-line"></div>'}else if(s.type==='postTasks'){title='确认会后待办';const specs=postSpecs(s.id),f=data.files.find(f=>f.id===s.id);content=`<p class="sheet-desc">确认后加入日程待办，已确认过的事项不会重复添加。</p><form id="postForm" class="form">${specs.map(([title,time],i)=>`<label class="sheet-choice"><input type="checkbox" name="item${i}" checked><span>${esc(title)}<small>${esc(time)} · 我负责</small></span></label>`).join('')}${!f?.eventId||['e1','e2'].includes(f.eventId)?'<label style="display:flex;gap:10px;font-size:12px;align-items:center"><input type="checkbox" name="track" checked>同时持续跟踪 SCM 出勤恢复</label>':''}<button type="submit" class="primary full">确认待办</button></form>`}else if(s.type==='share'){title='分享';const file=data.files.find(f=>f.id===s.id),goal=data.goals.find(g=>g.id===s.id);content=`<div class="share-preview"><span class="small-tag orange">Snack · 演示卡片</span><h3>${esc(file?.title||goal?.title||'SCM 设备出勤异常')}</h3><p>${esc(file?.summary||goal?.summary||'今日出勤率 64%，6 台设备闲置，建议核实原因与调配安排。')}</p></div><p class="sheet-desc">选择渠道预览后续流程，不会发送真实消息。</p>${btn('<span>钉钉</span>'+icon('right'),'shareTarget','钉钉','sheet-choice')}${btn('<span>微信</span>'+icon('right'),'shareTarget','微信','sheet-choice')}`}else if(s.type==='shareTarget'){title=`分享到${s.target}`;const obj=data.files.find(f=>f.id===s.sharedId)||data.goals.find(g=>g.id===s.sharedId)||{title:'SCM 设备出勤异常',summary:'今日出勤率 64%，6 台设备闲置。请确认原因及恢复安排。'};content=`<div class="share-preview"><h3>项目运营群</h3><p><strong>${esc(obj.title)}</strong><br>${esc(obj.summary)}</p></div><p class="sheet-desc">这是分享流程演示。确认后将模拟跟踪群内反馈，不会发送真实消息。</p>${btn('模拟分享','shareDone',s.target,'primary full')}`}else if(s.type==='shareDone'){title='分享流程演示';const sharedGoal=data.goals.find(g=>g.id===s.sharedId)||(s.sharedId==='scm'?hasScm():null);content=`<div class="success-icon">${icon('check')}</div><p class="center">已模拟分享到项目运营群</p><p class="sheet-desc center" style="margin:12px 0 20px">${data.settings.group?'Snack 会结合群内反馈持续更新跟踪目标。':'群里还没有 Snack，可以模拟添加机器人，接收后续反馈。'}</p>${btn(data.settings.group?(sharedGoal?'查看跟踪目标':'完成'):'模拟添加 Snack 机器人',data.settings.group?(sharedGoal?'goal':'close'):'addBot',sharedGoal?.id||'','primary full')}${btn('稍后再说','close','','secondary full')}`}else if(s.type==='voice'){title='语音输入';content=`<div class="recording"><span class="small-tag orange">语音交互演示</span><div class="wave">${Array.from({length:20},(_,i)=>`<i style="height:${12+i*7%25}px;animation-delay:${i*.09}s"></i>`).join('')}</div><p>不启用麦克风，演示语音转文字。</p></div>${btn('使用示例语音','voiceResult','','primary full')}`}else if(s.type==='about'){title='关于这个原型';content='<p class="sheet-desc">参考 Muse 的聊天、目标、时间安排和资料产物分工，以及 Nexus × Snack 的业务方案。</p><p class="sheet-desc">业务数据、AI 回复、通知及外部连接为交互演示。会议录音使用麦克风并保存在当前浏览器，可下载备份。聊天语音沿用原型中的浏览器语音识别，需允许麦克风权限；不会发送真实业务消息。浏览器保存的状态可随时重置。</p>'+btn('了解了','close','','primary full')}else if(s.type==='reset'){title='恢复初始演示？';content='<p class="sheet-desc">会清空当前浏览器中新增的对话、目标、资料名称和设置，恢复初始示例。这个操作无法撤销。</p>'+btn('恢复初始演示','confirmReset','','primary full')+btn('取消','close','','secondary full')}
 const overlay=document.createElement('div');overlay.className='overlay';overlay.innerHTML=`<section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-head"><h2 id="sheetTitle">${title}</h2>${ib('关闭弹窗','close','close')}</div>${content}</section>`;app.appendChild(overlay);overlay.addEventListener('click',e=>{if(e.target===overlay&&s.type!=='generating')closeSheet()});overlay.querySelector('.sheet').focus();}
 function toast(t){clearTimeout(toastTimer);document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.setAttribute('role','status');el.textContent=t;app.appendChild(el);toastTimer=setTimeout(()=>el.remove(),2600)}
 function scrollBottom(){requestAnimationFrame(()=>{const el=document.getElementById('scroll');if(el)el.scrollTop=el.scrollHeight})}
@@ -1503,7 +1543,7 @@ paintSheet=function(){
     workSheet('断开'+p.name+'？',`<p class="sheet-desc">停止读取新的日程与会议资料。已有日程、跟进事项和历史记录会保留。</p>${btn('断开连接','disconnectConnector',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return;
   }
   if(s?.type==='about'){
-    workSheet('关于 Snack',`<div class="about-brand"><img src="${LOGO}" alt=""><h3>Snack · AI 秘书</h3><span>交互原型</span></div><p class="sheet-desc">业务数据、AI 回复、连接、会议录音与通知均为演示。聊天语音可使用浏览器语音识别；上传只保存文件名。你的演示记录保存在当前浏览器。</p><div class="about-actions">${settingRow('重新体验首次使用','','onboard')}${settingRow('恢复初始演示','','reset')}</div>`);return;
+    workSheet('关于 Snack',`<div class="about-brand"><img src="${LOGO}" alt=""><h3>Snack · AI 秘书</h3><span>交互原型</span></div><p class="sheet-desc">业务数据、AI 回复、连接与通知为演示。会议录音使用麦克风并保存在当前浏览器，可下载备份。聊天语音使用浏览器语音识别；上传只保存文件名。</p><div class="about-actions">${settingRow('重新体验首次使用','','onboard')}${settingRow('恢复初始演示','','reset')}</div>`);return;
   }
   refreshPaintBefore();
 };
@@ -2660,8 +2700,9 @@ let calendarSearchPage;
     }
     save();return {ok:true};
   }
-  function cal17Status(event){const preference=cal17Preference(event);if(event.provider&&Object.values(preference).some(Boolean)&&!cal17EventSourceReady(event,'after'))return '来源待连接';if(event.cal17Actions)return event.cal17Actions.filter(action=>action.goalId).length+' 项持续跟进';if(event.transcriptId)return '会议原文已同步';if(event.prepared||data.files.some(file=>file.id==='prep-'+event.id))return '简报已就绪';return Object.values(preference).some(Boolean)?'已开启会议跟进':'未开启会议服务'}
+  function cal17Status(event){if(event.recordingEndedAt)return '录音已保存';const preference=cal17Preference(event);if(event.provider&&Object.values(preference).some(Boolean)&&!cal17EventSourceReady(event,'after'))return '来源待连接';if(event.cal17Actions)return event.cal17Actions.filter(action=>action.goalId).length+' 项持续跟进';if(event.transcriptId)return '会议原文已同步';if(event.prepared||data.files.some(file=>file.id==='prep-'+event.id))return '简报已就绪';return Object.values(preference).some(Boolean)?'已开启会议跟进':'未开启会议服务'}
   function cal17IsHistory(event,now=Date.now()){
+    if(event.recordingEndedAt)return Date.parse(event.recordingEndedAt)<=now;
     const day=fullDay(event),start=Date.parse(day+'T'+event.time+':00+08:00');
     let end=Date.parse(day+'T'+event.end+':00+08:00');
     if(Number.isFinite(start)&&Number.isFinite(end)&&end<start)end+=86400000;
@@ -2710,7 +2751,7 @@ let calendarSearchPage;
     activities.sort((a,b)=>String(b.at).localeCompare(String(a.at))||(b.sequence||0)-(a.sequence||0));
     const participants=event.attendees||String(event.people||'你').split('、').map(name=>({name}));
     const link=/^https?:\/\//.test(event.meetingUrl||event.url||'')?(event.meetingUrl||event.url):'';
-    return `<section class="page cal17-detail"><div class="cal17-detail-head"><h1>${esc(event.title)}</h1><p class="cal17-date">${cal17Date(fullDay(event))}<br>${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?' · '+esc(event.recurrence):''}</p><details class="cal17-people"><summary><span class="cal17-avatars">${participants.slice(0,3).map(person=>`<span aria-hidden="true">${esc(person.name.slice(0,1))}</span>`).join('')}</span><span>${participants.length} 位参与人</span>${icon('right')}</summary><div>${participants.map(person=>`<p><strong>${esc(person.name)}</strong><span>${person.name===event.organizer?'组织者':esc(person.response||'')}</span></p>`).join('')}</div></details>${event.desc?`<details class="cal17-description" open><summary>会议描述</summary><p>${esc(event.desc)}</p></details>`:''}${event.location&&event.location!=='钉钉会议'?`<p class="cal17-location">${esc(event.location)}</p>`:''}${link?`<a class="secondary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">加入会议</a>`:''}</div><div class="section-line cal17-dynamic-title"><h2>动态</h2></div>${event.provider&&!cal17EventSourceReady(event,'after')?'<p class="cal17-offline">来源待连接，已保存的内容仍可查看。</p>':''}<div class="cal17-timeline">${activities.length?activities.map(activity=>`<article class="cal17-activity"><div class="cal17-activity-meta"><span>${({before:'会前准备',during:'会议原文',after:'会后持续跟进',setup:'跟进设置'})[activity.phase]}</span><time>${esc(activity.label||new Date(activity.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}))}</time></div><h3>${esc(activity.title)}</h3><p>${esc(activity.body)}</p>${activity.fileId?btn('查看'+(activity.phase==='before'?'简报':activity.phase==='during'?'原文':'行动'),'file',activity.fileId,'linklike'):''}${activity.goalId?btn('查看跟进','goal',activity.goalId,'linklike'):''}${activity.actions?'<details class="cal17-action-details"><summary>'+event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进 · '+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认</summary>'+event.cal17Actions.map(action=>cal17ActionHTML(event,action)).join('')+'</details>':''}</article>`).join(''):'<p class="cal17-no-activity">开启的服务将在这里留下动态。</p>'}</div></section>`;
+    return `<section class="page cal17-detail"><div class="cal17-detail-head"><h1>${esc(event.title)}</h1><p class="cal17-date">${cal17Date(fullDay(event))}<br>${esc(event.time||'全天')}${event.end?'–'+esc(event.end):''}${event.recurrence?' · '+esc(event.recurrence):''}</p><details class="cal17-people"><summary><span class="cal17-avatars">${participants.slice(0,3).map(person=>`<span aria-hidden="true">${esc(person.name.slice(0,1))}</span>`).join('')}</span><span>${participants.length} 位参与人</span>${icon('right')}</summary><div>${participants.map(person=>`<p><strong>${esc(person.name)}</strong><span>${person.name===event.organizer?'组织者':esc(person.response||'')}</span></p>`).join('')}</div></details>${event.desc?`<details class="cal17-description" open><summary>会议描述</summary><p>${esc(event.desc)}</p></details>`:''}${event.location&&event.location!=='钉钉会议'?`<p class="cal17-location">${esc(event.location)}</p>`:''}${link?`<a class="secondary" href="${esc(link)}" target="_blank" rel="noopener noreferrer">加入会议</a>`:''}</div><div class="section-line cal17-dynamic-title"><h2>动态</h2></div>${event.provider&&!cal17EventSourceReady(event,'after')?'<p class="cal17-offline">来源待连接，已保存的内容仍可查看。</p>':''}<div class="cal17-timeline">${activities.length?activities.map(activity=>`<article class="cal17-activity"><div class="cal17-activity-meta"><span>${({before:'会前准备',during:'会议原文',recording:'会议录音',after:'会后持续跟进',setup:'跟进设置'})[activity.phase]}</span><time>${esc(activity.label||new Date(activity.at).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}))}</time></div><h3>${esc(activity.title)}</h3><p>${esc(activity.body)}</p>${activity.fileId?btn('查看'+(activity.phase==='before'?'简报':activity.phase==='during'?'原文':activity.phase==='recording'?'录音':'行动'),'file',activity.fileId,'linklike'):''}${activity.goalId?btn('查看跟进','goal',activity.goalId,'linklike'):''}${activity.actions?'<details class="cal17-action-details"><summary>'+event.cal17Actions.filter(action=>action.goalId).length+' 项已跟进 · '+event.cal17Actions.filter(action=>!action.goalId).length+' 项待确认</summary>'+event.cal17Actions.map(action=>cal17ActionHTML(event,action)).join('')+'</details>':''}</article>`).join(''):'<p class="cal17-no-activity">开启的服务将在这里留下动态。</p>'}</div></section>`;
   };
   eventActions=function(){return nav()};
   function cal17ServiceForm(draft){
@@ -2730,7 +2771,7 @@ let calendarSearchPage;
       if(['connect','consent','authorizing','success'].includes(draft.stage)){paintConnectionFlow(draft.provider,draft.stage,draft.requiredScopes||cal17RequiredScopes(draft.services,draft.provider),{next:'cal17Consent',allow:'cal17Authorize',continue:'cal17Select',token:draft.token,value:draft.provider==='system'?'读取你选择的手机日历日程。':'读取日程和你有权访问的会议转写。',nextLabel:draft.editEventId?'保存服务':'选择会议'});return}
       const meetings=cal17Meetings(draft.provider);workSheet('选择要跟进的会议',`<form id="cal17SelectForm"><div class="cal17-selection-title"><strong>未来 7 天</strong><span>${cal17Date(data.calendarDemoAnchor).split(' · ')[0]} — ${cal17Date(shiftDay(data.calendarDemoAnchor,6)).split(' · ')[0]}</span></div><div class="cal17-selected-services">${cal17Services.filter(service=>draft.services[service.id]).map(service=>service.title).join(' · ')}</div><div class="consent-meetings">${meetings.map(event=>`<label class="consent-meeting"><input type="checkbox" name="meeting" value="${event.externalId}" ${draft.selectedIds.includes(event.externalId)?'checked':''}><span><strong>${esc(event.title)}</strong><small>${cal17Date(event.day)} · ${event.time}–${event.end}</small></span></label>`).join('')}</div><p class="cal17-permission">仅开启选中的会议；周期会议先跟进本次。</p><p id="cal17Error" class="form-error" role="alert"></p><button class="primary full" id="cal17SelectionSubmit" ${draft.selectedIds.length?'':'disabled'}>为 ${draft.selectedIds.length} 场会议开启</button></form>`);return;
     }
-    if(sheet.type==='cal17Add'){workSheet('添加日程',btn(calendarProviderMark('dingtalk')+'<span>从钉钉添加</span>'+icon('right'),'cal17Begin','dingtalk','sheet-choice')+btn(icon('calendar')+'<span>从手机日历导入</span>'+icon('right'),'cal17Begin','system','sheet-choice')+btn(icon('chat')+'<span>在聊天中告诉我</span>'+icon('right'),'manualCalendar','','sheet-choice'));document.querySelector('.sheet')?.classList.add('cal17-add-sheet');return}
+    if(sheet.type==='cal17Add'){workSheet('添加日程',btn(calendarProviderMark('dingtalk')+'<span>从钉钉添加</span>'+icon('right'),'cal17Begin','dingtalk','sheet-choice')+btn(icon('calendar')+'<span>从手机日历导入</span>'+icon('right'),'cal17Begin','system','sheet-choice')+btn(icon('mic')+'<span>开始记录会议</span>'+icon('right'),'meetingRecordStart','','sheet-choice')+btn(icon('chat')+'<span>在聊天中告诉我</span>'+icon('right'),'manualCalendar','','sheet-choice'));document.querySelector('.sheet')?.classList.add('cal17-add-sheet');return}
     if(sheet.type==='cal17Connectors'){workSheet('选择连接器',CALENDAR_PROVIDERS.filter(provider=>provider.id!=='system').map(provider=>btn(`<span class="source-provider-icon">${calendarProviderMark(provider.id)}</span><span>${provider.name}</span>${icon('right')}`,'cal17Begin',provider.id,'sheet-choice')).join(''));return}
     if(sheet.type==='cal17Temporary'){workSheet('临时会议',btn(icon('chat')+'<span>通过对话添加</span>'+icon('right'),'manualCalendar','','sheet-choice')+btn(icon('file')+'<span>关联已有听记</span>'+icon('right'),'cal17ExistingMinutes',sheet.id||'','sheet-choice')+btn(icon('edit')+'<span>补充会议文本</span>'+icon('right'),'cal17Text',sheet.id||'','sheet-choice'));return}
     if(sheet.type==='cal17ExistingMinutes'){
@@ -2824,6 +2865,7 @@ let calendarSearchPage;
 
 // BEGIN LIBRARY 17
 // A single home per document. Project/schedule/goal associations remain references.
+let memoryDocumentPage;
 (() => {
   const memoryFolders={profile:'关于我',business:'项目与业务',people:'人物与协作',decisions:'约定与决策'};
   const memoryCategories={'关于我':'profile','偏好':'profile','项目背景':'business','人物与协作':'people','约定与决策':'decisions'};
@@ -2874,7 +2916,15 @@ let calendarSearchPage;
     return `<button class="lib17-folder" data-action="folder" data-id="${esc(path)}"><span class="lib17-folder-icon">${icon('folder')}</span><strong>${esc(titleOf(path))}</strong><small>${count}${path.startsWith('memory/')?' 条':' 份'}</small>${icon('right')}</button>`;
   }
   function documentRow(f){const extension=String(f.title||'').match(/\.([a-z0-9]{1,8})$/i)?.[1]?.toUpperCase();return `<button class="folder-row lib17-file" data-action="file" data-id="${esc(f.id)}"><span class="file-icon ${outputGroup(f)?'orange':''}">${icon('file')}</span><span class="file-info"><strong>${esc(f.title)}</strong><small>${esc(extension||f.kind||'文件')}</small></span>${icon('right')}</button>`}
-  function memoryRow(m){return `<button class="folder-row lib17-file" data-action="memoryItem" data-id="${esc(m.id)}"><span class="file-info"><strong>${esc(m.title)}</strong><span class="lib17-memory-text">${esc(m.text)}</span><small>${esc(m.origin||'你补充的记忆')}${m.updated?' · '+esc(m.updated):''}</small></span>${icon('right')}</button>`}
+  const memoryFilename=m=>String(m.title||'未命名').replace(/\.md$/i,'')+'.md';
+  function memoryRow(m){return `<button class="folder-row lib17-file" data-action="memoryItem" data-id="${esc(m.id)}"><span class="file-icon">${icon('file')}</span><span class="file-info"><strong>${esc(memoryFilename(m))}</strong><small>MD</small></span>${icon('right')}</button>`}
+  memoryDocumentPage=function(){
+    const m=data.memories.find(x=>x.id===ui.id);if(!m)return `<section class="page">${empty('这份记忆已移除','back','返回资料')}</section>`;
+    const relatedGoal=data.goals.find(g=>g.id===m.goalId),relatedEvent=data.events.find(e=>e.id===m.eventId);
+    return `<section class="page lib17-document"><h1>${esc(memoryFilename(m))}</h1><div class="lib17-reading">${esc(m.text)}</div><details class="lib17-source"><summary>来源与记录</summary><p>${esc(memoryFolders[memoryGroup(m)])} · ${esc(m.origin||'你补充的记忆')}${m.updated?'<br>'+esc(m.updated):''}</p>${m.sourceId&&data.files.some(f=>f.id===m.sourceId)?source('查看来源文件',m.sourceId):''}${relatedGoal?btn('查看关联跟进','goal',relatedGoal.id,'linklike'):''}${relatedEvent?btn('查看关联日程','event',relatedEvent.id,'linklike'):''}${m.history?.length?`<div class="memory-history"><h3>更正记录</h3>${m.history.map(h=>`<p>${esc(typeof h==='string'?h:h.text)}</p>`).join('')}</div>`:''}</details><div class="lib17-actions">${btn('围绕这份记忆聊聊','lib17MemoryChat',m.id,'linklike')}${btn('移除','removeMemory',m.id,'danger-link')}</div></section>`;
+  };
+  const headerBeforeMemoryDocument=header;
+  header=function(){return ui.page==='memoryDocument'?`<header class="topbar">${ib('返回','back','back')}<span class="page-label">记忆</span>${btn('编辑','lib17MemoryEdit',ui.id,'lib17-header-edit')}</header>`:headerBeforeMemoryDocument()};
   function recent(files){return files.map((f,i)=>({f,i,t:Date.parse(f.updatedAt||f.createdAt||f.generatedAt||'')})).sort((a,b)=>(Number.isFinite(b.t)?b.t:0)-(Number.isFinite(a.t)?a.t:0)||a.i-b.i).map(x=>x.f)}
   library=function(){
     initLibrary();const section=isMemory()?'memory':'files';
@@ -2886,7 +2936,7 @@ let calendarSearchPage;
     if(isMemory()){
       const group=ui.folder?.split('/')[1];
       if(!group&&!query())return `<div class="lib17-folders">${Object.keys(memoryFolders).map(k=>folderRow('memory/'+k)).join('')}</div>`;
-      const rows=data.memories.filter(m=>(!group||memoryGroup(m)===group)&&matches(m.title,m.text,m.origin,memoryFolders[memoryGroup(m)])).map(memoryRow).join('');
+      const rows=data.memories.filter(m=>(!group||memoryGroup(m)===group)&&matches(memoryFilename(m),m.text,m.origin,memoryFolders[memoryGroup(m)])).map(memoryRow).join('');
       return rows||empty(query()?'没有找到相关记忆':'这里还没有记忆',query()?'clearSearch':'newMemory',query()?'清除搜索':'添加记忆');
     }
     const files=recent(data.files.filter(f=>(ui.folder?inPath(f,ui.folder):query()||!outputGroup(f))&&matches(f.title,f.summary,f.meta,titleOf(pathOf(f)))));
@@ -2916,12 +2966,12 @@ let calendarSearchPage;
     if(action==='librarySection'){if(!['files','memory'].includes(id))return;ui.librarySection=id;navigate(null);document.getElementById('library-section-'+id)?.focus();return}
     if(action==='libraryPickFile'||action==='libraryAdd'){showSheet('lib17Upload');return}
     if(action==='lib17ChooseUpload'){document.getElementById('lib17UploadInput')?.click();return}
-    if(action==='memoryItem'){showSheet('lib17MemoryRead',{id});return}
+    if(action==='memoryItem'){if(data.memories.some(m=>m.id===id))openPage('memoryDocument',id);return}
     if(action==='newMemory'||action==='lib17MemoryEdit'){showSheet('lib17MemoryEdit',{id});return}
     if(action==='lib17FromFile'){const f=data.files.find(x=>x.id===id);if(f)showSheet('lib17MemoryEdit',{sourceId:id,draft:{title:f.title.slice(0,40),text:f.uploaded?'':f.summary||'',category:'项目背景'}});return}
     if(action==='lib17MemoryChat'){const m=data.memories.find(x=>x.id===id);if(!m)return;go('chat');ui.draft='结合这条记忆：'+m.title+'\n'+m.text+'\n';ui.reference=null;ui.goalReference=null;render();document.getElementById('draft')?.focus();return}
     if(action==='removeMemory'){showSheet('lib17MemoryRemove',{id});return}
-    if(action==='lib17MemoryRemoveConfirm'){const m=data.memories.find(x=>x.id===id);if(!m)return;data.libraryMemoryUndo=structuredClone(m);data.memories=data.memories.filter(x=>x.id!==id);save();closeSheet(false);render();toast('已移除记忆；原文件和跟进保持不变');return}
+    if(action==='lib17MemoryRemoveConfirm'){const m=data.memories.find(x=>x.id===id);if(!m)return;data.libraryMemoryUndo=structuredClone(m);data.memories=data.memories.filter(x=>x.id!==id);save();closeSheet(false);if(ui.page==='memoryDocument')back();else render();toast('已移除记忆；原文件和跟进保持不变');return}
     if(action==='lib17MemoryRestore'){const m=data.libraryMemoryUndo;if(m&&!data.memories.some(x=>x.id===m.id))data.memories.unshift(m);data.libraryMemoryUndo=null;save();render();return}
     return previousHandle(action,id,el);
   };
@@ -2933,15 +2983,13 @@ let calendarSearchPage;
     if(s.type==='lib17Upload'){workSheet('上传文件',`<p class="lib17-note">演示仅保存文件名，不上传或读取内容。</p>${btn('选择文件','lib17ChooseUpload','','primary full')}<input type="file" id="lib17UploadInput" multiple hidden>`);return}
     if(['lib17Organize','lib17FileEdit','lib17NewProject'].includes(s.type)){closeSheet(false);return}
     if(s.type==='lib17MemoryRead'){
-      const m=data.memories.find(x=>x.id===s.id);if(!m){closeSheet();return}
-      const relatedGoal=data.goals.find(g=>g.id===m.goalId),relatedEvent=data.events.find(e=>e.id===m.eventId);
-      workSheet(esc(m.title),`<div class="lib17-reading">${esc(m.text)}</div><div class="lib17-source">${esc(memoryFolders[memoryGroup(m)])} · ${esc(m.origin||'你补充的记忆')}<br>${esc(m.updated||'')}${m.sourceId&&data.files.some(f=>f.id===m.sourceId)?'<br>'+source('查看来源文件',m.sourceId):''}</div>${relatedGoal?btn('查看关联跟进','goal',relatedGoal.id,'linklike'):''}${relatedEvent?btn('查看关联日程','event',relatedEvent.id,'linklike'):''}${m.history?.length?`<details class="memory-history"><summary>更正记录</summary>${m.history.map(h=>`<p>${esc(typeof h==='string'?h:h.text)}</p>`).join('')}</details>`:''}<div class="lib17-actions">${btn('修改记忆','lib17MemoryEdit',m.id,'primary')}${btn('围绕这条聊聊','lib17MemoryChat',m.id,'secondary')}</div>${btn('移除记忆','removeMemory',m.id,'danger-link')}`);return;
+      const id=s.id;closeSheet(false);if(data.memories.some(m=>m.id===id))openPage('memoryDocument',id);return;
     }
     if(s.type==='lib17MemoryEdit'){
       const existing=data.memories.find(m=>m.id===s.id),m=existing||s.draft||{};
       const category=m.category||({profile:'关于我',business:'项目背景',people:'人物与协作',decisions:'约定与决策'}[ui.folder?.split('/')[1]])||'关于我';
       const groupOptions=[['关于我','关于我 · 身份与范围'],['偏好','关于我 · 工作偏好'],['项目背景','项目与业务'],['人物与协作','人物与协作'],['约定与决策','约定与决策']];
-      workSheet(existing?'修改记忆':'添加记忆',`<form id="lib17MemoryForm" class="form"><label class="field"><span>标题</span><input name="title" required maxlength="40" value="${esc(m.title||'')}"></label><label class="field"><span>分类</span><select name="category">${groupOptions.map(([value,label])=>`<option value="${value}" ${value===category?'selected':''}>${label}</option>`).join('')}</select></label><label class="field"><span>内容</span><textarea name="text" required maxlength="1000">${esc(m.text||'')}</textarea></label>${s.sourceId?'<p class="lib17-note">来自所选文件的摘要，请核对后保存。</p>':''}<p id="lib17MemoryError" role="alert" class="lib17-form-error"></p><button type="submit" class="primary full">保存记忆</button></form>`);return;
+      workSheet(existing?'编辑记忆':'添加记忆',`<form id="lib17MemoryForm" class="form"><label class="field"><span>文件名</span><input name="title" required maxlength="43" value="${esc(m.title?memoryFilename(m):'')}"></label><label class="field"><span>分类</span><select name="category">${groupOptions.map(([value,label])=>`<option value="${value}" ${value===category?'selected':''}>${label}</option>`).join('')}</select></label><label class="field"><span>内容</span><textarea name="text" required maxlength="1000">${esc(m.text||'')}</textarea></label>${s.sourceId?'<p class="lib17-note">来自所选文件的摘要，请核对后保存。</p>':''}<p id="lib17MemoryError" role="alert" class="lib17-form-error"></p><button type="submit" class="primary full">保存</button></form>`);return;
     }
     if(s.type==='lib17MemoryRemove'){workSheet('移除这条记忆？',`<p class="lib17-note">移除后不再作为后续讨论的记忆。来源文件、已有日程和正在执行的跟进会保留。</p>${btn('移除记忆','lib17MemoryRemoveConfirm',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return}
     previousPaint();
@@ -2989,17 +3037,273 @@ let calendarSearchPage;
     const form=event.target;if(form.id!=='lib17MemoryForm')return;
     event.preventDefault();event.stopImmediatePropagation();const fd=new FormData(form),get=k=>String(fd.get(k)||'').trim();
     if(form.id==='lib17MemoryForm'){
-      const title=get('title'),text=get('text'),category=get('category');
+      const title=get('title').replace(/\.md$/i,'').trim(),text=get('text'),category=get('category');
       if(!title||!text||title.length>40||text.length>1000||!memoryCategories[category]){document.getElementById('lib17MemoryError').textContent='请填写标题、分类和内容。';return}
       const existing=data.memories.find(m=>m.id===ui.sheet.id),sourceId=ui.sheet.sourceId;
       if(existing){existing.history||=[];existing.history.unshift(existing.text);Object.assign(existing,{title,text,category,updated:'刚刚 · 你已更正'})}
       else data.memories.unshift({id:newId('memory'),title,text,category,sourceId:sourceId||null,origin:sourceId?'你核对来源后保存':'你补充的记忆',updated:'刚刚',history:[]});
-      save();closeSheet(false);ui.librarySection='memory';data.librarySection='memory';go('library');navigate('memory/'+memoryCategories[category]);toast('记忆已保存');return;
+      save();closeSheet(false);if(existing&&ui.page==='memoryDocument'){render();toast('记忆已保存');return}ui.librarySection='memory';data.librarySection='memory';go('library');navigate('memory/'+memoryCategories[category]);toast('记忆已保存');return;
     }
   },true);
 })();
 // END LIBRARY 17
 
+// Settings: editable assistant, account, app connections and separate chat channels.
+(() => {
+  const apps = [
+    {id:'dingtalk',name:'钉钉',desc:'日程与会议记录',group:'精选',icon:'calendar'},
+    {id:'feishu',name:'飞书',desc:'日程与会议记录',group:'精选',icon:'calendar'},
+    {id:'nexus',name:'Nexus',desc:'项目与经营数据',group:'精选',icon:'trend'},
+    {id:'googleCalendar',name:'Google 日历',desc:'日历与日程安排',group:'效率工具',icon:'calendar'},
+    {id:'gmail',name:'Gmail',desc:'邮件',group:'效率工具',icon:'mail'},
+    {id:'googleDrive',name:'Google 云端硬盘',desc:'文件与文档',group:'效率工具',icon:'folder'},
+    {id:'wecom',name:'企业微信',desc:'日程与会议记录',group:'效率工具',icon:'calendar'},
+    {id:'system',name:'手机日历',desc:'设备上的日程',group:'效率工具',icon:'calendar'}
+  ];
+  const channels = [{id:'whatsapp',name:'WhatsApp'},{id:'dingtalk',name:'钉钉'},{id:'feishu',name:'飞书'},{id:'wecom',name:'企业微信'}];
+  const titles = {assistant:'秘书名称与人设',account:'账号信息',permissions:'权限管理',channels:'消息频道',channelChat:'对话预览',loggedOut:'Snack'};
+  ICONS.mail='<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 6 9 7 9-7"/>';
+  function init(){
+    data.assistantPersona ??= '做事周到，表达直接。先给结论，再给依据；遇到不确定的信息主动确认。';
+    data.accountInfo ||= {name:currentRole().displayName,organization:'鼎昌',role:data.role};
+    data.appConnections ||= {};data.messageChannels ||= {};data.channelMessages ||= {};
+    data.devicePermissions ||= {microphone:false,notifications:true,photos:false};
+    ui.connectorView ||= 'available';ui.connectorQuery ??= '';
+  }
+  function connected(id){return CALENDAR_PROVIDERS.some(p=>p.id===id)?calendarConnected(id):id==='nexus'?!!data.settings.nexus:!!data.appConnections[id]}
+  function mark(id){
+    if(id==='dingtalk')return `<img src="${DINGTALK_LOGO}" alt="">`;
+    if(id==='feishu')return '<svg viewBox="0 0 40 40" aria-hidden="true"><path fill="#00b7c5" d="m4 9 15 4 14-7-10 18-9-4z"/><path fill="#3370ff" d="m7 18 16 6 10-8-10 18-9-4z"/></svg>';
+    if(id==='whatsapp')return '<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#20b85b"/><path d="M12 29l1-5a11 11 0 1 1 5 5z" fill="none" stroke="white" stroke-width="2"/><path d="M16 13c-3 2 1 10 7 12 3 1 5-2 3-3l-3-1-2 1-4-5 1-1z" fill="white"/></svg>';
+    if(id==='googleDrive')return '<svg viewBox="0 0 40 40" aria-hidden="true"><path fill="#0f9d58" d="M15 5h10L10 31 5 22z"/><path fill="#f4b400" d="m25 5 15 26H30L15 5z"/><path fill="#4285f4" d="M10 31h30l-5 8H5z" transform="translate(0 -3)"/></svg>';
+    if(id==='gmail')return '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 32V10l15 12 15-12v22" fill="none" stroke="#4285f4" stroke-width="6"/><path d="M5 10l15 12 15-12" fill="none" stroke="#ea4335" stroke-width="6"/><path d="M35 18v14" stroke="#34a853" stroke-width="6"/></svg>';
+    return icon(apps.find(a=>a.id===id)?.icon||'chat');
+  }
+  function appRow(a,featured=false){const active=connected(a.id);return `<button class="settings17-app-row ${featured?'featured':''}" data-action="s17App" data-id="${a.id}">${featured?'':`<span class="settings17-mark mark-${a.id}">${mark(a.id)}</span>`}<span class="settings17-app-name"><strong>${a.name}</strong>${featured?`<small>${a.desc}</small>`:''}</span>${featured?`<span class="settings17-mark mark-${a.id}">${mark(a.id)}</span>`:`<span class="settings17-link">${active?'查看':'连接'}</span>`}</button>`}
+  function appResults(){
+    const query=ui.connectorQuery.trim().toLowerCase();
+    const list=apps.filter(a=>(ui.connectorView!=='connected'||connected(a.id))&&(!query||(a.name+' '+a.desc).toLowerCase().includes(query)));
+    if(!list.length)return `<div class="empty"><p>${query?'没有找到相关应用':'还没有连接应用'}</p>${btn(query?'清除搜索':'浏览可用应用',query?'s17ClearSearch':'s17AppTab','available')}</div>`;
+    if(ui.connectorView==='connected'||query)return `<div class="settings17-group">${list.map(a=>appRow(a)).join('')}</div>`;
+    return ['精选','效率工具'].map(group=>`<h2 class="settings17-section-title">${group}</h2><div class="settings17-group">${list.filter(a=>a.group===group).map(a=>appRow(a,group==='精选')).join('')}</div>`).join('');
+  }
+  settings=function(){init();return `<section class="page settings-clean"><button class="settings-profile settings-profile-button" data-action="s17Page" data-id="assistant"><img src="${LOGO}" alt=""><span><strong>${esc(data.name)}</strong><small>名称与人设</small></span>${icon('right')}</button><div class="settings-clean-list">${settingRow('账号信息','','s17Page','account')}${settingRow('连接应用',apps.filter(a=>connected(a.id)).length+' 个已连接','sources')}${settingRow('权限管理','','s17Page','permissions')}${settingRow('消息频道','','s17Page','channels')}${settingRow('关于 Snack','','about')}</div>${btn('退出','s17Logout','','settings17-logout')}</section>`};
+  sourcesPage=function(){init();return `<section class="page settings17-connectors"><label class="search">${icon('search')}<input id="settings17Search" aria-label="搜索应用" placeholder="搜索应用" value="${esc(ui.connectorQuery)}"></label><div class="segment settings17-segment" aria-label="应用连接状态">${[['available','可用'],['connected','已连接']].map(([id,label])=>`<button data-action="s17AppTab" data-id="${id}" class="${ui.connectorView===id?'selected':''}" aria-pressed="${ui.connectorView===id}">${label}</button>`).join('')}</div><div id="settings17Results">${appResults()}</div></section>`};
+  function page(){
+    init();const key=ui.settingsSection;
+    if(key==='assistant')return `<form class="form settings17-form" id="settings17AssistantForm"><div class="settings17-avatar"><img src="${LOGO}" alt=""></div><label class="field"><span>秘书名称</span><input name="name" value="${esc(data.name)}" maxlength="20" required autocomplete="off"></label><label class="field"><span>人设</span><textarea name="persona" maxlength="1200" required>${esc(data.assistantPersona)}</textarea></label><p id="settings17FormError" role="alert" class="lib17-form-error"></p></form>`;
+    if(key==='account')return `<form class="form settings17-form" id="settings17AccountForm"><label class="field"><span>姓名</span><input name="name" maxlength="40" required value="${esc(data.accountInfo.name)}" autocomplete="off"></label><label class="field"><span>组织</span><input name="organization" maxlength="80" value="${esc(data.accountInfo.organization)}"></label><label class="field"><span>职位</span><input name="role" maxlength="40" value="${esc(data.accountInfo.role)}"></label><div class="info-row"><span>账号类型</span><span>演示账号</span></div><p id="settings17FormError" role="alert" class="lib17-form-error"></p></form>`;
+    if(key==='permissions')return `<h2 class="settings17-section-title first">设备权限</h2><div class="settings17-group">${[['notifications','通知'],['microphone','麦克风'],['photos','照片与文件']].map(([id,name])=>settingRow(name,data.devicePermissions[id]?'已允许':'未允许','s17Permission',id)).join('')}</div><h2 class="settings17-section-title">应用权限</h2><div class="settings17-group">${apps.filter(a=>connected(a.id)).map(a=>settingRow(a.name,'','s17App',a.id)).join('')||settingRow('连接应用','','sources')}</div><h2 class="settings17-section-title">提醒</h2><div class="settings17-group">${settingRow('通知与提醒','','reminders')}</div>`;
+    if(key==='channels'){
+      const group=(active,title)=>{const list=channels.filter(c=>!!data.messageChannels[c.id]===active);return list.length?`<h2 class="settings17-section-title">${title}</h2><div class="settings17-group">${list.map(c=>`<button class="settings17-channel" data-action="s17Channel" data-id="${c.id}"><span class="settings17-mark mark-${c.id}">${mark(c.id)}</span><strong>${c.name}</strong>${icon('right')}</button>`).join('')}</div>`:''};
+      return `<p class="settings17-intro">在其他消息应用中与 ${esc(data.name)} 聊天。</p>${group(true,'已添加')}${group(false,'可添加')}`;
+    }
+    if(key==='channelChat'){const c=channels.find(c=>c.id===ui.channelId);return `<div class="settings17-chat-brand"><span class="settings17-mark mark-${c.id}">${mark(c.id)}</span><strong>${c.name}</strong><span class="small-tag">演示</span></div><div class="settings17-chat-log" aria-live="polite"><p class="settings17-bubble">你好，我是 ${esc(data.name)}。有什么需要我帮忙的？</p>${(data.channelMessages[c.id]||[]).map(m=>`<p class="settings17-bubble ${m.from==='user'?'mine':''}">${esc(m.text)}</p>`).join('')}</div><form id="settings17ChannelForm" class="settings17-channel-form"><label class="sr-only" for="settings17ChannelInput">消息内容</label><input id="settings17ChannelInput" name="message" maxlength="500" required placeholder="发送消息…" autocomplete="off"><button class="primary" type="submit">发送</button></form>`}
+    return '';
+  }
+  const previousHeader=header;
+  header=function(){if(ui.page!=='settingsDetail')return previousHeader();const key=ui.settingsSection,form=key==='assistant'?'settings17AssistantForm':key==='account'?'settings17AccountForm':null;return `<header class="topbar">${ib('返回','back','back')}<span class="page-label">${titles[key]||''}</span>${form?`<button type="submit" form="${form}" class="linklike settings17-save">保存</button>`:'<span class="icon-button"></span>'}</header>`};
+  const previousRender=render;
+  render=function(){
+    init();if(data.demoSignedOut){stopSourceVoice();app.classList.remove('source-chat');app.innerHTML=`<div class="settings17-signed-out"><img src="${LOGO}" alt=""><h1>Snack</h1><p>已退出演示账号</p>${btn('继续演示','s17Login','','primary full')}</div>`;return}
+    previousRender();if(ui.page==='settingsDetail')document.getElementById('scroll').innerHTML=`<section class="page settings17-detail">${page()}</section>`;
+  };
+  function setConnected(id,value){
+    if(CALENDAR_PROVIDERS.some(p=>p.id===id)){
+      data.calendarConnections[id]={...(data.calendarConnections[id]||{}),connected:value,authorizationRevision:3,scopes:value?['calendar','minutes']:[]};
+      if(id==='dingtalk'){data.dingTalk={cliConnected:value,scopes:value?['calendar','minutes']:[]};data.settings.dingTalk=value;if(!value)data.settings.group=false}
+      data.settings.calendar=CALENDAR_PROVIDERS.some(p=>calendarConnected(p.id));
+    }else if(id==='nexus')data.settings.nexus=value;else data.appConnections[id]=value;
+  }
+  const previousPaint=paintSheet;
+  paintSheet=function(){
+    const s=ui.sheet;if(!s)return;
+    if(s.type==='s17App'){
+      const a=apps.find(a=>a.id===s.id),active=connected(s.id);if(!a)return;
+      workSheet(a.name,`<div class="settings17-connection-brand"><span class="settings17-mark mark-${a.id}">${mark(a.id)}</span><strong>${active?'已连接':'连接 '+a.name}</strong></div><h3 class="permission-heading">${active?'已允许访问':'申请访问'}</h3><p class="settings17-scope">${a.desc}</p>${active?'':'<p class="sheet-desc">演示连接，不访问真实账号。</p>'}${active?btn('断开连接','s17AppDisconnect',a.id,'danger-link'):btn('同意并模拟连接','s17AppConnect',a.id,'primary full')}`);return;
+    }
+    if(s.type==='s17AppDisconnect'){workSheet('断开连接？',`<p class="sheet-desc">停止读取新的资料。已有文件、日程与跟进记录会保留。</p>${btn('断开连接','s17AppDisconnectConfirm',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return}
+    if(s.type==='s17Channel'){
+      const c=channels.find(c=>c.id===s.id),active=!!data.messageChannels[s.id];if(!c)return;
+      workSheet(c.name,`<div class="settings17-connection-brand"><span class="settings17-mark mark-${c.id}">${mark(c.id)}</span><strong>${active?'已添加':'添加 '+c.name}</strong></div><p class="sheet-desc">${active?'你可以在这里预览与秘书的对话。':'添加后，可通过 '+c.name+' 与 '+esc(data.name)+' 聊天。'}</p><p class="settings17-boundary">演示连接，不向真实平台发送消息。</p>${active?btn('预览对话','s17ChannelChat',c.id,'primary full')+btn('移除频道','s17ChannelRemove',c.id,'danger-link'):btn('同意并模拟添加','s17ChannelConnect',c.id,'primary full')}`);return;
+    }
+    if(s.type==='s17ChannelRemove'){workSheet('移除消息频道？',`<p class="sheet-desc">移除后无法通过这个频道与秘书聊天，演示对话记录会保留。</p>${btn('移除频道','s17ChannelRemoveConfirm',s.id,'danger-button full')}${btn('取消','close','','secondary full')}`);return}
+    if(s.type==='s17Permission'){
+      const labels={notifications:'通知',microphone:'麦克风',photos:'照片与文件'},active=data.devicePermissions[s.id];
+      workSheet(labels[s.id],`<p class="sheet-desc">${({notifications:'用于接收秘书的消息和提醒。',microphone:'用于在聊天中输入语音。',photos:'用于选择你想发给秘书的图片与文件。'})[s.id]}</p><p class="settings17-boundary">这里只演示权限状态；实际使用时由系统请求授权。</p>${btn(active?'关闭演示权限':'允许演示权限','s17PermissionToggle',s.id,active?'secondary full':'primary full')}`);return;
+    }
+    if(s.type==='s17Logout'){workSheet('退出账号？',`<p class="sheet-desc">退出当前演示账号，本机的对话、文件与设置会保留。</p>${btn('退出','s17LogoutConfirm','','danger-button full')}${btn('取消','close','','secondary full')}`);return}
+    return previousPaint();
+  };
+  const previousHandle=handle;
+  handle=function(action,id='',element){
+    init();if(action==='s17Login'){data.demoSignedOut=false;save();go('chat');return}if(data.demoSignedOut)return;
+    if(action==='s17Page'){ui.settingsSection=id;openPage('settingsDetail');return}
+    if(action==='s17AppTab'){ui.connectorView=id;render();return}
+    if(action==='s17ClearSearch'){ui.connectorQuery='';render();document.getElementById('settings17Search')?.focus();return}
+    if(['s17App','s17AppDisconnect','s17Channel','s17ChannelRemove','s17Permission','s17Logout'].includes(action)){showSheet(action,{id});return}
+    if(action==='s17AppConnect'||action==='s17AppDisconnectConfirm'){setConnected(id,action==='s17AppConnect');save();closeSheet(false);render();toast(action==='s17AppConnect'?'已模拟连接':'已断开连接');return}
+    if(action==='s17ChannelConnect'||action==='s17ChannelRemoveConfirm'){data.messageChannels[id]=action==='s17ChannelConnect';save();closeSheet(false);render();toast(action==='s17ChannelConnect'?'已添加演示频道':'已移除频道');return}
+    if(action==='s17ChannelChat'){ui.channelId=id;closeSheet(false);ui.settingsSection='channelChat';render();return}
+    if(action==='back'&&ui.page==='settingsDetail'&&ui.settingsSection==='channelChat'){ui.settingsSection='channels';render();return}
+    if(action==='s17PermissionToggle'){data.devicePermissions[id]=!data.devicePermissions[id];save();closeSheet(false);render();return}
+    if(action==='s17LogoutConfirm'){closeSheet(false);data.demoSignedOut=true;save();render();return}
+    if(action==='sources'){ui.connectorView='available';ui.connectorQuery=''}
+    previousHandle(action,id,element);
+  };
+  document.addEventListener('input',e=>{if(e.target.id==='settings17Search'){ui.connectorQuery=e.target.value;document.getElementById('settings17Results').innerHTML=appResults()}});
+  document.addEventListener('submit',e=>{
+    const id=e.target.id;if(!['settings17AssistantForm','settings17AccountForm','settings17ChannelForm'].includes(id))return;
+    e.preventDefault();e.stopImmediatePropagation();const values=new FormData(e.target),get=key=>String(values.get(key)||'').trim();
+    if(id==='settings17AssistantForm'){
+      const name=get('name'),persona=get('persona');if(!name||!persona){document.getElementById('settings17FormError').textContent='请填写秘书名称和人设。';return}
+      data.name=name.slice(0,20);data.assistantPersona=persona.slice(0,1200);save();back();toast('名称与人设已保存');return;
+    }
+    if(id==='settings17AccountForm'){
+      if(!get('name')){document.getElementById('settings17FormError').textContent='请填写姓名。';return}
+      data.accountInfo={name:get('name').slice(0,40),organization:get('organization').slice(0,80),role:get('role').slice(0,40)};save();back();toast('账号信息已保存');return;
+    }
+    if(id==='settings17ChannelForm'){
+      const message=get('message');if(!message)return;
+      const history=data.channelMessages[ui.channelId]||=[];history.push({from:'user',text:message.slice(0,500)},{from:'assistant',text:'收到。这是一条频道演示回复，真实消息尚未发送。'});data.channelMessages[ui.channelId]=history.slice(-30);save();render();document.getElementById('settings17ChannelInput')?.focus();return;
+    }
+  },true);
+})();
+
+
+// BEGIN REAL MEETING RECORDING 17
+(() => {
+  let session=null,playbackURL=null,playbackToken=0;
+  const previous={paintSheet,closeSheet,handle,fileDetail,render};
+  const duration=ms=>{const seconds=Math.floor(Math.max(0,ms)/1000);return String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')};
+  const stamp=date=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(date);
+  const extension=mime=>mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':'webm';
+  const filename=s=>(s.title||'会议录音').replace(/[\\/:*?"<>|]/g,'-')+'.'+extension(s.blob.type);
+  function release(s){clearInterval(s.timer);s.timer=null;s.stream?.getTracks().forEach(track=>track.stop());s.stream=null}
+  function dispose(){if(!session)return;const s=session;session=null;release(s);if(s.recorder?.state!=='inactive'){try{s.recorder?.stop()}catch{}}if(s.url)URL.revokeObjectURL(s.url)}
+  function audioStore(mode,id,blob){
+    return new Promise((resolve,reject)=>{
+      if(!window.indexedDB){reject(new Error('storage-unavailable'));return}
+      const request=window.indexedDB.open('snack-meeting-audio',1);let settled=false;
+      const fail=()=>{if(!settled){settled=true;reject(new Error('storage-failed'))}};
+      request.onupgradeneeded=()=>request.result.createObjectStore('recordings');
+      request.onerror=fail;request.onblocked=fail;
+      request.onsuccess=()=>{
+        const db=request.result;if(settled){db.close();return}
+        try{const tx=db.transaction('recordings',mode),store=tx.objectStore('recordings'),operation=mode==='readwrite'?store.put(blob,id):store.get(id);
+          tx.oncomplete=()=>{db.close();if(!settled){settled=true;resolve(operation.result)}};
+          tx.onerror=tx.onabort=()=>{db.close();fail()};
+        }catch(error){db.close();fail()}
+      };
+    });
+  }
+  function repaint(){if(session){ui.sheet={type:'meetingRecording'};paintSheet()}}
+  function finish(s){
+    if(session!==s||s.finalized)return;s.finalized=true;
+    s.endedAt||=Date.now();release(s);
+    s.blob=new Blob(s.chunks,{type:s.recorder.mimeType||s.chunks[0]?.type||'audio/webm'});s.chunks=[];
+    if(!s.blob.size){s.phase='error';s.error='没有录到音频，请检查麦克风后重试。'}
+    else{s.url=URL.createObjectURL(s.blob);s.phase='ready'}
+    repaint();
+  }
+  function stop(){
+    const s=session;if(!s||s.phase!=='recording')return;
+    s.endedAt=Date.now();s.phase='stopping';clearInterval(s.timer);
+    try{if(s.recorder.state!=='inactive')s.recorder.stop()}catch{s.error='录音已中断，正在保留收到的音频。'}
+    release(s);if(s.phase==='stopping')repaint();
+  }
+  async function start(){
+    if(session){repaint();return}
+    stopSourceVoice();
+    const s=session={id:'audio-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),phase:'requesting',chunks:[],title:'会议录音 '+stamp(new Date()),error:''};
+    showSheet('meetingRecording');
+    if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){s.phase='error';s.error='当前环境不支持录音，请用最新版浏览器打开 HTTPS 预览。';repaint();return}
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      if(session!==s){stream.getTracks().forEach(track=>track.stop());return}
+      s.stream=stream;
+      const mime=['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus'].find(type=>MediaRecorder.isTypeSupported(type));
+      s.recorder=new MediaRecorder(stream,mime?{mimeType:mime}:{});
+      s.recorder.ondataavailable=event=>{if(event.data.size)s.chunks.push(event.data)};
+      s.recorder.onstop=()=>finish(s);
+      s.recorder.onerror=()=>{s.error='录音意外中断，已保留收到的音频。';stop()};
+      stream.getAudioTracks().forEach(track=>track.addEventListener('ended',()=>{if(session===s&&s.phase==='recording'){s.error='麦克风已断开，已结束录音。';stop()}}));
+      s.recorder.start(1000);s.startedAt=Date.now();s.phase='recording';repaint();
+      s.timer=setInterval(()=>{if(session!==s)return;const clock=document.getElementById('meetingRecordTime');if(clock)clock.textContent=duration(Date.now()-s.startedAt)},500);
+    }catch(error){
+      if(session!==s)return;release(s);s.phase='error';
+      s.error=({NotAllowedError:'麦克风权限未开启，请在浏览器的网站权限中允许麦克风后重试。',NotFoundError:'未检测到麦克风，请连接麦克风后重试。',NotReadableError:'麦克风暂时无法使用，请检查设备或关闭其他占用麦克风的应用。',SecurityError:'浏览器阻止了麦克风访问，请检查网站权限。'})[error.name]||'无法开始录音，请检查麦克风后重试。';repaint();
+    }
+  }
+  async function persist(){
+    const s=session;if(!s||s.phase!=='ready')return;
+    s.title=document.getElementById('meetingRecordTitle')?.value.trim().slice(0,80)||s.title;
+    s.phase='saving';s.error='';repaint();
+    const eventId='meeting-'+s.id,started=stamp(new Date(s.startedAt)),ended=stamp(new Date(s.endedAt));
+    const file={id:s.id,audioId:s.id,title:s.title,kind:'录音',folder:'meetings',eventId,createdAt:new Date(s.startedAt).toISOString(),audioDuration:s.endedAt-s.startedAt,audioMime:s.blob.type,meta:started+' · '+duration(s.endedAt-s.startedAt)+' · 本机录音',summary:''};
+    try{
+      await audioStore('readwrite',s.id,s.blob);
+      if(session!==s)return;
+      const meeting={id:eventId,title:s.title,day:started.slice(0,10),date:Number(started.slice(8,10)),time:started.slice(11),end:ended.slice(11),recordingEndedAt:new Date(s.endedAt).toISOString(),type:'meeting',people:'你',recorded:file.id};
+      data.files.unshift(file);data.events.push(meeting);data.meetingPreferences[eventId]={before:false,during:false,after:false};
+      data.calendarActivities[eventId]=[{id:s.id,phase:'recording',title:'会议录音已保存',body:duration(file.audioDuration)+' · 本机录音',fileId:file.id,at:new Date(s.endedAt).toISOString()}];
+      try{save();localStorage.setItem('snack-prototype-v1',JSON.stringify(data))}catch(error){
+        data.files=data.files.filter(item=>item.id!==s.id);data.events=data.events.filter(item=>item.id!==eventId);delete data.meetingPreferences[eventId];delete data.calendarActivities[eventId];throw error;
+      }
+      dispose();previous.closeSheet(false);ui.calendarHistoryOpen=true;openPage('file',file.id);toast('录音已保存到本机');
+    }catch(error){if(session!==s)return;s.phase='ready';s.error='无法保存到浏览器，请先下载录音，或重试保存。';repaint()}
+  }
+  paintSheet=function(){
+    if(ui.sheet?.type==='meetingRecordDiscard'&&session){workSheet('放弃这段录音？','<p class="sheet-desc">录音尚未保存，放弃后无法恢复。</p>'+btn('保留录音','meetingRecordKeep','','primary full')+btn('放弃录音','meetingRecordDiscardConfirm','','danger-button full'));return}
+    if(ui.sheet?.type!=='meetingRecording'||!session)return previous.paintSheet();
+    const s=session;
+    if(s.phase==='requesting'){workSheet('开始记录会议','<p class="sheet-desc" role="status">正在等待麦克风授权…</p>'+btn('取消','close','','secondary full'));return}
+    if(s.phase==='error'){workSheet('无法开始录音',`<p class="form-error" role="alert">${esc(s.error)}</p>`+btn('重试','meetingRecordRetry','','primary full'));return}
+    if(['recording','stopping'].includes(s.phase)){
+      workSheet('记录会议',`<div class="meeting-recorder"><p class="meeting-record-state" role="status"><span aria-hidden="true"></span>${s.phase==='recording'?'正在录音':'正在结束录音…'}</p><div class="meeting-record-clock" id="meetingRecordTime" role="timer" aria-label="录音时长">${duration((s.endedAt||Date.now())-s.startedAt)}</div></div><p class="meeting-record-note">离开页面前请结束并保存录音。</p><button type="button" class="primary full" data-action="meetingRecordStop" ${s.phase==='stopping'?'disabled':''}>${icon('stop')} 结束录音</button>`);
+      document.querySelector('.sheet-head [data-action="close"]')?.setAttribute('aria-label','结束录音');return;
+    }
+    workSheet('保存录音',`<label class="field"><span>会议名称</span><input id="meetingRecordTitle" maxlength="80" value="${esc(s.title)}" ${s.phase==='saving'?'disabled':''}></label><audio class="meeting-record-audio" aria-label="试听会议录音" controls src="${s.url}"></audio><p class="meeting-record-note">${duration(s.endedAt-s.startedAt)} · 仅保存在当前浏览器</p>${s.error?`<p class="form-error" role="alert">${esc(s.error)}</p>`:''}<button type="button" class="primary full" data-action="meetingRecordSave" ${s.phase==='saving'?'disabled':''}>${s.phase==='saving'?'正在保存…':'保存录音'}</button><a class="secondary full meeting-record-download" href="${s.url}" download="${esc(filename(s))}">下载录音</a>`);
+  };
+  closeSheet=function(restore=true){
+    if(session){
+      if(session.phase==='recording'){stop();return}
+      if(['stopping','saving'].includes(session.phase))return;
+      if(session.phase==='ready'){if(ui.sheet?.type==='meetingRecordDiscard'){repaint();return}showSheet('meetingRecordDiscard');return}
+      dispose();
+    }
+    return previous.closeSheet(restore);
+  };
+  handle=function(action,id='',element){
+    if(action==='meetingRecordStart'){start();return}
+    if(action==='meetingRecordStop'){stop();return}
+    if(action==='meetingRecordSave'){persist();return}
+    if(action==='meetingRecordRetry'){dispose();start();return}
+    if(action==='meetingRecordKeep'){repaint();return}
+    if(action==='meetingRecordDiscardConfirm'){dispose();previous.closeSheet();return}
+    return previous.handle(action,id,element);
+  };
+  fileDetail=function(){
+    const file=data.files.find(item=>item.id===ui.id);if(!file?.audioId)return previous.fileDetail();
+    return `<section class="page meeting-record-file"><div class="detail-hero"><h1>${esc(file.title)}</h1><p>${esc(file.meta)}</p></div><div id="meetingSavedAudio" data-audio-id="${esc(file.audioId)}"><p role="status">正在读取录音…</p></div><p class="meeting-record-note">录音仅保存在当前浏览器，清除网站数据会删除录音。可下载备份。</p>${btn('查看关联日程','event',file.eventId,'secondary full')}</section>`;
+  };
+  render=function(){
+    const token=++playbackToken;if(playbackURL){URL.revokeObjectURL(playbackURL);playbackURL=null}
+    previous.render();
+    const target=document.getElementById('meetingSavedAudio');if(!target)return;
+    const file=data.files.find(item=>item.audioId===target.dataset.audioId);if(!file)return;
+    audioStore('readonly',file.audioId).then(blob=>{
+      if(token!==playbackToken||!target.isConnected)return;
+      if(!blob?.size)throw new Error('missing-audio');
+      playbackURL=URL.createObjectURL(blob);
+      target.innerHTML=`<audio class="meeting-record-audio" aria-label="播放会议录音" controls src="${playbackURL}"></audio><a class="secondary full meeting-record-download" href="${playbackURL}" download="${esc(filename({title:file.title,blob}))}">下载录音</a>`;
+    }).catch(()=>{if(token===playbackToken&&target.isConnected)target.innerHTML='<p class="form-error" role="alert">本机录音无法读取，可能已被清理。请使用之前下载的备份。</p>'});
+  };
+  document.addEventListener('input',event=>{if(event.target.id==='meetingRecordTitle'&&session)session.title=event.target.value});
+  window.addEventListener('beforeunload',event=>{if(session&&['recording','stopping','ready','saving'].includes(session.phase)){event.preventDefault();event.returnValue=''}});
+  window.addEventListener('pagehide',()=>{if(session?.phase==='recording')stop();else if(session)release(session);if(session?.phase==='requesting')dispose();if(playbackURL)URL.revokeObjectURL(playbackURL)});
+})();
+// END REAL MEETING RECORDING 17
 
 render();
 </script>
