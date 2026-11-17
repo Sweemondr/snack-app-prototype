@@ -3429,7 +3429,7 @@ let memoryDocumentPage;
   };
   goalRow=function(g){
     if(!isDemo(g))return previous.goalRow(g);
-    return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.template==='brief'?'clock':g.template==='meeting'?'calendar':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span><span class="work-meta">${g.status==='done'?'已结束':g.status==='paused'?'已暂停':'跟进中'} · ${g.setupSnapshot.channel==='dingtalk'?'钉钉':'Snack'} · 演示</span></span>${icon('right')}</button>`;
+    return `<button class="work-row" data-action="goal" data-id="${esc(g.id)}"><span class="work-icon">${icon(g.template==='brief'?'clock':g.template==='meeting'?'calendar':'target')}</span><span class="work-body"><span class="work-title">${esc(g.title)}</span><span class="work-summary">${esc(g.summary)}</span>${g.status==='paused'?'<span class="work-meta">已暂停</span>':''}</span>${icon('right')}</button>`;
   };
   goalDetail=function(){
     const g=data.goals.find(x=>x.id===ui.id);if(!isDemo(g))return previous.goalDetail();
